@@ -1,0 +1,32 @@
+---
+import { t } from 'i18next';
+---
+
+<div class="flex items-center gap-2 flex-row">
+	<img
+		class="hover:-translate-y-0.5 transition-transform"
+		src="/assets/img/google-play.png"
+		alt={t('components.appStoresBadges.googleAlt')}
+	/>
+	<img
+		class="hover:-translate-y-0.5 transition-transform"
+		src="/assets/img/app-store.png"
+		alt={t('components.appStoresBadges.appleAlt')}
+	/>
+</div>
+
+<style>
+	img {
+		width: 200px;
+		height: 60px;
+		object-fit: scale-down;
+		cursor: pointer;
+	}
+
+	@media (max-width: 768px) {
+		img {
+			width: 120px;
+			height: 45px;
+		}
+	}
+</style>

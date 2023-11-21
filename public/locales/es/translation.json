@@ -1,0 +1,101 @@
+{
+	"home": {
+		"title": "Zwippe | Inicio",
+		"links": {
+			"home": "Inicio",
+			"about": "Sobre nosotros",
+			"features": "Características"
+		}
+	},
+	"about": {
+		"title": "SOBRE NUESTRA APP",
+		"description": "Primera  super APP global de   servicios financieros que rompe  fronteras.",
+		"card1": {
+			"title": "SERVICIOS FINANCIEROS INSTANTANEOS",
+			"description": "Servicios fáciles, rápidos y seguros para manejar tu dinero."
+		},
+		"card2": {
+			"title": "ACCESO INSTANTÁNEO AL EFECTIVO",
+			"description": "No más preocupaciones para desmaterializar tu efectivo"
+		},
+		"card3": {
+			"title": "LAS TARIFAS MÁS BAJAS DEL MERCADO",
+			"description": "Despídete de cargos ocultos y adicionales"
+		},
+		"card4": {
+			"title": "CUENTAS DE AHORRO 100% DIGITALES",
+			"description": "Haz tu Onboarding directamente a tu cuenta en minutos"
+		},
+		"card5": {
+			"title": "UNA TARJETA PARA LIBRARLAS A TODAS",
+			"description": "Tarjeta de débito internacional digital y física para desbloquear el verdadero poder de las finanzas"
+		}
+	},
+	"components": {
+		"header": {
+			"aria-label": "Components",
+			"logoImageAlt": "Logo de Zwippe",
+			"downloadButtonLabel": "Descarga",
+			"mobileMenuHeader": "Menu"
+		},
+		"appStoresBadges": {
+			"googleAlt": "Descargalo en Google Play",
+			"appleAlt": "Descargalo en App Store"
+		},
+		"hero": {
+			"heading1": "UNA APP QUE MEJORA",
+			"heading2": "TU VIDA",
+			"description": "Creamos un nuevo canal  digital que cambia la relación de  las personas con su dinero de forma inclusiva.",
+			"downloadButtonLabel": "Descarga:",
+			"countDownTimerLabel": "Disponible en Junio del 2023:"
+		},
+		"countDownTimer": {
+			"days": "Días",
+			"hours": "Horas",
+			"minutes": "Minutos",
+			"seconds": "Segundos",
+			"formTitle": "Obten una notificación cuando este disponible:",
+			"formInputPlaceholder": "ejemplo@gmail.com",
+			"formLabel": "Correo electrónico",
+			"formButtonLabel": "Notificarme",
+			"successMessage": "Gracias por suscribirte, nos contactaremos pronto!.",
+			"errorMessage": "Porfavor ingresa un correo válido"
+		},
+		"features": {
+			"heading": "CARACTERÍSTICAS DE LA APLICACIÓN",
+			"description": "Conéctese con servicios de banca digital internacionalmente.",
+			"feature1": {
+				"title": "TRANSFERENCIAS P2P",
+				"description": "Pague sin fricción con transferencias instantáneas locales e internacionales"
+			},
+			"feature2": {
+				"title": "DEPOSITOS",
+				"description": "Extraiga tarjetas de crédito y débito, y deposite efectivo a través de diferentes canales"
+			},
+			"feature3": {
+				"title": "RETIROS",
+				"description": "Retiro a través de cajeros automáticos, cajeros y otras transferencia hacia otras cuentas bancarias"
+			},
+			"feature4": {
+				"title": "ACCESIBILIDAD Y EXPERIENCIA DE USUARIO",
+				"description": "Acceda a la nueva generación de servicios instantáneos en la aplicación con menos de 3 clics"
+			},
+			"feature5": {
+				"title": "FX DIVISAS",
+				"description": "Plataforma multi divisa e idioma accesible en cada país operativo"
+			},
+			"feature6": {
+				"title": "ONBOARDING EXPRESS",
+				"description": "Accede a tu cuenta de ahorros digital en minutos"
+			}
+		}
+	},
+	"download": {
+		"title": "DESCARGA LA APLICACIÓN AHORA",
+		"description": "Si se encuentra entre los primeros 10.000 usuarios en registrarse, obtenga acceso a una suscripción y transacción gratuita"
+	},
+	"footer": {
+		"description": "THINKING BEYOND FINANCE",
+		"quickLinks": "QUICK LINKS"
+	}
+}

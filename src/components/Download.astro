@@ -1,0 +1,31 @@
+---
+import { t } from 'i18next';
+import NewsLetterForm from './NewsLetterForm';
+---
+
+<section
+	class="flex flex-col-reverse md:flex-row justify-between items-center mx-auto max-w-screen-lg py-12 px-4 gap-10"
+>
+	<div class="flex flex-col justify-center items-center">
+		<h3 class="text-3xl text-center font-bold">{t('download.title')}</h3>
+		<p class="font-light text-gray-600 max-w-sm">
+			{t('download.description')}
+		</p>
+		<div class="bg-slate-950 p-8 my-10 rounded">
+			<NewsLetterForm
+				client:load
+				buttonType="secondary"
+				errorMessage={t('')}
+				formTitle={t('components.countDownTimer.formTitle')}
+				formInputPlaceholder={t(
+					'components.countDownTimer.formInputPlaceholder'
+				)}
+				formLabel={t('components.countDownTimer.formLabel')}
+				formButtonLabel={t('components.countDownTimer.formButtonLabel')}
+				successMessage={t('components.countDownTimer.successMessage')}
+				errorMessage={t('components.countDownTimer.errorMessage')}
+			/>
+		</div>
+	</div>
+	<img src="/assets/img/phone-side.png" alt="phone" class="w-2/4 h-auto" />
+</section>

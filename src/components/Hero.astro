@@ -1,0 +1,80 @@
+---
+import AppStoresBadges from './AppStoresBadges.astro';
+import { t } from 'i18next';
+import CountDownTimer from './CountDownTimer';
+---
+
+<div
+	class="mx-auto h-full max-w-screen-lg relative z-0 px-4 flex flex-col items-center justify-between"
+>
+	<hero
+		class="w-full flex flex-col-reverse md:flex-row gap-6 justify-between items-center mb-6 md:mb-0"
+	>
+		<div class="max-w-xs md:max-w-md mt-6 md:mt-0">
+			<div
+				id="card-border"
+				class="absolute border-gray-900 w-fit h-fit border-solid border-8 translate-x-9 -translate-y-6 -z-10"
+			>
+			</div>
+			<div id="card-container" class="bg-white p-6">
+				<div class="mb-2">
+					<p class="text-orange-500 text-5xl font-extrabold">
+						{t('components.hero.heading1').toUpperCase()}
+					</p>
+					<p class="text-red-500 text-5xl font-extrabold">
+						{t('components.hero.heading2').toUpperCase()}
+					</p>
+				</div>
+				<div class="mb-2">
+					<p class="font-light">
+						{t('components.hero.description')}
+					</p>
+				</div>
+				<div class="mt-6">
+					<h3 class="text-2xl font-bold">
+						{t('components.hero.downloadButtonLabel')}
+					</h3>
+					<AppStoresBadges />
+				</div>
+			</div>
+		</div>
+		<img
+			src="/assets/img/hero-phone-1.png"
+			alt="app image on ios device"
+			class="md:w-5/12 w-6/12 h-auto"
+		/>
+	</hero>
+	<span class="text-lg md:text-4xl my-8 font-extrabold font-mono text-white"
+		>{t('components.hero.countDownTimerLabel')}</span
+	>
+	<CountDownTimer
+		client:load
+		date="2023-06-30"
+		daysLabel={t('components.countDownTimer.days')}
+		hoursLabel={t('components.countDownTimer.hours')}
+		minutesLabel={t('components.countDownTimer.minutes')}
+		secondsLabel={t('components.countDownTimer.seconds')}
+		formTitle={t('components.countDownTimer.formTitle')}
+		formInputPlaceholder={t('components.countDownTimer.formInputPlaceholder')}
+		formLabel={t('components.countDownTimer.formLabel')}
+		formButtonLabel={t('components.countDownTimer.formButtonLabel')}
+		successMessage={t('components.countDownTimer.successMessage')}
+		errorMessage={t('components.countDownTimer.errorMessage')}
+	/>
+</div>
+
+<script>
+	const cardBorder = document.getElementById('card-border');
+	const cardContainer = document.getElementById('card-container');
+	if (cardBorder && cardContainer) {
+		const resizeObserver = new ResizeObserver((entries) => {
+			if (entries[0]) {
+				const { width, height } = entries[0]?.contentRect;
+				cardBorder.style.width = `${width + 40}px`;
+				cardBorder.style.height = `${height + 100}px`;
+			}
+		});
+
+		resizeObserver.observe(cardContainer);
+	}
+</script>

@@ -1,0 +1,101 @@
+{
+	"home": {
+		"title": "Zwippe | Home",
+		"links": {
+			"home": "Home",
+			"about": "About",
+			"features": "Features"
+		}
+	},
+	"about": {
+		"title": "ABOUT OUR APP",
+		"description": "First global super APP of financial services that breaks international barriers.",
+		"card1": {
+			"title": "INSTANT FINANCIAL SERVICES",
+			"description": "Easy, fast and secure services to manage your money."
+		},
+		"card2": {
+			"title": "INSTANT ACCESS TO CASH",
+			"description": "No more worries to dematerialize your cash."
+		},
+		"card3": {
+			"title": "LOWEST FEES IN THE MARKET",
+			"description": "Say bye to hidden charges and additional fees"
+		},
+		"card4": {
+			"title": "100% DIGITAL SAVINGS ACCOUNT",
+			"description": "Onboard directly to your personal savings account in minutes"
+		},
+		"card5": {
+			"title": "ONE CARD TO FREE THEM ALL",
+			"description": "Digital and physical international debit card to unlock the true power of finance"
+		}
+	},
+	"components": {
+		"header": {
+			"aria-label": "Components",
+			"logoImageAlt": "Logo",
+			"downloadButtonLabel": "Download",
+			"mobileMenuHeader": "Menu"
+		},
+		"appStoresBadges": {
+			"googleAlt": "Get it on Google Play",
+			"appleAlt": "Download on the App Store"
+		},
+		"hero": {
+			"heading1": "AN APP THAT MAKES",
+			"heading2": "YOUR LIFE BETTER",
+			"description": "We create new digital channel that changes people’s relationship with their money in an inclusive way.",
+			"downloadButtonLabel": "Download:",
+			"countDownTimerLabel": "Available on June 2023:"
+		},
+		"countDownTimer": {
+			"days": "Days",
+			"hours": "Hours",
+			"minutes": "Minutes",
+			"seconds": "Seconds",
+			"formTitle": "Get notified when we launch",
+			"formInputPlaceholder": "example@gmail.com",
+			"formLabel": "Email Address",
+			"formButtonLabel": "Notify Me",
+			"successMessage": "Thank you for subscribing!",
+			"errorMessage": "Please enter a valid email address."
+		},
+		"features": {
+			"heading": "APP FEATURES",
+			"description": "Connect with digital banking services in international hubs.",
+			"feature1": {
+				"title": "P2P TRANSFERS",
+				"description": "Pay frictionless with instant local and international transfers"
+			},
+			"feature2": {
+				"title": "CASH IN",
+				"description": "Pull credit and debit cards, and deposit cash through different channels"
+			},
+			"feature3": {
+				"title": "CASH OUT",
+				"description": "Withdraw through ATMs, tellers and other bank accounts"
+			},
+			"feature4": {
+				"title": "ACCESSIBILITY AND USER EXPERIENCE",
+				"description": "Access new generation of instant services in app on less than 3 clicks"
+			},
+			"feature5": {
+				"title": "FX CURRENCY",
+				"description": "Multi-currency and language platform accessible in each operational country"
+			},
+			"feature6": {
+				"title": "EXPRESS ONBOARDING",
+				"description": "Access your digital savings account in minutes"
+			}
+		}
+	},
+	"download": {
+		"title": "DOWNLOAD APP NOW",
+		"description": "If you are among the first 10.000 users to register earn access to a free subscription and transaction.  "
+	},
+	"footer": {
+		"description": "THINKING BEYOND FINANCE",
+		"quickLinks": "QUICK LINKS"
+	}
+}

@@ -1,0 +1,65 @@
+---
+import i18next, { t } from 'i18next';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import GradientBackground from '../components/GradientBackground.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Features from '../components/Features.astro';
+import Download from '../components/Download.astro';
+i18next.changeLanguage('es');
+const links = [
+	{
+		label: t('home.links.home'),
+		href: '#home',
+	},
+	{
+		label: t('home.links.about'),
+		href: '#about',
+	},
+	{
+		label: t('home.links.features'),
+		href: '#features',
+	},
+];
+---
+
+<Layout title={t('home.title')}>
+	<GradientBackground>
+		<Header links={links} />
+		<Hero />
+	</GradientBackground>
+	<About />
+	<Features />
+	<Download />
+</Layout>
+<script>
+	// selecciona todos los enlaces que apuntan a secciones de la página
+	const links = document.querySelectorAll('a[href^="#"]');
+
+	// recorre los enlaces y agrega un controlador de eventos para el clic
+	links.forEach((link) => {
+		link.addEventListener('click', (e) => {
+			// evita el comportamiento predeterminado del clic en el enlace
+			e.preventDefault();
+
+			// obtén el valor del atributo href del enlace y elimina el signo de numeral (#)
+			const href = link?.getAttribute('href')?.substring(1);
+
+			// obtén la sección correspondiente en la página
+			const section = document.getElementById(href || '');
+
+			// verifica si la sección existe y, si no, detén el script
+			if (!section) return;
+
+			// obtén la posición de la sección en la página
+			const offsetTop = section.offsetTop;
+
+			// agrega la animación de scroll suave
+			window.scrollTo({
+				top: offsetTop,
+				behavior: 'smooth',
+			});
+		});
+	});
+</script>

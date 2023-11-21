@@ -1,0 +1,61 @@
+---
+export interface Props {
+	/**
+	 * The title of the card
+	 */
+	title: string;
+
+	/**
+	 * The description of the card
+	 */
+	description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<div
+	class="relative flex items-start justify-between rounded-xl border border-gray-100 p-4 shadow-xl sm:p-6 lg:p-8"
+>
+	<div class="text-gray-500">
+		<h3 class="text-lg font-bold text-gray-900 sm:text-xl">
+			{title}
+		</h3>
+
+		<p class="mt-2 text-sm">
+			{description}
+		</p>
+	</div>
+
+	<span class="rounded-full px-3 py-1.5">
+		<svg
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<g clip-path="url(#clip0_2_177)">
+				<path
+					d="M12 22C6.477 22 2 17.523 2 12C2 6.477 6.477 2 12 2C17.523 2 22 6.477 22 12C22 17.523 17.523 22 12 22ZM11.003 16L18.073 8.929L16.659 7.515L11.003 13.172L8.174 10.343L6.76 11.757L11.003 16Z"
+					fill="url(#paint0_linear_2_177)"></path>
+			</g>
+			<defs>
+				<linearGradient
+					id="paint0_linear_2_177"
+					x1="12"
+					y1="2"
+					x2="12"
+					y2="22"
+					gradientUnits="userSpaceOnUse"
+				>
+					<stop stop-color="#F26422"></stop>
+					<stop offset="1" stop-color="#DE2A43"></stop>
+				</linearGradient>
+				<clipPath id="clip0_2_177">
+					<rect width="24" height="24" fill="white"></rect>
+				</clipPath>
+			</defs>
+		</svg>
+	</span>
+</div>

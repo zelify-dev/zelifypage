@@ -1,0 +1,6 @@
+node_modules
+**.mjs
+**.ts
+**.tsx
+dist
+.github
