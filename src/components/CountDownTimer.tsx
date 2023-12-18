@@ -47,27 +47,7 @@ const CountDownTimer: FC<any> = ({
 	}, []);
 
 	return (
-		<div className="flex flex-col min-w-full gap-4">
-			<div className="mx-auto grid grid-flow-col gap-5 text-center auto-cols-max">
-				<div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content text-white">
-					<span className="countdown font-mono text-5xl text-white">
-						{data.days}
-					</span>
-					{daysLabel}
-				</div>
-				<div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content text-white">
-					<span className="countdown font-mono text-5xl">{data.hours}</span>
-					{hoursLabel}
-				</div>
-				<div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content text-white">
-					<span className="countdown font-mono text-5xl">{data.minutes}</span>
-					{minutesLabel}
-				</div>
-				<div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content text-white">
-					<span className="countdown font-mono text-5xl">{data.seconds}</span>
-					{secondsLabel}
-				</div>
-			</div>
+		<div className="flex flex-col min-w-full gap-4 mt-5">
 			<NewsLetterForm
 				errorMessage={errorMessage}
 				formButtonLabel={formButtonLabel}
