@@ -44,23 +44,6 @@ import CountDownTimer from './CountDownTimer';
 			class="md:w-5/12 w-6/12 h-auto"
 		/>
 	</hero>
-	<span class="text-lg md:text-4xl my-8 font-extrabold font-mono text-white"
-		>{t('components.hero.countDownTimerLabel')}</span
-	>
-	<CountDownTimer
-		client:load
-		date="2023-06-30"
-		daysLabel={t('components.countDownTimer.days')}
-		hoursLabel={t('components.countDownTimer.hours')}
-		minutesLabel={t('components.countDownTimer.minutes')}
-		secondsLabel={t('components.countDownTimer.seconds')}
-		formTitle={t('components.countDownTimer.formTitle')}
-		formInputPlaceholder={t('components.countDownTimer.formInputPlaceholder')}
-		formLabel={t('components.countDownTimer.formLabel')}
-		formButtonLabel={t('components.countDownTimer.formButtonLabel')}
-		successMessage={t('components.countDownTimer.successMessage')}
-		errorMessage={t('components.countDownTimer.errorMessage')}
-	/>
 </div>
 
 <script>
