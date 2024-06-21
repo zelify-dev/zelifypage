@@ -1,7 +1,5 @@
 ---
 import { t } from 'i18next';
-import Button from './Button.astro';
-import { LanguageSelector } from 'astro-i18next/components';
 
 export interface Props {
 	/**
@@ -24,7 +22,7 @@ const { links } = Astro.props;
 					<span class="sr-only">Home Test</span>
 					<img
 						class="h-10 w-auto"
-						src="/assets/img/logo.svg"
+						src="/assets/img/logo_white.png"
 						alt={t('components.header.logoImageAlt')}
 					/>
 				</a>
@@ -37,7 +35,7 @@ const { links } = Astro.props;
 							links.map((link) => (
 								<li>
 									<a
-										class="text-gray-50 transition font-bold hover:text-gray-900/75"
+										class="text-gray-50 transition font-montserrat font-bold hover:text-gray-900/75"
 										href={link.href}
 									>
 										{link.label.toUpperCase()}
@@ -49,9 +47,6 @@ const { links } = Astro.props;
 				</nav>
 
 				<div class="flex items-center justify-center gap-4">
-					<LanguageSelector
-						class="bg-gray-950 text-white rounded border-0 h-full"
-					/>
 					<div class="flex items-center gap-4">
 						
 						<div class="block md:hidden">

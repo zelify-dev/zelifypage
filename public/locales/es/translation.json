@@ -1,6 +1,6 @@
 {
 	"home": {
-		"title": "Zwippe | Inicio",
+		"title": "Zelify | Inicio",
 		"links": {
 			"home": "Inicio",
 			"about": "Sobre nosotros",
@@ -34,7 +34,7 @@
 	"components": {
 		"header": {
 			"aria-label": "Components",
-			"logoImageAlt": "Logo de Zwippe",
+			"logoImageAlt": "Logo de Zelify",
 			"downloadButtonLabel": "Descarga",
 			"mobileMenuHeader": "Menu"
 		},

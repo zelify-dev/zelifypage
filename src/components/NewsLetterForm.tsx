@@ -10,6 +10,7 @@ const NewsLetterForm: FC<any> = ({
 	successMessage,
 	errorMessage,
 	buttonType = 'primary',
+	color = 'text-gray-600',
 }) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [value, setValue] = useState('');
@@ -34,11 +35,11 @@ const NewsLetterForm: FC<any> = ({
 	return (
 		<>
 			<div className="flex flex-col gap-4 my-2 justify-center max-w-lg mx-auto">
-				<div className="text-gray-200 font-mono">{formTitle}</div>
+				<div className={`${color} font-mono`}>{formTitle}</div>
 				<form onSubmit={onSubmit}>
 					<label
 						htmlFor="UserEmail"
-						className="block text-xs font-medium text-gray-200"
+						className={`block text-xs font-medium ${color}`}
 					>
 						{formLabel}
 					</label>
@@ -69,7 +70,7 @@ const NewsLetterForm: FC<any> = ({
 							className={`cursor-pointer w-56 relative h-11 ${
 								buttonType === 'primary'
 									? 'bg-black'
-									: 'border-2 border-orange-600 w-full'
+									: 'border-2 border-green-300 w-full'
 							} text-white rounded-md px-4 py-2 flex justify-center items-center ${
 								!isLoading &&
 								!disabled &&
