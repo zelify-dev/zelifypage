@@ -8,27 +8,27 @@
 		}
 	},
 	"about": {
-		"title": "ABOUT OUR APP",
-		"description": "First global super APP of financial services that breaks international barriers.",
+		"title": "ABOUT OUR COMPANY",
+		"description": "Zwippetech Inc., a U.S.-based company, develops B2B and B2C financial services and addresses other specialized programming needs for our clients. Zelify, a business line and brand of Zwippetech Inc., focuses on specialized development in the U.S. and Latin American regions.",
 		"card1": {
 			"title": "INSTANT FINANCIAL SERVICES",
-			"description": "Easy, fast and secure services to manage your money."
+			"description": "Easy, fast and secure services."
 		},
 		"card2": {
-			"title": "INSTANT ACCESS TO CASH",
-			"description": "No more worries to dematerialize your cash."
+			"title": "INSTANT ACCESS TO SERVICES",
+			"description": "Via API"
 		},
 		"card3": {
 			"title": "LOWEST FEES IN THE MARKET",
 			"description": "Say bye to hidden charges and additional fees"
 		},
 		"card4": {
-			"title": "100% DIGITAL SAVINGS ACCOUNT",
-			"description": "Onboard directly to your personal savings account in minutes"
+			"title": "100% DIGITAL ACCOUNT",
+			"description": "Onboard directly to your personal account in minutes"
 		},
 		"card5": {
-			"title": "ONE CARD TO FREE THEM ALL",
-			"description": "Digital and physical international debit card to unlock the true power of finance"
+			"title": "CARD B2B AND B2C SERVICES",
+			"description": "New enhanced digital services for cards"
 		}
 	},
 	"components": {
@@ -43,9 +43,9 @@
 			"appleAlt": "Download on the App Store"
 		},
 		"hero": {
-			"heading1": "AN APP THAT MAKES",
-			"heading2": "YOUR LIFE BETTER",
-			"description": "We create new digital channel that changes people’s relationship with their money in an inclusive way.",
+			"heading1": "NEW GENERATION FINANCIAL AND",
+			"heading2": "TECHNOLOGY SERVICES",
+			"description": "We develop innovative digital financial services that enhance the finances of our users and clients in the region. Our next-generation development focuses on creating new and improved technologies.",
 			"downloadButtonLabel": "Download:",
 			"countDownTimerLabel": "Available on June 2023:"
 		},
@@ -54,7 +54,7 @@
 			"hours": "Hours",
 			"minutes": "Minutes",
 			"seconds": "Seconds",
-			"formTitle": "Get notified when we launch",
+			"formTitle": "Please contact us about our service offering.",
 			"formInputPlaceholder": "example@gmail.com",
 			"formLabel": "Email Address",
 			"formButtonLabel": "Notify Me",
@@ -62,27 +62,27 @@
 			"errorMessage": "Please enter a valid email address."
 		},
 		"features": {
-			"heading": "APP FEATURES",
-			"description": "Connect with digital banking services in international hubs.",
+			"heading": "SERVICES FEATURES",
+			"description": "Connect with digital services in international hubs.",
 			"feature1": {
-				"title": "P2P TRANSFERS",
-				"description": "Pay frictionless with instant local and international transfers"
+				"title": "TRANSFERS",
+				"description": "Frictionless services"
 			},
 			"feature2": {
-				"title": "CASH IN",
+				"title": "CASH IN SERVICES",
 				"description": "Pull credit and debit cards, and deposit cash through different channels"
 			},
 			"feature3": {
-				"title": "CASH OUT",
+				"title": "CASH OUT SERVICES",
 				"description": "Withdraw through ATMs, tellers and other bank accounts"
 			},
 			"feature4": {
 				"title": "ACCESSIBILITY AND USER EXPERIENCE",
-				"description": "Access new generation of instant services in app on less than 3 clicks"
+				"description": "Access new generation of instant services"
 			},
 			"feature5": {
-				"title": "FX CURRENCY",
-				"description": "Multi-currency and language platform accessible in each operational country"
+				"title": "KYC/KYB",
+				"description": "Next generation of KYC and KYB digital services"
 			},
 			"feature6": {
 				"title": "EXPRESS ONBOARDING",
@@ -91,8 +91,8 @@
 		}
 	},
 	"download": {
-		"title": "DOWNLOAD APP NOW",
-		"description": "If you are among the first 10.000 users to register earn access to a free subscription and transaction.  "
+		"title": "",
+		"description": "Please contact us about our service offering."
 	},
 	"footer": {
 		"description": "THINKING BEYOND FINANCE",
