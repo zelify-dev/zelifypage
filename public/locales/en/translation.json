@@ -4,7 +4,7 @@
 		"links": {
 			"home": "Home",
 			"about": "About",
-			"features": "Features"
+			"features": "Service Features"
 		}
 	},
 	"about": {
@@ -65,16 +65,16 @@
 			"heading": "SERVICES FEATURES",
 			"description": "Connect with digital services in international hubs.",
 			"feature1": {
-				"title": "TRANSFERS",
+				"title": "NEW DEVELOPMENT SERVICES",
 				"description": "Frictionless services"
 			},
 			"feature2": {
-				"title": "CASH IN SERVICES",
-				"description": "Pull credit and debit cards, and deposit cash through different channels"
+				"title": "PAY IN SERVICES",
+				"description": "Pull credit and debit cards via API for B2B clients"
 			},
 			"feature3": {
-				"title": "CASH OUT SERVICES",
-				"description": "Withdraw through ATMs, tellers and other bank accounts"
+				"title": "DIGITAL SERVICES",
+				"description": "Enhance you product offering"
 			},
 			"feature4": {
 				"title": "ACCESSIBILITY AND USER EXPERIENCE",
