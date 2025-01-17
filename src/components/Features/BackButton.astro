@@ -1,0 +1,24 @@
+---
+const { onClick } = Astro.props;
+---
+
+<button 
+  class="back-button"
+  onclick="handleBackClick()"
+>
+  <i class="eva eva-arrow-back-outline"></i>
+</button>
+
+<script>
+  function handleBackClick() {
+    alert('Botón clickeado');
+    // Emitir un evento personalizado que React pueda escuchar
+    window.dispatchEvent(new CustomEvent('backButtonClicked'));
+  }
+</script>
+
+<style>
+  .back-button {
+    @apply text-[#3983ED] p-2 hover:bg-gray-100 rounded-full transition-all cursor-pointer;
+  }
+</style> 

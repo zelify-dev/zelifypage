@@ -47,7 +47,8 @@
 			"heading2": "TECHNOLOGY SERVICES",
 			"description": "We develop innovative digital financial services that enhance the finances of our users and clients in the region. Our next-generation development focuses on creating new and improved technologies.",
 			"downloadButtonLabel": "Download:",
-			"countDownTimerLabel": "Available on June 2023:"
+			"countDownTimerLabel": "Available on June 2023:",
+			"downloadApp": "Get the app"
 		},
 		"countDownTimer": {
 			"days": "Days",

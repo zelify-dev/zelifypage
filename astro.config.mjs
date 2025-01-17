@@ -7,8 +7,8 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.zwippe.net',
-  base: '/',
+  site: 'https://zelify-dev.github.io',
+  base: '/zelifypage',
   experimental: {
     integrations: true
   },

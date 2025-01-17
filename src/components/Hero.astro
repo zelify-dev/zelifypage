@@ -1,72 +1,220 @@
 ---
-import AppStoresBadges from './AppStoresBadges.astro';
 import { t } from 'i18next';
-import CountDownTimer from './CountDownTimer';
+import ChatPreview from './ChatPreview.astro';
 ---
 
-<div
-	class="mx-auto h-full max-w-screen-lg relative z-0 px-4 flex flex-col items-center justify-between"
->
-	<hero
-		class="w-full flex flex-col-reverse md:flex-row gap-6 justify-between items-center mb-6 md:mb-0"
-	>
-		<div class="max-w-xs md:max-w-md mt-6 md:mt-0">
-			<div
-				id="card-border"
-				class="absolute border-gray-900 w-fit h-fit border-solid border-8 translate-x-9 -translate-y-6 -z-10"
-			>
-			</div>
-			<div id="card-container" class="bg-white p-6">
-				<div class="mb-2">
-					<p class="text-blue-400 text-4xl font-extrabold">
-						{t('components.hero.heading1').toUpperCase()}
-					</p>
-					<p class="text-green-300 text-4xl font-extrabold">
-						{t('components.hero.heading2').toUpperCase()}
-					</p>
-				</div>
-				<div class="mb-2">
-					<p class="font-light">
-						{t('components.hero.description')}
-					</p>
-				</div>
+<div class="mx-auto max-w-screen-lg px-4 py-6 flex flex-col md:flex-row items-center justify-between relative">
+	<div class="text-center md:text-left md:w-1/2 md:-mt-32">
+		<h1 class="text-6xl font-bold text-white mb-6">
+			Let's get pay <span class="text-gradient">social</span>
+		</h1>
 		
+		<p class="text-xl text-gray-200 max-w-2xl mb-8">
+			You've got the power to <strong>connect</strong>, <strong>pay</strong> and <strong>share</strong> instantly
+		</p>
+
+		<div class="flex gap-4 justify-center md:justify-start">
+			<button 
+				id="openModal"
+				class="rounded-md bg-gray-950 hover:bg-transparent border-2 border-transparent hover:border-white transition-all px-5 py-2.5 text-sm font-medium text-white"
+			>
+				<span class="flex items-center gap-2">
+					Get the app
+					<span class="flex gap-1 text-base">
+						<span class="appstore-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24">
+								<path fill="currentColor" d="M11.624 7.222c-.876 0-2.232-.996-3.66-.96-1.884.024-3.612 1.092-4.584 2.784-1.956 3.396-.504 8.412 1.404 11.172.936 1.344 2.04 2.856 3.504 2.808 1.404-.06 1.932-.912 3.636-.912 1.692 0 2.172.912 3.66.876 1.512-.024 2.472-1.368 3.396-2.724 1.068-1.56 1.512-3.072 1.536-3.156-.036-.012-2.94-1.128-2.976-4.488-.024-2.808 2.292-4.152 2.4-4.212-1.32-1.932-3.348-2.148-4.056-2.196-1.848-.144-3.396 1.008-4.26 1.008zm3.12-2.832c.78-.936 1.296-2.244 1.152-3.54-1.116.048-2.46.744-3.264 1.68-.72.828-1.344 2.16-1.176 3.432 1.236.096 2.508-.636 3.288-1.572z"/>
+							</svg>
+						</span>
+						<span class="playstore-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 512 512">
+								<path fill="currentColor" d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
+							</svg>
+						</span>
+					</span>
+				</span>
+			</button>
+		</div>
+	</div>
+
+	<div class="md:w-1/2 mt-8 md:mt-0 relative z-20">
+		<ChatPreview />
+	</div>
+
+	<div class="emoji-carousel absolute bottom-32 left-0 right-0 w-full -z-10">
+		<div class="emoji-track">
+			<div class="emoji-content">
+				💸 💰 💳 🏦 💎 📱 💵 🤝 📲 💹 🔄 💻 📊 💼 🌐 💱 💶 📱 💷 🏧 ✨ 💫
+			</div>
+			<div class="emoji-content">
+				💸 💰 💳 🏦 💎 📱 💵 🤝 📲 💹 🔄 💻 📊 💼 🌐 💱 💶 📱 💷 🏧 ✨ 💫
+				</div>
+			<div class="emoji-content">
+				💸 💰 💳 🏦 💎 📱 💵 🤝 📲 💹 🔄 💻 📊 💼 🌐 💱 💶 📱 💷 🏧 ✨ 💫
+				</div>
+			<div class="emoji-content" aria-hidden="true">
+				💸 💰 💳 🏦 💎 📱 💵 🤝 📲 💹 🔄 💻 📊 💼 🌐 💱 💶 📱 💷 🏧 ✨ 💫
 			</div>
 		</div>
-		<img
-			src="/assets/img/hero-phone-1.png"
-			alt="app image on ios device"
-			class="md:w-5/12 w-6/12 h-auto"
-		/>
-	</hero>
-	<CountDownTimer
-		client:load
-		date="2023-06-30"
-		daysLabel={t('components.countDownTimer.days')}
-		hoursLabel={t('components.countDownTimer.hours')}
-		minutesLabel={t('components.countDownTimer.minutes')}
-		secondsLabel={t('components.countDownTimer.seconds')}
-		formTitle={t('components.countDownTimer.formTitle')}
-		formInputPlaceholder={t('components.countDownTimer.formInputPlaceholder')}
-		formLabel={t('components.countDownTimer.formLabel')}
-		formButtonLabel={t('components.countDownTimer.formButtonLabel')}
-		successMessage={t('components.countDownTimer.successMessage')}
-		errorMessage={t('components.countDownTimer.errorMessage')}
-	/>
+	</div>
 </div>
 
-<script>
-	const cardBorder = document.getElementById('card-border');
-	const cardContainer = document.getElementById('card-container');
-	if (cardBorder && cardContainer) {
-		const resizeObserver = new ResizeObserver((entries) => {
-			if (entries[0]) {
-				const { width, height } = entries[0]?.contentRect;
-				cardBorder.style.width = `${width + 40}px`;
-				cardBorder.style.height = `${height + 100}px`;
-			}
-		});
+<!-- Modal -->
+<div id="qrModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+	<div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 relative">
+		<button id="closeModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+			</svg>
+		</button>
+		
+		<h2 class="text-2xl font-bold text-center mb-4">Get Zelify</h2>
+		<p class="text-gray-600 text-center mb-8">
+			Scan the QR code to download Zelify and start the journey
+		</p>
+		
+		<div class="bg-gray-100 rounded-lg p-4 flex items-center justify-center">
+			<img 
+				src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://zelify.com/get-the-app"
+				alt="QR Code" 
+				class="w-48 h-48"
+			/>
+		</div>
+	</div>
+</div>
 
-		resizeObserver.observe(cardContainer);
+<style>
+	:global(body) {
+		background: linear-gradient(-45deg, 
+			#2563eb,
+			#3b82f6,
+			#10b981,
+			#2563eb
+		);
+		background-size: 400% 400%;
+		animation: gradient 10s ease infinite;
 	}
+
+	.text-gradient {
+		background: linear-gradient(90deg, 
+			#fff 0%,
+			#4ade80 50%,
+			#fff 100%
+		);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		font-weight: 800;
+		background-size: 200% auto;
+		animation: shine 3s linear infinite;
+	}
+
+	@keyframes shine {
+		0% { background-position: 0% 50%; }
+		50% { background-position: 100% 50%; }
+		100% { background-position: 0% 50%; }
+	}
+
+	@keyframes gradient {
+		0% {
+			background-position: 0% 50%;
+		}
+		50% {
+			background-position: 100% 50%;
+		}
+		100% {
+			background-position: 0% 50%;
+		}
+	}
+
+	:global(html, body) {
+		min-height: 100vh;
+		margin: 0;
+		padding: 0;
+	}
+
+	.emoji-carousel {
+		height: 80px;
+		overflow: hidden;
+		opacity: 0.12;
+		pointer-events: none;
+		width: 100%;
+	}
+
+	.emoji-track {
+		display: flex;
+		width: fit-content;
+		animation: scroll 60s linear infinite;
+		margin: 0 auto;
+		will-change: transform;
+		backface-visibility: hidden;
+	}
+
+	.emoji-content {
+		display: flex;
+		align-items: center;
+		gap: 4rem;
+		padding: 1rem;
+		font-size: 3.5rem;
+		white-space: nowrap;
+	}
+
+	@keyframes scroll {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(-100%);
+		}
+	}
+
+	.emoji-content span {
+		display: inline-block;
+		animation: float 3s ease-in-out infinite;
+		animation-delay: calc(var(--delay, 0) * 200ms);
+		opacity: 0.8;
+		text-shadow: 0 0 10px rgba(255,255,255,0.1);
+	}
+
+	@keyframes float {
+		0%, 100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-15px);
+		}
+	}
+</style>
+
+<script>
+	// Añadir animación aleatoria a los emojis
+	const emojis = document.querySelectorAll('.emoji-content');
+	emojis.forEach(emojiContainer => {
+		const spans = emojiContainer.textContent?.split(' ') || [];
+		emojiContainer.innerHTML = spans
+			.map((emoji, index) => `<span style="--delay: ${index}">${emoji}</span>`)
+			.join(' ');
+	});
+
+	// Modal functionality
+	const modal = document.getElementById('qrModal');
+	const openButton = document.getElementById('openModal');
+	const closeButton = document.getElementById('closeModal');
+	
+	openButton?.addEventListener('click', () => {
+		modal?.classList.remove('hidden');
+		modal?.classList.add('flex');
+	});
+	
+	closeButton?.addEventListener('click', () => {
+		modal?.classList.remove('flex');
+		modal?.classList.add('hidden');
+	});
+	
+	// Close modal when clicking outside
+	modal?.addEventListener('click', (e) => {
+		if (e.target === modal) {
+			modal.classList.remove('flex');
+			modal.classList.add('hidden');
+		}
+	});
 </script>

@@ -1,0 +1,551 @@
+---
+import { t } from 'i18next';
+---
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+
+<section class="relative text-white py-32 overflow-hidden card-section">
+  <div class="absolute inset-0 bg-gradient w-full h-full"></div>
+  <div class="spotlight"></div>
+  <div class="mx-auto max-w-screen-lg px-4 relative z-10">
+    <div class="flex flex-col md:flex-row items-center gap-12">
+      <!-- Lado izquierdo - Tarjeta -->
+      <div class="w-full md:w-1/2 relative">
+        <div class="card-container relative will-change-transform">
+          <img 
+            src="/assets/img/card_zelify.png" 
+            alt="Zelify Card"
+            class="w-full transition-all duration-700 hover:scale-105"
+            id="cardImage"
+          />
+          <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-8">
+            <div class="flex items-center justify-end mt-12 mb-8 pr-12">
+              <div class="card-number relative">
+                <span id="cardNumberDisplay" class="font-mono text-lg">•••• •••• •••• 4242</span>
+                <button id="toggleNumber" class="ml-2 text-gray-300 hover:text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                    <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="flex gap-8 text-sm justify-end pr-12">
+              <div>
+                <div class="text-gray-100">Valid thru</div>
+                <div class="text-white">12/25</div>
+              </div>
+              <div>
+                <div class="text-gray-100">CVC</div>
+                <div id="cvcDisplay" class="text-white">•••</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lado derecho - Controles -->
+      <div class="w-full md:w-1/2 space-y-8">
+        <div class="space-y-4">
+          <h2 class="text-6xl font-bold leading-tight">
+            Control your card
+          </h2>
+          <p class="text-xl text-gray-400">
+            Lock, unlock and manage your card instantly from the app
+          </p>
+        </div>
+
+        <button id="toggleLock" class="group flex items-center justify-center gap-3 bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 px-6 py-3 rounded-lg transition-all w-full max-w-[320px] border border-white/10">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+          <span class="text-white/90 group-hover:text-white transition-colors">Lock card</span>
+        </button>
+
+        <div class="flex flex-col gap-4">
+          <button id="googlePay" class="flex items-center justify-center gap-2 bg-white text-black px-6 py-3 rounded-lg hover:bg-gray-100 transition-all">
+            <svg class="h-6 w-6" viewBox="0 0 48 48">
+              <path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/>
+              <path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/>
+              <path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/>
+              <path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/>
+            </svg>
+            <span class="flex-1 text-center">Connect with Google Pay</span>
+          </button>
+
+          <button id="applePay" class="flex items-center justify-center gap-2 bg-black text-white px-6 py-3 rounded-lg border border-white/20 hover:bg-gray-900 transition-all">
+            <svg class="h-6 w-6" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M17.5 12.5c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5-2.5-1.1-2.5-2.5zm-15 0c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5-2.5-1.1-2.5-2.5zm7.5-5c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5-2.5-1.1-2.5-2.5zm0 10c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5-2.5-1.1-2.5-2.5z"/>
+            </svg>
+            <span class="flex-1 text-center">Connect with Apple Pay</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wallet Modal -->
+  <div id="modalOverlay" class="fixed inset-0 bg-black/80 opacity-0 pointer-events-none transition-opacity duration-300 z-40"></div>
+  <div id="walletModal" class="fixed bottom-0 left-0 right-0 bg-white text-black rounded-t-3xl transform translate-y-full transition-transform duration-300 z-50">
+    <div class="p-6">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-xl font-bold text-center w-full" id="walletTitle"></h3>
+      </div>
+      <div class="space-y-4">
+        <div class="p-4 bg-gray-100 rounded-lg">
+          <div class="font-mono">
+            <div class="text-sm text-gray-600">Card number</div>
+            <div>4242 4242 4242 4242</div>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="p-4 bg-gray-100 rounded-lg flex-1">
+            <div class="font-mono">
+              <div class="text-sm text-gray-600">Expiration date</div>
+              <div>12/25</div>
+            </div>
+          </div>
+          <div class="p-4 bg-gray-100 rounded-lg flex-1">
+            <div class="font-mono">
+              <div class="text-sm text-gray-600">CVC</div>
+              <div>123</div>
+            </div>
+          </div>
+        </div>
+        <button id="connectButton" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-all">
+          Connect
+        </button>
+      </div>
+      <div id="successMessage" class="hidden mt-6 text-center text-green-500 font-bold"></div>
+    </div>
+  </div>
+
+  <!-- Añadir el modal de éxito -->
+  <div id="successModal" class="fixed inset-0 flex items-center justify-center z-50 opacity-0 pointer-events-none transition-all duration-300">
+    <div class="absolute inset-0 bg-black/80"></div>
+    <div class="relative bg-gray-900 rounded-2xl p-8 text-center transform scale-95 transition-all duration-300">
+      <div class="text-4xl mb-4">🎉</div>
+      <h3 class="text-2xl font-bold text-white mb-2">Connected!</h3>
+      <p class="text-gray-300" id="successMessage"></p>
+      <div class="flex items-center justify-center gap-2 text-green-400 mt-4">
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>Your wallet is now ready to use</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import confetti from 'canvas-confetti';
+
+  // Elementos DOM
+  const cardImage = document.getElementById('cardImage');
+  const cardNumberDisplay = document.getElementById('cardNumberDisplay');
+  const toggleNumber = document.getElementById('toggleNumber');
+  const cvcDisplay = document.getElementById('cvcDisplay');
+  const toggleLock = document.getElementById('toggleLock');
+  const googlePay = document.getElementById('googlePay');
+  const applePay = document.getElementById('applePay');
+  const walletModal = document.getElementById('walletModal');
+  const closeModal = document.getElementById('closeModal');
+  const walletTitle = document.getElementById('walletTitle');
+  const successMessage = document.getElementById('successMessage');
+
+  // Número real de la tarjeta
+  const realCardNumber = '4242 4242 4242 4242';
+  const realCVC = '123';
+  let isCardLocked = false;
+  let isNumberVisible = false;
+
+  // Toggle número de tarjeta
+  toggleNumber?.addEventListener('click', () => {
+    isNumberVisible = !isNumberVisible;
+    cardNumberDisplay.textContent = isNumberVisible ? realCardNumber : '•••• •••• •••• 4242';
+    cvcDisplay.textContent = isNumberVisible ? realCVC : '•••';
+  });
+
+  // Toggle bloqueo de tarjeta
+  toggleLock?.addEventListener('click', () => {
+    isCardLocked = !isCardLocked;
+    const buttons = [googlePay, applePay, toggleNumber];
+    
+    if (isCardLocked) {
+      cardImage.classList.add('grayscale', 'opacity-50');
+      // Deshabilitar todos los botones
+      buttons.forEach(button => {
+        if (button) {
+          button.disabled = true;
+          button.classList.add('opacity-50', 'cursor-not-allowed');
+        }
+      });
+      toggleLock.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+        </svg>
+        <span class="text-white/90 group-hover:text-white transition-colors">Unlock card</span>
+      `;
+    } else {
+      cardImage.classList.remove('grayscale', 'opacity-50');
+      // Habilitar todos los botones
+      buttons.forEach(button => {
+        if (button) {
+          button.disabled = false;
+          button.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+      });
+      toggleLock.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+        <span class="text-white/90 group-hover:text-white transition-colors">Lock card</span>
+      `;
+    }
+  });
+
+  // Verificar estado inicial de los botones
+  if (isCardLocked) {
+    const buttons = [googlePay, applePay, toggleNumber];
+    buttons.forEach(button => {
+      if (button) {
+        button.disabled = true;
+        button.classList.add('opacity-50', 'cursor-not-allowed');
+      }
+    });
+  }
+
+  // Funciones del modal
+  function showModal(type: 'google' | 'apple') {
+    walletTitle.textContent = type === 'google' ? 'Google Pay' : 'Apple Pay';
+    const connectButton = document.getElementById('connectButton');
+    if (connectButton) {
+      if (type === 'apple') {
+        connectButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+        connectButton.classList.add('bg-black', 'hover:bg-gray-900');
+      } else {
+        connectButton.classList.remove('bg-black', 'hover:bg-gray-900');
+        connectButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
+      }
+    }
+    walletModal?.classList.remove('translate-y-full');
+    document.getElementById('modalOverlay')?.classList.remove('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function hideModal() {
+    walletModal?.classList.add('translate-y-full');
+    document.getElementById('modalOverlay')?.classList.add('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = 'auto';
+    resetModal();
+  }
+
+  function resetModal() {
+    const connectButton = document.getElementById('connectButton');
+    connectButton.textContent = 'Connect';
+    connectButton.disabled = false;
+    connectButton.classList.remove('bg-black', 'hover:bg-gray-900');
+    connectButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
+    successMessage.classList.add('hidden');
+  }
+
+  function showSuccessModal(message) {
+    const modal = document.getElementById('successModal');
+    const messageEl = document.getElementById('successMessage');
+    if (!modal || !messageEl) return;
+    
+    messageEl.textContent = message;
+    modal.classList.remove('opacity-0', 'pointer-events-none');
+    modal.querySelector('.bg-gray-900').classList.remove('scale-95');
+    
+    setTimeout(() => {
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      modal.querySelector('.bg-gray-900').classList.add('scale-95');
+    }, 3000);
+  }
+
+  function celebrateConnection() {
+    const connectButton = document.getElementById('connectButton');
+    if (!connectButton) return;
+
+    connectButton.innerHTML = `
+      <div class="flex items-center justify-center gap-2">
+        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <span>Connecting...</span>
+      </div>
+    `;
+    connectButton.disabled = true;
+
+    setTimeout(() => {
+      hideModal();
+      showSuccessModal(`Successfully connected with ${walletTitle.textContent}`);
+      // Lanzar confetti
+      const duration = 3 * 1000;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 10000 };
+      
+      function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+      
+      const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+        if (timeLeft <= 0) return clearInterval(interval);
+        
+        const particleCount = 50 * (timeLeft / duration);
+        confetti({
+          ...defaults,
+          particleCount,
+          origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+        });
+        confetti({
+          ...defaults,
+          particleCount,
+          origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+        });
+      }, 250);
+    }, 2000);
+  }
+
+  // Event listeners
+  googlePay?.addEventListener('click', () => showModal('google'));
+  applePay?.addEventListener('click', () => showModal('apple'));
+  document.getElementById('modalOverlay')?.addEventListener('click', hideModal);
+  document.getElementById('connectButton')?.addEventListener('click', celebrateConnection);
+
+  // Animación al hacer scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  const cardContainer = document.querySelector('.card-container');
+  if (cardContainer) {
+    observer.observe(cardContainer);
+  }
+
+  // Efecto parallax suave al mover el mouse
+  document.addEventListener('mousemove', (e) => {
+    const card = document.querySelector('.card-container');
+    if (!card) return;
+    
+    const { clientX, clientY } = e;
+    const { innerWidth, innerHeight } = window;
+    
+    const xAxis = (clientX - innerWidth / 2) / 50;
+    const yAxis = (clientY - innerHeight / 2) / 50;
+    
+    card.style.transform = `rotateY(${xAxis}deg) rotateX(${-yAxis}deg)`;
+  });
+
+  // Resetear la rotación cuando el mouse sale del área
+  document.addEventListener('mouseleave', () => {
+    const card = document.querySelector('.card-container');
+    if (card) {
+      card.style.transform = 'rotateY(0) rotateX(0)';
+    }
+  });
+
+  // Efecto spotlight que sigue al cursor
+  const cardSection = document.querySelector('.card-section');
+  const spotlight = document.querySelector('.spotlight');
+  
+  cardSection?.addEventListener('mousemove', (e) => {
+    const rect = cardSection.getBoundingClientRect();
+    const x = e.pageX - rect.left;
+    const y = e.pageY - window.scrollY - rect.top;
+    
+    spotlight?.style.setProperty('--mouse-x', `${x}px`);
+    spotlight?.style.setProperty('--mouse-y', `${y}px`);
+  });
+
+  // Animar textos cuando el cursor vuelve a la sección
+  cardSection?.addEventListener('mouseenter', () => {
+    const texts = document.querySelectorAll('.text-animate');
+    texts.forEach(text => {
+      text.classList.remove('visible');
+      setTimeout(() => text.classList.add('visible'), 10);
+    });
+
+    if (cardContainer) {
+      cardContainer.classList.remove('visible');
+      setTimeout(() => cardContainer.classList.add('visible'), 10);
+    }
+  });
+</script>
+
+<style>
+  .card-container {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .spotlight {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    background: radial-gradient(
+      1200px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(112, 250, 126, 0.15),
+      rgba(54, 124, 244, 0.15),
+      transparent 50%
+    );
+    mix-blend-mode: screen;
+    filter: blur(30px);
+    transition: all 0.1s ease;
+    opacity: 0.8;
+    z-index: 2;
+  }
+
+  @keyframes textFloat {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+  }
+
+  .text-animate {
+    animation: textFloat 4s ease-in-out infinite;
+  }
+
+  /* Animación al hacer scroll */
+  @media (prefers-reduced-motion: no-preference) {
+    .card-container {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    .card-container.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .text-animate {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .text-animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Fondo con gradiente animado */
+  .bg-gradient {
+    background: linear-gradient(
+      45deg,
+      rgba(54, 124, 244, 0.15),
+      rgba(13, 13, 15, 0.95),
+      rgba(112, 250, 126, 0.15)
+    );
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    position: relative;
+  }
+
+  .bg-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    mix-blend-mode: overlay;
+  }
+
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Efecto spotlight que sigue al cursor */
+  .card-section {
+    background-color: rgb(8, 8, 12);
+  }
+
+  /* Segundo spotlight para más intensidad */
+  .spotlight::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(112, 250, 126, 0.1),
+      rgba(54, 124, 244, 0.1),
+      transparent 50%
+    );
+    mix-blend-mode: screen;
+    filter: blur(15px);
+  }
+
+  /* Efecto de partículas sutiles */
+  @keyframes float {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-10px) translateX(5px); }
+  }
+
+  .card-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(2px 2px at 40px 60px, #fff 100%, transparent),
+      radial-gradient(2px 2px at 20% 50%, #fff 100%, transparent),
+      radial-gradient(2px 2px at 30% 100px, #fff 100%, transparent),
+      radial-gradient(2px 2px at 40% 60%, #fff 100%, transparent),
+      radial-gradient(2px 2px at 110px 90px, #fff 100%, transparent),
+      radial-gradient(2px 2px at 80% 30%, #fff 100%, transparent);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 0.015;
+    animation: float 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  #toggleLock,
+  #googlePay,
+  #applePay {
+    min-width: 280px;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  /* Estilos para SweetAlert2 */
+  .animated-popup {
+    animation: popupScale 0.3s ease-out;
+  }
+
+  .swal-title {
+    font-size: 2rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .swal-html {
+    font-size: 1.1rem !important;
+    line-height: 1.5 !important;
+  }
+
+  @keyframes popupScale {
+    0% {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+</style> 

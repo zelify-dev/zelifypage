@@ -1,13 +1,19 @@
 ---
-import i18next, { t } from 'i18next';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import GradientBackground from '../components/GradientBackground.astro';
 import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
+import Cards from '../components/Cards.astro';
 import Features from '../components/Features.astro';
-import Download from '../components/Download.astro';
-i18next.changeLanguage('en');
+import About from '../components/About.astro';
+import Footer from '../components/Footer.astro';
+import InternationalTransfer from '../components/InternationalTransfer';
+import { t } from 'i18next';
+
+// Inicializar i18next
+import i18next from 'i18next';
+await i18next.changeLanguage('en');
+
 const links = [
 	{
 		label: t('home.links.home'),
@@ -22,17 +28,354 @@ const links = [
 		href: '#features',
 	},
 ];
+
+const plans = [
+	{
+		name: "Standard",
+		price: "Free",
+		description: "Basic digital banking for everyone",
+		monthlyPrice: "$0",
+		features: [
+			{ text: "4% International Transfer Fee", type: "basic" },
+			{ text: "Basic Customer Support", type: "basic" },
+			{ text: "Interest on Savings Account", type: "included" },
+			{ text: "Instant Savings Account", type: "included" },
+			{ text: "Lifestyle Benefits & Discounts", type: "included" },
+			{ text: "Virtual Card", type: "not-included" },
+			{ text: "Partner Subscriptions", type: "not-included" }
+		],
+		penetration: "50%",
+		color: "gray"
+	},
+	{
+		name: "Plus",
+		price: "$4.99",
+		description: "Enhanced features for daily banking",
+		features: [
+			{ text: "3.5% International Transfer Fee", type: "improved" },
+			{ text: "Personalized In-App Support", type: "improved" },
+			{ text: "Virtual & Physical Card Included", type: "included" },
+			{ text: "Partner Subscriptions Access", type: "included" },
+			{ text: "Transferable Benefits", type: "included" },
+			{ text: "Interest on Savings Account", type: "included" },
+			{ text: "Instant Savings Account", type: "included" }
+		],
+		penetration: "30%",
+		color: "blue",
+		subscriptions: ["Uber One", "Netflix", "Spotify"]
+	},
+	{
+		name: "Premium",
+		price: "$7.99",
+		description: "Ultimate banking experience",
+		features: [
+			{ text: "3% International Transfer Fee", type: "best" },
+			{ text: "Premium In-App Support", type: "best" },
+			{ text: "Free Transfers to Other Accounts", type: "included" },
+			{ text: "No Additional FX Conversion Fees", type: "included" },
+			{ text: "Customized Card Design", type: "included" },
+			{ text: "Credit Card (Coming Soon)", type: "included" },
+			{ text: "VIP Events Access", type: "included" },
+			{ text: "Youth Accounts with Co-Parents", type: "included" }
+		],
+		penetration: "20%",
+		isPopular: true,
+		color: "black"
+	}
+];
+
+const partners = [
+	{
+		name: "Visa",
+		logo: "/assets/logos/visa.svg",
+		description: "Global payment network"
+	},
+	{
+		name: "Mastercard",
+		logo: "/assets/logos/mastercard.svg",
+		description: "Worldwide acceptance"
+	},
+	{
+		name: "SPEI",
+		logo: "/assets/logos/spei.svg",
+		description: "Mexican instant transfers"
+	},
+	{
+		name: "SWIFT",
+		logo: "/assets/logos/swift.svg",
+		description: "International transfers"
+	}
+];
+
+const benefits = [
+	// Finanzas y Compras
+	{
+		category: "Finance & Shopping",
+		items: [
+			{ icon: "restaurant-outline", name: "Restaurants" },
+			{ icon: "shopping-bag-outline", name: "Retail Stores" },
+			{ icon: "flash-outline", name: "Gas Stations" },
+			{ icon: "navigation-2-outline", name: "Airlines" }
+		]
+	},
+	// Entretenimiento
+	{
+		category: "Entertainment",
+		items: [
+			{ icon: "music-outline", name: "Concerts" },
+			{ icon: "film-outline", name: "Movies" },
+			{ icon: "book-open-outline", name: "Education" },
+			{ icon: "file-text-outline", name: "News" }
+		]
+	},
+	// Bienestar
+	{
+		category: "Wellness",
+		items: [
+			{ icon: "heart-outline", name: "Pet Stores" },
+			{ icon: "activity-outline", name: "Drugstores" },
+			{ icon: "heart-outline", name: "Wellness" },
+			{ icon: "award-outline", name: "Gym" }
+		]
+	}
+];
 ---
 
 <Layout title={t('home.title')}>
 	<GradientBackground>
-		<Header links={links} />
+		<Header />
+		<div id="home">
 		<Hero />
+		</div>
 	</GradientBackground>
-	<About />
+	
+	<div id="cards">
+		<Cards />
+	</div>
+	
+	<div id="features">
 	<Features />
-	<Download />
+	</div>
+	
+	<div id="transfer">
+		<InternationalTransfer />
+	</div>
+	
+	<div id="subscriptions">
+		<!-- Sección de Planes -->
+		<section class="py-24 bg-gradient-to-b from-white to-gray-50">
+			<div class="max-w-7xl mx-auto px-4">
+				<div class="text-center mb-16">
+					<h2 class="text-4xl md:text-5xl font-bold mb-4">Compare Our Plans</h2>
+					<p class="text-gray-600 max-w-2xl mx-auto">
+						Find the perfect plan for your needs with our detailed comparison
+					</p>
+				</div>
+
+				<div class="overflow-x-auto">
+					<table class="w-full border-collapse">
+						<thead>
+							<tr class="border-b border-gray-200">
+								<th class="p-4 text-left min-w-[200px]">Features</th>
+								{plans.map((plan) => (
+									<th 
+										class={`p-4 text-center min-w-[220px] cursor-pointer transition-all duration-300 hover:bg-gray-50
+											${plan.isPopular ? 'bg-blue-50 rounded-t-xl relative border-t-4 border-t-[#3983ED]' : ''}`}
+										onclick="highlightColumn(this)"
+									>
+										{plan.isPopular && (
+											<div class="absolute -top-0.5 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-[#3983ED]"></div>
+										)}
+										<div class="space-y-2">
+											<h3 class="text-xl font-bold">{plan.name}</h3>
+											<div class="text-2xl font-bold text-[#3983ED]">
+												{plan.price}<span class="text-sm text-gray-500">/mo</span>
+											</div>
+											<p class="text-sm text-gray-500">{plan.penetration} Market Share</p>
+										</div>
+									</th>
+								))}
+							</tr>
+						</thead>
+						<tbody class="divide-y divide-gray-100">
+							<!-- Transfer Fees -->
+							<tr class="group hover:bg-gray-50">
+								<td class="p-4 font-medium">International Transfer Fee</td>
+								<td class="p-4 text-center">4.00%</td>
+								<td class="p-4 text-center">3.50%</td>
+								<td class="p-4 text-center bg-blue-50">
+									<span class="text-green-600 font-medium">3.00%</span>
+								</td>
+							</tr>
+
+							<!-- Cards -->
+							<tr class="group hover:bg-gray-50">
+								<td class="p-4 font-medium">Cards</td>
+								<td class="p-4 text-center">
+									<i class="eva eva-close-circle text-red-500"></i>
+								</td>
+								<td class="p-4 text-center">
+									Virtual & Physical
+								</td>
+								<td class="p-4 text-center bg-blue-50">
+									Custom Design + Virtual & Physical
+								</td>
+							</tr>
+
+							<!-- Support -->
+							<tr class="group hover:bg-gray-50">
+								<td class="p-4 font-medium">Customer Support</td>
+								<td class="p-4 text-center">Basic</td>
+								<td class="p-4 text-center">Personalized In-App</td>
+								<td class="p-4 text-center bg-blue-50">Premium In-App</td>
+							</tr>
+
+							<!-- Partner Subscriptions -->
+							<tr class="group hover:bg-gray-50">
+								<td class="p-4 font-medium">Partner Subscriptions</td>
+								<td class="p-4 text-center">
+									<i class="eva eva-close-circle text-red-500"></i>
+								</td>
+								<td class="p-4 text-center">
+									<div class="flex flex-col items-center gap-1">
+										<span class="text-sm">Included:</span>
+										<div class="space-y-1">
+											<div class="text-sm">• Uber One</div>
+											<div class="text-sm">• Netflix</div>
+											<div class="text-sm">• Spotify</div>
+										</div>
+									</div>
+								</td>
+								<td class="p-4 text-center bg-blue-50">
+									<div class="flex flex-col items-center gap-1">
+										<span class="text-sm">All Plus benefits +</span>
+										<div class="text-sm">Premium Partners</div>
+									</div>
+								</td>
+							</tr>
+
+							<!-- Additional Features -->
+							{[
+								"Free Transfers to Other Accounts",
+								"FX Conversion Fees",
+								"Interest on Savings",
+								"Instant Savings Account",
+								"Credit Card Access",
+								"VIP Events",
+								"Youth Accounts"
+							].map(feature => (
+								<tr class="group hover:bg-gray-50">
+									<td class="p-4 font-medium">{feature}</td>
+									<td class="p-4 text-center">
+										{feature === "Interest on Savings" || feature === "Instant Savings Account" ? (
+											<i class="eva eva-checkmark-circle-2 text-[#3983ED]"></i>
+										) : (
+											<i class="eva eva-close-circle text-red-500"></i>
+										)}
+									</td>
+									<td class="p-4 text-center">
+										{feature === "FX Conversion Fees" ? "Standard Fees" : (
+											feature === "Credit Card Access" || feature === "VIP Events" || feature === "Youth Accounts" ? (
+												<i class="eva eva-close-circle text-red-500"></i>
+											) : (
+												<i class="eva eva-checkmark-circle-2 text-[#3983ED]"></i>
+											)
+										)}
+									</td>
+									<td class="p-4 text-center bg-blue-50">
+										<i class="eva eva-checkmark-circle-2 text-green-500"></i>
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- Sección de Beneficios -->
+	<section class="py-24 bg-white">
+		<div class="max-w-7xl mx-auto px-4">
+			<div class="text-center mb-16">
+				<h2 class="text-4xl font-bold mb-4">Exclusive Benefits & Discounts</h2>
+				<p class="text-gray-600">Access exclusive discounts and rewards with our partner network</p>
+			</div>
+
+			<div class="grid md:grid-cols-3 gap-12">
+				{benefits.map((category) => (
+					<div class="space-y-6">
+						<h3 class="text-xl font-bold text-gray-800 mb-6">{category.category}</h3>
+						<div class="grid gap-6">
+							{category.items.map((benefit) => (
+								<div class="flex items-center gap-4 p-4 rounded-xl hover:bg-gray-50 transition-all border border-gray-100 hover:border-[#3983ED]/20 hover:shadow-sm">
+									<div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+										<i class={`eva eva-${benefit.icon} text-[#3983ED] text-xl`}></i>
+									</div>
+									<span class="font-medium text-gray-800">{benefit.name}</span>
+								</div>
+							))}
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Sección de Información Corporativa -->
+	<section class="py-16 bg-gray-50">
+		<div class="max-w-7xl mx-auto px-4">
+			<div class="grid md:grid-cols-2 gap-16">
+				<!-- Información de la Empresa -->
+				<div class="space-y-6">
+					<h3 class="text-2xl font-bold text-gray-800">About Zwippetech Inc.</h3>
+					<p class="text-gray-600 leading-relaxed">
+						Zwippetech Inc., a U.S.-based company, develops B2B and B2C financial services and addresses other specialized programming needs for our clients.
+					</p>
+					<p class="text-gray-600 leading-relaxed">
+						Zelify, a business line and brand of Zwippetech Inc., focuses on specialized development in the U.S. and Latin American regions.
+					</p>
+					<div class="flex items-center gap-4 pt-4">
+						<img src="public/assets/img/logo.svg" alt="Zwippetech Inc." class="h-8" />
+				
+					</div>
+				</div>
+
+				<!-- Políticas y Tratamiento de Datos -->
+				<div class="space-y-6">
+					<h3 class="text-2xl font-bold text-gray-800">Data Protection</h3>
+					<div class="space-y-4">
+						<p class="text-gray-600 leading-relaxed">
+							We are committed to protecting your personal information and ensuring your experience with our services is secure and reliable.
+						</p>
+						<ul class="space-y-3">
+							<li class="flex items-start gap-2">
+								<i class="eva eva-shield-outline text-[#3983ED] mt-1"></i>
+								<span class="text-gray-600">Your data is encrypted and secured using industry-leading standards</span>
+							</li>
+							<li class="flex items-start gap-2">
+								<i class="eva eva-lock-outline text-[#3983ED] mt-1"></i>
+								<span class="text-gray-600">We comply with international data protection regulations</span>
+							</li>
+							<li class="flex items-start gap-2">
+								<i class="eva eva-checkmark-circle-2-outline text-[#3983ED] mt-1"></i>
+								<span class="text-gray-600">Your privacy choices are always under your control</span>
+							</li>
+						</ul>
+						<div class="flex gap-4 pt-2">
+							<a href="#" class="text-sm text-[#3983ED] hover:underline">Privacy Policy</a>
+							<a href="#" class="text-sm text-[#3983ED] hover:underline">Terms of Service</a>
+							<a href="#" class="text-sm text-[#3983ED] hover:underline">Data Protection</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
 </Layout>
+
 <script>
 	// selecciona todos los enlaces que apuntan a secciones de la página
 	const links = document.querySelectorAll('a[href^="#"]');
@@ -62,4 +405,33 @@ const links = [
 			});
 		});
 	});
+
+	function highlightColumn(th) {
+		const table = th.closest('table');
+		const index = Array.from(th.parentElement.children).indexOf(th);
+		const cells = table.querySelectorAll(`td:nth-child(${index + 1}), th:nth-child(${index + 1})`);
+		
+		// Resetear todas las columnas
+		table.querySelectorAll('td, th').forEach(cell => {
+			cell.classList.remove('bg-blue-50/50', 'opacity-40');
+		});
+		
+		// Si la columna ya estaba resaltada, solo resetear
+		if (th.classList.contains('highlighted')) {
+			th.classList.remove('highlighted');
+			return;
+		}
+		
+		// Resaltar la columna seleccionada y atenuar las demás
+		table.querySelectorAll('td, th').forEach(cell => {
+			cell.classList.add('opacity-40');
+		});
+		
+		cells.forEach(cell => {
+			cell.classList.remove('opacity-40');
+			cell.classList.add('bg-blue-50/50');
+		});
+		
+		th.classList.add('highlighted');
+	}
 </script>

@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Get Zelify App">
+  <div class="min-h-screen bg-white flex flex-col items-center justify-center p-4">
+    <img 
+      src="/assets/img/logo.svg" 
+      alt="Zelify Logo" 
+      class="w-48 mb-16"
+    />
+    
+    <h1 class="text-6xl font-bold text-gray-900 mb-4 text-center">
+      UNLOCK BORDERLESS BANKING
+    </h1>
+    
+    <p class="text-2xl text-gray-600 text-center max-w-2xl mb-4">
+      Your all-in-one digital payment solution.
+    </p>
+
+    <p class="text-gray-500 text-center max-w-2xl">
+      Global ATM access • Tap & pay worldwide • Secure online shopping • International transfers • Real-time tracking • Smart card management
+    </p>
+
+    <script>
+      // Intenta detectar el país del usuario
+      fetch('https://ipapi.co/json/')
+        .then(response => response.json())
+        .then(data => {
+          const country = data.country_name;
+          document.querySelector('h1').textContent = `Coming soon to ${country}`;
+        })
+        .catch(() => {
+          // Si falla, mantiene el mensaje genérico
+          console.log('Could not detect country');
+        });
+    </script>
+  </div>
+</Layout> 

@@ -1,12 +1,27 @@
-<div class="bg-gradient h-full">
+<div class="bg-gradient min-h-screen">
 	<slot />
 </div>
 
 <style>
 	.bg-gradient {
-		min-height: 100vh;
-		padding: 0 0 2em 0;
-		min-width: 100%;
 		background: linear-gradient(180deg, #367CF4 0%, #70FA7E 100%);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.bg-gradient::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
+		z-index: 0;
+	}
+
+	.bg-gradient :global(*) {
+		position: relative;
+		z-index: 1;
 	}
 </style>
