@@ -19,7 +19,7 @@
           <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-8">
             <div class="flex items-center justify-end mt-12 mb-8 pr-12">
               <div class="card-number relative">
-                <span id="cardNumberDisplay" class="font-mono text-lg">•••• •••• •••• 4242</span>
+                <span id="cardNumberDisplay" class="font-mono text-lg">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4242</span>
                 <button id="toggleNumber" class="ml-2 text-gray-300 hover:text-white">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
@@ -93,7 +93,7 @@
         <div class="p-4 bg-gray-100 rounded-lg">
           <div class="font-mono">
             <div class="text-sm text-gray-600">Card number</div>
-            <div>4242 4242 4242 4242</div>
+            <div>&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4242</div>
           </div>
         </div>
         <div class="flex gap-4">
@@ -160,7 +160,7 @@
   // Toggle número de tarjeta
   toggleNumber?.addEventListener('click', () => {
     isNumberVisible = !isNumberVisible;
-    cardNumberDisplay.textContent = isNumberVisible ? realCardNumber : '•••• •••• •••• 4242';
+    cardNumberDisplay.textContent = isNumberVisible ? realCardNumber : '●●●● ●●●● ●●●● 4242';
     cvcDisplay.textContent = isNumberVisible ? realCVC : '•••';
   });
 

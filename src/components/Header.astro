@@ -33,7 +33,7 @@ const links = [
 <header aria-label={t('components.header.aria-label')} id="home">
 	<div class="mx-auto max-w-screen-lg py-4 px-4 sm:px-6 lg:px-8">
 		<div class="flex h-16 items-center justify-between">
-			<div class="flex-1 md:flex md:items-center md:gap-12">
+			<div class="flex items-center gap-6">
 				<a class="block text-white" href="/">
 					<img
 						class="h-10 w-auto"
@@ -41,25 +41,33 @@ const links = [
 						alt={t('components.header.logoImageAlt')}
 					/>
 				</a>
-			</div>
-
-			<div class="md:flex md:items-center md:gap-12">
 				<nav aria-label="Site Nav" class="hidden md:block">
-					<ul class="flex items-center gap-6 text-sm">
+					<ul class="flex items-center gap-2 text-sm">
 						{
 							links.map((link) => (
 								<li>
 									<a
-										class="text-gray-50 transition font-montserrat font-bold hover:text-gray-900/75"
+										class="relative px-4 py-2 text-gray-50 transition-all duration-300 font-montserrat font-bold group"
 										href={link.href}
 									>
-										{link.label}
+										<span class="relative z-10">{link.label}</span>
+										<span class="absolute inset-0 h-full w-full bg-white/20 rounded-full scale-0 transition-transform duration-300 ease-out group-hover:scale-110"></span>
 									</a>
 								</li>
 							))
 						}
 					</ul>
 				</nav>
+			</div>
+
+			<div class="md:flex md:items-center md:gap-12">
+				<a 
+					href="/login" 
+					class="inline-flex items-center justify-center px-4 py-2 border border-white text-white font-montserrat font-bold rounded-full hover:bg-white hover:text-blue-600 transition-all duration-300 text-sm gap-2"
+				>
+					<i class="eva eva-briefcase-outline"></i>
+					Login for Banks
+				</a>
 			</div>
 		</div>
 	</div>
@@ -68,5 +76,14 @@ const links = [
 <style>
 	a {
 		box-sizing: border-box;
+	}
+
+	/* Animación suave para el hover */
+	.group:hover .group-hover\:scale-100 {
+		transform: scale(1);
+	}
+
+	.group {
+		overflow: hidden;
 	}
 </style>
