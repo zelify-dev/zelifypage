@@ -5,8 +5,6 @@ import GradientBackground from '../components/GradientBackground.astro';
 import Hero from '../components/Hero.astro';
 import Cards from '../components/Cards.astro';
 import Features from '../components/Features.astro';
-import About from '../components/About.astro';
-import Footer from '../components/Footer.astro';
 import InternationalTransfer from '../components/InternationalTransfer';
 import { t } from 'i18next';
 
@@ -14,20 +12,6 @@ import { t } from 'i18next';
 import i18next from 'i18next';
 await i18next.changeLanguage('en');
 
-const links = [
-	{
-		label: t('home.links.home'),
-		href: '#home',
-	},
-	{
-		label: t('home.links.about'),
-		href: '#about',
-	},
-	{
-		label: t('home.links.features'),
-		href: '#features',
-	},
-];
 
 const plans = [
 	{
@@ -84,31 +68,7 @@ const plans = [
 	}
 ];
 
-const partners = [
-	{
-		name: "Visa",
-		logo: "/assets/logos/visa.svg",
-		description: "Global payment network"
-	},
-	{
-		name: "Mastercard",
-		logo: "/assets/logos/mastercard.svg",
-		description: "Worldwide acceptance"
-	},
-	{
-		name: "SPEI",
-		logo: "/assets/logos/spei.svg",
-		description: "Mexican instant transfers"
-	},
-	{
-		name: "SWIFT",
-		logo: "/assets/logos/swift.svg",
-		description: "International transfers"
-	}
-];
-
 const benefits = [
-	// Finanzas y Compras
 	{
 		category: "Finance & Shopping",
 		items: [
@@ -145,7 +105,7 @@ const benefits = [
 	<GradientBackground>
 		<Header />
 		<div id="home">
-		<Hero />
+			<Hero />
 		</div>
 	</GradientBackground>
 	
@@ -328,15 +288,15 @@ const benefits = [
 			<div class="grid md:grid-cols-2 gap-16">
 				<!-- Información de la Empresa -->
 				<div class="space-y-6">
-					<h3 class="text-2xl font-bold text-gray-800">About Zwippetech Inc.</h3>
+					<h3 class="text-2xl font-bold text-gray-800">About Zwippe Tech Inc.</h3>
 					<p class="text-gray-600 leading-relaxed">
-						Zwippetech Inc., a U.S.-based company, develops B2B and B2C financial services and addresses other specialized programming needs for our clients.
+						Zwippe Tech Inc., a U.S.-based company, develops B2B and B2C financial services and addresses other specialized programming needs for our clients.
 					</p>
 					<p class="text-gray-600 leading-relaxed">
-						Zelify, a business line and brand of Zwippetech Inc., focuses on specialized development in the U.S. and Latin American regions.
+						Zelify, a business line and brand of Zwippe Tech Inc., focuses on specialized development in the U.S. and Latin American regions.
 					</p>
 					<div class="flex items-center gap-4 pt-4">
-						<img src="public/assets/img/logo.svg" alt="Zwippetech Inc." class="h-8" />
+						<img src="/assets/img/logo.svg" alt="Zelify Inc." class="h-8" />
 				
 					</div>
 				</div>
@@ -398,21 +358,18 @@ const benefits = [
 			// obtén la posición de la sección en la página
 			const offsetTop = section.offsetTop;
 
-			// agrega la animación de scroll suave
-			window.scrollTo({
-				top: offsetTop,
-				behavior: 'smooth',
+			window.scrollTo({top: offsetTop,behavior: 'smooth',
 			});
 		});
 	});
 
-	function highlightColumn(th) {
+	function highlightColumn(th: HTMLElement) {
 		const table = th.closest('table');
-		const index = Array.from(th.parentElement.children).indexOf(th);
-		const cells = table.querySelectorAll(`td:nth-child(${index + 1}), th:nth-child(${index + 1})`);
+		const index = Array.from(th.parentElement?.children || []).indexOf(th);
+		const cells = table?.querySelectorAll(`td:nth-child(${index + 1}), th:nth-child(${index + 1})`);
 		
 		// Resetear todas las columnas
-		table.querySelectorAll('td, th').forEach(cell => {
+		table?.querySelectorAll('td, th')?.forEach(cell => {
 			cell.classList.remove('bg-blue-50/50', 'opacity-40');
 		});
 		
@@ -423,15 +380,17 @@ const benefits = [
 		}
 		
 		// Resaltar la columna seleccionada y atenuar las demás
-		table.querySelectorAll('td, th').forEach(cell => {
+		table?.querySelectorAll('td, th')?.forEach(cell => {
 			cell.classList.add('opacity-40');
 		});
 		
-		cells.forEach(cell => {
+		cells?.forEach(cell => {
 			cell.classList.remove('opacity-40');
 			cell.classList.add('bg-blue-50/50');
 		});
 		
 		th.classList.add('highlighted');
 	}
+
+	Object.assign(window, { highlightColumn });
 </script>

@@ -1,14 +1,12 @@
 ---
-import { t } from 'i18next';
 import FeaturesComponent from './Features';
-import BackButton from './Features/BackButton.astro';
 ---
 
 <!-- Eva Icons CSS -->
 <link href="https://unpkg.com/eva-icons@1.1.3/style/eva-icons.css" rel="stylesheet">
 
 <section class="relative py-32 overflow-hidden bg-white flex items-center">
-	<FeaturesComponent client:load />
+	<FeaturesComponent client:only="react" />
 </section>
 
 <style>

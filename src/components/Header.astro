@@ -2,10 +2,7 @@
 import { t } from 'i18next';
 
 export interface Props {
-	links: {
-		href: string;
-		label: string;
-	}[];
+	links?: Array<{ label: string; href: string; }>;
 }
 
 // Definir los links directamente aquí
@@ -38,7 +35,6 @@ const links = [
 		<div class="flex h-16 items-center justify-between">
 			<div class="flex-1 md:flex md:items-center md:gap-12">
 				<a class="block text-white" href="/">
-					<span class="sr-only">Home</span>
 					<img
 						class="h-10 w-auto"
 						src="/assets/img/logo_white.png"

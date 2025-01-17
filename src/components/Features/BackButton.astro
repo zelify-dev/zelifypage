@@ -1,7 +1,3 @@
----
-const { onClick } = Astro.props;
----
-
 <button 
   class="back-button"
   onclick="handleBackClick()"
@@ -9,10 +5,9 @@ const { onClick } = Astro.props;
   <i class="eva eva-arrow-back-outline"></i>
 </button>
 
-<script>
+<script is:inline>
   function handleBackClick() {
     alert('Botón clickeado');
-    // Emitir un evento personalizado que React pueda escuchar
     window.dispatchEvent(new CustomEvent('backButtonClicked'));
   }
 </script>

@@ -1,9 +1,27 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ExternalCashout } from './Features/ExternalCashout';
 import { ConfirmSlider } from './Features/ConfirmSlider';
-import { ChatTransfer } from './Features/ChatTransfer';
 
+interface Service {
+  id: string;
+  name: string;
+  icon: string;
+  amount: number;
+  fee: number;
+}
 
+interface TransferModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  type: 'transfer' | 'request';
+}
+
+interface TransactionConfirmationProps {
+  amount?: number;
+  fee?: number;
+  recipient?: string;
+  onBack: () => void;
+}
 
 const NavigationBar = ({ activeTab = "Transfer" }) => (
   <div className="absolute bottom-0 left-0 right-0 border-t border-gray-200 py-3 px-6 bg-white">
@@ -30,8 +48,8 @@ const TransactionConfirmation = ({
   amount = 600, 
   fee = 0, 
   recipient = "John Cooper",
-  onBack
-}) => (
+  onBack 
+}: TransactionConfirmationProps) => (
   <div className="slide min-w-full h-[600px] bg-white relative">
     <div className="flex items-center gap-4 p-4 border-b">
       <button 
@@ -99,7 +117,13 @@ const TransactionConfirmation = ({
   </div>
 );
 
-const UtilityServices = ({ onServiceClick, services }) => (
+const UtilityServices = ({ 
+  onServiceClick, 
+  services 
+}: { 
+  onServiceClick: (id: string) => void;
+  services: Service[];
+}) => (
   <div className="slide min-w-full h-[600px] bg-white relative">
     <div className="flex items-center gap-4 p-4 border-b">
       <button className="text-[#3983ED] p-2 hover:bg-gray-100 rounded-full transition-all">
@@ -131,7 +155,7 @@ const UtilityServices = ({ onServiceClick, services }) => (
   </div>
 );
 
-const TransferModal = ({ isOpen, onClose, type }) => {
+const TransferModal = ({ isOpen, onClose, type }: TransferModalProps) => {
   if (!isOpen) return null;
 
   return (
@@ -211,6 +235,13 @@ const Features = () => {
   const handleBack = () => {
     setActiveService(null);
   };
+
+  useEffect(() => {
+    // Inicialización del estado después del montaje
+    return () => {
+      // Limpieza al desmontar
+    };
+  }, []);
 
   return (
     <div className="mx-auto max-w-screen-xl px-4 min-h-screen flex items-center py-8">

@@ -5,7 +5,7 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="Get Zelify App">
   <div class="min-h-screen bg-white flex flex-col items-center justify-center p-4">
     <img 
-      src="/assets/img/logo.svg" 
+      src="/logo.svg" 
       alt="Zelify Logo" 
       class="w-48 mb-16"
     />
@@ -28,7 +28,8 @@ import Layout from '../layouts/Layout.astro';
         .then(response => response.json())
         .then(data => {
           const country = data.country_name;
-          document.querySelector('h1').textContent = `Coming soon to ${country}`;
+          const heading = document.querySelector('h1');
+          if (heading) heading.textContent = `Coming soon to ${country}`;
         })
         .catch(() => {
           // Si falla, mantiene el mensaje genérico

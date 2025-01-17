@@ -3,70 +3,72 @@ import { t } from 'i18next';
 ---
 
 <div class="relative">
-  <div class="max-w-xs mx-auto bg-white rounded-t-3xl shadow-2xl overflow-hidden h-[calc(100vh-80px)] max-h-[650px] flex flex-col animate-fadeIn">
-    <div class="py-2 px-4 bg-white border-b">
-      <div class="flex items-center gap-3">
-        <button class="text-gray-600">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
+  <div class="w-full max-w-md mx-auto">
+    <div class="max-w-xs mx-auto bg-white rounded-t-3xl shadow-2xl overflow-hidden h-[calc(100vh-80px)] max-h-[650px] flex flex-col animate-fadeIn">
+      <div class="py-2 px-4 bg-white border-b">
+        <div class="flex items-center gap-3">
+          <button class="text-gray-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <div class="flex items-center gap-2">
+            <img 
+              src="https://avatars.githubusercontent.com/u/20259832?s=400&u=0784b5671af390e2cd45b9c2251e4c858eaccb48&v=4" 
+              alt="Joseph Cooper" 
+              class="w-8 h-8 rounded-full object-cover border-2 border-gray-200"
+            />
+            <div>
+              <h3 class="font-semibold text-gray-800 text-sm leading-tight">Joseph Cooper</h3>
+              <p class="text-xs text-gray-500 leading-tight">@coop</p>
+            </div>
+          </div>
+          <div class="flex gap-3 ml-auto">
+            <div class="flex flex-col items-center">
+              <button class="w-10 h-10 bg-green-500 rounded-full text-white hover:bg-green-600 transition-all transform hover:scale-105 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+                </svg>
+              </button>
+              <span class="text-xs text-gray-600 mt-1">Transfer</span>
+            </div>
+            <div class="flex flex-col items-center">
+              <button class="w-10 h-10 bg-blue-500 rounded-full text-white hover:bg-blue-600 transition-all transform hover:scale-105 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
+                </svg>
+              </button>
+              <span class="text-xs text-gray-600 mt-1">Request</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="px-4 flex-1 overflow-y-auto bg-gray-50" id="chat-container">
+        <div class="space-y-3">
+          <!-- Mensajes iniciales eliminados para que se generen dinámicamente -->
+        </div>
+      </div>
+
+      <div class="py-3 px-4 bg-white border-t mt-auto">
         <div class="flex items-center gap-2">
-          <img 
-            src="https://avatars.githubusercontent.com/u/20259832?s=400&u=0784b5671af390e2cd45b9c2251e4c858eaccb48&v=4" 
-            alt="Joseph Cooper" 
-            class="w-8 h-8 rounded-full object-cover border-2 border-gray-200"
+          <button class="p-2 text-gray-600 hover:bg-gray-100 rounded-full" id="emoji-button">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </button>
+          <input 
+            type="text" 
+            id="message-input"
+            placeholder="Type a message..." 
+            class="flex-1 p-2 border rounded-full focus:outline-none focus:border-blue-500"
           />
-          <div>
-            <h3 class="font-semibold text-gray-800 text-sm leading-tight">Joseph Cooper</h3>
-            <p class="text-xs text-gray-500 leading-tight">@coop</p>
-          </div>
+          <button class="p-2 text-gray-600 hover:bg-gray-100 rounded-full" id="send-button">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            </svg>
+          </button>
         </div>
-        <div class="flex gap-3 ml-auto">
-          <div class="flex flex-col items-center">
-            <button class="w-10 h-10 bg-green-500 rounded-full text-white hover:bg-green-600 transition-all transform hover:scale-105 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
-              </svg>
-            </button>
-            <span class="text-xs text-gray-600 mt-1">Transfer</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <button class="w-10 h-10 bg-blue-500 rounded-full text-white hover:bg-blue-600 transition-all transform hover:scale-105 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
-              </svg>
-            </button>
-            <span class="text-xs text-gray-600 mt-1">Request</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="px-4 flex-1 overflow-y-auto bg-gray-50" id="chat-container">
-      <div class="space-y-3">
-        <!-- Mensajes iniciales eliminados para que se generen dinámicamente -->
-      </div>
-    </div>
-
-    <div class="py-3 px-4 bg-white border-t mt-auto">
-      <div class="flex items-center gap-2">
-        <button class="p-2 text-gray-600 hover:bg-gray-100 rounded-full" id="emoji-button">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-        </button>
-        <input 
-          type="text" 
-          id="message-input"
-          placeholder="Type a message..." 
-          class="flex-1 p-2 border rounded-full focus:outline-none focus:border-blue-500"
-        />
-        <button class="p-2 text-gray-600 hover:bg-gray-100 rounded-full" id="send-button">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-          </svg>
-        </button>
       </div>
     </div>
   </div>

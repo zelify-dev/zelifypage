@@ -16,14 +16,14 @@ export const ConfirmSlider: React.FC<ConfirmSliderProps> = ({ onConfirm, text })
 
   const handleMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
     setIsDragging(true);
-    const pageX = 'touches' in e ? e.touches[0].pageX : (e as React.MouseEvent).pageX;
+    const pageX = 'touches' in e ? e.touches[0]?.pageX ?? 0 : (e as React.MouseEvent).pageX;
     startXRef.current = pageX - sliderLeft;
   };
 
   const handleMouseMove = (e: MouseEvent | TouchEvent) => {
     if (!isDragging || !sliderRef.current) return;
 
-    const pageX = 'touches' in e ? (e as TouchEvent).touches[0].pageX : (e as MouseEvent).pageX;
+    const pageX = 'touches' in e ? (e as TouchEvent).touches[0]?.pageX ?? 0 : (e as MouseEvent).pageX;
     const walk = pageX - startXRef.current;
     const maxLeft = sliderRef.current.parentElement!.offsetWidth - sliderRef.current.offsetWidth;
     let newLeft = Math.max(0, Math.min(walk, maxLeft));
