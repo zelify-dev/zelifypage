@@ -1,9 +1,39 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { marked } from 'marked';
+import fs from 'node:fs';
+import path from 'node:path';
+
+// Leer el contenido del archivo policy.md
+const policyPath = path.join(process.cwd(), 'src/content/policy.md');
+const policyContent = fs.readFileSync(policyPath, 'utf-8');
+const policyHtml = marked.parse(policyContent);
 ---
 
 <Layout title="Zelify Docs | Zelify">
   <main class="container mx-auto px-4 py-16">
+    <!-- Botón Volver Arriba -->
+    <button
+      id="scrollToTop"
+      class="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      aria-label="Volver arriba"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 10l7-7m0 0l7 7m-7-7v18"
+        />
+      </svg>
+    </button>
+
     <h1 class="text-4xl font-bold text-center mb-4">Zelify Docs</h1>
     <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
       Comprehensive documentation about our policies, terms, and data protection measures.
@@ -16,7 +46,7 @@ import Layout from '../layouts/Layout.astro';
             <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 tab-button active" id="privacy-tab" data-target="privacy">Privacy Policy</button>
           </li>
           <li class="mr-2" role="presentation">
-            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 tab-button" id="terms-tab" data-target="terms">Terms of Use</button>
+            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 tab-button" id="terms-tab" data-target="terms">Policy On The Prevention Of Money Laundering</button>
           </li>
           <li role="presentation">
             <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 tab-button" id="data-tab" data-target="data">Data Protection</button>
@@ -192,64 +222,8 @@ import Layout from '../layouts/Layout.astro';
         </div>
 
         <div class="tab-panel hidden p-8" id="terms">
-          <h2 class="text-3xl font-bold mb-6">Terms of Use</h2>
           <div class="prose max-w-none">
-            <p class="text-gray-600 mb-4">Last updated: January 1, 2024</p>
-
-            <section class="mb-8">
-              <h3 class="text-xl font-semibold mb-4">1. Account Terms</h3>
-              <div class="space-y-4">
-                <p>By creating an account on Zelify, you agree to the following terms:</p>
-                <ul class="list-disc pl-6">
-                  <li>You must be 18 years or older to use our services</li>
-                  <li>You must provide accurate and complete information</li>
-                  <li>You are responsible for maintaining account security</li>
-                  <li>You must comply with all applicable laws and regulations</li>
-                </ul>
-              </div>
-            </section>
-
-            <section class="mb-8">
-              <h3 class="text-xl font-semibold mb-4">2. Service Terms</h3>
-              <div class="space-y-4">
-                <h4 class="font-semibold">2.1 Transaction Processing</h4>
-                <ul class="list-disc pl-6">
-                  <li>All transactions are subject to verification and approval</li>
-                  <li>We may decline transactions that appear suspicious</li>
-                  <li>Transaction limits may apply based on account status</li>
-                  <li>Fees and exchange rates are subject to change</li>
-                </ul>
-
-                <h4 class="font-semibold mt-4">2.2 Account Security</h4>
-                <ul class="list-disc pl-6">
-                  <li>You must keep your login credentials confidential</li>
-                  <li>You must enable two-factor authentication</li>
-                  <li>Report any unauthorized access immediately</li>
-                </ul>
-              </div>
-            </section>
-
-            <section class="mb-8">
-              <h3 class="text-xl font-semibold mb-4">3. Regulatory Compliance</h3>
-              <div class="space-y-4">
-                <h4 class="font-semibold">3.1 Banking Regulations</h4>
-                <p>Our services comply with multiple regulatory frameworks:</p>
-                <ul class="list-disc pl-6">
-                  <li>Federal Reserve Regulation E for electronic transfers</li>
-                  <li>OFAC compliance for international transactions</li>
-                  <li>Bank Secrecy Act (BSA) requirements</li>
-                  <li>Anti-Money Laundering (AML) provisions</li>
-                  <li>Know Your Customer (KYC) protocols</li>
-                </ul>
-
-                <h4 class="font-semibold mt-4">3.2 International Standards</h4>
-                <ul class="list-disc pl-6">
-                  <li>SEPA compliance for European transfers</li>
-                  <li>Regulation Systems Compliance and Integrity (Reg SCI)</li>
-                  <li>International Financial Reporting Standards (IFRS)</li>
-                </ul>
-              </div>
-            </section>
+            <div set:html={policyHtml} />
           </div>
         </div>
 
@@ -355,6 +329,34 @@ import Layout from '../layouts/Layout.astro';
       targetPanel.classList.remove('hidden');
     });
   });
+
+  // Función para manejar el botón de volver arriba
+  document.addEventListener('DOMContentLoaded', () => {
+    const scrollToTopButton = document.getElementById('scrollToTop');
+    
+    // Mostrar/ocultar el botón basado en la posición del scroll
+    const toggleScrollButton = () => {
+      if (window.scrollY > 500) {
+        scrollToTopButton.classList.remove('opacity-0');
+        scrollToTopButton.classList.add('opacity-100');
+      } else {
+        scrollToTopButton.classList.remove('opacity-100');
+        scrollToTopButton.classList.add('opacity-0');
+      }
+    };
+    
+    // Función para volver arriba suavemente
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    };
+    
+    // Event listeners
+    window.addEventListener('scroll', toggleScrollButton);
+    scrollToTopButton.addEventListener('click', scrollToTop);
+  });
 </script>
 
 <style>
@@ -363,5 +365,32 @@ import Layout from '../layouts/Layout.astro';
   }
   .tab-panel {
     @apply p-4;
+  }
+  :global(.prose h1) {
+    @apply text-3xl font-bold mb-6;
+  }
+  :global(.prose h2) {
+    @apply text-2xl font-semibold mb-4 mt-8;
+  }
+  :global(.prose h3) {
+    @apply text-xl font-semibold mb-3 mt-6;
+  }
+  :global(.prose p) {
+    @apply mb-4 text-gray-600;
+  }
+  :global(.prose ul) {
+    @apply list-disc pl-6 mb-4 space-y-2;
+  }
+  :global(.prose ol) {
+    @apply list-decimal pl-6 mb-4 space-y-2;
+  }
+  :global(.prose table) {
+    @apply min-w-full border border-gray-200 mb-4;
+  }
+  :global(.prose th) {
+    @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase bg-gray-50;
+  }
+  :global(.prose td) {
+    @apply px-6 py-4 text-sm text-gray-900 border-t border-gray-200;
   }
 </style> 
