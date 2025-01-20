@@ -3,7 +3,7 @@ import React from 'react';
 const plans = [
   {
     name: 'Basic',
-    price: '9.99',
+    price: '0.00',
     features: [
       'Free Transfers Between Users',
       'Up to $1,000 Monthly Transfer',
@@ -16,7 +16,7 @@ const plans = [
   },
   {
     name: 'Premium',
-    price: '19.99',
+    price: '4.99',
     features: [
       'Unlimited Free Transfers',
       'Up to $10,000 Monthly Transfer',
@@ -31,7 +31,7 @@ const plans = [
   },
   {
     name: 'Business',
-    price: '49.99',
+    price: '7.99',
     features: [
       'Unlimited Global Transfers',
       'Unlimited Monthly Transfer',
