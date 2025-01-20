@@ -128,7 +128,7 @@ const Pricing = () => {
             Compare Our Plans
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Select the perfect plan that fits your financial journey
+          Choose the perfect plan to fit your financial journey.
           </p>
         </div>
 

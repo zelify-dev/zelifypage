@@ -28,78 +28,166 @@ import Layout from '../layouts/Layout.astro';
         <div class="tab-panel active p-8" id="privacy">
           <h2 class="text-3xl font-bold mb-6">Privacy Policy</h2>
           <div class="prose max-w-none">
-            <p class="text-gray-600 mb-4">Last updated: January 1, 2024</p>
+            <p class="text-gray-600 mb-8">Last updated: January 20, 2025</p>
+            
+            <section class="mb-12">
+              <h3 class="text-2xl font-semibold mb-4">Purpose</h3>
+              <p class="mb-4">
+                This Personal Data Privacy Policy (hereinafter, the "Privacy Policy") aims to inform how Zwippetech Inc. (hereinafter, "Zwippetech"), a legal entity incorporated under the laws of Delaware, United States, processes personal data collected through its Zelify Platform (hereinafter, the "Platform").
+              </p>
+              <p class="mb-4">
+                This data is collected through the usage of the Platform, filling out virtual forms, and through various spaces on the Platform designed for entering virtual personal data.
+              </p>
+              <p class="mb-4">
+                For the purposes of this policy, we will refer to the "Data Subject" as the person whose data will be collected and processed in accordance with the terms set forth in the Privacy Policy. Only personal data for which proper consent has been obtained is processed unless exceptions established in the Data Protection Act (the "Act") apply.
+              </p>
+              <p class="mb-4">
+                The processing of personal data derived from this Privacy Policy is legitimate and lawful due to obtaining the consent of the Data Subject, and its origin comes directly from the Data Subject.
+              </p>
+            </section>
 
-            <section class="mb-8">
-              <h3 class="text-xl font-semibold mb-4">1. Information We Collect</h3>
-              <p class="mb-4">We collect several different types of information for various purposes to provide and improve our service to you:</p>
+            <section class="mb-12">
+              <h3 class="text-2xl font-semibold mb-4">Legal Basis</h3>
+              <p class="mb-4">
+                This Privacy Policy is governed by U.S. law, in particular:
+              </p>
+              <ul class="list-disc pl-6 mb-4 space-y-2">
+                <li>Gramm-Leach-Bliley Act (GLBA)</li>
+                <li>Right to Financial Privacy Act (RFPA)</li>
+                <li>California Consumer Privacy Act (CCPA)</li>
+                <li>General Data Protection Regulation (GDPR)</li>
+                <li>Other applicable secondary regulations</li>
+              </ul>
+            </section>
+
+            <section class="mb-12">
+              <h3 class="text-2xl font-semibold mb-4">Retention Period</h3>
+              <p class="mb-4">
+                Personal data provided by the Data Subject will be retained as long as necessary to fulfill the purpose for which it was collected and/or until the Data Subject revokes their consent, in accordance with the regulations of the Act and applicable laws.
+              </p>
+            </section>
+
+            <section class="mb-12">
+              <h3 class="text-2xl font-semibold mb-4">Personal Databases</h3>
+              <p class="mb-4">
+                The provided personal data will be stored in the personal database called "USERS," duly registered in the National Registry of Personal Data Protection.
+              </p>
+            </section>
+
+            <section class="mb-12">
+              <h3 class="text-2xl font-semibold mb-4">Purpose of Processing</h3>
+              <p class="mb-4">
+                Through a virtual form hosted on the Platform, Zwippetech collects personal data such as names, surnames, phone numbers, emails, addresses, and social security numbers, primarily to comply with regulations for the onboarding processes of the platform.
+              </p>
+              <p class="mb-4">
+                This personal data provided by the Data Subject is necessary to provide online transactional services on the Zwippetech platform. Zwippetech may conduct systematic evaluations of personal aspects and behaviors of its users within the Platform, such as profile creation, transactional trends and habits, ensuring a properly disassociated or at least anonymized treatment of this data, always adhering to the security measures, principles, and limitations established by the Law.
+              </p>
+              <p class="mb-4">
+                If the Data Subject does not provide this data or provides incorrect or inaccurate data, Zwippetech will not be able to fulfill the aforementioned purpose, and it will impact the quality and manner of execution of the services provided by Zwippetech.
+              </p>
+              <p class="mb-4">
+                Additionally, with the valid consent of the Data Subject, Zwippetech may contact them through [phone calls, SMS, emails, or other equivalent means] to send notifications about platform usage and general information. If the Data Subject does not accept the additional processing of their personal data, it will not affect access and use of the Platform and the services provided therein.
+              </p>
+            </section>
+
+            <!-- Transfer and Recipients Section -->
+            <section class="mb-12">
+              <h3 class="text-2xl font-semibold mb-4">Transfer and Recipients</h3>
+              <p class="mb-4">
+                The Data Subject is informed that their personal data is shared with third parties, as detailed on the Platform.
+              </p>
               
-              <h4 class="font-semibold mb-2">1.1 Personal Data</h4>
-              <ul class="list-disc pl-6 mb-4">
-                <li>Identity Information (name, date of birth, government ID)</li>
-                <li>Contact Information (email address, phone number, address)</li>
-                <li>Financial Information (bank account details, transaction history)</li>
-                <li>Technical Data (IP address, browser type, device information)</li>
-              </ul>
-
-              <h4 class="font-semibold mb-2">1.2 Usage Data</h4>
-              <p>We collect information on how you use our services, including:</p>
-              <ul class="list-disc pl-6 mb-4">
-                <li>Transaction patterns and frequency</li>
-                <li>Features and pages accessed</li>
-                <li>Time spent on platform</li>
-                <li>Technical interaction details</li>
-              </ul>
-            </section>
-
-            <section class="mb-8">
-              <h3 class="text-xl font-semibold mb-4">2. How We Use Your Information</h3>
-              <p class="mb-4">Your information is used for the following purposes:</p>
-              <ul class="list-disc pl-6 mb-4">
-                <li>Processing your transactions and maintaining your account</li>
-                <li>Verifying your identity and preventing fraud</li>
-                <li>Improving our services and user experience</li>
-                <li>Communicating with you about your account and our services</li>
-                <li>Complying with legal and regulatory requirements</li>
-              </ul>
-            </section>
-
-            <section class="mb-8">
-              <h3 class="text-xl font-semibold mb-4">3. Legacy System Integration</h3>
-              <div class="space-y-4">
-                <h4 class="font-semibold mb-2">3.1 Core Banking Integration</h4>
-                <p>Our platform interfaces with multiple legacy banking systems through:</p>
-                <ul class="list-disc pl-6 mb-4">
-                  <li>ISO 8583 message protocol for financial transactions</li>
-                  <li>SWIFT MT103 format for international transfers</li>
-                  <li>FIX protocol for real-time market data</li>
-                  <li>AS2 protocol for secure file transfers</li>
-                </ul>
-                
-                <h4 class="font-semibold mb-2">3.2 Data Retention Compliance</h4>
-                <p>We maintain historical data in accordance with:</p>
-                <ul class="list-disc pl-6 mb-4">
-                  <li>Basel III requirements for transaction records</li>
-                  <li>PSD2 compliance for payment services</li>
-                  <li>SOX requirements for audit trails</li>
-                  <li>FATCA reporting requirements</li>
-                </ul>
+              <div class="overflow-x-auto">
+                <table class="min-w-full border border-gray-200 mb-4">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Destinatary
+                      </th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Country Servers Are Based
+                      </th>
+                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Purpose
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        Amazon Web Services
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        United States – Virginia
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        Cloud infrastructure and database storage
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </section>
 
-            <section class="mb-8">
-              <h3 class="text-xl font-semibold mb-4">4. Technical Infrastructure</h3>
-              <div class="space-y-4">
-                <h4 class="font-semibold mb-2">4.1 System Architecture</h4>
-                <p>Our platform utilizes a hybrid architecture combining:</p>
-                <ul class="list-disc pl-6 mb-4">
-                  <li>Mainframe systems for core banking operations</li>
-                  <li>Microservices for modern API interfaces</li>
-                  <li>Event-driven architecture for real-time processing</li>
-                  <li>Blockchain integration for selected transactions</li>
-                </ul>
-              </div>
+            <section class="mb-12">
+              <h3 class="text-2xl font-semibold mb-4">Security Measures</h3>
+              <p class="mb-4">
+                Zwippetech adopts the necessary security measures to ensure the protection of the Data Subject's information, preventing its alteration, loss, unauthorized access, or processing, considering the nature of the information and the risks to which it is exposed. To protect the personal data of the Data Subject, Zwippetech strictly complies with the provisions of the Law and its Regulation.
+              </p>
             </section>
+
+            <section class="mb-12">
+              <h3 class="text-2xl font-semibold mb-4">Communications and Subsequent Treatments</h3>
+              <p class="mb-4">
+                Zwippetech commits not to disclose or share the personal data provided by the Data Subject without their valid consent, except in specific cases such as requests for information from administrative or judicial authorities in the exercise of their functions and within the scope of their competencies under the Law.
+              </p>
+              <p class="mb-4">
+                The Data Subject can revoke their consent for such communications at any time, without the need for any justification.
+              </p>
+            </section>
+
+            <section class="mb-12">
+              <h3 class="text-2xl font-semibold mb-4">Use of Cookies on the Platform</h3>
+              <p class="mb-4">
+                The Platform does not use cookies, and therefore, no personal data processing is carried out in that manner.
+              </p>
+            </section>
+
+            <section class="mb-12">
+              <h3 class="text-2xl font-semibold mb-4">Portability of Personal Data</h3>
+              <p class="mb-4">
+                Upon explicit request from the Data Subject, Zwippetech may return the personal data collected from them in a compatible, updated, structured, common, interoperable, and machine-readable format, preserving its characteristics or deliver it to another controller defined by the Data Subject.
+              </p>
+              <p class="mb-4">
+                The portability of the Data Subject's data will not take place for inferred, derived, created, generated, or obtained information from the analysis or treatments carried out by Zwippetech.
+              </p>
+            </section>
+
+            <!-- Revocation of Consent Section -->
+            <section class="mb-12">
+              <h3 class="text-2xl font-semibold mb-4">Revocation of Consent</h3>
+              <p class="mb-4">
+                The Data Subject may revoke the authorization and consent granted to Zwippetech for the processing of their personal data by submitting a written request to the aforementioned email.
+              </p>
+            </section>
+
+            <section class="mb-12">
+              <h3 class="text-2xl font-semibold mb-4">Modifications to the Privacy Policy</h3>
+              <p class="mb-4">
+                Zwippetech expressly reserves the right to modify, update, or supplement this Privacy Policy at any time. Any modification will be immediately communicated through the Platform.
+              </p>
+            </section>
+
+            <section class="mb-12">
+              <h3 class="text-2xl font-semibold mb-4">Applicable Legislation and Conflict Resolution</h3>
+              <p class="mb-4">
+                The terms of the Privacy Policy are governed and interpreted in accordance with the laws of the United States, subject to the jurisdiction of Delaware and the Competent Authorities for the Protection of Personal Data.
+              </p>
+            </section>
+
+            <footer class="text-sm text-gray-600 border-t pt-8">
+              <p>Copyright © 2025 Zwippetech, Inc. All rights reserved.</p>
+            </footer>
           </div>
         </div>
 
