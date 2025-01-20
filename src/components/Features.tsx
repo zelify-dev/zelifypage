@@ -342,7 +342,7 @@ const Features = () => {
                 Next-Gen Financial Technology
               </span>
               <h2 className="text-6xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-[#3983ED] to-[#70FA7E] mx-auto lg:mx-0 mb-6">
-                Personal and business customers bank with Zelify.
+                Personal and business customers bank with Zelify
               </h2>
               <p className="text-xl text-gray-600 pr-4 max-w-lg mx-auto lg:mx-0">
                 Send, split or gift money instantly. No hassle, no waiting, just smooth transactions at your fingertips.
