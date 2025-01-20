@@ -40,42 +40,37 @@ const links = [
 			<nav class="hidden md:flex items-center gap-8">
 				<a 
 					href="#home" 
-					class="relative px-4 py-2 text-gray-50 transition-all duration-300 font-medium group"
+					class="nav-item px-4 py-2 text-gray-50 font-medium"
 				>
-					<span class="relative z-10">Home</span>
-					<span class="absolute inset-0 h-full w-full bg-white/20 rounded-full scale-0 transition-transform duration-300 ease-out group-hover:scale-110"></span>
+					Home
 				</a>
 				<a 
 					href="#cards" 
-					class="relative px-4 py-2 text-gray-50 transition-all duration-300 font-medium group"
+					class="nav-item px-4 py-2 text-gray-50 font-medium"
 				>
-					<span class="relative z-10">Cards</span>
-					<span class="absolute inset-0 h-full w-full bg-white/20 rounded-full scale-0 transition-transform duration-300 ease-out group-hover:scale-110"></span>
+					Cards
 				</a>
 				<a 
 					href="#features" 
-					class="relative px-4 py-2 text-gray-50 transition-all duration-300 font-medium group"
+					class="nav-item px-4 py-2 text-gray-50 font-medium"
 				>
-					<span class="relative z-10">Features</span>
-					<span class="absolute inset-0 h-full w-full bg-white/20 rounded-full scale-0 transition-transform duration-300 ease-out group-hover:scale-110"></span>
+					Features
 				</a>
 				<a 
 					href="#transfer" 
-					class="relative px-4 py-2 text-gray-50 transition-all duration-300 font-medium group"
+					class="nav-item px-4 py-2 text-gray-50 font-medium"
 				>
-					<span class="relative z-10">International</span>
-					<span class="absolute inset-0 h-full w-full bg-white/20 rounded-full scale-0 transition-transform duration-300 ease-out group-hover:scale-110"></span>
+					International
 				</a>
 				<a 
 					href="#pricing" 
 					onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'}); return false;"
-					class="relative px-4 py-2 text-gray-50 transition-all duration-300 font-medium group"
+					class="nav-item px-4 py-2 text-gray-50 font-medium"
 				>
-					<span class="relative z-10">Subscriptions</span>
-					<span class="absolute inset-0 h-full w-full bg-white/20 rounded-full scale-0 transition-transform duration-300 ease-out group-hover:scale-110"></span>
+					Subscriptions
 				</a>
 			</nav>
-								</div>
+		</div>
 
 		<div class="flex items-center gap-4">
 			<a
@@ -90,16 +85,29 @@ const links = [
 </header>
 
 <style>
-	a {
-		box-sizing: border-box;
+	.nav-item {
+		position: relative;
+		transition: all 0.3s ease;
+		border-radius: 9999px;
 	}
 
-	/* Animación suave para el hover */
-	.group:hover .group-hover\:scale-100 {
-		transform: scale(1);
+	.nav-item:hover {
+		background-color: rgba(255, 255, 255, 0.2);
 	}
 
-	.group {
-		overflow: hidden;
+	.nav-item::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		width: 0;
+		height: 2px;
+		background-color: white;
+		transition: all 0.3s ease;
+		transform: translateX(-50%);
+	}
+
+	.nav-item:hover::after {
+		width: 80%;
 	}
 </style>
