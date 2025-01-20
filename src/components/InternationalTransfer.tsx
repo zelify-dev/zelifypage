@@ -126,7 +126,7 @@ const InternationalTransfer = () => {
             Send Money Globally
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Experience lightning-fast international transfers with the best rates. From USA to Mexico in seconds, not days.
+          Experience lightning-fast international transfers at the best rates.
           </p>
         </div>
 

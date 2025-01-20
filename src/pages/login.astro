@@ -2,27 +2,27 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Login for Banks | Zelify">
+<Layout title="Partner bank integration | Zelify">
 	<main class="min-h-screen flex items-center justify-center bg-gray-100">
 		<div class="max-w-md w-full mx-4">
 			<div class="bg-white rounded-lg shadow-lg p-8">
 				<!-- Encabezado -->
 				<div class="text-center mb-8">
 					<img src="/assets/img/logo.svg" alt="Zelify" class="h-10 mx-auto mb-4" />
-					<h1 class="text-2xl font-bold text-gray-900">Login for Banks</h1>
-					<p class="text-gray-600 mt-2">Access your bank dashboard</p>
+					<h1 class="text-2xl font-bold text-gray-900">Bank Partner Login</h1>
+					<p class="text-gray-600 mt-2">Access your integration dashboard</p>
 				</div>
 
 				<!-- Formulario -->
 				<form id="loginForm" class="space-y-6">
 					<div class="space-y-4">
 						<div>
-							<label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+							<label for="email" class="block text-sm font-medium text-gray-700">Username</label>
 							<input
 								type="email"
 								id="email"
 								class="mt-1 w-full px-4 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 transition-colors"
-								placeholder="your@bank.com"
+								placeholder=""
 								required
 							/>
 						</div>
@@ -40,7 +40,7 @@ import Layout from '../layouts/Layout.astro';
 					</div>
 
 					<div id="errorMessage" class="text-red-500 text-sm text-center hidden">
-						Incorrect email or password. Please try again.
+						Incorrect username or password. Please try again.
 					</div>
 
 					<div class="flex items-center justify-between text-sm">
@@ -56,7 +56,7 @@ import Layout from '../layouts/Layout.astro';
 							id="contactSupport"
 							class="text-blue-600 hover:text-blue-500"
 						>
-							Contact Support
+						Need help?
 						</button>
 					</div>
 
@@ -74,8 +74,8 @@ import Layout from '../layouts/Layout.astro';
 	<!-- Modal para recuperación de contraseña -->
 	<div id="forgotPasswordModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
 		<div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 shadow-lg">
-			<h3 class="text-xl font-bold mb-4">Reset Password</h3>
-			<p class="text-gray-600 mb-6">Enter your email address and we'll send you instructions to reset your password.</p>
+			<h3 class="text-xl font-bold mb-4">Account recovery</h3>
+			<p class="text-gray-600 mb-6">We need this info to verify your identity.</p>
 			
 			<form id="resetPasswordForm" class="space-y-4">
 				<div>
@@ -100,7 +100,7 @@ import Layout from '../layouts/Layout.astro';
 						type="submit"
 						class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors"
 					>
-						Send Instructions
+					Recover email
 					</button>
 				</div>
 			</form>

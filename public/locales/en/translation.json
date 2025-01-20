@@ -1,12 +1,4 @@
 {
-	"home": {
-		"title": "Zelify | Home",
-		"links": {
-			"home": "Home",
-			"about": "About",
-			"features": "Service"
-		}
-	},
 	"about": {
 		"title": "ABOUT OUR COMPANY",
 		"description": "Zelify Inc., a U.S.-based company, develops B2B and B2C financial services and addresses other specialized programming needs for our clients. Zelify, a business line and brand of Zwippetech Inc., focuses on specialized development in the U.S. and Latin American regions.",

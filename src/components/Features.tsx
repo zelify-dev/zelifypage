@@ -226,9 +226,9 @@ const Features = () => {
       description: 'Withdraw to external accounts'
     },
     { 
-      name: 'Chat Transfers', 
+      name: 'Pay via chat', 
       icon: 'message-square',
-      description: 'Send & request money while chatting'
+      description: 'Effortless Social Payments with Zelify'
     }
   ];
 
@@ -339,13 +339,13 @@ const Features = () => {
             <div className="absolute -top-20 -left-20 w-40 h-40 bg-gradient-to-br from-blue-500/20 to-green-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
             <div className="relative">
               <span className="inline-block text-sm font-semibold text-blue-600 bg-blue-50 px-4 py-1 rounded-full mb-4">
-                Next-Gen Financial Technology
+                In features
               </span>
               <h2 className="text-6xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-[#3983ED] to-[#70FA7E] mx-auto lg:mx-0 mb-6">
-                Personal and business customers bank with Zelify
+              Zelify powers banking for both personal and business users
               </h2>
               <p className="text-xl text-gray-600 pr-4 max-w-lg mx-auto lg:mx-0">
-                Send, split or gift money instantly. No hassle, no waiting, just smooth transactions at your fingertips.
+              Send, split, or gift money instantl. No hassle, no waiting, just smooth transactions at your fingertips. Sending and receiving money is as easy as texting a friend.
               </p>
             </div>
           </div>
