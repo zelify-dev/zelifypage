@@ -26,12 +26,12 @@ const plans = [
       'Custom Card Design'
     ],
     cardImage: '/assets/img/cards/2.png',
-    popular: true,
     gradient: 'from-blue-600/20 via-cyan-500/20 to-emerald-500/20'
   },
   {
     name: 'Business',
     price: '7.99',
+    popular: true,
     features: [
       'Unlimited Global Transfers',
       'Unlimited Monthly Transfer',
