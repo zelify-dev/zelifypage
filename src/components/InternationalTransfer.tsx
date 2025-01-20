@@ -62,7 +62,7 @@ const InternationalTransfer = () => {
   // Valores fijos
   const FIXED_USD_AMOUNT = 500; // Monto fijo en USD
   const EXCHANGE_RATE = 17.05;
-  const FEE_PERCENTAGE = 0.01;
+  const FEE_PERCENTAGE = 0.03;
 
   // Cálculos fijos
   const convertedAmount = FIXED_USD_AMOUNT * EXCHANGE_RATE;
