@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+---
+
+<Layout title="About Us | Zelify">
+  <main class="container mx-auto px-4 py-16">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold text-center mb-8">About Zelify</h1>
+      
+      <div class="grid gap-8">
+        <section>
+          <h2 class="text-2xl font-semibold mb-4">Our Story</h2>
+          <p class="text-gray-600">
+            Founded in 2023, Zelify emerged from a simple yet powerful idea: to make international money transfers accessible, affordable, and secure for everyone. What started as a small fintech startup has grown into a trusted platform serving customers worldwide.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-semibold mb-4">Our Mission</h2>
+          <p class="text-gray-600">
+            We're on a mission to revolutionize the way people transfer money globally. By leveraging cutting-edge technology and maintaining the highest security standards, we're building a future where financial borders don't exist.
+          </p>
+        </section>
+
+        <section class="grid md:grid-cols-3 gap-6 mt-8">
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold mb-3">Innovation</h3>
+            <p class="text-gray-600">Constantly pushing boundaries to provide the best financial solutions.</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold mb-3">Security</h3>
+            <p class="text-gray-600">Your security is our top priority, with state-of-the-art protection.</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold mb-3">Trust</h3>
+            <p class="text-gray-600">Building lasting relationships through transparency and reliability.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</Layout> 

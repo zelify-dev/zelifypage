@@ -8,28 +8,48 @@ interface Transaction {
   date: string;
   description: string;
   isCredit?: boolean;
+  avatar: string;
+  name: string;
+  country: string;
+  status: string;
 }
 
 const BENEFITS = [
   {
     icon: 'flash',
     title: 'Instant Transfers',
-    description: 'Money arrives in seconds, not days. Real-time cross-border transfers.'
+    description: 'Money arrives in seconds, not days. Real-time cross-border transfers.',
+    color: 'from-yellow-400 to-orange-400',
+    bgGradient: 'from-yellow-50 via-orange-50 to-red-50',
+    iconBg: 'bg-yellow-400/10'
   },
   {
     icon: 'percent',
     title: 'Low Fees',
-    description: 'Only 3% fee, compared to 5-7% with traditional banks.'
+    description: 'Only 3% fee, compared to 5-7% with traditional banks.',
+    color: 'from-blue-500 via-indigo-500 to-violet-500',
+    bgGradient: 'from-blue-50 via-indigo-50 to-violet-50',
+    iconBg: 'bg-blue-400/10'
   },
   {
     icon: 'trending-up',
     title: 'Best Exchange Rates',
-    description: 'Save up to 2% on exchange rates compared to banks.'
+    description: 'Save up to 2% on exchange rates compared to banks.',
+    color: 'from-emerald-400 via-green-500 to-teal-500',
+    bgLight: 'bg-emerald-50',
+    image: '/images/exchange-rates.webp',
+    stats: '2% Better',
+    highlight: 'Market Rates'
   },
   {
     icon: 'shield',
     title: 'Secure & Easy',
-    description: 'Bank-level security with an easy-to-use interface.'
+    description: 'Bank-level security with an easy-to-use interface.',
+    color: 'from-purple-500 via-fuchsia-500 to-pink-500',
+    bgLight: 'bg-purple-50',
+    image: '/images/security.webp',
+    stats: '256-bit',
+    highlight: 'Bank Grade'
   }
 ];
 
@@ -64,7 +84,23 @@ const InternationalTransfer = () => {
         year: 'numeric'
       }),
       description: 'International Transfer Received',
-      isCredit: true
+      isCredit: true,
+      avatar: 'https://randomuser.me/api/portraits/women/65.jpg',
+      name: 'Sarah Johnson',
+      country: 'GB',
+      status: 'completed'
+    },
+    {
+      id: '2',
+      type: 'International',
+      amount: 850,
+      date: '2024-03-14',
+      description: 'International Transfer Received',
+      isCredit: true,
+      avatar: 'https://randomuser.me/api/portraits/men/52.jpg',
+      name: 'Miguel Ángel',
+      country: 'MX',
+      status: 'pending'
     }
   ]);
 
@@ -79,13 +115,10 @@ const InternationalTransfer = () => {
 
   return (
     <section className="py-24 relative bg-white overflow-hidden">
-      {/* Círculos decorativos */}
-      <div className="absolute -left-40 top-20 w-[400px] h-[400px] rounded-full bg-gradient-to-r from-blue-50 to-blue-100/50 blur-3xl opacity-60" />
-      <div className="absolute -right-40 bottom-20 w-[400px] h-[400px] rounded-full bg-gradient-to-l from-cyan-50 to-blue-100/50 blur-3xl opacity-60" />
-      <div className="absolute left-1/4 top-1/3 w-[200px] h-[200px] rounded-full bg-gradient-to-br from-blue-50 to-cyan-100/50 blur-2xl opacity-40" />
-      
-      {/* Patrón de puntos */}
-      <div className="absolute inset-0 bg-[radial-gradient(#3983ED_0.5px,transparent_0.5px)] [background-size:16px_16px] opacity-[0.03]" />
+      {/* Fondo decorativo */}
+      <div className="absolute inset-0">
+        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-blue-400 opacity-20 blur-[100px]"></div>
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 relative">
         <div className="text-center mb-16">
@@ -98,16 +131,50 @@ const InternationalTransfer = () => {
         </div>
 
         {/* Beneficios */}
-        <div className="grid md:grid-cols-4 gap-6 mb-16">
-          {BENEFITS.map(benefit => (
-            <div key={benefit.title} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-              <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-4">
-                <i className={`eva eva-${benefit.icon}-outline text-xl text-[#3983ED]`} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 mb-24">
+          {BENEFITS.map((benefit, index) => (
+            <button
+              key={benefit.title}
+              className={`group relative p-6 rounded-2xl border border-gray-100 
+                transition-all duration-300 hover:shadow-lg 
+                bg-gradient-to-br ${benefit.bgGradient} hover:bg-opacity-90
+                flex items-start gap-4 text-left`}
+            >
+              {/* Icono con animación */}
+              <div className="relative">
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center
+                  bg-gradient-to-br ${benefit.color} group-hover:scale-110 
+                  transition-all duration-300 transform group-hover:rotate-12`}
+                >
+                  <i className={`eva eva-${benefit.icon}-outline text-xl text-white
+                    group-hover:animate-bounce-subtle`} 
+                  />
+                </div>
+                <div className={`absolute -inset-1 bg-gradient-to-br ${benefit.color} 
+                  opacity-30 blur-sm group-hover:opacity-50 transition-opacity duration-300
+                  rounded-xl`}
+                />
               </div>
-              <h3 className="font-medium mb-2">{benefit.title}</h3>
-              <p className="text-sm text-gray-600">{benefit.description}</p>
-            </div>
+
+              <div className="flex-1">
+                {/* Título */}
+                <h3 className={`text-lg font-bold mb-2 bg-gradient-to-r ${benefit.color} 
+                  bg-clip-text text-transparent`}>
+                  {benefit.title}
+                </h3>
+
+                {/* Descripción */}
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  {benefit.description}
+                </p>
+              </div>
+            </button>
           ))}
+        </div>
+
+        {/* Separador decorativo */}
+        <div className="w-full max-w-2xl mx-auto mb-5">
+          <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -334,6 +401,13 @@ const InternationalTransfer = () => {
         }
         .animate-slide-in {
           animation: slide-in 0.3s ease-out;
+        }
+        @keyframes bounce-subtle {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-3px); }
+        }
+        .animate-bounce-subtle {
+          animation: bounce-subtle 1s ease-in-out infinite;
         }
       `}</style>
     </section>

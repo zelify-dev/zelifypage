@@ -245,38 +245,132 @@ const Features = () => {
 
   return (
     <div className="mx-auto max-w-screen-xl px-4 min-h-screen flex items-center py-8">
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+      {/* Avatares flotantes con mensajes */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        {/* Burbuja de chat estilo Monzo - Superior */}
+        <div className="absolute top-20 right-[5%] animate-float-slow lg:block hidden">
+          <div className="relative">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" className="w-12 h-12 rounded-full border-2 border-white shadow-lg object-cover" />
+            <div className="absolute -right-32 top-1/2 -translate-y-1/2 bg-white text-gray-800 text-xs px-4 py-3 rounded-[18px] shadow-lg border border-gray-100 whitespace-nowrap">
+              <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-l border-t border-gray-100 transform -rotate-45"></div>
+              paid you $26.50
+            </div>
+          </div>
+        </div>
+        
+        {/* Nueva burbuja - Superior derecha */}
+        <div className="absolute top-[25%] right-[8%] animate-float-delayed-3 lg:block hidden">
+          <div className="relative">
+            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="" className="w-10 h-10 rounded-full border-2 border-white shadow-lg object-cover" />
+            <div className="absolute -left-36 top-1/2 -translate-y-1/2 bg-white text-gray-800 text-xs px-4 py-3 rounded-[18px] shadow-lg border border-gray-100 whitespace-nowrap">
+              <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-r border-t border-gray-100 transform rotate-45"></div>
+              transferred $55.20
+            </div>
+          </div>
+        </div>
+        
+        {/* Grupo derecho */}
+        <div className="absolute top-[15%] right-[15%] animate-float-delayed lg:block hidden">
+          <div className="relative">
+            <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="" className="w-12 h-12 rounded-full border-2 border-white shadow-lg object-cover" />
+            <div className="absolute -left-32 top-1/2 -translate-y-1/2 bg-white text-gray-800 text-xs px-4 py-3 rounded-[18px] shadow-lg border border-gray-100 whitespace-nowrap">
+              <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-r border-t border-gray-100 transform rotate-45"></div>
+              requested $23.50
+            </div>
+          </div>
+        </div>
+        
+        {/* Nueva burbuja - Centro derecha */}
+        <div className="absolute top-[45%] right-[12%] animate-float-slow-4 lg:block hidden">
+          <div className="relative">
+            <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="" className="w-11 h-11 rounded-full border-2 border-white shadow-lg object-cover" />
+            <div className="absolute -right-36 top-1/2 -translate-y-1/2 bg-white text-gray-800 text-xs px-4 py-3 rounded-[18px] shadow-lg border border-gray-100 whitespace-nowrap">
+              <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-l border-t border-gray-100 transform -rotate-45"></div>
+              split bill $128.50
+            </div>
+          </div>
+        </div>
+        
+        {/* Grupo izquierdo */}
+        <div className="absolute top-[60%] right-[25%] animate-float-slow-2 lg:block hidden">
+          <div className="relative">
+            <img src="https://randomuser.me/api/portraits/men/92.jpg" alt="" className="w-10 h-10 rounded-full border-2 border-white shadow-lg object-cover" />
+            <div className="absolute -right-20 top-1/2 -translate-y-1/2 bg-white text-gray-800 text-xs px-3 py-2 rounded-xl shadow-lg border border-gray-100 whitespace-nowrap">
+              <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-l border-t border-gray-100 transform -rotate-45"></div>
+              sent $15.75
+            </div>
+          </div>
+        </div>
+        
+        {/* Grupo inferior */}
+        <div className="absolute bottom-[30%] right-[10%] animate-float-delayed-2 lg:block hidden">
+          <div className="relative">
+            <img src="https://randomuser.me/api/portraits/women/29.jpg" alt="" className="w-11 h-11 rounded-full border-2 border-white shadow-lg object-cover" />
+            <div className="absolute -left-24 top-1/2 -translate-y-1/2 bg-white text-gray-800 text-xs px-3 py-2 rounded-xl shadow-lg border border-gray-100 whitespace-nowrap">
+              <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-r border-t border-gray-100 transform rotate-45"></div>
+              paid $42.30
+            </div>
+          </div>
+        </div>
+        
+        {/* Grupo central */}
+        <div className="absolute top-[40%] right-[35%] animate-float-slow-3 lg:block hidden">
+          <div className="relative">
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="" className="w-9 h-9 rounded-full border-2 border-white shadow-lg object-cover" />
+            <div className="absolute -right-24 top-1/2 -translate-y-1/2 bg-white text-gray-800 text-xs px-3 py-2 rounded-xl shadow-lg border border-gray-100 whitespace-nowrap">
+              <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-l border-t border-gray-100 transform -rotate-45"></div>
+              received $33.90
+            </div>
+          </div>
+        </div>
+        
+        {/* Mini avatares decorativos sin mensajes */}
+        <div className="absolute top-[25%] right-[40%] animate-float-mini lg:block hidden">
+          <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="" className="w-8 h-8 rounded-full border-2 border-white shadow-lg opacity-50 object-cover" />
+        </div>
+        <div className="absolute bottom-[20%] right-[45%] animate-float-mini-2 lg:block hidden">
+          <img src="https://randomuser.me/api/portraits/women/89.jpg" alt="" className="w-7 h-7 rounded-full border-2 border-white shadow-lg opacity-50 object-cover" />
+        </div>
+      </div>
+
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-12 relative z-10">
         <div className="w-full lg:w-5/12 space-y-8">
-          <div className="space-y-4 text-center lg:text-left">
-            <h2 className="text-5xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 mx-auto lg:mx-0">
-              Money transfers made simple
-            </h2>
-            <p className="text-lg text-gray-600 pr-4 max-w-lg mx-auto lg:mx-0">
-              Send, split or gift money instantly. No hassle, no waiting, just smooth transactions at your fingertips.
-            </p>
+          <div className="space-y-6 text-center lg:text-left relative">
+            <div className="absolute -top-20 -left-20 w-40 h-40 bg-gradient-to-br from-blue-500/20 to-green-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
+            <div className="relative">
+              <span className="inline-block text-sm font-semibold text-blue-600 bg-blue-50 px-4 py-1 rounded-full mb-4">
+                Next-Gen Financial Technology
+              </span>
+              <h2 className="text-6xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-[#3983ED] to-[#70FA7E] mx-auto lg:mx-0 mb-6">
+                Personal and business customers bank with Zelify.
+              </h2>
+              <p className="text-xl text-gray-600 pr-4 max-w-lg mx-auto lg:mx-0">
+                Send, split or gift money instantly. No hassle, no waiting, just smooth transactions at your fingertips.
+              </p>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto lg:mx-0">
+          <div className="flex flex-wrap gap-6 max-w-2xl mx-auto lg:mx-0">
             {features.map(({ name, icon, description }) => (
               <button
                 key={name}
-                className={`group relative flex flex-col p-4 rounded-xl border transition-all hover:shadow-md
+                className={`feature-card flex-1 min-w-[280px] group relative p-8 rounded-2xl border transition-all hover:shadow-xl
                   ${currentSlide === features.findIndex(f => f.name === name)
-                    ? 'border-[#3983ED] bg-blue-50/50 shadow-sm'
-                    : 'border-gray-200 hover:border-[#3983ED] hover:bg-blue-50/50'
+                    ? 'border-[#3983ED] bg-white shadow-lg'
+                    : 'border-gray-100 hover:border-[#3983ED] hover:bg-white'
                   }`}
                 onClick={() => {
                   setCurrentSlide(features.findIndex(f => f.name === name));
                 }}
               >
-                <div className="flex items-start gap-3">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors shrink-0
+                <div className="flex items-start gap-4">
+                  <div className={`feature-icon w-12 h-12 rounded-xl flex items-center justify-center transition-colors shrink-0
                     ${currentSlide === features.findIndex(f => f.name === name)
                       ? 'bg-[#3983ED]'
                       : 'bg-blue-100 group-hover:bg-[#3983ED]'
                     }`}
                   >
-                    <i className={`eva eva-${icon}-outline text-xl
+                    <i className={`eva eva-${icon}-outline text-2xl
                       ${currentSlide === features.findIndex(f => f.name === name)
                         ? 'text-white'
                         : 'text-[#3983ED] group-hover:text-white'
@@ -284,7 +378,7 @@ const Features = () => {
                     />
                   </div>
                   <div className="flex flex-col items-start text-left flex-1">
-                    <span className={`text-sm font-medium transition-colors mb-1
+                    <span className={`text-base font-medium transition-colors mb-2
                       ${currentSlide === features.findIndex(f => f.name === name)
                         ? 'text-[#3983ED]'
                         : 'text-gray-700 group-hover:text-[#3983ED]'
@@ -292,19 +386,10 @@ const Features = () => {
                     >
                       {name}
                     </span>
-                    <p className="text-xs text-gray-500 line-clamp-2">
+                    <p className="text-sm text-gray-500 line-clamp-2">
                       {description}
                     </p>
                   </div>
-                </div>
-
-                <div className={`absolute right-4 top-1/2 -translate-y-1/2 transition-all
-                  ${currentSlide === features.findIndex(f => f.name === name)
-                    ? 'opacity-100 translate-x-0'
-                    : 'opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0'
-                  }`}
-                >
-                  <i className="eva eva-arrow-right text-[#3983ED]" />
                 </div>
               </button>
             ))}

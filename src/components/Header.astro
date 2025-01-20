@@ -30,45 +30,61 @@ const links = [
 ];
 ---
 
-<header aria-label={t('components.header.aria-label')} id="home">
-	<div class="mx-auto max-w-screen-lg py-4 px-4 sm:px-6 lg:px-8">
-		<div class="flex h-16 items-center justify-between">
-			<div class="flex items-center gap-6">
-				<a class="block text-white" href="/">
-					<img
-						class="h-10 w-auto"
-						src="/assets/img/logo_white.png"
-						alt={t('components.header.logoImageAlt')}
-					/>
-				</a>
-				<nav aria-label="Site Nav" class="hidden md:block">
-					<ul class="flex items-center gap-2 text-sm">
-						{
-							links.map((link) => (
-								<li>
-									<a
-										class="relative px-4 py-2 text-gray-50 transition-all duration-300 font-montserrat font-bold group"
-										href={link.href}
-									>
-										<span class="relative z-10">{link.label}</span>
-										<span class="absolute inset-0 h-full w-full bg-white/20 rounded-full scale-0 transition-transform duration-300 ease-out group-hover:scale-110"></span>
-									</a>
-								</li>
-							))
-						}
-					</ul>
-				</nav>
-			</div>
+<header class="relative z-50">
+	<div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+		<div class="flex items-center gap-16">
+			<a href="/" class="flex items-center gap-2">
+				<img src="/assets/img/logo_white.png" alt="Zelify" class="h-8" />
+			</a>
 
-			<div class="md:flex md:items-center md:gap-12">
+			<nav class="hidden md:flex items-center gap-8">
 				<a 
-					href="/login" 
-					class="inline-flex items-center justify-center px-4 py-2 border border-white text-white font-montserrat font-bold rounded-full hover:bg-white hover:text-blue-600 transition-all duration-300 text-sm gap-2"
+					href="#home" 
+					class="relative px-4 py-2 text-gray-50 transition-all duration-300 font-medium group"
 				>
-					<i class="eva eva-briefcase-outline"></i>
-					Login for Banks
+					<span class="relative z-10">Home</span>
+					<span class="absolute inset-0 h-full w-full bg-white/20 rounded-full scale-0 transition-transform duration-300 ease-out group-hover:scale-110"></span>
 				</a>
-			</div>
+				<a 
+					href="#cards" 
+					class="relative px-4 py-2 text-gray-50 transition-all duration-300 font-medium group"
+				>
+					<span class="relative z-10">Cards</span>
+					<span class="absolute inset-0 h-full w-full bg-white/20 rounded-full scale-0 transition-transform duration-300 ease-out group-hover:scale-110"></span>
+				</a>
+				<a 
+					href="#features" 
+					class="relative px-4 py-2 text-gray-50 transition-all duration-300 font-medium group"
+				>
+					<span class="relative z-10">Features</span>
+					<span class="absolute inset-0 h-full w-full bg-white/20 rounded-full scale-0 transition-transform duration-300 ease-out group-hover:scale-110"></span>
+				</a>
+				<a 
+					href="#transfer" 
+					class="relative px-4 py-2 text-gray-50 transition-all duration-300 font-medium group"
+				>
+					<span class="relative z-10">International</span>
+					<span class="absolute inset-0 h-full w-full bg-white/20 rounded-full scale-0 transition-transform duration-300 ease-out group-hover:scale-110"></span>
+				</a>
+				<a 
+					href="#pricing" 
+					onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'}); return false;"
+					class="relative px-4 py-2 text-gray-50 transition-all duration-300 font-medium group"
+				>
+					<span class="relative z-10">Subscriptions</span>
+					<span class="absolute inset-0 h-full w-full bg-white/20 rounded-full scale-0 transition-transform duration-300 ease-out group-hover:scale-110"></span>
+				</a>
+			</nav>
+								</div>
+
+		<div class="flex items-center gap-4">
+			<a
+				href="/login"
+				class="inline-flex items-center justify-center px-4 py-2 border border-white text-white font-medium rounded-full hover:bg-white hover:text-blue-600 transition-all duration-300 text-sm gap-2"
+			>
+				<i class="eva eva-log-in-outline text-lg"></i>
+				Login for Banks
+			</a>
 		</div>
 	</div>
 </header>

@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Doc Center | Zelify">
+  <main class="container mx-auto px-4 py-16">
+    <h1 class="text-4xl font-bold text-center mb-12">Doc Center</h1>
+
+    <div class="max-w-4xl mx-auto">
+      <div class="mb-4 border-b border-gray-200">
+        <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="docTabs" role="tablist">
+          <li class="mr-2" role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 tab-button active" id="privacy-tab" data-target="privacy">Privacy Policy</button>
+          </li>
+          <li class="mr-2" role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 tab-button" id="terms-tab" data-target="terms">Terms of Use</button>
+          </li>
+          <li role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 tab-button" id="data-tab" data-target="data">Data Protection</button>
+          </li>
+        </ul>
+      </div>
+
+      <div id="tabContent">
+        <div class="tab-panel active" id="privacy">
+          <h2 class="text-2xl font-semibold mb-4">Privacy Policy</h2>
+          <div class="prose max-w-none">
+            <p>Last updated: January 1, 2024</p>
+            <p class="mt-4">At Zelify, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service...</p>
+            <!-- Add more privacy policy content -->
+          </div>
+        </div>
+
+        <div class="tab-panel hidden" id="terms">
+          <h2 class="text-2xl font-semibold mb-4">Terms of Use</h2>
+          <div class="prose max-w-none">
+            <p>Last updated: January 1, 2024</p>
+            <p class="mt-4">By accessing and using Zelify's services, you agree to be bound by these Terms of Use...</p>
+            <!-- Add more terms of use content -->
+          </div>
+        </div>
+
+        <div class="tab-panel hidden" id="data">
+          <h2 class="text-2xl font-semibold mb-4">Data Protection</h2>
+          <div class="prose max-w-none">
+            <p>Last updated: January 1, 2024</p>
+            <p class="mt-4">Zelify is committed to protecting your personal data. This Data Protection Policy outlines how we implement measures to ensure the security of your information...</p>
+            <!-- Add more data protection content -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove active class from all buttons and panels
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      tabPanels.forEach(panel => panel.classList.add('hidden'));
+
+      // Add active class to clicked button and show corresponding panel
+      button.classList.add('active');
+      const targetPanel = document.getElementById(button.dataset.target);
+      targetPanel.classList.remove('hidden');
+    });
+  });
+</script>
+
+<style>
+  .tab-button.active {
+    @apply text-blue-600 border-blue-600;
+  }
+  .tab-panel {
+    @apply p-4;
+  }
+</style> 

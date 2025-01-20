@@ -26,55 +26,40 @@ const links = [
 ---
 
 <footer class="bg-gray-900 text-white py-12">
-	<div class="max-w-7xl mx-auto px-4">
-		<div class="grid md:grid-cols-3 gap-12">
-			<!-- Logo y descripción -->
-			<div>
-				<img src="/assets/img/logo_white.png" alt="Logo" class="h-8 mb-4" />
-				<p class="text-gray-400 text-sm">
-					{t('footer.description')}
+	<div class="max-w-6xl mx-auto px-4">
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-12 justify-items-center">
+			<!-- Company Info -->
+			<div class="text-center md:text-left w-full max-w-xs">
+				<img src="/assets/img/logo_white.png" alt="Zelify" class="h-8 mb-4" />
+				<p class="text-gray-400">
+					Transforming the way you handle international money transfers.
 				</p>
 			</div>
 
 			<!-- Quick Links -->
-			<div>
-				<h3 class="font-bold mb-4">{t('footer.quickLinks')}</h3>
+			<div class="w-full max-w-xs">
+				<h3 class="text-xl font-bold mb-4">Quick Links</h3>
 				<ul class="space-y-2">
-					{links.map(({ label, href }) => (
-						<li>
-							<a 
-								href={href} 
-								class="text-gray-400 hover:text-white transition-colors text-sm"
-							>
-								{label}
-							</a>
-						</li>
-					))}
+					<li><a href="/" class="text-gray-400 hover:text-white">Home</a></li>
+					<li><a href="/about" class="text-gray-400 hover:text-white">About Us</a></li>
+					<li><a href="#features" class="text-gray-400 hover:text-white">Features</a></li>
+					<li><a href="#pricing" class="text-gray-400 hover:text-white">Pricing</a></li>
 				</ul>
 			</div>
 
-			<!-- Social Links -->
-			<div>
-				<h3 class="font-bold mb-4">Follow Us</h3>
-				<div class="flex gap-4">
-					<a href="#" class="text-gray-400 hover:text-white transition-colors">
-						<i class="eva eva-facebook-outline text-xl"></i>
-					</a>
-					<a href="#" class="text-gray-400 hover:text-white transition-colors">
-						<i class="eva eva-twitter-outline text-xl"></i>
-					</a>
-					<a href="#" class="text-gray-400 hover:text-white transition-colors">
-						<i class="eva eva-linkedin-outline text-xl"></i>
-					</a>
-					<a href="#" class="text-gray-400 hover:text-white transition-colors">
-						<i class="eva eva-instagram-outline text-xl"></i>
-					</a>
-				</div>
+			<!-- Doc Center -->
+			<div class="w-full max-w-xs">
+				<h3 class="text-xl font-bold mb-4">Doc Center</h3>
+				<ul class="space-y-2">
+					<li><a href="/doc-center#privacy" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+					<li><a href="/doc-center#terms" class="text-gray-400 hover:text-white">Terms of Use</a></li>
+					<li><a href="/doc-center#data" class="text-gray-400 hover:text-white">Data Protection</a></li>
+				</ul>
 			</div>
 		</div>
 
-		<div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400 text-sm">
-			© {new Date().getFullYear()} Zelify Inc. All rights reserved.
+		<div class="border-t border-gray-800 mt-8 pt-8 text-center">
+			<p class="text-gray-400">&copy; 2024 Zelify. All rights reserved.</p>
 		</div>
 	</div>
 </footer>
