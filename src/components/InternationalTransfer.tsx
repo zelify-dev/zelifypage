@@ -83,7 +83,7 @@ const InternationalTransfer = () => {
         month: 'short',
         year: 'numeric'
       }),
-      description: 'International Transfer Received',
+      description: 'Transferencia internacional',
       isCredit: true,
       avatar: 'https://randomuser.me/api/portraits/women/65.jpg',
       name: 'Sarah Johnson',
@@ -94,8 +94,8 @@ const InternationalTransfer = () => {
       id: '2',
       type: 'International',
       amount: 850,
-      date: '2024-03-14',
-      description: 'International Transfer Received',
+      date: 'Jan 11, 2025',
+      description: 'Transferencia internacional',
       isCredit: true,
       avatar: 'https://randomuser.me/api/portraits/men/52.jpg',
       name: 'Miguel Ángel',
@@ -178,194 +178,191 @@ const InternationalTransfer = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Simulador de transferencia */}
-          <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden p-8 relative">
-            {showSuccess && (
-              <div className="absolute inset-0 bg-white/90 flex items-center justify-center animate-fade-in z-10">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-green-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <i className="eva eva-checkmark-outline text-2xl text-green-500" />
-                  </div>
-                  <p className="text-lg font-medium text-green-600">Transfer Successful!</p>
-                </div>
-              </div>
-            )}
-
-            <div className="flex items-center gap-3 mb-8">
-              <div className="flex gap-4 items-center">
-                <div className="w-8 h-8 rounded overflow-hidden">
-                  <US className="w-full h-full object-cover" />
-                </div>
-                <i className="eva eva-arrow-right text-2xl text-[#3983ED]" />
-                <div className="w-8 h-8 rounded overflow-hidden">
-                  <MX className="w-full h-full object-cover" />
-                </div>
-              </div>
+          {/* Vista del móvil (USA) */}
+          <div className="relative">
+            {/* Bandera USA sobre el dispositivo */}
+            <div className="absolute -top-10 left-1/2 transform -translate-x-1/2">
+              <US className="w-8 h-8 rounded-full shadow-lg" />
             </div>
+            <div className="bg-white rounded-3xl shadow-lg overflow-hidden max-w-[320px] mx-auto">
+              <div className="relative bg-white h-[600px] overflow-y-auto">
+                {/* Header con flecha de regreso */}
+                <div className="flex items-center gap-2 p-4 border-b border-gray-100">
+                  <button className="text-gray-600">
+                    <i className="eva eva-arrow-ios-back-outline text-xl" />
+                  </button>
+                  <h1 className="text-lg font-medium text-[#3983ED]">Confirm Transaction</h1>
+                </div>
 
-            <div className="space-y-6">
-              <div>
-                <label className="block text-gray-600 mb-2">Amount to Send (USD)</label>
-                <div className="relative">
-                  <div className="w-full pl-8 pr-24 h-14 border border-gray-200 rounded-2xl text-lg 
-                    flex items-center bg-gray-50">
-                    <span className="text-gray-400 mr-2">$</span>
-                    <span className="font-medium">{FIXED_USD_AMOUNT.toLocaleString('en-US', { minimumFractionDigits: 2 })}</span>
-                    <div className="absolute right-4 text-sm text-gray-500">
-                      ≈ ${convertedAmount.toLocaleString('en-US', { minimumFractionDigits: 2 })} MXN
+                <div className="p-6">
+                  <h2 className="text-xl font-bold mb-4">Transaction Details</h2>
+
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center py-2">
+                      <span className="text-gray-500 text-sm">Date/Time</span>
+                      <span className="text-gray-900 text-sm">1/21/2025, 12:26:04 PM</span>
                     </div>
-                  </div>
 
-                  {/* Preview detallado */}
-                  <div className="mt-4 p-6 bg-blue-50 rounded-xl">
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-600">Amount in USD</span>
-                        <span className="font-medium">
-                          ${FIXED_USD_AMOUNT.toLocaleString('en-US', { minimumFractionDigits: 2 })}
-                        </span>
+                    <div className="flex justify-between items-center py-2">
+                      <span className="text-gray-500 text-sm">Recipient</span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-gray-900 text-sm">Juan Pérez</span>
                       </div>
-                      
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-600">Exchange Rate</span>
-                        <span className="font-medium text-[#3983ED]">
-                          1 USD = {EXCHANGE_RATE} MXN
-                        </span>
+                    </div>
+
+                    <div className="flex justify-between items-center py-2">
+                      <span className="text-gray-500 text-sm">Payment Method</span>
+                      <span className="text-gray-900 text-sm">BALANCE</span>
+                    </div>
+
+                    <div className="flex justify-between items-center py-2">
+                      <span className="text-gray-500 text-sm">Amount</span>
+                      <div className="text-right">
+                        <div className="text-gray-900 text-sm">$500.00 USD</div>
+                        <div className="text-gray-400 text-xs">= $8,269.25 MXN</div>
                       </div>
+                    </div>
 
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-600">Converted Amount</span>
-                        <span className="font-medium">
-                          ${convertedAmount.toLocaleString('en-US', { minimumFractionDigits: 2 })} MXN
-                        </span>
+                    <div className="flex justify-between items-center py-2">
+                      <span className="text-gray-500 text-sm">Fee</span>
+                      <div className="text-right">
+                        <div className="text-gray-900 text-sm">$15.00 USD</div>
+                        <div className="text-gray-400 text-xs">= $254.25 MXN</div>
                       </div>
+                    </div>
 
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-600">Fee ({FEE_PERCENTAGE * 100}%)</span>
-                        <span className="font-medium text-red-500">
-                          -${fee.toLocaleString('en-US', { minimumFractionDigits: 2 })} MXN
-                        </span>
-                      </div>
-
-                      <div className="h-px bg-gray-200 my-2"></div>
-
-                      <div className="flex items-center justify-between">
-                        <span className="font-medium text-gray-800">Total to Receive</span>
-                        <span className="font-bold text-green-600">
-                          ${totalAmount.toLocaleString('en-US', { minimumFractionDigits: 2 })} MXN
-                        </span>
+                    <div className="flex justify-between items-center py-2 mt-4 border-t border-gray-100 pt-4">
+                      <span className="text-gray-900 font-bold text-lg">Total</span>
+                      <div className="text-right">
+                        <div className="text-gray-900 font-bold text-lg">$515.00 USD</div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
+                {/* Navigation Bar */}
+                <div className="absolute bottom-0 left-0 right-0 border-t border-gray-200 py-3 px-6 bg-white">
+                  <div className="flex justify-between">
+                    {[
+                      { icon: 'home-outline', text: 'Home' },
+                      { icon: 'swap-outline', text: 'Transfer' },
+                      { icon: 'credit-card-outline', text: 'Cards' },
+                      { icon: 'message-circle-outline', text: 'Chat' },
+                      { icon: 'person-outline', text: 'Profile' }
+                    ].map(({ icon, text }) => (
+                      <button key={text} className="flex flex-col items-center gap-1">
+                        <i className={`eva eva-${icon} text-xl ${text === 'Transfer' ? 'text-[#3983ED]' : 'text-gray-400'}`} />
+                        <span className={`text-[8px] ${text === 'Transfer' ? 'text-[#3983ED] font-medium' : 'text-gray-400'}`}>
+                          {text}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Vista del móvil */}
-          <div className="bg-white rounded-3xl shadow-lg overflow-hidden max-w-[320px] mx-auto">
-            <div className="relative bg-white h-[600px] overflow-y-auto">
-              {/* Header */}
-              <div className="p-6 pb-4">
-                <div className="flex items-center gap-3 mb-6">
-                  <img 
-                    src="https://randomuser.me/api/portraits/men/32.jpg"
-                    alt="Profile" 
-                    className="w-10 h-10 rounded-full border-2 border-gray-100 object-cover"
-                  />
-                  <div>
-                    <h2 className="text-lg font-medium">Hi 👋, Alexander</h2>
-                    <p className="text-gray-500 text-xs">Welcome back</p>
+          {/* Vista del móvil (MX) */}
+          <div className="relative">
+            {/* Bandera MX sobre el dispositivo */}
+            <div className="absolute -top-10 left-1/2 transform -translate-x-1/2">
+              <MX className="w-8 h-8 rounded-full shadow-lg" />
+            </div>
+            <div className="bg-white rounded-3xl shadow-lg overflow-hidden max-w-[320px] mx-auto">
+              <div className="relative bg-white h-[600px] overflow-y-auto">
+                {/* Header con imagen de usuario */}
+                <div className="p-6 pb-4">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 rounded-full overflow-hidden bg-cover bg-center"
+                      style={{ backgroundImage: "url('/assets/img/avatar.jpg')" }}>
+                    </div>
+                    <div>
+                      <h2 className="text-lg font-medium">Hola 👋, Juan</h2>
+                      <p className="text-gray-500 text-xs">Bienvenido de nuevo</p>
+                    </div>
+                  </div>
+
+                  <div className="text-center mb-6">
+                    <p className="text-gray-500 text-xs mb-1">Saldo Disponible</p>
+                    <h1 className="text-3xl font-bold text-[#3983ED] animate-fade-in">
+                      $8,269.25
+                    </h1>
+                    <p className="text-gray-400 text-xs mt-1">MXN</p>
+                  </div>
+
+                  {/* Quick Actions en español */}
+                  <div className="grid grid-cols-3 gap-3">
+                    {[
+                      { icon: 'paper-plane', text: 'Enviar Dinero' },
+                      { icon: 'droplet', text: 'Servicios Básicos' },
+                      { icon: 'minus-circle', text: 'Retiro Externo' }
+                    ].map(({ icon, text }) => (
+                      <button key={text} className="flex flex-col items-center p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors">
+                        <div className="w-8 h-8 rounded-full bg-[#3983ED] text-white flex items-center justify-center mb-1">
+                          <i className={`eva eva-${icon}-outline text-lg`} />
+                        </div>
+                        <span className="text-[10px] text-gray-600">{text}</span>
+                      </button>
+                    ))}
                   </div>
                 </div>
 
-                <div className="text-center mb-6">
-                  <p className="text-gray-500 text-xs mb-1">Available Balance</p>
-                  <h1 className="text-3xl font-bold text-[#3983ED] animate-fade-in">
-                    ${balance.toLocaleString('en-US', {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2
-                    })}
-                  </h1>
-                  <p className="text-gray-400 text-xs mt-1">MXN</p>
-                </div>
-
-                {/* Quick Actions */}
-                <div className="grid grid-cols-3 gap-3">
-                  {[
-                    { icon: 'paper-plane', text: 'Send Money' },
-                    { icon: 'droplet', text: 'Basic Services' },
-                    { icon: 'minus-circle', text: 'External Withdrawal' }
-                  ].map(({ icon, text }) => (
-                    <button key={text} className="flex flex-col items-center p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors">
-                      <div className="w-8 h-8 rounded-full bg-[#3983ED] text-white flex items-center justify-center mb-1">
-                        <i className={`eva eva-${icon}-outline text-lg`} />
+                {/* Recent Transactions en español */}
+                <div className="px-6">
+                  <h3 className="font-medium mb-4">Transacciones Recientes</h3>
+                  <div className="space-y-3">
+                    {transactions.map(transaction => (
+                      <div 
+                        key={transaction.id} 
+                        className={`flex items-center justify-between p-3 rounded-xl border ${
+                          transaction.isCredit ? 'animate-fade-in border-green-100 bg-green-50' : 'border-gray-100'
+                        }`}
+                      >
+                        <div>
+                          <p className="font-medium text-sm text-gray-900">{transaction.description}</p>
+                          <p className="text-gray-500 text-[10px]">{transaction.date}</p>
+                        </div>
+                        <span className={`${transaction.isCredit ? 'text-green-500' : 'text-orange-500'} text-sm font-medium`}>
+                          {transaction.isCredit ? '+' : '-'} MXN ${transaction.amount.toLocaleString('en-US', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                          })}
+                        </span>
                       </div>
-                      <span className="text-[10px] text-gray-600">{text}</span>
-                    </button>
-                  ))}
+                    ))}
+                  </div>
+                </div>
+
+                {/* Navigation Bar pantalla MX */}
+                <div className="absolute bottom-0 left-0 right-0 border-t border-gray-200 py-3 px-6 bg-white">
+                  <div className="flex justify-between">
+                    {[
+                      { icon: 'home-outline', text: 'Home' },
+                      { icon: 'swap-outline', text: 'Transfer' },
+                      { icon: 'credit-card-outline', text: 'Cards' },
+                      { icon: 'message-circle-outline', text: 'Chat' },
+                      { icon: 'person-outline', text: 'Profile' }
+                    ].map(({ icon, text }) => (
+                      <button key={text} className="flex flex-col items-center gap-1">
+                        <i className={`eva eva-${icon} text-xl ${text === 'Transfer' ? 'text-[#3983ED]' : 'text-gray-400'}`} />
+                        <span className={`text-[8px] ${text === 'Transfer' ? 'text-[#3983ED] font-medium' : 'text-gray-400'}`}>
+                          {text}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              {/* Recent Transactions */}
-              <div className="px-6">
-                <h3 className="text-gray-600 text-sm font-medium mb-3">Recent Transactions</h3>
-                <div className="space-y-3">
-                  {transactions.map(transaction => (
-                    <div 
-                      key={transaction.id} 
-                      className={`flex items-center justify-between p-3 rounded-xl border ${
-                        transaction.isCredit ? 'animate-fade-in border-green-100 bg-green-50' : 'border-gray-100'
-                      }`}
-                    >
-                      <div>
-                        <p className="font-medium text-sm text-gray-900">{transaction.description}</p>
-                        <p className="text-gray-500 text-[10px]">{transaction.date}</p>
-                      </div>
-                      <span className={`${transaction.isCredit ? 'text-green-500' : 'text-orange-500'} text-sm font-medium`}>
-                        {transaction.isCredit ? '+' : '-'} MXN ${transaction.amount.toLocaleString('en-US', {
-                          minimumFractionDigits: 2,
-                          maximumFractionDigits: 2
-                        })}
-                      </span>
-                    </div>
-                  ))}
+              {isLoading && (
+                <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-50">
+                  <div className="relative">
+                    <div className="w-16 h-16 border-4 border-blue-100 border-t-[#3983ED] rounded-full animate-spin" />
+                  </div>
                 </div>
-              </div>
-
-              {/* Navigation Bar */}
-              <div className="absolute bottom-0 left-0 right-0 border-t border-gray-100 bg-white">
-                <div className="flex justify-between p-3">
-                  {[
-                    { icon: 'home', text: 'Home', active: true },
-                    { icon: 'swap', text: 'Transfer' },
-                    { icon: 'credit-card', text: 'Cards' },
-                    { icon: 'message-square', text: 'Chat' },
-                    { icon: 'person', text: 'Profile' }
-                  ].map(({ icon, text, active }) => (
-                    <button key={text} className="flex flex-col items-center gap-1">
-                      <i className={`eva eva-${icon}-outline text-xl ${
-                        active ? 'text-[#3983ED]' : 'text-gray-400'
-                      }`} />
-                      <span className={`text-[10px] ${
-                        active ? 'text-[#3983ED]' : 'text-gray-400'
-                      }`}>
-                        {text}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
+              )}
             </div>
-
-            {isLoading && (
-              <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-50">
-                <div className="relative">
-                  <div className="w-16 h-16 border-4 border-blue-100 border-t-[#3983ED] rounded-full animate-spin" />
-                </div>
-              </div>
-            )}
           </div>
         </div>
 

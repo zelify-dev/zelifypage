@@ -3,14 +3,21 @@ import Layout from '../layouts/Layout.astro';
 import { marked } from 'marked';
 import fs from 'node:fs';
 import path from 'node:path';
+import BackButton from '../components/BackButton.astro';
 
-// Leer el contenido del archivo policy.md
+// Leer el contenido de los archivos markdown
 const policyPath = path.join(process.cwd(), 'src/content/policy.md');
 const policyContent = fs.readFileSync(policyPath, 'utf-8');
 const policyHtml = marked.parse(policyContent);
+
+// Leer el contenido del archivo license-agreement.md
+const licensePath = path.join(process.cwd(), 'src/content/license-agreement.md');
+const licenseContent = fs.readFileSync(licensePath, 'utf-8');
+const licenseHtml = marked.parse(licenseContent);
 ---
 
 <Layout title="Zelify Docs | Zelify">
+  <BackButton />
   <main class="container mx-auto px-4 py-16">
     <!-- Botón Volver Arriba -->
     <button
@@ -49,7 +56,7 @@ const policyHtml = marked.parse(policyContent);
             <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 tab-button" id="terms-tab" data-target="terms">Policy On The Prevention Of Money Laundering</button>
           </li>
           <li role="presentation">
-            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 tab-button" id="data-tab" data-target="data">Data Protection</button>
+            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 tab-button" id="data-tab" data-target="data">License Agreement</button>
           </li>
         </ul>
       </div>
@@ -228,84 +235,8 @@ const policyHtml = marked.parse(policyContent);
         </div>
 
         <div class="tab-panel hidden p-8" id="data">
-          <h2 class="text-3xl font-bold mb-6">Data Protection</h2>
           <div class="prose max-w-none">
-            <p class="text-gray-600 mb-4">Last updated: January 1, 2024</p>
-
-            <section class="mb-8">
-              <h3 class="text-xl font-semibold mb-4">1. Security Measures</h3>
-              <div class="space-y-4">
-                <h4 class="font-semibold">1.1 Technical Security</h4>
-                <ul class="list-disc pl-6">
-                  <li>256-bit SSL encryption for all data transmission</li>
-                  <li>Multi-layer firewalls and intrusion detection</li>
-                  <li>Regular security audits and penetration testing</li>
-                  <li>Real-time fraud monitoring systems</li>
-                </ul>
-
-                <h4 class="font-semibold mt-4">1.2 Operational Security</h4>
-                <ul class="list-disc pl-6">
-                  <li>Regular employee security training</li>
-                  <li>Strict access control policies</li>
-                  <li>24/7 security monitoring</li>
-                </ul>
-              </div>
-            </section>
-
-            <section class="mb-8">
-              <h3 class="text-xl font-semibold mb-4">2. Data Processing</h3>
-              <div class="space-y-4">
-                <p>We process your data in accordance with GDPR and other applicable regulations:</p>
-                <ul class="list-disc pl-6">
-                  <li>Data minimization principles</li>
-                  <li>Regular data protection impact assessments</li>
-                  <li>Strict data retention policies</li>
-                  <li>Third-party vendor security assessments</li>
-                </ul>
-              </div>
-            </section>
-
-            <section class="mb-8">
-              <h3 class="text-xl font-semibold mb-4">3. Legacy System Security</h3>
-              <div class="space-y-4">
-                <h4 class="font-semibold">3.1 Mainframe Security</h4>
-                <ul class="list-disc pl-6">
-                  <li>RACF (Resource Access Control Facility) implementation</li>
-                  <li>ACF2 security system integration</li>
-                  <li>Top Secret Security system protocols</li>
-                  <li>JES2 spool protection measures</li>
-                </ul>
-
-                <h4 class="font-semibold mt-4">3.2 Data Encryption Standards</h4>
-                <ul class="list-disc pl-6">
-                  <li>Triple DES for legacy system compatibility</li>
-                  <li>AES-256 for modern system integration</li>
-                  <li>HSM (Hardware Security Module) implementation</li>
-                  <li>PKI infrastructure for digital signatures</li>
-                </ul>
-              </div>
-            </section>
-
-            <section class="mb-8">
-              <h3 class="text-xl font-semibold mb-4">4. Compliance Frameworks</h3>
-              <div class="space-y-4">
-                <h4 class="font-semibold">4.1 Financial Industry Standards</h4>
-                <ul class="list-disc pl-6">
-                  <li>PCI DSS Level 1 compliance</li>
-                  <li>SOC 1 Type II and SOC 2 Type II certifications</li>
-                  <li>ISO 27001:2013 certification</li>
-                  <li>NIST Cybersecurity Framework implementation</li>
-                </ul>
-
-                <h4 class="font-semibold mt-4">4.2 Audit Requirements</h4>
-                <ul class="list-disc pl-6">
-                  <li>COBIT framework implementation</li>
-                  <li>ITIL service management practices</li>
-                  <li>Regular penetration testing and vulnerability assessments</li>
-                  <li>Continuous compliance monitoring</li>
-                </ul>
-              </div>
-            </section>
+            <div set:html={licenseHtml} />
           </div>
         </div>
       </div>

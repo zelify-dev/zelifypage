@@ -1,0 +1,106 @@
+---
+const plans = [
+  {
+    name: "Standard",
+    price: "Free",
+    description: "Basic digital banking for everyone",
+    monthlyPrice: "$0",
+    features: [
+      { text: "4% International Transfer Fee", type: "basic" },
+      { text: "Basic Customer Support", type: "basic" },
+      { text: "Interest on Savings Account", type: "included" },
+      { text: "Instant Savings Account", type: "included" },
+      { text: "Lifestyle Benefits & Discounts", type: "included" },
+      { text: "Virtual Card", type: "not-included" },
+      { text: "Partner Subscriptions", type: "not-included" }
+    ],
+    penetration: "50%",
+    color: "gray"
+  },
+  {
+    name: "Plus",
+    price: "$4.99",
+    description: "Enhanced features for daily banking",
+    features: [
+      { text: "3.5% International Transfer Fee", type: "improved" },
+      { text: "Personalized In-App Support", type: "improved" },
+      { text: "Virtual & Physical Card Included", type: "included" },
+      { text: "Partner Subscriptions Access", type: "included" },
+      { text: "Transferable Benefits", type: "included" },
+      { text: "Interest on Savings Account", type: "included" },
+      { text: "Instant Savings Account", type: "included" }
+    ],
+    penetration: "30%",
+    color: "blue",
+    subscriptions: ["Uber One", "Netflix", "Spotify"]
+  },
+  {
+    name: "Premium",
+    price: "$7.99",
+    description: "Ultimate banking experience",
+    features: [
+      { text: "3% International Transfer Fee", type: "best" },
+      { text: "Premium In-App Support", type: "best" },
+      { text: "Free Transfers to Other Accounts", type: "included" },
+      { text: "No Additional FX Conversion Fees", type: "included" },
+      { text: "Customized Card Design", type: "included" },
+      { text: "Credit Card (Coming Soon)", type: "included" },
+      { text: "VIP Events Access", type: "included" },
+      { text: "Youth Accounts with Co-Parents", type: "included" }
+    ],
+    penetration: "20%",
+    isPopular: true,
+    color: "black"
+  }
+];
+---
+
+<div class="overflow-x-auto">
+  <table class="min-w-full divide-y divide-gray-200">
+    <thead class="bg-gray-50">
+      <tr>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Features</th>
+        {plans.map((plan) => (
+          <th 
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+            onclick="highlightColumn(this)"
+          >
+            <div class="flex flex-col">
+              <span>{plan.name}</span>
+              <span class="text-blue-600">{plan.price}/mo</span>
+            </div>
+          </th>
+        ))}
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+      {plans[0].features.map((_, index) => (
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            {plans[0].features[index].text}
+          </td>
+          {plans.map((plan) => (
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              {plan.features[index] ? (
+                <span class={`inline-flex items-center ${
+                  plan.features[index].type === 'included' ? 'text-green-600' :
+                  plan.features[index].type === 'not-included' ? 'text-red-600' :
+                  plan.features[index].type === 'improved' ? 'text-blue-600' :
+                  plan.features[index].type === 'best' ? 'text-purple-600' :
+                  'text-gray-600'
+                }`}>
+                  <i class={`eva eva-${
+                    plan.features[index].type === 'included' ? 'checkmark-circle-2' :
+                    plan.features[index].type === 'not-included' ? 'close-circle' :
+                    'checkmark-circle-2'
+                  } mr-2`}></i>
+                  {plan.features[index].text}
+                </span>
+              ) : '—'}
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div> 

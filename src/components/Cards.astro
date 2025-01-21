@@ -8,18 +8,37 @@
   <div class="mx-auto max-w-screen-lg px-4 relative z-10">
     <div class="flex flex-col md:flex-row items-center gap-12">
       <!-- Lado izquierdo - Tarjeta -->
-      <div class="w-full md:w-1/2 relative">
-        <div class="card-container relative will-change-transform">
-          <img 
-            src="/assets/img/card_zelify.png" 
-            alt="Zelify Card"
-            class="w-full transition-all duration-700 hover:scale-105"
-            id="cardImage"
-          />
+      <div class="w-full md:w-1/2 relative pr-16">
+        <div class="card-container relative">
+          <div class="card-display relative">
+            <img 
+              src="/public/assets/img/transition_cards/card_1.png" 
+              alt="Zelify Card"
+              class="w-full transition-all duration-300 metallic-card"
+              id="cardImage"
+            />
+            
+            <!-- Selector de Tarjetas -->
+            <div class="flex gap-4 justify-start pl-8 mt-12 mb-4">
+              {[1, 2, 3, 4, 5].map((num) => (
+                <button 
+                  class={`card-selector ${num === 1 ? 'active' : ''}`} 
+                  data-card={`/public/assets/img/transition_cards/card_${num}.png`}
+                >
+                  <img 
+                    src={`/public/assets/img/transition_cards/card_${num}.png`}
+                    alt={`Card ${num}`}
+                    class="w-14 h-9 object-cover rounded-lg transition-all duration-300 hover:scale-110"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-8">
-            <div class="flex items-center justify-end mt-12 mb-8 pr-12">
+            <div class="flex items-center justify-end -mt-4 mb-8 pr-12">
               <div class="card-number relative">
-                <span id="cardNumberDisplay" class="font-mono text-lg">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4242</span>
+                <span id="cardNumberDisplay" class="font-mono text-lg">**** **** **** 4242</span>
                 <button id="toggleNumber" class="ml-2 text-gray-300 hover:text-white">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
@@ -28,14 +47,14 @@
                 </button>
               </div>
             </div>
-            <div class="flex gap-8 text-sm justify-end pr-12">
+            <div class="flex gap-8 text-sm justify-end pr-12 -mt-4">
               <div>
                 <div class="text-gray-100">Valid thru</div>
                 <div class="text-white">12/25</div>
               </div>
               <div>
                 <div class="text-gray-100">CVC</div>
-                <div id="cvcDisplay" class="text-white">•••</div>
+                <div id="cvcDisplay" class="text-white">***</div>
               </div>
             </div>
           </div>
@@ -93,7 +112,7 @@
         <div class="p-4 bg-gray-100 rounded-lg">
           <div class="font-mono">
             <div class="text-sm text-gray-600">Card number</div>
-            <div>&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4242</div>
+            <div>**** **** **** 4242</div>
           </div>
         </div>
         <div class="flex gap-4">
@@ -150,6 +169,7 @@
   const closeModal = document.getElementById('closeModal');
   const walletTitle = document.getElementById('walletTitle');
   const successMessage = document.getElementById('successMessage');
+  const cardSelectors = document.querySelectorAll('.card-selector');
 
   // Número real de la tarjeta
   const realCardNumber = '4242 4242 4242 4242';
@@ -160,7 +180,7 @@
   // Toggle número de tarjeta
   toggleNumber?.addEventListener('click', () => {
     isNumberVisible = !isNumberVisible;
-    cardNumberDisplay.textContent = isNumberVisible ? realCardNumber : '●●●● ●●●● ●●●● 4242';
+    cardNumberDisplay.textContent = isNumberVisible ? realCardNumber : '**** **** **** 4242';
     cvcDisplay.textContent = isNumberVisible ? realCVC : '•••';
   });
 
@@ -314,6 +334,32 @@
   document.getElementById('modalOverlay')?.addEventListener('click', hideModal);
   document.getElementById('connectButton')?.addEventListener('click', celebrateConnection);
 
+  cardSelectors.forEach(selector => {
+    selector.addEventListener('click', () => {
+      const cardSrc = selector.getAttribute('data-card');
+      if (!cardSrc) return;
+
+      // Actualizar imagen principal
+      cardImage.src = cardSrc;
+      
+      // Actualizar estado activo
+      cardSelectors.forEach(s => s.classList.remove('active'));
+      selector.classList.add('active');
+      
+      // Añadir animación de fade
+      cardImage.classList.remove('fade');
+      void cardImage.offsetWidth; // Trigger reflow
+      cardImage.classList.add('fade');
+    });
+  });
+
+  // Auto-rotate cada 7 segundos
+  setInterval(() => {
+    const currentActive = document.querySelector('.card-selector.active');
+    const nextSelector = currentActive.nextElementSibling || cardSelectors[0];
+    nextSelector.click();
+  }, 7000);
+
   // Animación al hacer scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -377,6 +423,29 @@
       cardContainer.classList.remove('visible');
       setTimeout(() => cardContainer.classList.add('visible'), 10);
     }
+  });
+
+  // Efecto metálico en hover
+  const card = document.querySelector('.metallic-card');
+  
+  card.addEventListener('mousemove', (e) => {
+    const { left, top, width, height } = card.getBoundingClientRect();
+    const x = (e.clientX - left) / width;
+    const y = (e.clientY - top) / height;
+    
+    const shine = `
+      radial-gradient(
+        circle at ${x * 100}% ${y * 100}%,
+        rgb(255,255,255,0.1),
+        rgb(255,255,255,0) 50%
+      )
+    `;
+    
+    card.style.backgroundImage = shine;
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    card.style.backgroundImage = '';
   });
 </script>
 
@@ -543,5 +612,89 @@
       transform: scale(1);
       opacity: 1;
     }
+  }
+
+  .card-selector {
+    position: relative;
+    padding: 2px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .card-selector.active {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 2px theme('colors.blue.500');
+  }
+  
+  .card-selector:hover {
+    cursor: pointer;
+  }
+  
+  .fade {
+    animation: fadeEffect 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeEffect {
+    0% { opacity: 0.7; transform: scale(0.98); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  .card-selector img {
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .card-selector.active img {
+    border-color: theme('colors.blue.500');
+  }
+
+  .metallic-card {
+    position: relative;
+    background-blend-mode: overlay;
+    background-size: 200% 200%;
+    transition: all 0.3s ease;
+    filter: contrast(1.1) saturate(1.2);
+  }
+  
+  .metallic-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      125deg,
+      rgba(255,255,255,0.7) 0%,
+      rgba(255,255,255,0.3) 25%,
+      rgba(255,255,255,0.1) 50%,
+      rgba(255,255,255,0.3) 75%,
+      rgba(255,255,255,0.7) 100%
+    );
+    opacity: 0.4;
+    animation: metalShine 3s linear infinite;
+  }
+  
+  .metallic-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      45deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.4) 45%,
+      rgba(255, 255, 255, 0.7) 50%,
+      rgba(255, 255, 255, 0.4) 55%,
+      transparent 100%
+    );
+    opacity: 0.6;
+    animation: metalGlow 5s ease-in-out infinite;
+  }
+
+  @keyframes metalShine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  @keyframes metalGlow {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 0.8; }
   }
 </style> 

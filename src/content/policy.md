@@ -1,4 +1,7 @@
-**Policy On The Prevention Of Money Laundering, Terrorism Financing And Other Crimes**
+# Policy On The Prevention Of Money Laundering, Terrorism Financing And Other Crimes
+
+Last updated: January 20, 2025
+
 
 # Introduction
 

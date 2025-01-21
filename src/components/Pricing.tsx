@@ -1,45 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ComparePlans from './ComparePlans';
 
 const plans = [
   {
-    name: 'Basic',
+    name: 'Standard',
     price: '0.00',
     features: [
-      'Free Transfers Between Users',
-      'Up to $1,000 Monthly Transfer',
-      'Basic Exchange Rates',
-      'Standard Support',
-      'Mobile App Access'
+      'Basic banking services with a virtual or physical Mastercard',
+      'Limited transaction capabilities ($200 limit)',
+      'No additional perks (cashback, FX conversion, travel insurance, etc.)',
+      'Standard customer support'
     ],
     cardImage: '/assets/img/cards/4.png',
     gradient: 'from-blue-500/20 via-purple-500/20 to-pink-500/20'
   },
   {
-    name: 'Premium',
+    name: 'Plus',
     price: '4.99',
     features: [
-      'Unlimited Free Transfers',
-      'Up to $10,000 Monthly Transfer',
-      'Premium Exchange Rates',
-      'Priority 24/7 Support',
-      'Advanced Security Features',
-      'Custom Card Design'
+      '$500 transaction limit',
+      'Reduced international transfer fees (3.8%)',
+      'Cashback on purchases (0.40%)',
+      'Access to partner subscriptions',
+      'Personalized in-app customer support'
     ],
     cardImage: '/assets/img/cards/2.png',
     gradient: 'from-blue-600/20 via-cyan-500/20 to-emerald-500/20'
   },
   {
-    name: 'Business',
+    name: 'Premium',
     price: '7.99',
     popular: true,
     features: [
-      'Unlimited Global Transfers',
-      'Unlimited Monthly Transfer',
-      'Best Exchange Rates',
-      'Dedicated Account Manager',
-      'Multi-User Access',
-      'API Integration',
-      'Custom Solutions'
+      '$1,000 transaction limit',
+      'Lower FX and international transfer fees (3%)',
+      'Higher cashback (0.60%)',
+      'Personalized card options',
+      'Travel benefits (insurance, airport lounge access)',
+      'Savings and co-parenting accounts',
+      'Personalized in-app customer support'
     ],
     cardImage: '/assets/img/cards/5.png',
     gradient: 'from-orange-500/20 via-amber-500/20 to-yellow-500/20'
@@ -48,71 +47,74 @@ const plans = [
 
 const benefits = [
   {
-    category: "Finance & Shopping",
+    category: "Lifestyle & Entertainment",
     items: [
       { 
         image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=200&h=200&fit=crop&q=80",
         name: "Restaurants" 
       },
       { 
-        image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=200&h=200&fit=crop&q=80",
-        name: "Retail Stores" 
-      },
-      { 
-        image: "https://media.gq.com.mx/photos/6060c63cc94329bc868c3f41/master/w_1600%2Cc_limit/gasolina.jpg",
-        name: "Gas Stations" 
-      },
-      { 
-        image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200&h=200&fit=crop&q=80",
-        name: "Airlines" 
-      }
-    ]
-  },
-  {
-    category: "Entertainment",
-    items: [
-      { 
         image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=200&h=200&fit=crop&q=80",
         name: "Concerts" 
       },
       { 
-        image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=200&h=200&fit=crop&q=80",
-        name: "Movies" 
-      },
-      { 
-        image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=200&h=200&fit=crop&q=80",
-        name: "Education" 
-      },
-      { 
         image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=200&h=200&fit=crop&q=80",
-        name: "News" 
+        name: "News Subscriptions"
       }
     ]
   },
   {
-    category: "Wellness",
+    category: "Travel & Mobility",
     items: [
       { 
-        image: "https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=200&h=200&fit=crop&q=80",
-        name: "Pet Stores" 
+        image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200&h=200&fit=crop&q=80",
+        name: "Airline Miles" 
       },
+      { 
+        image: "https://media.gq.com.mx/photos/6060c63cc94329bc868c3f41/master/w_1600%2Cc_limit/gasolina.jpg",
+        name: "Gasoline Discounts" 
+      }
+    ]
+  },
+  {
+    category: "Health & Wellness",
+    items: [
       { 
         image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=200&h=200&fit=crop&q=80",
-        name: "Drugstores" 
-      },
-      { 
-        image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=200&h=200&fit=crop&q=80",
-        name: "Wellness" 
+        name: "Pharmacies" 
       },
       { 
         image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=200&h=200&fit=crop&q=80",
-        name: "Gym" 
+        name: "Fitness & Gyms" 
+      },
+      { 
+        image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=200&h=200&fit=crop&q=80",
+        name: "Wellness Services" 
+      }
+    ]
+  },
+  {
+    category: "Shopping & Education",
+    items: [
+      {
+        image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=200&h=200&fit=crop&q=80",
+        name: "Retail Store Discounts"
+      },
+      {
+        image: "https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=200&h=200&fit=crop&q=80",
+        name: "Pet Stores"
+      },
+      {
+        image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=200&h=200&fit=crop&q=80",
+        name: "Education Benefits"
       }
     ]
   }
 ];
 
 const Pricing = () => {
+  const [showCompareModal, setShowCompareModal] = useState(false);
+
   return (
     <section className="py-24 bg-gray-900 relative overflow-hidden">
       {/* Efectos de fondo */}
@@ -200,6 +202,16 @@ const Pricing = () => {
           ))}
         </div>
 
+        {/* Botón Compare Plans */}
+        <div className="text-center mb-16">
+          <button
+            onClick={() => setShowCompareModal(true)}
+            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Compare Plans
+            <i className="eva eva-arrow-right-outline ml-2" />
+          </button>
+        </div>
 
         {/* Sección de Beneficios */}
         <div className="pt-24 border-t border-gray-800">
@@ -208,30 +220,30 @@ const Pricing = () => {
               Exclusive Benefits & Discounts
             </h2>
             <p className="text-gray-400">
-              Access exclusive discounts and rewards with our partner network
+              Turn your daily expenses into exclusive rewards with our partner network
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-4 gap-8 w-full">
             {benefits.map((category) => (
               <div key={category.category} className="bg-gray-800/50 rounded-2xl p-6 backdrop-blur-xl border border-gray-700/50">
-                <h3 className="text-2xl font-semibold mb-6 text-white">
+                <h3 className="text-2xl font-semibold mb-6 text-white text-center">
                   {category.category}
                 </h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="flex flex-col gap-4">
                   {category.items.map((item) => (
                     <div
                       key={item.name}
-                      className="flex items-center gap-3 text-gray-300 group hover:bg-gray-800/50 p-3 rounded-xl transition-all duration-500 hover:scale-110"
+                      className="flex items-center gap-3 text-gray-300 group hover:bg-gray-800/50 p-3 rounded-xl transition-all duration-300 hover:translate-x-2 justify-center w-full"
                     >
-                      <div className="w-14 h-14 rounded-lg overflow-hidden transition-all duration-500 group-hover:w-20 group-hover:h-20">
+                      <div className="w-14 h-14 rounded-lg overflow-hidden transition-all duration-500 group-hover:w-16 group-hover:h-16 flex-shrink-0">
                         <img 
                           src={item.image} 
                           alt={item.name}
                           className="w-full h-full object-cover group-hover:scale-150 transition-all duration-500"
                         />
                       </div>
-                      <span className="text-base font-medium transition-all duration-500 group-hover:translate-x-2">{item.name}</span>
+                      <span className="text-base font-medium text-center flex-1 min-w-0">{item.name}</span>
                     </div>
                   ))}
                 </div>
@@ -239,6 +251,26 @@ const Pricing = () => {
             ))}
           </div>
         </div>
+
+        {/* Modal de Comparación */}
+        {showCompareModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-lg max-w-7xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-6 border-b border-gray-200 flex justify-between items-center">
+                <h3 className="text-2xl font-bold">Plan Comparison</h3>
+                <button
+                  onClick={() => setShowCompareModal(false)}
+                  className="text-gray-400 hover:text-gray-500"
+                >
+                  <i className="eva eva-close-outline text-2xl" />
+                </button>
+              </div>
+              <div className="p-6">
+                <ComparePlans />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       <style jsx>{`
