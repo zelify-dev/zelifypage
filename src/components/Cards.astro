@@ -12,7 +12,7 @@
         <div class="card-container relative">
           <div class="card-display relative">
             <img 
-              src="/public/assets/img/transition_cards/card_1.png" 
+              src="/assets/img/transition_cards/card_1.png" 
               alt="Zelify Card"
               class="w-full transition-all duration-300 metallic-card"
               id="cardImage"
@@ -23,10 +23,10 @@
               {[1, 2, 3, 4, 5].map((num) => (
                 <button 
                   class={`card-selector ${num === 1 ? 'active' : ''}`} 
-                  data-card={`/public/assets/img/transition_cards/card_${num}.png`}
+                  data-card={`/assets/img/transition_cards/card_${num}.png`}
                 >
                   <img 
-                    src={`/public/assets/img/transition_cards/card_${num}.png`}
+                    src={`/assets/img/transition_cards/card_${num}.png`}
                     alt={`Card ${num}`}
                     class="w-14 h-9 object-cover rounded-lg transition-all duration-300 hover:scale-110"
                   />
