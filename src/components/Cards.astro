@@ -19,7 +19,7 @@
             />
             
             <!-- Selector de Tarjetas -->
-            <div class="flex gap-4 justify-start pl-8 mt-12 mb-4">
+            <div class="flex gap-2 sm:gap-4 justify-start pl-4 sm:pl-8 mt-8 sm:mt-12 mb-4">
               {[1, 2, 3, 4, 5].map((num) => (
                 <button 
                   class={`card-selector ${num === 1 ? 'active' : ''}`} 
@@ -28,7 +28,7 @@
                   <img 
                     src={`/assets/img/transition_cards/card_${num}.png`}
                     alt={`Card ${num}`}
-                    class="w-14 h-9 object-cover rounded-lg transition-all duration-300 hover:scale-110"
+                    class="w-10 h-6 sm:w-14 sm:h-9 object-cover rounded-lg transition-all duration-300 hover:scale-110"
                   />
                 </button>
               ))}
@@ -36,25 +36,25 @@
           </div>
 
           <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-8">
-            <div class="flex items-center justify-end -mt-4 mb-8 pr-12">
+            <div class="flex items-center justify-end -mt-4 mb-8 pr-8 sm:pr-12">
               <div class="card-number relative">
-                <span id="cardNumberDisplay" class="font-mono text-lg">**** **** **** 4242</span>
+                <span id="cardNumberDisplay" class="font-mono text-[11px] xs:text-sm sm:text-lg">**** **** **** 4242</span>
                 <button id="toggleNumber" class="ml-2 text-gray-300 hover:text-white">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
                     <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
                   </svg>
                 </button>
               </div>
             </div>
-            <div class="flex gap-8 text-sm justify-end pr-12 -mt-4">
+            <div class="flex gap-4 sm:gap-8 text-xs sm:text-sm justify-end pr-8 sm:pr-12 -mt-4">
               <div>
-                <div class="text-gray-100">Valid thru</div>
-                <div class="text-white">12/25</div>
+                <div class="text-gray-100 text-[8px] xs:text-[10px] sm:text-sm">Valid thru</div>
+                <div class="text-white text-[9px] xs:text-xs sm:text-sm">12/25</div>
               </div>
               <div>
-                <div class="text-gray-100">CVC</div>
-                <div id="cvcDisplay" class="text-white">***</div>
+                <div class="text-gray-100 text-[8px] xs:text-[10px] sm:text-sm">CVC</div>
+                <div id="cvcDisplay" class="text-white text-[9px] xs:text-xs sm:text-sm">***</div>
               </div>
             </div>
           </div>
@@ -696,5 +696,19 @@
   @keyframes metalGlow {
     0%, 100% { opacity: 0.6; }
     50% { opacity: 0.8; }
+  }
+
+  @media (max-width: 640px) {
+    .card-container {
+      transform: scale(0.85);
+    }
+    
+    .card-selector.active {
+      transform: scale(1.05);
+    }
+    
+    .card-selector img {
+      border-width: 1px;
+    }
   }
 </style> 
