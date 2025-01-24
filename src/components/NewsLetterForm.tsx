@@ -8,7 +8,6 @@ const NewsLetterForm: FC<any> = ({
 	formLabel,
 	formButtonLabel,
 	successMessage,
-	errorMessage,
 	buttonType = 'primary',
 	color = 'text-gray-600',
 }) => {
