@@ -41,8 +41,8 @@
           <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-4 sm:px-8">
             <div class="flex items-center justify-end -mt-4 mb-8 pr-4 sm:pr-12">
               <div class="card-number relative">
-                <span id="cardNumberDisplay" class="font-mono text-[10px] xs:text-sm sm:text-base tracking-wider text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">**** **** **** 4242</span>
-                <button id="toggleNumber" class="ml-2 text-gray-300 hover:text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">
+                <span id="cardNumberDisplay" class="font-mono text-[10px] xs:text-sm sm:text-base tracking-wider">**** **** **** 4242</span>
+                <button id="toggleNumber" class="ml-2 text-gray-300 hover:text-white">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 xs:h-5 xs:w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
                     <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
@@ -51,13 +51,13 @@
               </div>
             </div>
             <div class="flex gap-4 sm:gap-8 justify-end pr-4 sm:pr-12 -mt-4">
-              <div class="drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">
-                <div class="text-gray-100 text-[8px] xs:text-[10px] sm:text-xs tracking-wide font-medium">Valid thru</div>
-                <div class="text-white text-[9px] xs:text-xs sm:text-sm tracking-wider font-semibold">12/25</div>
+              <div>
+                <div class="text-gray-100 text-[8px] xs:text-[10px] sm:text-xs tracking-wide">Valid thru</div>
+                <div class="text-white text-[9px] xs:text-xs sm:text-sm tracking-wider">12/25</div>
               </div>
-              <div class="drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">
-                <div class="text-gray-100 text-[8px] xs:text-[10px] sm:text-xs tracking-wide font-medium">CVC</div>
-                <div id="cvcDisplay" class="text-white text-[9px] xs:text-xs sm:text-sm tracking-wider font-semibold">***</div>
+              <div>
+                <div class="text-gray-100 text-[8px] xs:text-[10px] sm:text-xs tracking-wide">CVC</div>
+                <div id="cvcDisplay" class="text-white text-[9px] xs:text-xs sm:text-sm tracking-wider">***</div>
               </div>
             </div>
           </div>
@@ -680,12 +680,15 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgba(0,0,0,0.2) 100%
+      125deg,
+      rgba(255,255,255,0.7) 0%,
+      rgba(255,255,255,0.3) 25%,
+      rgba(255,255,255,0.1) 50%,
+      rgba(255,255,255,0.3) 75%,
+      rgba(255,255,255,0.7) 100%
     );
-    pointer-events: none;
-    z-index: 1;
+    opacity: 0.4;
+    animation: metalShine 3s linear infinite;
   }
   
   .metallic-card::after {
@@ -702,6 +705,11 @@
     );
     opacity: 0.6;
     animation: metalGlow 5s ease-in-out infinite;
+  }
+
+  @keyframes metalShine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
   }
 
   @keyframes metalGlow {
@@ -773,16 +781,5 @@
       transform: scaleY(2) translateY(50%);
       opacity: 0.2;
     }
-  }
-
-  .card-number span, .card-number button, 
-  .card-details div {
-    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
-    font-weight: 500;
-  }
-
-  .card-number, .card-details {
-    position: relative;
-    z-index: 2;
   }
 </style> 
