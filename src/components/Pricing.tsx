@@ -206,10 +206,21 @@ const Pricing = () => {
         <div className="text-center mb-16">
           <button
             onClick={() => setShowCompareModal(true)}
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white 
+              bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
+              relative group overflow-hidden shadow-[0_0_0_0_rgba(59,130,246,0.5)]
+              animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]"
           >
-            Compare Plans
-            <i className="eva eva-arrow-right-outline ml-2" />
+            {/* Efecto de brillo constante */}
+            <div className="absolute inset-0">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent
+                animate-[shine_3s_ease-in-out_infinite]"></div>
+            </div>
+            
+            <span className="relative z-10 flex items-center gap-2">
+              Compare Plans
+              <i className="eva eva-arrow-right-outline ml-2 animate-[bounce_1s_ease-in-out_infinite]" />
+            </span>
           </button>
         </div>
 

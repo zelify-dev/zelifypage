@@ -5,21 +5,22 @@
 <section class="relative text-white py-32 overflow-hidden card-section">
   <div class="absolute inset-0 bg-gradient w-full h-full"></div>
   <div class="spotlight"></div>
-  <div class="mx-auto max-w-screen-lg px-4 relative z-10">
+  <div class="mx-auto max-w-screen-lg px-2 sm:px-4 relative z-10">
     <div class="flex flex-col md:flex-row items-center gap-12">
       <!-- Lado izquierdo - Tarjeta -->
-      <div class="w-full md:w-1/2 relative pr-16">
+      <div class="w-full md:w-1/2 relative md:pr-16">
         <div class="card-container relative">
           <div class="card-display relative">
             <img 
               src="/assets/img/transition_cards/card_1.png" 
               alt="Zelify Card"
-              class="w-full transition-all duration-300 metallic-card"
+              class="w-full max-w-[320px] mx-auto transition-all duration-300 metallic-card"
               id="cardImage"
             />
             
             <!-- Selector de Tarjetas -->
-            <div class="flex gap-2 sm:gap-4 justify-start pl-4 sm:pl-8 mt-8 sm:mt-12 mb-4">
+            <div class="flex gap-2 sm:gap-4 justify-center sm:justify-start pl-0 sm:pl-8 mt-8 sm:mt-12 mb-4 
+              overflow-x-auto sm:overflow-x-visible py-2 -mx-2 px-2">
               {[1, 2, 3, 4, 5].map((num) => (
                 <button 
                   class={`card-selector ${num === 1 ? 'active' : ''}`} 
@@ -28,7 +29,7 @@
                   <img 
                     src={`/assets/img/transition_cards/card_${num}.png`}
                     alt={`Card ${num}`}
-                    class="w-10 h-6 sm:w-14 sm:h-9 object-cover rounded-lg transition-all duration-300 hover:scale-110"
+                    class="min-w-[40px] w-10 h-6 sm:w-14 sm:h-9 object-cover rounded-lg transition-all duration-300 hover:scale-110"
                   />
                 </button>
               ))}
@@ -38,7 +39,7 @@
           <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-8">
             <div class="flex items-center justify-end -mt-4 mb-8 pr-8 sm:pr-12">
               <div class="card-number relative">
-                <span id="cardNumberDisplay" class="font-mono text-[11px] xs:text-sm sm:text-lg">**** **** **** 4242</span>
+                <span id="cardNumberDisplay" class="font-mono text-[9px] xs:text-xs sm:text-base">**** **** **** 4242</span>
                 <button id="toggleNumber" class="ml-2 text-gray-300 hover:text-white">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
@@ -49,12 +50,12 @@
             </div>
             <div class="flex gap-4 sm:gap-8 text-xs sm:text-sm justify-end pr-8 sm:pr-12 -mt-4">
               <div>
-                <div class="text-gray-100 text-[8px] xs:text-[10px] sm:text-sm">Valid thru</div>
-                <div class="text-white text-[9px] xs:text-xs sm:text-sm">12/25</div>
+                <div class="text-gray-100 text-[7px] xs:text-[8px] sm:text-xs">Valid thru</div>
+                <div class="text-white text-[8px] xs:text-[9px] sm:text-sm">12/25</div>
               </div>
               <div>
-                <div class="text-gray-100 text-[8px] xs:text-[10px] sm:text-sm">CVC</div>
-                <div id="cvcDisplay" class="text-white text-[9px] xs:text-xs sm:text-sm">***</div>
+                <div class="text-gray-100 text-[7px] xs:text-[8px] sm:text-xs">CVC</div>
+                <div id="cvcDisplay" class="text-white text-[8px] xs:text-[9px] sm:text-sm">***</div>
               </div>
             </div>
           </div>
@@ -72,11 +73,41 @@
           </p>
         </div>
 
-        <button id="toggleLock" class="group flex items-center justify-center gap-3 bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 px-6 py-3 rounded-lg transition-all w-full max-w-[320px] border border-white/10">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-          </svg>
-          <span class="text-white/90 group-hover:text-white transition-colors">Lock card</span>
+        <button 
+          id="toggleLock"
+          class="group relative w-full bg-gray-900 text-white rounded-xl py-3 px-6 
+            flex items-center justify-center gap-3 overflow-hidden
+            animate-pulse-strong hover:animate-none hover:scale-[1.02]
+            border-2 border-transparent hover:border-white/20
+            shadow-[0_0_15px_rgba(255,255,255,0.1)]
+            hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]
+            transition-all duration-300"
+        >
+          <!-- Efecto de destello -->
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100">
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent
+              animate-shine-fast"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-white/5
+              animate-pulse-vertical"></div>
+          </div>
+
+          <!-- Contenido del botón con efecto hover -->
+          <span class="relative z-10 flex items-center gap-3 group-hover:scale-105 transition-transform duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+              class="h-6 w-6 text-red-400 group-hover:scale-110 transition-transform duration-300" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            <span class="relative text-white/90 group-hover:text-white transition-colors">
+              Lock card
+              <span class="absolute bottom-0 left-0 w-full h-0.5 bg-white scale-x-0 
+                group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            </span>
+          </span>
         </button>
 
         <div class="flex flex-col gap-4">
@@ -335,30 +366,17 @@
   document.getElementById('connectButton')?.addEventListener('click', celebrateConnection);
 
   cardSelectors.forEach(selector => {
-    selector.addEventListener('click', () => {
-      const cardSrc = selector.getAttribute('data-card');
-      if (!cardSrc) return;
+    selector.addEventListener('click', async () => {
+      const newCardSrc = selector.getAttribute('data-card');
+      if (!newCardSrc || !cardImage) return;
 
-      // Actualizar imagen principal
-      cardImage.src = cardSrc;
-      
-      // Actualizar estado activo
+      // Remover active de todos los selectores
       cardSelectors.forEach(s => s.classList.remove('active'));
       selector.classList.add('active');
-      
-      // Añadir animación de fade
-      cardImage.classList.remove('fade');
-      void cardImage.offsetWidth; // Trigger reflow
-      cardImage.classList.add('fade');
+
+      cardImage.src = newCardSrc;
     });
   });
-
-  // Auto-rotate cada 7 segundos
-  setInterval(() => {
-    const currentActive = document.querySelector('.card-selector.active');
-    const nextSelector = currentActive.nextElementSibling || cardSelectors[0];
-    nextSelector.click();
-  }, 7000);
 
   // Animación al hacer scroll
   const observer = new IntersectionObserver((entries) => {
@@ -616,32 +634,19 @@
 
   .card-selector {
     position: relative;
-    padding: 2px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
+    cursor: pointer;
   }
   
   .card-selector.active {
     transform: scale(1.1);
-    box-shadow: 0 0 0 2px theme('colors.blue.500');
+    z-index: 10;
   }
   
-  .card-selector:hover {
-    cursor: pointer;
-  }
-  
-  .fade {
-    animation: fadeEffect 0.5s ease-in-out;
-  }
-  
-  @keyframes fadeEffect {
-    0% { opacity: 0.7; transform: scale(0.98); }
-    100% { opacity: 1; transform: scale(1); }
-  }
-
   .card-selector img {
     border: 2px solid transparent;
-    transition: all 0.3s ease;
+    transition: transform 0.15s ease;
+    will-change: transform;
   }
 
   .card-selector.active img {
@@ -652,7 +657,6 @@
     position: relative;
     background-blend-mode: overlay;
     background-size: 200% 200%;
-    transition: all 0.3s ease;
     filter: contrast(1.1) saturate(1.2);
   }
   
@@ -701,14 +705,66 @@
   @media (max-width: 640px) {
     .card-container {
       transform: scale(0.85);
+      margin: 0 auto;
+      max-width: 100%;
     }
     
-    .card-selector.active {
-      transform: scale(1.05);
+    .card-selector {
+      flex-shrink: 0;
     }
     
     .card-selector img {
       border-width: 1px;
+    }
+  }
+
+  /* Mejora del rendimiento de las animaciones */
+  @media (prefers-reduced-motion: no-preference) {
+    .metallic-card {
+      will-change: transform, filter;
+    }
+    
+    .card-selector {
+      will-change: transform;
+    }
+  }
+
+  @keyframes pulse-strong {
+    0%, 100% { 
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(255,255,255,0.7);
+    }
+    50% { 
+      transform: scale(1.01);
+      box-shadow: 0 0 0 10px rgba(255,255,255,0);
+    }
+  }
+
+  .animate-pulse-strong {
+    animation: pulse-strong 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes shine-fast {
+    from {
+      transform: translateX(-100%) skewX(15deg);
+    }
+    to {
+      transform: translateX(200%) skewX(15deg);
+    }
+  }
+
+  .animate-shine-fast {
+    animation: shine-fast 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse-vertical {
+    0%, 100% { 
+      transform: scaleY(2) translateY(-50%);
+      opacity: 0.5;
+    }
+    50% { 
+      transform: scaleY(2) translateY(50%);
+      opacity: 0.2;
     }
   }
 </style> 
