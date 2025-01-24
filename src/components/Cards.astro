@@ -23,13 +23,15 @@
               overflow-x-auto py-2 px-4">
               {[1, 2, 3, 4, 5].map((num) => (
                 <button 
-                  class={`card-selector ${num === 1 ? 'active' : ''}`} 
+                  type="button"
+                  class={`card-selector relative p-1 rounded-xl transition-all duration-300 ${num === 1 ? 'active' : ''}`} 
                   data-card={`/assets/img/transition_cards/card_${num}.png`}
                 >
                   <img 
                     src={`/assets/img/transition_cards/card_${num}.png`}
                     alt={`Card ${num}`}
                     class="min-w-[40px] w-10 h-6 sm:w-14 sm:h-9 object-cover rounded-lg transition-all duration-300 hover:scale-110"
+                    draggable="false"
                   />
                 </button>
               ))}
@@ -200,8 +202,8 @@
   const closeModal = document.getElementById('closeModal');
   const walletTitle = document.getElementById('walletTitle');
   const successMessage = document.getElementById('successMessage');
-  const cardSelectors = document.querySelectorAll('.card-selector');
-
+  const cardSelectors = document.querySelectorAll('button[data-card]');
+  
   // Número real de la tarjeta
   const realCardNumber = '4242 4242 4242 4242';
   const realCVC = '123';
@@ -211,8 +213,8 @@
   // Toggle número de tarjeta
   toggleNumber?.addEventListener('click', () => {
     isNumberVisible = !isNumberVisible;
-    cardNumberDisplay.textContent = isNumberVisible ? realCardNumber : '**** **** **** 4242';
-    cvcDisplay.textContent = isNumberVisible ? realCVC : '•••';
+    if (cardNumberDisplay) cardNumberDisplay.textContent = isNumberVisible ? realCardNumber : '**** **** **** 4242';
+    if (cvcDisplay) cvcDisplay.textContent = isNumberVisible ? realCVC : '•••';
   });
 
   // Toggle bloqueo de tarjeta
@@ -365,18 +367,52 @@
   document.getElementById('modalOverlay')?.addEventListener('click', hideModal);
   document.getElementById('connectButton')?.addEventListener('click', celebrateConnection);
 
-  cardSelectors.forEach(selector => {
-    selector.addEventListener('click', async () => {
-      const newCardSrc = selector.getAttribute('data-card');
+  // Selector de tarjetas simplificado
+  cardSelectors.forEach(button => {
+    button.addEventListener('click', () => {
+      const newCardSrc = button.getAttribute('data-card');
       if (!newCardSrc || !cardImage) return;
 
-      // Remover active de todos los selectores
-      cardSelectors.forEach(s => s.classList.remove('active'));
-      selector.classList.add('active');
+      // Actualizar estado activo
+      cardSelectors.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
 
-      cardImage.src = newCardSrc;
+      // Transición suave
+      if (cardImage instanceof HTMLImageElement) {
+        cardImage.style.opacity = '0';
+        setTimeout(() => {
+          cardImage.src = newCardSrc;
+          cardImage.style.opacity = '1';
+        }, 150);
+      }
     });
   });
+
+  // Prevenir arrastre de imágenes
+  document.querySelectorAll('.card-selector img').forEach(img => {
+    img.addEventListener('dragstart', e => e.preventDefault());
+  });
+
+  // Estilos para el selector activo
+  const styleSheet = document.createElement('style');
+  styleSheet.textContent = `
+    .card-selector {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .card-selector.active {
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1.1);
+    }
+    .card-selector:hover {
+      transform: scale(1.05);
+    }
+    .card-selector:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+    }
+  `;
+  document.head.appendChild(styleSheet);
 
   // Animación al hacer scroll
   const observer = new IntersectionObserver((entries) => {
@@ -630,27 +666,6 @@
       transform: scale(1);
       opacity: 1;
     }
-  }
-
-  .card-selector {
-    position: relative;
-    transition: all 0.2s ease;
-    cursor: pointer;
-  }
-  
-  .card-selector.active {
-    transform: scale(1.1);
-    z-index: 10;
-  }
-  
-  .card-selector img {
-    border: 2px solid transparent;
-    transition: transform 0.15s ease;
-    will-change: transform;
-  }
-
-  .card-selector.active img {
-    border-color: theme('colors.blue.500');
   }
 
   .metallic-card {
