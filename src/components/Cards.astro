@@ -1,5 +1,6 @@
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 
 <section class="relative text-white py-32 overflow-hidden card-section">
@@ -7,71 +8,87 @@
   <div class="spotlight"></div>
   <div class="mx-auto max-w-screen-lg px-4 sm:px-6 relative z-10">
     <div class="flex flex-col md:flex-row items-center gap-12">
-      <!-- Lado izquierdo - Tarjeta -->
-      <div class="w-full md:w-1/2 relative md:pr-16 px-4">
-        <div class="card-container relative">
-          <div class="card-display relative">
-            <img 
-              src="/assets/img/transition_cards/card_1.png" 
-              alt="Zelify Card"
-              class="w-full max-w-[300px] mx-auto transition-all duration-300 metallic-card"
-              id="cardImage"
-            />
-            
-            <!-- Selector de Tarjetas -->
-            <div class="flex gap-2 sm:gap-4 justify-center mt-8 sm:mt-12 mb-4 
-              overflow-x-auto py-2 px-4">
-              {[1, 2, 3, 4, 5].map((num) => (
-                <button 
-                  type="button"
-                  class={`card-selector relative p-1 rounded-xl transition-all duration-300 ${num === 1 ? 'active' : ''}`} 
-                  data-card={`/assets/img/transition_cards/card_${num}.png`}
-                >
-                  <img 
-                    src={`/assets/img/transition_cards/card_${num}.png`}
-                    alt={`Card ${num}`}
-                    class="min-w-[40px] w-10 h-6 sm:w-14 sm:h-9 object-cover rounded-lg transition-all duration-300 hover:scale-110"
-                    draggable="false"
-                  />
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full px-4 sm:px-8">
-            <div class="flex items-center justify-end -mt-4 mb-8 pr-4 sm:pr-12">
-              <div class="card-number relative">
-                <span id="cardNumberDisplay" class="font-mono text-[10px] xs:text-sm sm:text-base tracking-wider">**** **** **** 4242</span>
-                <button id="toggleNumber" class="ml-2 text-gray-300 hover:text-white">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 xs:h-5 xs:w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                    <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <div class="flex gap-4 sm:gap-8 justify-end pr-4 sm:pr-12 -mt-4">
-              <div>
-                <div class="text-gray-100 text-[8px] xs:text-[10px] sm:text-xs tracking-wide">Valid thru</div>
-                <div class="text-white text-[9px] xs:text-xs sm:text-sm tracking-wider">12/25</div>
-              </div>
-              <div>
-                <div class="text-gray-100 text-[8px] xs:text-[10px] sm:text-xs tracking-wide">CVC</div>
-                <div id="cvcDisplay" class="text-white text-[9px] xs:text-xs sm:text-sm tracking-wider">***</div>
-              </div>
+      <div class="w-full md:w-1/2 relative">
+        <!-- Card Display -->
+        <div class="relative">
+          <img 
+            src="/assets/img/cards/1.png" 
+            alt="Zelify Card"
+            class="w-full max-w-[300px] mx-auto"
+            id="cardImage"
+          />
+          
+          <!-- Card Selectors -->
+          <div class="mt-8">
+            <div class="flex flex-wrap justify-center gap-4">
+              <button 
+                type="button"
+                class="card-selector active"
+                data-card="/assets/img/cards/1.png"
+              >
+                <img 
+                  src="/assets/img/cards/1.png"
+                  alt="Card 1"
+                  class="w-[80px] h-auto rounded-lg"
+                />
+              </button>
+              <button 
+                type="button"
+                class="card-selector"
+                data-card="/assets/img/cards/2.png"
+              >
+                <img 
+                  src="/assets/img/cards/2.png"
+                  alt="Card 2"
+                  class="w-[80px] h-auto rounded-lg"
+                />
+              </button>
+              <button 
+                type="button"
+                class="card-selector"
+                data-card="/assets/img/cards/3.png"
+              >
+                <img 
+                  src="/assets/img/cards/3.png"
+                  alt="Card 3"
+                  class="w-[80px] h-auto rounded-lg"
+                />
+              </button>
+              <button 
+                type="button"
+                class="card-selector"
+                data-card="/assets/img/cards/4.png"
+              >
+                <img 
+                  src="/assets/img/cards/4.png"
+                  alt="Card 4"
+                  class="w-[80px] h-auto rounded-lg"
+                />
+              </button>
+              <button 
+                type="button"
+                class="card-selector"
+                data-card="/assets/img/cards/5.png"
+              >
+                <img 
+                  src="/assets/img/cards/5.png"
+                  alt="Card 5"
+                  class="w-[80px] h-auto rounded-lg"
+                />
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Lado derecho - Controles -->
-      <div class="w-full md:w-1/2 space-y-8 text-center md:text-left px-4 sm:px-6">
+      <!-- Content -->
+      <div class="w-full md:w-1/2 space-y-8 text-center md:text-left">
         <div class="space-y-4">
           <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
-            Pick your card. Make it yours. 
+            Pick your card. Make it yours.
           </h2>
           <p class="text-lg sm:text-xl text-gray-400 max-w-xl mx-auto md:mx-0">
-            Enjoy the freedom of a physical or virtual contactless debit card that works anywhere in the world, with instant lock, unlock, and management all from our app
+            Enjoy the freedom of a physical or virtual contactless debit card that works anywhere in the world.
           </p>
         </div>
 
@@ -86,31 +103,10 @@
               hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]
               transition-all duration-300"
           >
-            <!-- Efecto de destello -->
-            <div class="absolute inset-0 opacity-0 group-hover:opacity-100">
-              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent
-                animate-shine-fast"></div>
-              <div class="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-white/5
-                animate-pulse-vertical"></div>
-            </div>
-
-            <!-- Contenido del botón con efecto hover -->
-            <span class="relative z-10 flex items-center gap-3 group-hover:scale-105 transition-transform duration-200">
-              <svg xmlns="http://www.w3.org/2000/svg" 
-                class="h-6 w-6 text-red-400 group-hover:scale-110 transition-transform duration-300" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-              <span class="relative text-white/90 group-hover:text-white transition-colors">
-                Lock card
-                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-white scale-x-0 
-                  group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-              </span>
-            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            <span class="text-white/90">Lock card</span>
           </button>
 
           <button id="googlePay" class="flex items-center justify-center gap-2 bg-white text-black px-6 py-3 rounded-lg hover:bg-gray-100 transition-all w-full">
@@ -133,142 +129,221 @@
       </div>
     </div>
   </div>
-
-  <!-- Wallet Modal -->
-  <div id="modalOverlay" class="fixed inset-0 bg-black/80 opacity-0 pointer-events-none transition-opacity duration-300 z-40"></div>
-  <div id="walletModal" class="fixed bottom-0 left-0 right-0 bg-white text-black rounded-t-3xl transform translate-y-full transition-transform duration-300 z-50">
-    <div class="p-6">
-      <div class="flex justify-between items-center mb-6">
-        <h3 class="text-xl font-bold text-center w-full" id="walletTitle"></h3>
-      </div>
-      <div class="space-y-4">
-        <div class="p-4 bg-gray-100 rounded-lg">
-          <div class="font-mono">
-            <div class="text-sm text-gray-600">Card number</div>
-            <div>**** **** **** 4242</div>
-          </div>
-        </div>
-        <div class="flex gap-4">
-          <div class="p-4 bg-gray-100 rounded-lg flex-1">
-            <div class="font-mono">
-              <div class="text-sm text-gray-600">Expiration date</div>
-              <div>12/25</div>
-            </div>
-          </div>
-          <div class="p-4 bg-gray-100 rounded-lg flex-1">
-            <div class="font-mono">
-              <div class="text-sm text-gray-600">CVC</div>
-              <div>123</div>
-            </div>
-          </div>
-        </div>
-        <button id="connectButton" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-all">
-          Connect
-        </button>
-      </div>
-      <div id="successMessage" class="hidden mt-6 text-center text-green-500 font-bold"></div>
-    </div>
-  </div>
-
-  <!-- Añadir el modal de éxito -->
-  <div id="successModal" class="fixed inset-0 flex items-center justify-center z-50 opacity-0 pointer-events-none transition-all duration-300">
-    <div class="absolute inset-0 bg-black/80"></div>
-    <div class="relative bg-gray-900 rounded-2xl p-8 text-center transform scale-95 transition-all duration-300">
-      <div class="text-4xl mb-4">🎉</div>
-      <h3 class="text-2xl font-bold text-white mb-2">Connected!</h3>
-      <p class="text-gray-300" id="successMessage"></p>
-      <div class="flex items-center justify-center gap-2 text-green-400 mt-4">
-        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <span>Your wallet is now ready to use</span>
-      </div>
-    </div>
-  </div>
 </section>
+
+<style>
+  .card-selector {
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    opacity: 0.5;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .card-selector.active {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgb(59, 130, 246);
+  }
+
+  .card-selector img {
+    display: block;
+  }
+
+  .spotlight {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    background: radial-gradient(
+      1200px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(112, 250, 126, 0.15),
+      rgba(54, 124, 244, 0.15),
+      transparent 50%
+    );
+    mix-blend-mode: screen;
+    filter: blur(30px);
+    opacity: 0.8;
+    z-index: 2;
+  }
+
+  @media (max-width: 640px) {
+    .card-container {
+      transform: scale(0.9);
+      margin: 0 auto;
+      max-width: 100%;
+    }
+  }
+</style>
+
+<script>
+  // Manejar clics en los selectores de tarjeta
+  document.querySelectorAll('.card-selector').forEach((selector) => {
+    selector.addEventListener('click', () => {
+      const cardImage = document.getElementById('cardImage');
+      const newCardSrc = selector.getAttribute('data-card');
+      
+      if (cardImage instanceof HTMLImageElement && newCardSrc) {
+        cardImage.src = newCardSrc;
+      }
+
+      // Actualizar el estado activo de los selectores
+      document.querySelectorAll('.card-selector').forEach((btn) => {
+        btn.classList.remove('active');
+      });
+      selector.classList.add('active');
+    });
+  });
+
+  // Número real de la tarjeta
+  const realCardNumber = '4242 4242 4242 4242';
+  const realCVC = '123';
+  let isNumberVisible = false;
+
+  // Toggle número de tarjeta
+  document.getElementById('toggleNumber')?.addEventListener('click', () => {
+    isNumberVisible = !isNumberVisible;
+    const cardNumberDisplay = document.getElementById('cardNumberDisplay');
+    const cvcDisplay = document.getElementById('cvcDisplay');
+    
+    if (cardNumberDisplay) {
+      cardNumberDisplay.textContent = isNumberVisible ? realCardNumber : '**** **** **** 4242';
+    }
+    if (cvcDisplay) {
+      cvcDisplay.textContent = isNumberVisible ? realCVC : '•••';
+    }
+  });
+
+  // Toggle bloqueo de tarjeta
+  document.getElementById('toggleLock')?.addEventListener('click', () => {
+    const cardImage = document.getElementById('cardImage');
+    const toggleLock = document.getElementById('toggleLock');
+    const isLocked = toggleLock?.classList.contains('locked');
+    
+    if (cardImage instanceof HTMLImageElement) {
+      if (!isLocked) {
+        cardImage.classList.add('grayscale', 'opacity-50');
+        if (toggleLock) {
+          toggleLock.classList.add('locked');
+          toggleLock.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+            </svg>
+            <span class="text-white/90">Unlock card</span>
+          `;
+        }
+      } else {
+        cardImage.classList.remove('grayscale', 'opacity-50');
+        if (toggleLock) {
+          toggleLock.classList.remove('locked');
+          toggleLock.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            <span class="text-white/90">Lock card</span>
+          `;
+        }
+      }
+    }
+  });
+</script>
 
 <script>
   import confetti from 'canvas-confetti';
 
-  // Elementos DOM
-  const cardImage = document.getElementById('cardImage');
-  const cardNumberDisplay = document.getElementById('cardNumberDisplay');
-  const toggleNumber = document.getElementById('toggleNumber');
-  const cvcDisplay = document.getElementById('cvcDisplay');
-  const toggleLock = document.getElementById('toggleLock');
-  const googlePay = document.getElementById('googlePay');
-  const applePay = document.getElementById('applePay');
-  const walletModal = document.getElementById('walletModal');
-  const closeModal = document.getElementById('closeModal');
-  const walletTitle = document.getElementById('walletTitle');
-  const successMessage = document.getElementById('successMessage');
-  const cardSelectors = document.querySelectorAll('button[data-card]');
-  
-  // Número real de la tarjeta
-  const realCardNumber = '4242 4242 4242 4242';
-  const realCVC = '123';
-  let isCardLocked = false;
-  let isNumberVisible = false;
+  function initializeEventListeners() {
+    const cardImage = document.getElementById('cardImage');
+    const cardNumberDisplay = document.getElementById('cardNumberDisplay');
+    const toggleNumber = document.getElementById('toggleNumber');
+    const cvcDisplay = document.getElementById('cvcDisplay');
+    const toggleLock = document.getElementById('toggleLock');
+    const googlePay = document.getElementById('googlePay');
+    const applePay = document.getElementById('applePay');
+    const walletModal = document.getElementById('walletModal');
+    const walletTitle = document.getElementById('walletTitle');
+    const successMessage = document.getElementById('successMessage');
+    const modalOverlay = document.getElementById('modalOverlay');
 
-  // Toggle número de tarjeta
-  toggleNumber?.addEventListener('click', () => {
-    isNumberVisible = !isNumberVisible;
-    if (cardNumberDisplay) cardNumberDisplay.textContent = isNumberVisible ? realCardNumber : '**** **** **** 4242';
-    if (cvcDisplay) cvcDisplay.textContent = isNumberVisible ? realCVC : '•••';
-  });
+    // Número real de la tarjeta
+    const realCardNumber = '4242 4242 4242 4242';
+    const realCVC = '123';
+    let isCardLocked = false;
+    let isNumberVisible = false;
 
-  // Toggle bloqueo de tarjeta
-  toggleLock?.addEventListener('click', () => {
-    isCardLocked = !isCardLocked;
-    const buttons = [googlePay, applePay, toggleNumber];
-    
-    if (isCardLocked) {
-      cardImage.classList.add('grayscale', 'opacity-50');
-      // Deshabilitar todos los botones
-      buttons.forEach(button => {
-        if (button) {
-          button.disabled = true;
-          button.classList.add('opacity-50', 'cursor-not-allowed');
+    // Toggle número de tarjeta
+    toggleNumber?.addEventListener('click', () => {
+      isNumberVisible = !isNumberVisible;
+      if (cardNumberDisplay) cardNumberDisplay.textContent = isNumberVisible ? realCardNumber : '**** **** **** 4242';
+      if (cvcDisplay) cvcDisplay.textContent = isNumberVisible ? realCVC : '•••';
+    });
+
+    // Toggle bloqueo de tarjeta
+    toggleLock?.addEventListener('click', () => {
+      isCardLocked = !isCardLocked;
+      const buttons = [googlePay, applePay, toggleNumber];
+      
+      if (isCardLocked && cardImage) {
+        cardImage.classList.add('grayscale', 'opacity-50');
+        buttons.forEach(button => {
+          if (button instanceof HTMLButtonElement) {
+            button.disabled = true;
+            button.classList.add('opacity-50', 'cursor-not-allowed');
+          }
+        });
+        if (toggleLock) {
+          toggleLock.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+            </svg>
+            <span class="text-white/90">Unlock card</span>
+          `;
         }
-      });
-      toggleLock.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
-        </svg>
-        <span class="text-white/90 group-hover:text-white transition-colors">Unlock card</span>
-      `;
-    } else {
-      cardImage.classList.remove('grayscale', 'opacity-50');
-      // Habilitar todos los botones
-      buttons.forEach(button => {
-        if (button) {
-          button.disabled = false;
-          button.classList.remove('opacity-50', 'cursor-not-allowed');
+      } else if (cardImage) {
+        cardImage.classList.remove('grayscale', 'opacity-50');
+        buttons.forEach(button => {
+          if (button instanceof HTMLButtonElement) {
+            button.disabled = false;
+            button.classList.remove('opacity-50', 'cursor-not-allowed');
+          }
+        });
+        if (toggleLock) {
+          toggleLock.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            <span class="text-white/90">Lock card</span>
+          `;
         }
-      });
-      toggleLock.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-        </svg>
-        <span class="text-white/90 group-hover:text-white transition-colors">Lock card</span>
-      `;
-    }
-  });
-
-  // Verificar estado inicial de los botones
-  if (isCardLocked) {
-    const buttons = [googlePay, applePay, toggleNumber];
-    buttons.forEach(button => {
-      if (button) {
-        button.disabled = true;
-        button.classList.add('opacity-50', 'cursor-not-allowed');
       }
+    });
+
+    // Event listeners
+    googlePay?.addEventListener('click', () => showModal('google'));
+    applePay?.addEventListener('click', () => showModal('apple'));
+    modalOverlay?.addEventListener('click', hideModal);
+    document.getElementById('connectButton')?.addEventListener('click', celebrateConnection);
+
+    // Prevenir arrastre de imágenes
+    document.querySelectorAll('.card-selector img').forEach(img => {
+      img.addEventListener('dragstart', e => e.preventDefault());
     });
   }
 
-  // Funciones del modal
+  // Esperar a que el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeEventListeners();
+    });
+  } else {
+    initializeEventListeners();
+  }
+
   function showModal(type: 'google' | 'apple') {
-    walletTitle.textContent = type === 'google' ? 'Google Pay' : 'Apple Pay';
+    if (walletTitle) {
+      walletTitle.textContent = type === 'google' ? 'Google Pay' : 'Apple Pay';
+    }
     const connectButton = document.getElementById('connectButton');
     if (connectButton) {
       if (type === 'apple') {
@@ -280,43 +355,51 @@
       }
     }
     walletModal?.classList.remove('translate-y-full');
-    document.getElementById('modalOverlay')?.classList.remove('opacity-0', 'pointer-events-none');
+    modalOverlay?.classList.remove('opacity-0', 'pointer-events-none');
     document.body.style.overflow = 'hidden';
   }
 
   function hideModal() {
     walletModal?.classList.add('translate-y-full');
-    document.getElementById('modalOverlay')?.classList.add('opacity-0', 'pointer-events-none');
+    modalOverlay?.classList.add('opacity-0', 'pointer-events-none');
     document.body.style.overflow = 'auto';
     resetModal();
   }
 
   function resetModal() {
-    const connectButton = document.getElementById('connectButton');
-    connectButton.textContent = 'Connect';
-    connectButton.disabled = false;
-    connectButton.classList.remove('bg-black', 'hover:bg-gray-900');
-    connectButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
-    successMessage.classList.add('hidden');
+    const connectButton = document.getElementById('connectButton') as HTMLButtonElement;
+    if (connectButton) {
+      connectButton.textContent = 'Connect';
+      connectButton.disabled = false;
+      connectButton.classList.remove('bg-black', 'hover:bg-gray-900');
+      connectButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
+    }
+    successMessage?.classList.add('hidden');
   }
 
-  function showSuccessModal(message) {
+  function showSuccessModal(message: string) {
     const modal = document.getElementById('successModal');
     const messageEl = document.getElementById('successMessage');
     if (!modal || !messageEl) return;
     
     messageEl.textContent = message;
     modal.classList.remove('opacity-0', 'pointer-events-none');
-    modal.querySelector('.bg-gray-900').classList.remove('scale-95');
+    const bgEl = modal.querySelector('.bg-gray-900');
+    if (bgEl) {
+      bgEl.classList.remove('scale-95');
+    }
     
     setTimeout(() => {
       modal.classList.add('opacity-0', 'pointer-events-none');
-      modal.querySelector('.bg-gray-900').classList.add('scale-95');
+      const bgEl = modal.querySelector('.bg-gray-900');
+      if (bgEl) {
+        bgEl.classList.add('scale-95');
+      }
     }, 3000);
   }
 
   function celebrateConnection() {
-    const connectButton = document.getElementById('connectButton');
+    const connectButton = document.getElementById('connectButton') as HTMLButtonElement;
     if (!connectButton) return;
 
     connectButton.innerHTML = `
@@ -332,13 +415,15 @@
 
     setTimeout(() => {
       hideModal();
-      showSuccessModal(`Successfully connected with ${walletTitle.textContent}`);
+      if (walletTitle) {
+        showSuccessModal(`Successfully connected with ${walletTitle.textContent}`);
+      }
       // Lanzar confetti
       const duration = 3 * 1000;
       const animationEnd = Date.now() + duration;
       const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 10000 };
       
-      function randomInRange(min, max) {
+      function randomInRange(min: number, max: number) {
         return Math.random() * (max - min) + min;
       }
       
@@ -360,154 +445,13 @@
       }, 250);
     }, 2000);
   }
-
-  // Event listeners
-  googlePay?.addEventListener('click', () => showModal('google'));
-  applePay?.addEventListener('click', () => showModal('apple'));
-  document.getElementById('modalOverlay')?.addEventListener('click', hideModal);
-  document.getElementById('connectButton')?.addEventListener('click', celebrateConnection);
-
-  // Selector de tarjetas simplificado
-  cardSelectors.forEach(button => {
-    button.addEventListener('click', () => {
-      const newCardSrc = button.getAttribute('data-card');
-      if (!newCardSrc || !cardImage) return;
-
-      // Actualizar estado activo
-      cardSelectors.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-
-      // Transición suave
-      if (cardImage instanceof HTMLImageElement) {
-        cardImage.style.opacity = '0';
-        setTimeout(() => {
-          cardImage.src = newCardSrc;
-          cardImage.style.opacity = '1';
-        }, 150);
-      }
-    });
-  });
-
-  // Prevenir arrastre de imágenes
-  document.querySelectorAll('.card-selector img').forEach(img => {
-    img.addEventListener('dragstart', e => e.preventDefault());
-  });
-
-  // Estilos para el selector activo
-  const styleSheet = document.createElement('style');
-  styleSheet.textContent = `
-    .card-selector {
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .card-selector.active {
-      background: rgba(255, 255, 255, 0.1);
-      transform: scale(1.1);
-    }
-    .card-selector:hover {
-      transform: scale(1.05);
-    }
-    .card-selector:focus {
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
-    }
-  `;
-  document.head.appendChild(styleSheet);
-
-  // Animación al hacer scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, {
-    threshold: 0.1
-  });
-
-  const cardContainer = document.querySelector('.card-container');
-  if (cardContainer) {
-    observer.observe(cardContainer);
-  }
-
-  // Efecto parallax suave al mover el mouse
-  document.addEventListener('mousemove', (e) => {
-    const card = document.querySelector('.card-container');
-    if (!card) return;
-    
-    const { clientX, clientY } = e;
-    const { innerWidth, innerHeight } = window;
-    
-    const xAxis = (clientX - innerWidth / 2) / 50;
-    const yAxis = (clientY - innerHeight / 2) / 50;
-    
-    card.style.transform = `rotateY(${xAxis}deg) rotateX(${-yAxis}deg)`;
-  });
-
-  // Resetear la rotación cuando el mouse sale del área
-  document.addEventListener('mouseleave', () => {
-    const card = document.querySelector('.card-container');
-    if (card) {
-      card.style.transform = 'rotateY(0) rotateX(0)';
-    }
-  });
-
-  // Efecto spotlight que sigue al cursor
-  const cardSection = document.querySelector('.card-section');
-  const spotlight = document.querySelector('.spotlight');
-  
-  cardSection?.addEventListener('mousemove', (e) => {
-    const rect = cardSection.getBoundingClientRect();
-    const x = e.pageX - rect.left;
-    const y = e.pageY - window.scrollY - rect.top;
-    
-    spotlight?.style.setProperty('--mouse-x', `${x}px`);
-    spotlight?.style.setProperty('--mouse-y', `${y}px`);
-  });
-
-  // Animar textos cuando el cursor vuelve a la sección
-  cardSection?.addEventListener('mouseenter', () => {
-    const texts = document.querySelectorAll('.text-animate');
-    texts.forEach(text => {
-      text.classList.remove('visible');
-      setTimeout(() => text.classList.add('visible'), 10);
-    });
-
-    if (cardContainer) {
-      cardContainer.classList.remove('visible');
-      setTimeout(() => cardContainer.classList.add('visible'), 10);
-    }
-  });
-
-  // Efecto metálico en hover
-  const card = document.querySelector('.metallic-card');
-  
-  card.addEventListener('mousemove', (e) => {
-    const { left, top, width, height } = card.getBoundingClientRect();
-    const x = (e.clientX - left) / width;
-    const y = (e.clientY - top) / height;
-    
-    const shine = `
-      radial-gradient(
-        circle at ${x * 100}% ${y * 100}%,
-        rgb(255,255,255,0.1),
-        rgb(255,255,255,0) 50%
-      )
-    `;
-    
-    card.style.backgroundImage = shine;
-  });
-  
-  card.addEventListener('mouseleave', () => {
-    card.style.backgroundImage = '';
-  });
 </script>
 
 <style>
   .card-container {
     perspective: 1000px;
     transform-style: preserve-3d;
-    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: transform 0.3s ease;
   }
 
   .spotlight {
@@ -523,7 +467,6 @@
     );
     mix-blend-mode: screen;
     filter: blur(30px);
-    transition: all 0.1s ease;
     opacity: 0.8;
     z-index: 2;
   }
@@ -719,17 +662,9 @@
 
   @media (max-width: 640px) {
     .card-container {
-      transform: scale(0.85);
+      transform: scale(0.9);
       margin: 0 auto;
       max-width: 100%;
-    }
-    
-    .card-selector {
-      flex-shrink: 0;
-    }
-    
-    .card-selector img {
-      border-width: 1px;
     }
   }
 
@@ -780,6 +715,59 @@
     50% { 
       transform: scaleY(2) translateY(50%);
       opacity: 0.2;
+    }
+  }
+
+  /* Estilos para Swiper */
+  .swiper {
+    padding: 1rem 0;
+  }
+
+  .swiper-slide {
+    width: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .swiper-pagination {
+    position: relative;
+    margin-top: 1rem;
+  }
+
+  .swiper-pagination-bullet {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .swiper-pagination-bullet-active {
+    background: white;
+  }
+
+  .card-selector {
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    opacity: 0.5;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .card-selector.active {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgb(59, 130, 246);
+  }
+
+  .card-selector img {
+    border-radius: 0.5rem;
+    display: block;
+  }
+
+  @media (max-width: 640px) {
+    .card-container {
+      transform: scale(0.9);
+      margin: 0 auto;
+      max-width: 100%;
     }
   }
 </style> 

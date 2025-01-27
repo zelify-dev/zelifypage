@@ -68,24 +68,22 @@ const InternationalTransfer = () => {
   const convertedAmount = FIXED_USD_AMOUNT * EXCHANGE_RATE;
   const fee = convertedAmount * FEE_PERCENTAGE;
   const totalAmount = convertedAmount - fee;
+  
+  // Usar useEffect para actualizar el estado después del montaje
   const [balance, setBalance] = useState(180973.00);
   const [isLoading, setIsLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  // Transacción de ejemplo fija
-  const [transactions] = useState<Transaction[]>([
+  // Transacciones como constante para evitar diferencias de hidratación
+  const transactions: Transaction[] = [
     {
       id: '1',
       type: 'International',
       amount: totalAmount,
-      date: new Date().toLocaleDateString('en-US', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric'
-      }),
+      date: '15 Mar, 2024',
       description: 'Transferencia internacional',
       isCredit: true,
-      avatar: 'https://randomuser.me/api/portraits/women/65.jpg',
+      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah',
       name: 'Sarah Johnson',
       country: 'GB',
       status: 'completed'
@@ -97,12 +95,20 @@ const InternationalTransfer = () => {
       date: 'Jan 11, 2025',
       description: 'Transferencia internacional',
       isCredit: true,
-      avatar: 'https://randomuser.me/api/portraits/men/52.jpg',
+      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Miguel',
       name: 'Miguel Ángel',
       country: 'MX',
       status: 'pending'
     }
-  ]);
+  ];
+
+  useEffect(() => {
+    // Cualquier efecto secundario que necesite ejecutarse solo en el cliente
+    const handleClientSideInit = () => {
+      // Inicialización específica del cliente si es necesaria
+    };
+    handleClientSideInit();
+  }, []);
 
   const handleTransfer = () => {
     setIsLoading(true);
@@ -206,7 +212,7 @@ const InternationalTransfer = () => {
                     <div className="flex justify-between items-center py-2">
                       <span className="text-gray-500 text-sm">Recipient</span>
                       <div className="flex items-center gap-2">
-                        <span className="text-gray-900 text-sm">Juan Pérez</span>
+                        <span className="text-gray-900 text-sm">Juan Perez</span>
                       </div>
                     </div>
 
@@ -275,10 +281,10 @@ const InternationalTransfer = () => {
                 <div className="p-6 pb-4">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-10 h-10 rounded-full overflow-hidden bg-cover bg-center"
-                      style={{ backgroundImage: "url('/assets/img/avatar.jpg')" }}>
+                      style={{ backgroundImage: "url('https://api.dicebear.com/7.x/avataaars/svg?seed=Juan')" }}>
                     </div>
                     <div>
-                      <h2 className="text-lg font-medium">Hola 👋, Juan</h2>
+                      <h2 className="text-lg font-medium">Hola Juan</h2>
                       <p className="text-gray-500 text-xs">Bienvenido de nuevo</p>
                     </div>
                   </div>
@@ -295,7 +301,7 @@ const InternationalTransfer = () => {
                   <div className="grid grid-cols-3 gap-3">
                     {[
                       { icon: 'paper-plane', text: 'Enviar Dinero' },
-                      { icon: 'droplet', text: 'Servicios Básicos' },
+                      { icon: 'droplet', text: 'Servicios' },
                       { icon: 'minus-circle', text: 'Retiro Externo' }
                     ].map(({ icon, text }) => (
                       <button key={text} className="flex flex-col items-center p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors">

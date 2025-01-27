@@ -284,7 +284,7 @@ const Pricing = () => {
         )}
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes shine {
           0% { transform: translateX(-100%); }
           50% { transform: translateX(100%); }

@@ -197,17 +197,19 @@ const TransferModal = ({ isOpen, onClose, type }: TransferModalProps) => {
 };
 
 const Features = () => {
+  // Estado inicial estático para evitar diferencias de hidratación
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeService, setActiveService] = useState<string | null>(null);
   const [showTransferModal, setShowTransferModal] = useState(false);
   const [showRequestModal, setShowRequestModal] = useState(false);
 
+  // Datos estáticos
   const services = [
     { id: 'water', name: 'Water', icon: 'droplet', amount: 120.50, fee: 0.50 },
     { id: 'electricity', name: 'Electricity', icon: 'bulb', amount: 200.75, fee: 0.75 },
     { id: 'internet', name: 'Internet', icon: 'wifi', amount: 89.99, fee: 0.45 },
     { id: 'phone', name: 'Phone', icon: 'phone', amount: 65.00, fee: 0.35 }
-  ];
+  ] as const;
 
   const features = [
     { 
@@ -230,18 +232,25 @@ const Features = () => {
       icon: 'message-square',
       description: 'Effortless Social Payments with Zelify'
     }
-  ];
+  ] as const;
+
+  // Manejar efectos del lado del cliente
+  useEffect(() => {
+    const handleClientSideInit = () => {
+      // Inicialización específica del cliente
+    };
+    handleClientSideInit();
+    
+    return () => {
+      // Limpieza al desmontar
+      setCurrentSlide(0);
+      setActiveService(null);
+    };
+  }, []);
 
   const handleBack = () => {
     setActiveService(null);
   };
-
-  useEffect(() => {
-    // Inicialización del estado después del montaje
-    return () => {
-      // Limpieza al desmontar
-    };
-  }, []);
 
   return (
     <div className="mx-auto max-w-screen-xl px-4 min-h-screen flex items-center py-8">
