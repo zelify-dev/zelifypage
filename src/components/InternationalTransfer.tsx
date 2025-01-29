@@ -281,7 +281,7 @@ const InternationalTransfer = () => {
                 <div className="p-6 pb-4">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-10 h-10 rounded-full overflow-hidden bg-cover bg-center"
-                      style={{ backgroundImage: "url('https://api.dicebear.com/7.x/avataaars/svg?seed=Juan')" }}>
+                      style={{ backgroundImage: "url('https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200&auto=format')" }}>
                     </div>
                     <div>
                       <h2 className="text-lg font-medium">Hola Juan</h2>
