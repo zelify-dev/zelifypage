@@ -1,4 +1,4 @@
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" is:inline></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
@@ -13,17 +13,17 @@
         <div class="relative w-full max-w-[300px] mx-auto">
           <img 
             src="/assets/img/cards/1.png" 
-            alt="Zelify Card"
+              alt="Zelify Card"
             class="w-full"
-            id="cardImage"
-          />
-          
+              id="cardImage"
+            />
+            
           <!-- Card Details Overlay -->
           <div class="absolute inset-0 flex flex-col justify-between p-6">
             <!-- Card Number -->
             <div class="mt-8">
               <div class="flex items-center justify-end space-x-2">
-                <span id="cardNumberDisplay" class="font-mono text-lg text-white tracking-wider">**** **** **** 4242</span>
+                <span id="cardNumberDisplay" class="font-mono text-base text-white tracking-wider">**** **** **** 4242</span>
                 <button id="toggleNumber" class="text-white/80 hover:text-white">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
@@ -118,7 +118,7 @@
       <div class="w-full md:w-1/2 flex flex-col items-center space-y-8">
         <div class="text-center space-y-4">
           <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
-            Pick your card. Make it yours.
+            Pick your card. Make it yours. 
           </h2>
           <p class="text-base sm:text-lg text-gray-400 max-w-xl">
             Enjoy the freedom of a physical or virtual contactless debit card that works anywhere in the world.
@@ -126,21 +126,21 @@
         </div>
 
         <div class="flex flex-col items-center gap-4 w-full max-w-[280px]">
-          <button 
-            id="toggleLock"
+        <button 
+          id="toggleLock"
             class="w-full bg-gray-900 text-white rounded-xl py-2.5 px-5 
               flex items-center justify-center gap-3
-              animate-pulse-strong hover:animate-none hover:scale-[1.02]
-              border-2 border-transparent hover:border-white/20
-              shadow-[0_0_15px_rgba(255,255,255,0.1)]
-              hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]
-              transition-all duration-300"
-          >
+            animate-pulse-strong hover:animate-none hover:scale-[1.02]
+            border-2 border-transparent hover:border-white/20
+            shadow-[0_0_15px_rgba(255,255,255,0.1)]
+            hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]
+            transition-all duration-300"
+        >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
             <span class="text-white/90 text-sm">Lock card</span>
-          </button>
+        </button>
 
           <button id="googlePay" class="w-full flex items-center justify-center gap-2 bg-white text-black px-5 py-2.5 rounded-lg hover:bg-gray-100 transition-all">
             <svg class="h-5 w-5" viewBox="0 0 48 48">
@@ -194,16 +194,16 @@
         <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
         </svg>
-      </div>
-      
+  </div>
+
       <!-- User Info -->
       <div class="flex items-center justify-center gap-4 mb-6">
         <div class="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-green-500 flex items-center justify-center text-2xl font-bold text-white">
-          BG
+          JD
         </div>
         <div class="text-left">
-          <h4 class="text-xl font-medium text-white">Bill Gates</h4>
-          <p class="text-gray-400">Microsoft Corp.</p>
+          <h4 class="text-xl font-medium text-white">John Doe</h4>
+          <p class="text-gray-400">Personal Account</p>
         </div>
       </div>
 
@@ -220,17 +220,6 @@
           </div>
         </div>
 
-        <div class="bg-gray-800/50 rounded-xl p-4">
-          <p class="text-sm text-gray-400 mb-2">Test Transaction</p>
-          <div class="flex justify-between items-center">
-            <span class="text-gray-300">Amount:</span>
-            <span class="text-lg font-medium text-white">$<span id="transactionAmount">0</span>.00</span>
-          </div>
-          <div class="flex justify-between items-center mt-1">
-            <span class="text-gray-300">Status:</span>
-            <span class="text-green-400">Approved</span>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -287,7 +276,7 @@
   // Manejar clics en los selectores de tarjeta
   document.querySelectorAll('.card-selector').forEach((selector) => {
     selector.addEventListener('click', () => {
-      const cardImage = document.getElementById('cardImage');
+  const cardImage = document.getElementById('cardImage');
       const newCardSrc = selector.getAttribute('data-card');
       
       if (cardImage instanceof HTMLImageElement && newCardSrc) {
@@ -314,10 +303,10 @@
     const cvcDisplay = document.getElementById('cvcDisplay');
     
     if (cardNumberDisplay) {
-      cardNumberDisplay.textContent = isNumberVisible ? realCardNumber : '**** **** **** 4242';
+    cardNumberDisplay.textContent = isNumberVisible ? realCardNumber : '**** **** **** 4242';
     }
     if (cvcDisplay) {
-      cvcDisplay.textContent = isNumberVisible ? realCVC : '•••';
+    cvcDisplay.textContent = isNumberVisible ? realCVC : '•••';
     }
   });
 
@@ -329,13 +318,13 @@
     
     if (cardImage instanceof HTMLImageElement) {
       if (!isLocked) {
-        cardImage.classList.add('grayscale', 'opacity-50');
+      cardImage.classList.add('grayscale', 'opacity-50');
         if (toggleLock) {
           toggleLock.classList.add('locked');
-          toggleLock.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
-            </svg>
+      toggleLock.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+        </svg>
             <span class="text-white/90">Unlock card</span>
           `;
         }
@@ -343,10 +332,10 @@
         cardImage.classList.remove('grayscale', 'opacity-50');
         if (toggleLock) {
           toggleLock.classList.remove('locked');
-          toggleLock.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-            </svg>
+      toggleLock.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
             <span class="text-white/90">Lock card</span>
           `;
         }
@@ -355,204 +344,174 @@
   });
 </script>
 
+<script is:inline>
+  // Función simple para lanzar confeti con los colores de Google
+  function launchGoogleConfetti() {
+    const colors = ['#4285F4', '#34A853', '#FBBC05', '#EA4335'];
+    const defaults = { 
+      colors: colors,
+      origin: { y: 0.7 },
+      particleCount: 100,
+      spread: 70,
+      ticks: 400,
+      gravity: 1.2,
+      scalar: 1.2,
+      shapes: ['star', 'circle']
+    };
+
+    confetti(defaults);
+  }
+
+  // Hacer la función disponible globalmente
+  window.launchGoogleConfetti = launchGoogleConfetti;
+</script>
+
 <script>
   // Inicializar variables
   const walletModal = document.getElementById('walletModal');
   const modalOverlay = document.getElementById('modalOverlay');
   const walletTitle = document.getElementById('walletTitle');
-  const successMessage = document.getElementById('successMessage');
+  const successModal = document.getElementById('successModal');
   const googlePay = document.getElementById('googlePay');
   const applePay = document.getElementById('applePay');
   const connectButton = document.getElementById('connectButton');
-  const cardNumberDisplay = document.getElementById('cardNumberDisplay');
+  const connectedService = document.getElementById('connectedService');
+  const transactionAmount = document.getElementById('transactionAmount');
 
   // Event listeners para los botones de pago
-  googlePay?.addEventListener('click', () => showModal('google'));
-  applePay?.addEventListener('click', () => showModal('apple'));
-  modalOverlay?.addEventListener('click', hideModal);
-  connectButton?.addEventListener('click', celebrateConnection);
+  if (googlePay) {
+    googlePay.addEventListener('click', () => showWalletModal('Google Pay'));
+  }
+  
+  if (applePay) {
+    applePay.addEventListener('click', () => showWalletModal('Apple Pay'));
+  }
 
-  function showModal(type) {
-    if (!walletModal || !modalOverlay || !walletTitle) return;
+  if (modalOverlay) {
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) {
+        hideWalletModal();
+      }
+    });
+  }
 
-    walletTitle.textContent = type === 'google' ? 'Connect with Google Pay' : 'Connect with Apple Pay';
-    
     if (connectButton) {
-      if (type === 'apple') {
+    connectButton.addEventListener('click', handleConnect);
+  }
+
+  function showWalletModal(service) {
+    if (!walletModal || !modalOverlay || !walletTitle || !connectButton) return;
+
+    walletTitle.textContent = `Connect with ${service}`;
+    
+    // Ajustar estilo del botón según el servicio
+    if (service === 'Apple Pay') {
         connectButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
         connectButton.classList.add('bg-black', 'hover:bg-gray-900');
       } else {
         connectButton.classList.remove('bg-black', 'hover:bg-gray-900');
         connectButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
       }
-    }
 
     modalOverlay.classList.remove('opacity-0', 'pointer-events-none');
     walletModal.classList.remove('translate-y-full');
     document.body.style.overflow = 'hidden';
   }
 
-  function hideModal() {
-    if (!walletModal || !modalOverlay) return;
+  function hideWalletModal() {
+    if (!walletModal || !modalOverlay || !connectButton) return;
 
     modalOverlay.classList.add('opacity-0', 'pointer-events-none');
     walletModal.classList.add('translate-y-full');
     document.body.style.overflow = 'auto';
-    resetModal();
+    
+    // Resetear el botón
+    setTimeout(() => {
+      connectButton.innerHTML = 'Connect';
+      connectButton.disabled = false;
+      connectButton.classList.remove('bg-black', 'hover:bg-gray-900');
+      connectButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
+    }, 500); // Esperamos un poco para que termine la animación del modal
   }
 
-  function resetModal() {
-    if (!connectButton || !successMessage) return;
+  function handleConnect() {
+    if (!connectButton || !walletTitle) return;
 
-    connectButton.textContent = 'Connect';
-    connectButton.disabled = false;
-    connectButton.classList.remove('bg-black', 'hover:bg-gray-900');
-    connectButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
-    successMessage.classList.add('hidden');
-  }
-
-  function celebrateConnection() {
-    if (!connectButton || !walletTitle || !cardNumberDisplay) return;
-
-    const cardNumber = cardNumberDisplay.textContent;
-    if (cardNumber === '**** **** **** ****' || cardNumber === '**** **** **** 4242') {
-      showError('Please reveal your card number before connecting');
-      return;
-    }
-
+    // Mostrar animación de carga
     connectButton.innerHTML = `
       <div class="flex items-center justify-center gap-2">
         <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
           <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
           <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
-        <span>Verifying card details...</span>
+        <span>Connecting...</span>
       </div>
     `;
     connectButton.disabled = true;
 
-    // Simular proceso de verificación
+    // Simular proceso de conexión
     setTimeout(() => {
-      connectButton.innerHTML = `
-        <div class="flex items-center justify-center gap-2">
-          <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
-          <span>Encrypting data...</span>
-        </div>
-      `;
-
-      setTimeout(() => {
-        connectButton.innerHTML = `
-          <div class="flex items-center justify-center gap-2">
-            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-            <span>Establishing secure connection...</span>
-          </div>
-        `;
-
-        setTimeout(() => {
-          hideModal();
-          showSuccessModal(`Successfully connected with ${walletTitle.textContent}`);
-          
-          // Lanzar confeti
-          const duration = 3 * 1000;
-          const animationEnd = Date.now() + duration;
-          const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 10000 };
-          
-          function randomInRange(min, max) {
-            return Math.random() * (max - min) + min;
-          }
-          
-          const interval = setInterval(function() {
-            const timeLeft = animationEnd - Date.now();
-            if (timeLeft <= 0) return clearInterval(interval);
-            
-            const particleCount = 50 * (timeLeft / duration);
-            confetti({
-              ...defaults,
-              particleCount,
-              origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
-            });
-            confetti({
-              ...defaults,
-              particleCount,
-              origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
-            });
-          }, 250);
-        }, 1000);
-      }, 1000);
-    }, 1000);
-  }
-
-  function showError(message) {
-    const errorMessage = document.getElementById('successMessage');
-    if (!errorMessage) return;
-
-    errorMessage.textContent = message;
-    errorMessage.classList.remove('hidden', 'bg-green-500/20', 'text-green-400');
-    errorMessage.classList.add('bg-red-500/20', 'text-red-400');
-    errorMessage.classList.remove('hidden');
-
-    setTimeout(() => {
-      errorMessage.classList.add('hidden');
-    }, 3000);
-  }
-
-  function showSuccessModal(message) {
-    const modal = document.getElementById('successModal');
-    const connectedService = document.getElementById('connectedService');
-    const transactionAmount = document.getElementById('transactionAmount');
-    
-    if (!modal || !connectedService || !transactionAmount) return;
-    
-    // Actualizar el servicio conectado
-    connectedService.textContent = message.includes('Google') ? 'Google Pay' : 'Apple Pay';
-    
-    // Generar monto aleatorio
-    transactionAmount.textContent = Math.floor(Math.random() * 100) + 1;
-    
-    modal.classList.remove('opacity-0', 'pointer-events-none');
-    const bgEl = modal.querySelector('.bg-gray-900');
-    if (bgEl) {
-      bgEl.classList.remove('scale-95');
-    }
-
-    // Lanzar confeti
-    const duration = 3 * 1000;
-    const animationEnd = Date.now() + duration;
-    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 10000 };
-    
-    function randomInRange(min, max) {
-      return Math.random() * (max - min) + min;
-    }
-    
-    const interval = setInterval(function() {
-      const timeLeft = animationEnd - Date.now();
-      if (timeLeft <= 0) return clearInterval(interval);
+      const currentService = walletTitle.textContent || '';
       
-      const particleCount = 50 * (timeLeft / duration);
-      confetti({
-        ...defaults,
-        particleCount,
-        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
-      });
-      confetti({
-        ...defaults,
-        particleCount,
-        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
-      });
-    }, 250);
-    
-    setTimeout(() => {
-      modal.classList.add('opacity-0', 'pointer-events-none');
-      if (bgEl) {
-        bgEl.classList.add('scale-95');
+      // Ocultar el modal de wallet
+      modalOverlay?.classList.add('opacity-0', 'pointer-events-none');
+      walletModal?.classList.add('translate-y-full');
+      document.body.style.overflow = 'auto';
+
+      // Mostrar el modal de éxito y el confeti
+      if (successModal && connectedService) {
+        const serviceName = currentService.replace('Connect with ', '');
+        
+        // Actualizar el servicio conectado
+        connectedService.textContent = serviceName;
+        
+        // Mostrar el modal de éxito
+        successModal.style.display = 'flex';
+        successModal.classList.remove('opacity-0', 'pointer-events-none');
+        const bgEl = successModal.querySelector('.bg-gray-900');
+        if (bgEl) {
+          bgEl.classList.remove('scale-95');
+        }
+
+        // Lanzar confeti
+        confetti({
+          particleCount: 200,
+          spread: 90,
+          origin: { y: 0.6 },
+          colors: ['#4285F4', '#34A853', '#FBBC05', '#EA4335']
+        });
+
+        // Segunda explosión de confeti
+        setTimeout(() => {
+          confetti({
+            particleCount: 150,
+            spread: 60,
+            origin: { y: 0.7 },
+            colors: ['#4285F4', '#34A853', '#FBBC05', '#EA4335']
+          });
+        }, 250);
+
+        // Cerrar el modal después de 5 segundos
+        setTimeout(() => {
+          successModal.classList.add('opacity-0', 'pointer-events-none');
+          if (bgEl) {
+            bgEl.classList.add('scale-95');
+          }
+          // Ocultar el modal después de la animación
+          setTimeout(() => {
+            successModal.style.display = 'none';
+          }, 300);
+        }, 5000);
       }
-    }, 5000);
+
+      // Resetear el botón
+      if (connectButton) {
+        connectButton.innerHTML = 'Connect';
+        connectButton.disabled = false;
+        connectButton.classList.remove('bg-black', 'hover:bg-gray-900');
+        connectButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
+      }
+    }, 1500);
   }
 </script>
 
@@ -877,6 +836,43 @@
       transform: scale(0.9);
       margin: 0 auto;
       max-width: 100%;
+    }
+  }
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 2s linear infinite;
+  }
+
+  .confetti-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .confetti-piece {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: var(--confetti-color);
+    border-radius: 50%;
+    animation: confettiFall 1s ease-out forwards;
+  }
+
+  @keyframes confettiFall {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(20px) rotate(360deg);
+      opacity: 0;
     }
   }
 </style> 
