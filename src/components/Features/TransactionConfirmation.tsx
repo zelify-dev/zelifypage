@@ -75,7 +75,7 @@ export const TransactionConfirmation: React.FC<TransactionConfirmationProps> = (
           <ConfirmSlider onConfirm={() => console.log('Confirmed')} text="Slide to confirm" />
         </div>
       </div>
-
+      
       <NavigationBar />
     </div>
   );

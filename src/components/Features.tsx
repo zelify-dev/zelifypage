@@ -74,7 +74,20 @@ const TransactionConfirmation = ({
           <div className="flex justify-between items-center">
             <span className="text-gray-600 text-xs">Recipient</span>
             <div className="flex items-center gap-2">
-              <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${recipient}`} alt={recipient} className="w-6 h-6 rounded-full" />
+              {recipient.includes('Service') ? (
+                <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center">
+                  <i className={`eva eva-${
+                    recipient.toLowerCase().includes('water') ? 'droplet' :
+                    recipient.toLowerCase().includes('electricity') ? 'bulb' :
+                    recipient.toLowerCase().includes('internet') ? 'wifi' :
+                    recipient.toLowerCase().includes('gas') ? 'flame' :
+                    recipient.toLowerCase().includes('phone') ? 'phone' :
+                    'flash'
+                  }-outline text-sm text-blue-600`} />
+                </div>
+              ) : (
+                <img src="https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=150&h=150&fit=crop" alt={recipient} className="w-6 h-6 rounded-full" />
+              )}
               <span className="text-gray-900 text-xs">{recipient}</span>
             </div>
           </div>
@@ -456,12 +469,12 @@ const Features = () => {
                           
                           <div className="flex items-center gap-2">
                             <img
-                              src="https://api.dicebear.com/7.x/avataaars/svg?seed=Cooper"
-                              alt="Joseph Cooper"
+                              src="https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=150&h=150&fit=crop"
+                              alt="John Cooper"
                               className="w-9 h-9 rounded-full"
                             />
                             <div>
-                              <h3 className="text-[14px] font-medium">Joseph Cooper</h3>
+                              <h3 className="text-[14px] font-medium">John Cooper</h3>
                               <p className="text-[11px] text-gray-500">@coop</p>
                             </div>
                           </div>

@@ -20,6 +20,7 @@ export const ConfirmSlider: React.FC<ConfirmSliderProps> = ({ onConfirm, text })
     startXRef.current = pageX - sliderLeft;
   };
 
+
   const handleMouseMove = (e: MouseEvent | TouchEvent) => {
     if (!isDragging || !sliderRef.current) return;
 

@@ -93,7 +93,7 @@ export const ChatTransfer = () => {
     {
       id: '1',
       name: 'Cooper',
-      avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Cooper',
+      avatar: 'https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=150&h=150&fit=crop',
       lastMessage: "Hi! How's the project going? 👋",
       time: '16:23',
       unread: 1
@@ -174,7 +174,7 @@ export const ChatTransfer = () => {
       <div className="min-w-full h-full bg-white">
         <TransactionConfirmation
           amount={transferAmount}
-          recipient="Joseph Cooper"
+          recipient="John Cooper"
           onBack={() => setShowConfirmation(false)}
         />
       </div>
@@ -200,7 +200,7 @@ export const ChatTransfer = () => {
               className="w-9 h-9 rounded-full"
             />
             <div>
-              <h3 className="text-[14px] font-medium">Joseph Cooper</h3>
+              <h3 className="text-[14px] font-medium">John Cooper</h3>
               <p className="text-[11px] text-gray-500">@coop</p>
             </div>
           </div>
