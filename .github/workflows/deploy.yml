@@ -33,9 +33,8 @@ jobs:
         with:
           name: my-artifact
           path: ./dist
-          # Opciones adicionales de v4
-          overwrite: true  # Si necesitas sobrescribir artifacts existentes
-          include-hidden-files: true  # Si necesitas incluir archivos ocultos
+          overwrite: true
+          include-hidden-files: true
 
       # Usar la versión correcta de upload-pages-artifact
       - name: Upload Pages Artifact
