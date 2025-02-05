@@ -1,4 +1,5 @@
 ---
+// Importaciones
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import GradientBackground from '../components/GradientBackground.astro';
@@ -9,25 +10,9 @@ import InternationalTransfer from '../components/InternationalTransfer';
 import Card3DViewer from '../components/Card3DViewer';
 import Pricing from '../components/Pricing';
 import Footer from '../components/Footer.astro';
-import i18next from 'i18next';
 
-// Initialize i18next
-const initI18next = async () => {
-	await i18next.init({
-		lng: 'en',
-		fallbackLng: 'en',
-		resources: {
-			en: {
-				translation: {
-					'home.title': 'Zelify - Next Generation Banking'
-				}
-			}
-		}
-	});
-};
-await initI18next();
-
-const title = await i18next.t('home.title');
+// Configuración
+const title = 'Zelify - Next Generation Banking';
 ---
 
 <Layout title={title}>
@@ -85,7 +70,7 @@ const title = await i18next.t('home.title');
 	</div>
 </div>
 
-<script>
+<script is:inline>
 	// Smooth scroll
 	const links = document.querySelectorAll('a[href^="#"]');
 
@@ -111,7 +96,7 @@ const title = await i18next.t('home.title');
 	function toggleModal(show) {
 		if (!modal) return;
 		
-		if (show) {
+		if (show === true) {
 			modal.classList.remove('hidden');
 			modal.classList.add('flex');
 			document.body.style.overflow = 'hidden';
