@@ -136,36 +136,32 @@ const Card3DViewer = () => {
 
     // Logo Zelify
     ctx.fillStyle = '#FFFFFF';
-    ctx.font = 'bold 48px Arial';
+    ctx.font = 'bold 64px Arial';  // Aumentado de 48px a 64px
     ctx.textAlign = 'right';
-    ctx.fillText('Zelify', canvas.width - 50, 80);
+    ctx.fillText('Zelify', canvas.width - 50, 100);
 
-    // Chip y símbolo contactless
+    // Chip más grande
     ctx.fillStyle = '#FFFFFF';
-    ctx.fillRect(50, 200, 80, 60);
+    ctx.fillRect(50, 180, 120, 90);  // Aumentado de 80x60 a 120x90
     
-    // Símbolo contactless
+    // Símbolo contactless más grande
     ctx.strokeStyle = '#FFFFFF';
-    ctx.lineWidth = 3;
+    ctx.lineWidth = 4;  // Aumentado de 3 a 4
     for (let i = 0; i < 3; i++) {
       ctx.beginPath();
-      ctx.arc(170, 230, 15 + i * 10, -Math.PI / 4, Math.PI / 4);
+      ctx.arc(220, 225, 20 + i * 15, -Math.PI / 4, Math.PI / 4);  // Aumentado radio base y espaciado
       ctx.stroke();
     }
 
-    // Número de tarjeta
-    ctx.font = '36px "Courier New"';
-    ctx.fillStyle = '#FFFFFF';
-    ctx.textAlign = 'left';
-    ctx.fillText('**** **** **** 4242', 50, 400);
-
-    // Nombre del titular
-    ctx.font = '32px Arial';
-    ctx.fillText(name, 50, 500);
+    // Nombre del titular más grande y centrado
+    ctx.font = 'bold 48px Arial';  // Aumentado de 32px a 48px y añadido bold
+    ctx.textAlign = 'center';
+    ctx.fillText(name, canvas.width / 2, 500);
 
     // Fecha de validez
-    ctx.font = '24px Arial';
-    ctx.fillText('VALID THRU: 12/25', 50, 550);
+    ctx.font = '32px Arial';  // Aumentado de 24px a 32px
+    ctx.textAlign = 'left';
+    ctx.fillText('VALID THRU: 12/25', 50, 580);
 
     return new THREE.CanvasTexture(canvas);
   };
@@ -179,13 +175,13 @@ const Card3DViewer = () => {
 
     // Fondo plateado similar al frente
     const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-    gradient.addColorStop(0, '#808080');  // Plateado oscuro
-    gradient.addColorStop(0.5, '#505050'); // Plateado muy oscuro
-    gradient.addColorStop(1, '#303030');  // Casi negro
+    gradient.addColorStop(0, '#808080');
+    gradient.addColorStop(0.5, '#505050');
+    gradient.addColorStop(1, '#303030');
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Patrón de puntos similar al frente con efecto metálico
+    // Patrón de puntos similar al frente
     ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
     for (let i = 0; i < 100; i++) {
       for (let j = 0; j < 100; j++) {
@@ -203,26 +199,31 @@ const Card3DViewer = () => {
     ctx.fillStyle = bandGradient;
     ctx.fillRect(0, 100, canvas.width, 80);
 
+    // Número de tarjeta
+    ctx.font = 'bold 48px "Courier New"';  // Aumentado y en negrita
+    ctx.fillStyle = '#FFFFFF';
+    ctx.textAlign = 'center';
+    ctx.fillText('4242 4242 4242 4242', canvas.width / 2, 300);
+
     // Título "Security Code"
     ctx.fillStyle = '#FFFFFF';
     ctx.font = 'bold 36px Arial';
     ctx.textAlign = 'left';
-    ctx.fillText('Security Code:', 50, 300);
-    ctx.font = 'bold 36px Arial';
-    ctx.fillText('123', 300, 300);
+    ctx.fillText('Security Code:', 50, 400);
+    ctx.fillText('123', 300, 400);
 
     // Texto informativo
     ctx.font = '24px Arial';
     ctx.fillStyle = '#FFFFFF';
-    ctx.fillText('This is not a physical card, but a 3D rendering similar to a Zelify card,', 50, 380);
-    ctx.fillText('providing a visual reference of the physical product.', 50, 410);
+    ctx.fillText('This card is a 3D rendering of a Zelify card.', 50, 480);
+    ctx.fillText('For demonstration purposes only.', 50, 510);
 
     // Información adicional en la parte inferior
     ctx.font = '32px Arial';
     ctx.textAlign = 'left';
-    ctx.fillText('zelify.com', 50, 550);
+    ctx.fillText('zelify.com', 50, 580);
     ctx.textAlign = 'right';
-    ctx.fillText('DEBIT CARD', canvas.width - 50, 550);
+    ctx.fillText('DEBIT CARD', canvas.width - 50, 580);
 
     return new THREE.CanvasTexture(canvas);
   };
