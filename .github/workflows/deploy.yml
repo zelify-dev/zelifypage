@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   # Trigger the workflow every time you push to the `main` branch
   push:
-    branches: [master, main]
+    branches: [master]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -27,12 +27,12 @@ jobs:
           # node-version: 20 # The specific version of Node that should be used to build your site. Defaults to 18. (optional)
           # package-manager: pnpm@latest # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
 
-      # Actualizar todas las acciones según la tabla
+      # Usar un nombre único para el artifact
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
+          name: github-pages-${{ github.run_id }}  # Nombre único usando el ID de la ejecución
           path: ./dist
-          overwrite: true
 
       # Actualizar cache a v4 según la tabla
       - name: Cache Apt Packages
