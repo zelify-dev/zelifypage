@@ -27,7 +27,7 @@ jobs:
           # node-version: 18 # The specific version of Node that should be used to build your site. Defaults to 18. (optional)
           # package-manager: pnpm@latest # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
 
-      # Usar la última versión de upload-artifact con las nuevas opciones
+      # Actualizar todas las acciones según la tabla
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -36,15 +36,15 @@ jobs:
           overwrite: true
           include-hidden-files: true
 
-      # Usar la versión correcta de upload-pages-artifact
+      # Actualizar a v3 según la tabla
       - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
-      # Usar la versión específica de cache-apt-pkgs-action
+      # Actualizar cache a v4 según la tabla
       - name: Cache Apt Packages
-        uses: awalsh128/cache-apt-pkgs-action@v1.4.3
+        uses: actions/cache@v4
 
   deploy:
     needs: build
@@ -53,6 +53,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # Actualizar a v4 según la tabla
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
