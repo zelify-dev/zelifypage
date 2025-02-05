@@ -13,7 +13,17 @@ import i18next from 'i18next';
 
 // Initialize i18next
 const initI18next = async () => {
-	await i18next.changeLanguage('en');
+	await i18next.init({
+		lng: 'en',
+		fallbackLng: 'en',
+		resources: {
+			en: {
+				translation: {
+					'home.title': 'Zelify - Next Generation Banking'
+				}
+			}
+		}
+	});
 };
 await initI18next();
 

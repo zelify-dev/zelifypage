@@ -4,64 +4,98 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 // Clase para crear una geometría de caja con bordes redondeados
 class RoundedBoxGeometry extends THREE.BoxGeometry {
-  constructor(width: number, height: number, depth: number, radius: number, segments: number = 2) {
+  constructor(width: number, height: number, depth: number, radius: number = 0.1, segments: number = 2) {
     super(width, height, depth);
 
     const geometry = this;
     const pos = geometry.attributes.position;
     const normals = geometry.attributes.normal;
+
+    if (!pos || !normals) return;
+
     const w2 = width / 2;
     const h2 = height / 2;
     const d2 = depth / 2;
 
-    const positions = [];
-    const normalsArray = [];
+    const positions: number[] = [];
+    const normalsArray: number[] = [];
 
-    for (let i = 0; i < pos.count; i++) {
-      let x = pos.getX(i);
-      let y = pos.getY(i);
-      let z = pos.getZ(i);
-      let nx = normals.getX(i);
-      let ny = normals.getY(i);
-      let nz = normals.getZ(i);
-
-      // Redondear las esquinas en 3D
-      if ((Math.abs(x) === w2 && Math.abs(y) === h2) ||
-          (Math.abs(x) === w2 && Math.abs(z) === d2) ||
-          (Math.abs(y) === h2 && Math.abs(z) === d2)) {
+    // Helper function para redondeo mejorado
+    const roundPoint = (x: number, y: number, z: number): THREE.Vector3 => {
+      const point = new THREE.Vector3(x, y, z);
+      const direction = point.clone().normalize();
+      
+      // Aumentar significativamente el factor de redondeo
+      const moveIn = Math.min(radius * 3.5, Math.min(width, height, depth) / 2);
+      
+      // Función de suavizado personalizada para mejor redondeo
+      const smoothStep = (x: number) => {
+        return x * x * (3 - 2 * x);
+      };
+      
+      // Si es un borde o esquina, aplicar redondeo mejorado
+      if (Math.abs(Math.abs(x) - w2) < 0.001 || 
+          Math.abs(Math.abs(y) - h2) < 0.001 || 
+          Math.abs(Math.abs(z) - d2) < 0.001) {
         
-        const direction = new THREE.Vector3(
-          Math.abs(x) === w2 ? Math.sign(x) : 0,
-          Math.abs(y) === h2 ? Math.sign(y) : 0,
-          Math.abs(z) === d2 ? Math.sign(z) : 0
-        ).normalize();
-
-        const point = new THREE.Vector3(
-          Math.abs(x) === w2 ? (x > 0 ? w2 - radius : -w2 + radius) : x,
-          Math.abs(y) === h2 ? (y > 0 ? h2 - radius : -h2 + radius) : y,
-          Math.abs(z) === d2 ? (z > 0 ? d2 - radius : -d2 + radius) : z
-        );
-
-        const spherePoint = new THREE.Vector3(x, y, z).normalize().multiplyScalar(radius);
-        point.add(spherePoint);
+        // Mejorar la transición del redondeo con función suavizada
+        if (Math.abs(x) === w2) {
+          const yFactor = smoothStep(Math.abs(y/h2));
+          const zFactor = smoothStep(Math.abs(z/d2));
+          const factor = Math.pow(yFactor, 2) + Math.pow(zFactor, 2);
+          point.x = Math.sign(x) * (w2 - moveIn * Math.min(1, factor));
+        }
+        if (Math.abs(y) === h2) {
+          const xFactor = smoothStep(Math.abs(x/w2));
+          const zFactor = smoothStep(Math.abs(z/d2));
+          const factor = Math.pow(xFactor, 2) + Math.pow(zFactor, 2);
+          point.y = Math.sign(y) * (h2 - moveIn * Math.min(1, factor));
+        }
+        if (Math.abs(z) === d2) {
+          const xFactor = smoothStep(Math.abs(x/w2));
+          const yFactor = smoothStep(Math.abs(y/h2));
+          const factor = Math.pow(xFactor, 2) + Math.pow(yFactor, 2);
+          point.z = Math.sign(z) * (d2 - moveIn * Math.min(1, factor));
+        }
         
-        x = point.x;
-        y = point.y;
-        z = point.z;
-        
-        // Actualizar normales
-        const normal = new THREE.Vector3(x, y, z).normalize();
-        nx = normal.x;
-        ny = normal.y;
-        nz = normal.z;
+        // Mejorar el componente esférico con más intensidad
+        const sphericalOffset = direction.multiplyScalar(moveIn * 1.5);
+        point.add(sphericalOffset);
+
+        // Suavizado adicional para las esquinas
+        if (Math.abs(Math.abs(x) - w2) < 0.001 && 
+            Math.abs(Math.abs(y) - h2) < 0.001 && 
+            Math.abs(Math.abs(z) - d2) < 0.001) {
+          const cornerFactor = 0.8; // Factor de suavizado para esquinas
+          const cornerOffset = direction.multiplyScalar(moveIn * cornerFactor);
+          point.add(cornerOffset);
+        }
       }
+      
+      return point;
+    };
 
-      positions.push(x, y, z);
-      normalsArray.push(nx, ny, nz);
+    // Process each vertex
+    for (let i = 0; i < pos.count; i++) {
+      const x = pos.getX(i);
+      const y = pos.getY(i);
+      const z = pos.getZ(i);
+      
+      const roundedPoint = roundPoint(x, y, z);
+      positions.push(roundedPoint.x, roundedPoint.y, roundedPoint.z);
+      
+      // Calcular normales más suaves con mayor intensidad
+      const normal = roundedPoint.clone().normalize();
+      normal.multiplyScalar(1.5); // Aumentar el efecto de las normales
+      normalsArray.push(normal.x, normal.y, normal.z);
     }
 
+    // Update geometry
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
     geometry.setAttribute('normal', new THREE.Float32BufferAttribute(normalsArray, 3));
+    
+    // Compute vertex normals for smooth shading
+    geometry.computeVertexNormals();
   }
 }
 
@@ -208,8 +242,8 @@ const Card3DViewer = () => {
       0.1,
       1000
     );
-    camera.position.z = 4.5;
-    camera.position.y = 0;
+    camera.position.set(2, 1.5, 4);
+    camera.lookAt(0, 0, 0);
     cameraRef.current = camera;
 
     // Renderer setup con mejor calidad
@@ -217,110 +251,204 @@ const Card3DViewer = () => {
       antialias: true,
       alpha: true,
       premultipliedAlpha: false,
+      preserveDrawingBuffer: true,
     });
     renderer.setClearColor(0x000000, 0);
-    renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.outputEncoding = THREE.sRGBEncoding;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.5;
+    
+    // Obtener dimensiones del contenedor
+    const containerWidth = mountRef.current.clientWidth;
+    const containerHeight = mountRef.current.clientHeight;
+    
+    // Configurar el renderer y la cámara con las dimensiones correctas
+    renderer.setSize(containerWidth, containerHeight);
+    camera.aspect = containerWidth / containerHeight;
+    camera.updateProjectionMatrix();
+    
+    // Asegurarse de que el canvas se añada al DOM
+    if (mountRef.current.children.length === 0) {
+      mountRef.current.appendChild(renderer.domElement);
+    }
     rendererRef.current = renderer;
-    mountRef.current.appendChild(renderer.domElement);
 
-    // Iluminación mejorada
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+    // Ajustar el tamaño del canvas
+    renderer.domElement.style.width = '100%';
+    renderer.domElement.style.height = '100%';
+
+    // Iluminación mejorada y sutil
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
 
-    
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
-    directionalLight.position.set(5, 5, 5);
-    scene.add(directionalLight);
+    // Luz principal suave y amplia desde arriba - más intensa y más cercana
+    const mainLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    mainLight.position.set(0, 8, 6);
+    mainLight.castShadow = true;
+    mainLight.shadow.mapSize.width = 512;
+    mainLight.shadow.mapSize.height = 512;
+    mainLight.shadow.camera.near = 0.5;
+    mainLight.shadow.camera.far = 500;
+    scene.add(mainLight);
 
-    // Luces de acento para mejor definición
-    const pointLight1 = new THREE.PointLight(0x4477ff, 2);
-    pointLight1.position.set(0, 5, 3);
-    scene.add(pointLight1);
+    // Luz de relleno suave y amplia - más intensa
+    const fillLight = new THREE.DirectionalLight(0xffffff, 0.4);
+    fillLight.position.set(0, -4, 8);
+    scene.add(fillLight);
 
-    const pointLight2 = new THREE.PointLight(0xff7744, 2);
-    pointLight2.position.set(5, 0, 3);
-    scene.add(pointLight2);
+    // Luz lateral izquierda más intensa
+    const leftLight = new THREE.PointLight(0xffffff, 0.3);
+    leftLight.position.set(-5, 2, 4);
+    scene.add(leftLight);
 
-    // Luz trasera para mejor visibilidad
-    const backLight = new THREE.PointLight(0xffffff, 1);
-    backLight.position.set(-5, 0, -5);
+    // Luz lateral derecha más intensa
+    const rightLight = new THREE.PointLight(0xffffff, 0.3);
+    rightLight.position.set(5, 2, 4);
+    scene.add(rightLight);
+
+    // Luz trasera más intensa para definición
+    const backLight = new THREE.PointLight(0xffffff, 0.2);
+    backLight.position.set(0, 0, -4);
     scene.add(backLight);
 
-    // Controls setup
+    // Luz de área más intensa y más cercana
+    const areaLight = new THREE.RectAreaLight(0xffffff, 0.4, 20, 20);
+    areaLight.position.set(0, 6, 6);
+    areaLight.lookAt(0, 0, 0);
+    scene.add(areaLight);
+
+    // Controls setup con límites más restrictivos
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
-    controls.maxPolarAngle = Math.PI / 1.5;
-    controls.minPolarAngle = Math.PI / 3;
+    controls.maxPolarAngle = Math.PI / 1.8;
+    controls.minPolarAngle = Math.PI / 2.5;
+    controls.maxAzimuthAngle = Math.PI / 2;
+    controls.minAzimuthAngle = -Math.PI / 2;
+    controls.target.set(0, 0, 0);
+    controls.update();
     controlsRef.current = controls;
 
     // Create card with rounded edges
-    const cardGeometry = new RoundedBoxGeometry(3.37, 2.13, 0.06, 0.2, 8);
     const frontTexture = createCardTexture(cardName);
     const backTexture = createBackTexture();
     textureRef.current = frontTexture;
 
-    // Materiales mejorados
+    // Materiales mejorados con menos brillo
     const materials = [
       new THREE.MeshPhysicalMaterial({ 
-        color: 0xFFD700,  // Dorado más brillante
-        metalness: 0.9,
-        roughness: 0.1,
-        clearcoat: 0.6,
-        clearcoatRoughness: 0.1,
-        envMapIntensity: 1.5,
+        color: 0xFFD700,
+        metalness: 0.7,
+        roughness: 0.4,
+        clearcoat: 0.3,
+        clearcoatRoughness: 0.3,
+        reflectivity: 0.7,
+        envMapIntensity: 0.4,
+        side: THREE.DoubleSide,
+        flatShading: false,
       }), // Right
       new THREE.MeshPhysicalMaterial({ 
-        color: 0xFFD700,  // Dorado más brillante
-        metalness: 0.9,
-        roughness: 0.1,
-        clearcoat: 0.6,
-        clearcoatRoughness: 0.1,
-        envMapIntensity: 1.5,
+        color: 0xFFD700,
+        metalness: 0.7,
+        roughness: 0.4,
+        clearcoat: 0.3,
+        clearcoatRoughness: 0.3,
+        reflectivity: 0.7,
+        envMapIntensity: 0.4,
+        side: THREE.DoubleSide,
+        flatShading: false,
       }), // Left
       new THREE.MeshPhysicalMaterial({ 
-        color: 0xFFD700,  // Dorado más brillante
-        metalness: 0.9,
-        roughness: 0.1,
-        clearcoat: 0.6,
-        clearcoatRoughness: 0.1,
-        envMapIntensity: 1.5,
+        color: 0xFFD700,
+        metalness: 0.7,
+        roughness: 0.4,
+        clearcoat: 0.3,
+        clearcoatRoughness: 0.3,
+        reflectivity: 0.7,
+        envMapIntensity: 0.4,
+        side: THREE.DoubleSide,
+        flatShading: false,
       }), // Top
       new THREE.MeshPhysicalMaterial({ 
-        color: 0xFFD700,  // Dorado más brillante
-        metalness: 0.9,
-        roughness: 0.1,
-        clearcoat: 0.6,
-        clearcoatRoughness: 0.1,
-        envMapIntensity: 1.5,
+        color: 0xFFD700,
+        metalness: 0.7,
+        roughness: 0.4,
+        clearcoat: 0.3,
+        clearcoatRoughness: 0.3,
+        reflectivity: 0.7,
+        envMapIntensity: 0.4,
+        side: THREE.DoubleSide,
+        flatShading: false,
       }), // Bottom
       frontTexture ? new THREE.MeshPhysicalMaterial({ 
         map: frontTexture,
         metalness: 0.7,
-        roughness: 0.2,
-        clearcoat: 0.5,
-        clearcoatRoughness: 0.1,
+        roughness: 0.3,
+        clearcoat: 0.4,
+        clearcoatRoughness: 0.2,
+        reflectivity: 0.6,
+        envMapIntensity: 0.3,
+        flatShading: false,
       }) : new THREE.MeshPhysicalMaterial(), // Front
       backTexture ? new THREE.MeshPhysicalMaterial({ 
         map: backTexture,
         metalness: 0.7,
-        roughness: 0.2,
-        clearcoat: 0.5,
-        clearcoatRoughness: 0.1,
+        roughness: 0.3,
+        clearcoat: 0.4,
+        clearcoatRoughness: 0.2,
+        reflectivity: 0.6,
+        envMapIntensity: 0.3,
+        flatShading: false,
       }) : new THREE.MeshPhysicalMaterial(), // Back
     ];
+
+    // Crear geometría con bordes mucho más redondeados
+    const radius = 1.2; // Radio de redondeo aumentado significativamente
+    const segments = 1024; // Muchos más segmentos para mayor suavidad
+    const cardGeometry = new RoundedBoxGeometry(3.37, 2.13, 0.12, radius, segments);
+
+    // Suavizar normales para mejor efecto de redondeo
+    cardGeometry.computeVertexNormals();
+    
+    const positionAttribute = cardGeometry.attributes.position;
+    const normalAttribute = cardGeometry.attributes.normal;
+    
+    // Definir las dimensiones de la tarjeta para el cálculo de bordes
+    const cardWidth = 3.37;
+    const cardHeight = 2.13;
+    const cardDepth = 0.12;
+    const w2 = cardWidth / 2;
+    const h2 = cardHeight / 2;
+    const d2 = cardDepth / 2;
+    
+    if (positionAttribute && normalAttribute) {
+      // Aplicar suavizado adicional a las normales
+      for (let i = 0; i < positionAttribute.count; i++) {
+        const normal = new THREE.Vector3();
+        normal.fromBufferAttribute(normalAttribute, i);
+        
+        // Suavizar las normales para mejor reflejo en los bordes
+        const position = new THREE.Vector3();
+        position.fromBufferAttribute(positionAttribute, i);
+        const edgeFactor = Math.max(
+          1 - Math.abs(Math.abs(position.x) - w2),
+          1 - Math.abs(Math.abs(position.y) - h2),
+          1 - Math.abs(Math.abs(position.z) - d2)
+        );
+        
+        normal.normalize().multiplyScalar(0.8 + 0.2 * edgeFactor);
+        normalAttribute.setXYZ(i, normal.x, normal.y, normal.z);
+      }
+    }
 
     const card = new THREE.Mesh(cardGeometry, materials);
     const cardGroup = new THREE.Group();
     cardGroup.add(card);
+    
+    // Rotación inicial de la tarjeta para mejor iluminación
+    cardGroup.rotation.set(-0.2, 0.5, 0.1);
     scene.add(cardGroup);
     cardRef.current = cardGroup;
 
-    // Animation loop
+    // Animation loop con rotación más suave
     const animate = () => {
       requestAnimationFrame(animate);
       
@@ -329,7 +457,8 @@ const Card3DViewer = () => {
       }
 
       if (cardRef.current) {
-        cardRef.current.rotation.y += 0.001;
+        // Rotación más suave y sutil
+        cardRef.current.rotation.y += 0.0005;
       }
 
       renderer.render(scene, camera);
@@ -402,15 +531,15 @@ const Card3DViewer = () => {
         </div>
 
         {/* 3D Card Viewer */}
-        <div className="relative h-[500px] rounded-3xl overflow-hidden bg-transparent -mt-8">
+        <div className="relative h-[700px] rounded-3xl overflow-hidden bg-transparent">
           <div 
             ref={mountRef} 
-            className="absolute inset-0 bg-transparent"
+            className="absolute inset-0 bg-transparent w-full h-full"
           />
         </div>
 
         {/* Features section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
           {[
             {
               icon: "✨",
