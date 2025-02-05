@@ -12,6 +12,12 @@ export default defineConfig({
     build: {
       charset: 'utf8',
     },
+    ssr: {
+      noExternal: ['three'],
+    },
+    optimizeDeps: {
+      include: ['three'],
+    },
   },
   integrations: [
     tailwind(),

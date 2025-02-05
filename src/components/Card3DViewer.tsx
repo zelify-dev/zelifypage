@@ -231,6 +231,7 @@ const Card3DViewer = () => {
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
     scene.add(ambientLight);
 
+    
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
     directionalLight.position.set(5, 5, 5);
     scene.add(directionalLight);
@@ -401,7 +402,7 @@ const Card3DViewer = () => {
         </div>
 
         {/* 3D Card Viewer */}
-        <div className="relative h-[700px] rounded-3xl overflow-hidden bg-transparent">
+        <div className="relative h-[500px] rounded-3xl overflow-hidden bg-transparent -mt-8">
           <div 
             ref={mountRef} 
             className="absolute inset-0 bg-transparent"
@@ -409,7 +410,7 @@ const Card3DViewer = () => {
         </div>
 
         {/* Features section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
           {[
             {
               icon: "✨",
