@@ -32,6 +32,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
+          overwrite: true
 
       # Actualizar cache a v4 según la tabla
       - name: Cache Apt Packages
