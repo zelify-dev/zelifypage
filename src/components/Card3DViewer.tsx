@@ -116,15 +116,15 @@ const Card3DViewer = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return null;
 
-    // Gradiente dorado más brillante para el fondo
+    // Gradiente plateado más oscuro para el fondo
     const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-    gradient.addColorStop(0, '#FFD700');  // Dorado más brillante
-    gradient.addColorStop(0.5, '#FDB931'); // Dorado medio
-    gradient.addColorStop(1, '#F0B014');  // Dorado más cálido
+    gradient.addColorStop(0, '#808080');  // Plateado oscuro
+    gradient.addColorStop(0.5, '#505050'); // Plateado muy oscuro
+    gradient.addColorStop(1, '#303030');  // Casi negro
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Patrón de puntos más visible
+    // Patrón de puntos más visible con efecto metálico
     ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
     for (let i = 0; i < 100; i++) {
       for (let j = 0; j < 100; j++) {
@@ -177,15 +177,15 @@ const Card3DViewer = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return null;
 
-    // Fondo dorado similar al frente
+    // Fondo plateado similar al frente
     const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-    gradient.addColorStop(0, '#FFD700');  // Dorado más brillante
-    gradient.addColorStop(0.5, '#FDB931'); // Dorado medio
-    gradient.addColorStop(1, '#F0B014');  // Dorado más cálido
+    gradient.addColorStop(0, '#808080');  // Plateado oscuro
+    gradient.addColorStop(0.5, '#505050'); // Plateado muy oscuro
+    gradient.addColorStop(1, '#303030');  // Casi negro
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Patrón de puntos similar al frente
+    // Patrón de puntos similar al frente con efecto metálico
     ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
     for (let i = 0; i < 100; i++) {
       for (let j = 0; j < 100; j++) {
@@ -335,46 +335,46 @@ const Card3DViewer = () => {
     // Materiales mejorados con menos brillo
     const materials = [
       new THREE.MeshPhysicalMaterial({ 
-        color: 0xFFD700,
-        metalness: 0.7,
-        roughness: 0.4,
-        clearcoat: 0.3,
-        clearcoatRoughness: 0.3,
-        reflectivity: 0.7,
-        envMapIntensity: 0.4,
+        color: 0x505050,
+        metalness: 0.9,
+        roughness: 0.3,
+        clearcoat: 0.4,
+        clearcoatRoughness: 0.2,
+        reflectivity: 0.8,
+        envMapIntensity: 0.5,
         side: THREE.DoubleSide,
         flatShading: false,
       }), // Right
       new THREE.MeshPhysicalMaterial({ 
-        color: 0xFFD700,
-        metalness: 0.7,
-        roughness: 0.4,
-        clearcoat: 0.3,
-        clearcoatRoughness: 0.3,
-        reflectivity: 0.7,
-        envMapIntensity: 0.4,
+        color: 0x505050,
+        metalness: 0.9,
+        roughness: 0.3,
+        clearcoat: 0.4,
+        clearcoatRoughness: 0.2,
+        reflectivity: 0.8,
+        envMapIntensity: 0.5,
         side: THREE.DoubleSide,
         flatShading: false,
       }), // Left
       new THREE.MeshPhysicalMaterial({ 
-        color: 0xFFD700,
-        metalness: 0.7,
-        roughness: 0.4,
-        clearcoat: 0.3,
-        clearcoatRoughness: 0.3,
-        reflectivity: 0.7,
-        envMapIntensity: 0.4,
+        color: 0x505050,
+        metalness: 0.9,
+        roughness: 0.3,
+        clearcoat: 0.4,
+        clearcoatRoughness: 0.2,
+        reflectivity: 0.8,
+        envMapIntensity: 0.5,
         side: THREE.DoubleSide,
         flatShading: false,
       }), // Top
       new THREE.MeshPhysicalMaterial({ 
-        color: 0xFFD700,
-        metalness: 0.7,
-        roughness: 0.4,
-        clearcoat: 0.3,
-        clearcoatRoughness: 0.3,
-        reflectivity: 0.7,
-        envMapIntensity: 0.4,
+        color: 0x505050,
+        metalness: 0.9,
+        roughness: 0.3,
+        clearcoat: 0.4,
+        clearcoatRoughness: 0.2,
+        reflectivity: 0.8,
+        envMapIntensity: 0.5,
         side: THREE.DoubleSide,
         flatShading: false,
       }), // Bottom
@@ -489,8 +489,8 @@ const Card3DViewer = () => {
     <div className="relative min-h-screen bg-gradient-to-b from-black to-[#1a1a1a] py-20">
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#FFD700]/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#FDB931]/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#505050]/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#505050]/10 rounded-full blur-3xl"></div>
       </div>
 
       {/* Content container */}
@@ -498,19 +498,19 @@ const Card3DViewer = () => {
         {/* Header section */}
         <div className="text-center mb-16">
           <div className="inline-block">
-            <span className="inline-block text-sm font-semibold text-[#FFD700] bg-[#FFD700]/10 px-4 py-1 rounded-full mb-4">
+            <span className="inline-block text-sm font-semibold text-[#505050] bg-[#505050]/10 px-4 py-1 rounded-full mb-4">
               Physical Banking Experience
             </span>
           </div>
           <h2 className="text-6xl font-bold text-white mb-6">
-            Physical <span className="bg-gradient-to-r from-[#FFD700] via-[#FDB931] to-[#F0B014] text-transparent bg-clip-text">Cards</span>
+            Physical <span className="bg-gradient-to-r from-[#808080] via-[#505050] to-[#303030] text-transparent bg-clip-text">Cards</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
             Experience the tangible luxury of our physical cards, crafted with precision for your everyday banking needs
           </p>
 
           {/* Card name input with improved styling */}
-          <div className="inline-block bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10 shadow-2xl">
+          <div className="inline-block bg-black/30 backdrop-blur-lg rounded-2xl p-6 border border-white/10 shadow-2xl">
             <div className="flex flex-col items-center gap-3">
               <label className="text-white/80 text-sm font-medium">Customize your card</label>
               <input
@@ -518,8 +518,8 @@ const Card3DViewer = () => {
                 value={cardName}
                 onChange={(e) => setCardName(e.target.value.toUpperCase())}
                 placeholder="Enter your name"
-                className="w-64 bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 
-                  focus:outline-none focus:border-[#FFD700]/50 focus:ring-2 focus:ring-[#FFD700]/20 
+                className="w-64 bg-black/20 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 
+                  focus:outline-none focus:border-[#505050]/50 focus:ring-2 focus:ring-[#505050]/20 
                   transition-all duration-300 text-center font-medium"
                 maxLength={20}
               />
@@ -531,10 +531,10 @@ const Card3DViewer = () => {
         </div>
 
         {/* 3D Card Viewer */}
-        <div className="relative h-[700px] rounded-3xl overflow-hidden bg-transparent">
+        <div className="relative h-[700px] rounded-3xl overflow-hidden bg-black/30 backdrop-blur-lg border border-white/10">
           <div 
             ref={mountRef} 
-            className="absolute inset-0 bg-transparent w-full h-full"
+            className="absolute inset-0 w-full h-full"
           />
         </div>
 
@@ -544,7 +544,7 @@ const Card3DViewer = () => {
             {
               icon: "✨",
               title: "Premium Design",
-              description: "Metallic finish with golden details"
+              description: "Metallic finish with silver details"
             },
             {
               icon: "🔒",
@@ -557,7 +557,7 @@ const Card3DViewer = () => {
               description: "Access to special services and offers"
             }
           ].map((feature) => (
-            <div key={feature.title} className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+            <div key={feature.title} className="bg-black/30 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
               <div className="text-3xl mb-4">{feature.icon}</div>
               <h3 className="text-white text-lg font-semibold mb-2">{feature.title}</h3>
               <p className="text-gray-400">{feature.description}</p>

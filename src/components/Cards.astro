@@ -25,8 +25,12 @@ if (typeof window !== 'undefined') {
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 
-<section class="relative text-white py-32 overflow-hidden card-section">
-  <div class="absolute inset-0 bg-gradient w-full h-full"></div>
+<section class="relative text-white py-32 overflow-hidden card-section bg-gradient-to-b from-[#191919] to-[#1a1a1a]">
+  <div class="absolute inset-0 bg-gradient w-full h-full opacity-50"></div>
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-[#505050]/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-[#505050]/10 rounded-full blur-3xl"></div>
+  </div>
   <div class="spotlight"></div>
   <div class="mx-auto max-w-screen-lg px-4 sm:px-6 relative z-10">
     <div class="flex flex-col md:flex-row items-center gap-12">
@@ -276,8 +280,8 @@ if (typeof window !== 'undefined') {
     pointer-events: none;
     background: radial-gradient(
       1200px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-      rgba(112, 250, 126, 0.15),
-      rgba(54, 124, 244, 0.15),
+      rgba(80, 80, 80, 0.15),
+      rgba(80, 80, 80, 0.15),
       transparent 50%
     );
     mix-blend-mode: screen;
@@ -291,6 +295,360 @@ if (typeof window !== 'undefined') {
       transform: scale(0.9);
       margin: 0 auto;
       max-width: 100%;
+    }
+  }
+
+  /* Actualizar el fondo con gradiente */
+  .bg-gradient {
+    background: linear-gradient(
+      45deg,
+      rgba(54, 124, 244, 0.05),
+      rgba(25, 25, 25, 0.95),
+      rgba(112, 250, 126, 0.05)
+    );
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    position: relative;
+  }
+
+  .card-section {
+    background-color: transparent;
+  }
+
+  /* Segundo spotlight para más intensidad */
+  .spotlight::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(80, 80, 80, 0.1),
+      rgba(80, 80, 80, 0.1),
+      transparent 50%
+    );
+    mix-blend-mode: screen;
+    filter: blur(15px);
+  }
+
+  @keyframes textFloat {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+  }
+
+  .text-animate {
+    animation: textFloat 4s ease-in-out infinite;
+  }
+
+  /* Animación al hacer scroll */
+  @media (prefers-reduced-motion: no-preference) {
+    .card-container {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    .card-container.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .text-animate {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .text-animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Fondo con gradiente animado */
+  .bg-gradient {
+    background: linear-gradient(
+      45deg,
+      rgba(54, 124, 244, 0.05),
+      rgba(25, 25, 25, 0.95),
+      rgba(112, 250, 126, 0.05)
+    );
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    position: relative;
+  }
+
+  .bg-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    mix-blend-mode: overlay;
+  }
+
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Efecto spotlight que sigue al cursor */
+  .card-section {
+    background-color: transparent;
+  }
+
+  /* Efecto de partículas sutiles */
+  @keyframes float {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-10px) translateX(5px); }
+  }
+
+  .card-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(2px 2px at 40px 60px, #fff 100%, transparent),
+      radial-gradient(2px 2px at 20% 50%, #fff 100%, transparent),
+      radial-gradient(2px 2px at 30% 100px, #fff 100%, transparent),
+      radial-gradient(2px 2px at 40% 60%, #fff 100%, transparent),
+      radial-gradient(2px 2px at 110px 90px, #fff 100%, transparent),
+      radial-gradient(2px 2px at 80% 30%, #fff 100%, transparent);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 0.015;
+    animation: float 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  #toggleLock,
+  #googlePay,
+  #applePay {
+    min-width: 280px;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  /* Estilos para SweetAlert2 */
+  .animated-popup {
+    animation: popupScale 0.3s ease-out;
+  }
+
+  .swal-title {
+    font-size: 2rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .swal-html {
+    font-size: 1.1rem !important;
+    line-height: 1.5 !important;
+  }
+
+  @keyframes popupScale {
+    0% {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .metallic-card {
+    position: relative;
+    background-blend-mode: overlay;
+    background-size: 200% 200%;
+    filter: contrast(1.1) saturate(1.2);
+  }
+  
+  .metallic-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      125deg,
+      rgba(255,255,255,0.7) 0%,
+      rgba(255,255,255,0.3) 25%,
+      rgba(255,255,255,0.1) 50%,
+      rgba(255,255,255,0.3) 75%,
+      rgba(255,255,255,0.7) 100%
+    );
+    opacity: 0.4;
+    animation: metalShine 3s linear infinite;
+  }
+  
+  .metallic-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      45deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.4) 45%,
+      rgba(255, 255, 255, 0.7) 50%,
+      rgba(255, 255, 255, 0.4) 55%,
+      transparent 100%
+    );
+    opacity: 0.6;
+    animation: metalGlow 5s ease-in-out infinite;
+  }
+
+  @keyframes metalShine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  @keyframes metalGlow {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 0.8; }
+  }
+
+  @media (max-width: 640px) {
+    .card-container {
+      transform: scale(0.9);
+      margin: 0 auto;
+      max-width: 100%;
+    }
+  }
+
+  /* Mejora del rendimiento de las animaciones */
+  @media (prefers-reduced-motion: no-preference) {
+    .metallic-card {
+      will-change: transform, filter;
+    }
+    
+    .card-selector {
+      will-change: transform;
+    }
+  }
+
+  @keyframes pulse-strong {
+    0%, 100% { 
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(255,255,255,0.7);
+    }
+    50% { 
+      transform: scale(1.01);
+      box-shadow: 0 0 0 10px rgba(255,255,255,0);
+    }
+  }
+
+  .animate-pulse-strong {
+    animation: pulse-strong 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes shine-fast {
+    from {
+      transform: translateX(-100%) skewX(15deg);
+    }
+    to {
+      transform: translateX(200%) skewX(15deg);
+    }
+  }
+
+  .animate-shine-fast {
+    animation: shine-fast 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse-vertical {
+    0%, 100% { 
+      transform: scaleY(2) translateY(-50%);
+      opacity: 0.5;
+    }
+    50% { 
+      transform: scaleY(2) translateY(50%);
+      opacity: 0.2;
+    }
+  }
+
+  /* Estilos para Swiper */
+  .swiper {
+    padding: 1rem 0;
+  }
+
+  .swiper-slide {
+    width: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .swiper-pagination {
+    position: relative;
+    margin-top: 1rem;
+  }
+
+  .swiper-pagination-bullet {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .swiper-pagination-bullet-active {
+    background: white;
+  }
+
+  .card-selector {
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    opacity: 0.5;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .card-selector.active {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgb(59, 130, 246);
+  }
+
+  .card-selector img {
+    border-radius: 0.5rem;
+    display: block;
+  }
+
+  @media (max-width: 640px) {
+    .card-container {
+      transform: scale(0.9);
+      margin: 0 auto;
+      max-width: 100%;
+    }
+  }
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 2s linear infinite;
+  }
+
+  .confetti-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .confetti-piece {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: var(--confetti-color);
+    border-radius: 50%;
+    animation: confettiFall 1s ease-out forwards;
+  }
+
+  @keyframes confettiFall {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(20px) rotate(360deg);
+      opacity: 0;
     }
   }
 </style>
@@ -545,8 +903,8 @@ if (typeof window !== 'undefined') {
     pointer-events: none;
     background: radial-gradient(
       1200px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-      rgba(112, 250, 126, 0.15),
-      rgba(54, 124, 244, 0.15),
+      rgba(80, 80, 80, 0.15),
+      rgba(80, 80, 80, 0.15),
       transparent 50%
     );
     mix-blend-mode: screen;
@@ -594,9 +952,9 @@ if (typeof window !== 'undefined') {
   .bg-gradient {
     background: linear-gradient(
       45deg,
-      rgba(54, 124, 244, 0.15),
-      rgba(13, 13, 15, 0.95),
-      rgba(112, 250, 126, 0.15)
+      rgba(54, 124, 244, 0.05),
+      rgba(25, 25, 25, 0.95),
+      rgba(112, 250, 126, 0.05)
     );
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
@@ -619,7 +977,7 @@ if (typeof window !== 'undefined') {
 
   /* Efecto spotlight que sigue al cursor */
   .card-section {
-    background-color: rgb(8, 8, 12);
+    background-color: transparent;
   }
 
   /* Segundo spotlight para más intensidad */
@@ -629,8 +987,8 @@ if (typeof window !== 'undefined') {
     inset: 0;
     background: radial-gradient(
       600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-      rgba(112, 250, 126, 0.1),
-      rgba(54, 124, 244, 0.1),
+      rgba(80, 80, 80, 0.1),
+      rgba(80, 80, 80, 0.1),
       transparent 50%
     );
     mix-blend-mode: screen;
