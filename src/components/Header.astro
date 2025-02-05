@@ -1,56 +1,65 @@
 ---
+// @charset UTF-8
 import { t } from 'i18next';
 
 export interface Props {
 	links?: Array<{ label: string; href: string; }>;
 }
 
+const currentPath = Astro.url.pathname;
+const currentLang = currentPath.startsWith('/es') ? 'es' : 'en';
+const alternateUrl = currentLang === 'es' ? currentPath.replace('/es', '') : `/es${currentPath}`;
 ---
 
 <header class="relative z-50">
 	<div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
 		<div class="flex items-center gap-16">
-			<a href="/" class="flex items-center gap-2">
+			<a href={currentLang === 'es' ? '/es' : '/'} class="flex items-center gap-2">
 				<img src="/assets/img/logo_white.png" alt="Zelify" class="h-8" />
 			</a>
-
 			<nav class="hidden md:flex items-center gap-8">
-	
 				<a 
 					href="#cards" 
 					class="nav-item px-4 py-2 text-gray-50 font-medium"
 				>
-					Cards
+					{currentLang === 'es' ? 'Tarjetas' : 'Cards'}
 				</a>
 				<a 
 					href="#features" 
 					class="nav-item px-4 py-2 text-gray-50 font-medium"
 				>
-					Features
+					{currentLang === 'es' ? 'Características' : 'Features'}
 				</a>
 				<a 
 					href="#transfer" 
 					class="nav-item px-4 py-2 text-gray-50 font-medium"
 				>
-					International transfers
+					{currentLang === 'es' ? 'Transferencias Internacionales' : 'International transfers'}
 				</a>
 				<a 
 					href="#pricing" 
 					onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'}); return false;"
 					class="nav-item px-4 py-2 text-gray-50 font-medium"
 				>
-					Plans
+					{currentLang === 'es' ? 'Planes' : 'Plans'}
 				</a>
 			</nav>
 		</div>
 
 		<div class="flex items-center gap-4">
 			<a
-				href="/login"
+				href={`${currentLang === 'es' ? '/es' : ''}/login`}
 				class="inline-flex items-center justify-center px-4 py-2 border border-white text-white font-medium rounded-full hover:bg-white hover:text-blue-600 transition-all duration-300 text-sm gap-2"
 			>
 				<i class="eva eva-log-in-outline text-lg"></i>
-				Partner bank integration
+				{currentLang === 'es' ? 'Integración de banco asociado' : 'Partner bank integration'}
+			</a>
+			
+			<a
+				href={alternateUrl}
+				class="inline-flex items-center justify-center px-3 py-1 border border-white text-white font-medium rounded-full hover:bg-white hover:text-blue-600 transition-all duration-300 text-sm"
+			>
+				{currentLang === 'es' ? 'EN' : 'ES'}
 			</a>
 		</div>
 	</div>

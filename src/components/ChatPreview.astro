@@ -1,5 +1,6 @@
 ---
-import { t } from 'i18next';
+const currentPath = Astro.url.pathname;
+const isSpanish = currentPath.startsWith('/es');
 ---
 
 <div class="relative">
@@ -15,12 +16,12 @@ import { t } from 'i18next';
           <div class="flex items-center gap-2">
             <img 
               src="https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=150&h=150&fit=crop" 
-              alt="John Cooper" 
+              alt={isSpanish ? "Juan Perez" : "John Cooper"}
               class="w-8 h-8 rounded-full object-cover border-2 border-gray-200"
             />
             <div>
-              <h3 class="font-semibold text-gray-800 text-sm leading-tight">John Cooper</h3>
-              <p class="text-xs text-gray-500 leading-tight">@coop</p>
+              <h3 class="font-semibold text-gray-800 text-sm leading-tight">{isSpanish ? "Juan Perez" : "John Cooper"}</h3>
+              <p class="text-xs text-gray-500 leading-tight">@{isSpanish ? "juanp" : "coop"}</p>
             </div>
           </div>
           <div class="flex gap-3 ml-auto">
@@ -30,7 +31,7 @@ import { t } from 'i18next';
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
                 </svg>
               </button>
-              <span class="text-xs text-gray-600 mt-1">Transfer</span>
+              <span class="text-xs text-gray-600 mt-1">{isSpanish ? "Transferir" : "Transfer"}</span>
             </div>
             <div class="flex flex-col items-center">
               <button class="w-10 h-10 bg-blue-500 rounded-full text-white hover:bg-blue-600 transition-all transform hover:scale-105 flex items-center justify-center">
@@ -38,7 +39,7 @@ import { t } from 'i18next';
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
                 </svg>
               </button>
-              <span class="text-xs text-gray-600 mt-1">Request</span>
+              <span class="text-xs text-gray-600 mt-1">{isSpanish ? "Solicitar" : "Request"}</span>
             </div>
           </div>
         </div>
@@ -60,7 +61,7 @@ import { t } from 'i18next';
           <input 
             type="text" 
             id="message-input"
-            placeholder="Type a message..." 
+            placeholder={isSpanish ? "Escribe un mensaje..." : "Type a message..."} 
             class="flex-1 p-2 border rounded-full focus:outline-none focus:border-blue-500"
           />
           <button class="p-2 text-gray-600 hover:bg-gray-100 rounded-full" id="send-button">
@@ -302,187 +303,220 @@ import { t } from 'i18next';
 </style>
 
 <script>
-  const chatContainer = document.getElementById('chat-container');
-  const messageContainer = chatContainer?.querySelector('.space-y-3');
+  const currentPath = window.location.pathname;
+  const isSpanish = currentPath.startsWith('/es');
+  
+  const chatContainer = document.getElementById('chat-container')?.querySelector('.space-y-3');
+  const messageInput = document.getElementById('message-input');
+  const sendButton = document.getElementById('send-button');
+  const emojiButton = document.getElementById('emoji-button');
   const reactionsContainer = document.getElementById('reactions-container');
 
-  // Datos de ejemplo para simulación
-  const mockMessages = [
-    { text: "Hi! How's the project going? 👋", sender: "Joseph", type: "text" },
-    { text: "Hey! All good, almost done 💪", sender: "Me", type: "text" },
-    { text: "Hey, could you lend me some money for hosting? 🙏", sender: "Joseph", type: "text" },
-    { amount: 250.00, sender: "Joseph", type: "request" },
-    { text: "Sure, no problem! ✨", sender: "Me", type: "text" },
-    { amount: 250.00, sender: "Me", type: "transfer" },
-    { text: "Thanks! I'll pay you back on Friday 🙌", sender: "Joseph", type: "text" },
-    { text: "Perfect! 👍", sender: "Me", type: "text" },
-    { text: "By the way, wanna grab a coffee? ☕", sender: "Joseph", type: "text" },
-    { text: "Sure! Let me send you some for the cookies too 🍪", sender: "Me", type: "text" },
-    { amount: 100.00, sender: "Me", type: "transfer" },
-    { text: "Great! See you in 30 🚗", sender: "Joseph", type: "text" }
+  // Mensajes predefinidos según el idioma
+  const predefinedMessages = isSpanish ? [
+    { text: "Hola! Bienvenido a Zelify", sender: "other", time: "10:30" },
+    { text: "Gracias! Necesito hacer una transferencia internacional", sender: "user", time: "10:31" },
+    { text: "Con gusto te ayudo con eso", sender: "other", time: "10:31" },
+    { text: "Cuanto deseas transferir?", sender: "other", time: "10:32" },
+    { text: "Necesito enviar $250 a mi familia", sender: "user", time: "10:33" },
+    { text: "Perfecto, procesare tu solicitud", sender: "other", time: "10:33" },
+    { text: "La comision es solo del 3%", sender: "other", time: "10:34" },
+    { text: "Excelente, muchas gracias!", sender: "user", time: "10:35" },
+    { text: "Quieres proceder con la transferencia?", sender: "other", time: "10:35" },
+    { text: "Si, por favor", sender: "user", time: "10:36" },
+    { text: "Listo! Tu transferencia esta en proceso", sender: "other", time: "10:36" },
+    { text: "Gracias por usar Zelify", sender: "other", time: "10:37" }
+  ] : [
+    { text: "Hi! How's the project going? 👋", sender: "other", time: "10:30" },
+    { text: "Hey! All good, almost done 💪", sender: "user", time: "10:31" },
+    { text: "Hey, could you lend me some money for hosting? 🙏", sender: "other", time: "10:31" },
+    { text: "Sure, how much do you need? 💭", sender: "user", time: "10:32" },
+    { text: "About $250 if possible 🙌", sender: "other", time: "10:33" },
+    { text: "No problem at all! ✨", sender: "user", time: "10:33" },
+    { text: "You're the best! 🌟", sender: "other", time: "10:34" },
+    { text: "I'll pay you back on Friday 💯", sender: "other", time: "10:35" },
+    { text: "Take your time! 👍", sender: "user", time: "10:35" },
+    { text: "Want to grab a coffee later? ☕", sender: "other", time: "10:36" },
+    { text: "Sure! Let me send you some for the cookies too 🍪", sender: "user", time: "10:36" },
+    { text: "You're awesome! See you in 30 🚗", sender: "other", time: "10:37" }
   ];
 
-  // Mensajes familiares para alternar
-  const familyMessages = [
-    { text: "Hi son! How was your day? 😊", sender: "Dad", type: "text" },
-    { text: "Great dad! Everything good there? 🏠", sender: "Me", type: "text" },
-    { text: "Yes, all good. Hey, can you help me with groceries? 🛒", sender: "Dad", type: "text" },
-    { amount: 1500.00, sender: "Dad", type: "request" },
-    { text: "Of course! I'll transfer it right now ❤️", sender: "Me", type: "text" },
-    { amount: 1500.00, sender: "Me", type: "transfer" },
-    { text: "Thanks son! You're the best 🙏✨", sender: "Dad", type: "text" },
-    { text: "Coming for dinner on Sunday? 🍖", sender: "Dad", type: "text" },
-    { text: "Sure! I'll be there 🚗", sender: "Me", type: "text" }
-  ];
-
-  // Función para agregar mensaje con animación
-  function addMessage(amount: number, isSent: boolean = false) {
+  // Función para crear un mensaje
+  function createMessage(text: string, sender: string, time: string) {
     const messageDiv = document.createElement('div');
-    messageDiv.className = 'chat-message';
-    const time = new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
+    messageDiv.className = `chat-message flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
     
-    messageDiv.innerHTML = `
-      <div class="flex flex-col ${isSent ? 'items-end' : 'items-start'}">
-        <div class="p-3 rounded-2xl shadow-sm max-w-xs 
-          ${isSent ? 'bg-[#3983ED]/10' : 'bg-white'} 
-          transition-colors cursor-pointer">
-          <p class="text-sm text-gray-500">${isSent ? 'You sent' : 'John Cooper requests'}</p>
-          <p class="text-xl font-semibold text-[#3983ED]">$${amount.toFixed(2)}</p>
-          ${!isSent ? '<p class="text-sm text-gray-400">Tap to transfer</p>' : ''}
-        </div>
-        <span class="text-xs text-gray-400 mt-1 px-2">${time}</span>
-      </div>
-    `;
-
-    messageContainer?.appendChild(messageDiv);
-    chatContainer?.scrollTo(0, chatContainer.scrollHeight);
+    const innerDiv = document.createElement('div');
+    innerDiv.className = `${sender === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'} rounded-2xl px-4 py-2 max-w-[80%]`;
+    
+    const textP = document.createElement('p');
+    textP.className = 'text-sm';
+    textP.textContent = text;
+    
+    const timeSpan = document.createElement('span');
+    timeSpan.className = 'text-xs opacity-50 mt-1 block';
+    timeSpan.textContent = time;
+    
+    innerDiv.appendChild(textP);
+    innerDiv.appendChild(timeSpan);
+    messageDiv.appendChild(innerDiv);
+    
     return messageDiv;
   }
 
   // Función para mostrar el indicador de escritura
   function showTypingIndicator() {
+    if (!chatContainer) return null;
     const typingDiv = document.createElement('div');
-    typingDiv.className = 'chat-message typing-indicator';
+    typingDiv.className = 'chat-message flex justify-start';
     typingDiv.innerHTML = `
-      <div class="flex items-end gap-2 justify-start">
-        <div class="bg-gray-100 p-4 rounded-2xl shadow-sm">
-          <div class="flex gap-1">
-            <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0ms"></span>
-            <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 150ms"></span>
-            <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 300ms"></span>
-          </div>
+      <div class="bg-gray-200 rounded-2xl px-4 py-2">
+        <div class="flex gap-2">
+          <span class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: 0ms"></span>
+          <span class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: 150ms"></span>
+          <span class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: 300ms"></span>
         </div>
       </div>
     `;
-    messageContainer?.appendChild(typingDiv);
-    chatContainer?.scrollTo(0, chatContainer.scrollHeight);
+    chatContainer.appendChild(typingDiv);
     return typingDiv;
   }
 
-  // Función para iniciar la simulación automática
-  function startAutoChat() {
-    let index = 0;
-    let isShowingFamily = false;
+  // Función para manejar el scroll de manera suave
+  function scrollToBottom() {
+    if (!chatContainer) return;
+    const parent = chatContainer.parentElement;
+    if (!parent) return;
+
+    const isScrolledToBottom = parent.scrollHeight - parent.clientHeight <= parent.scrollTop + 100;
     
-    function sendNextMessage() {
-      const currentMessages = isShowingFamily ? familyMessages : mockMessages;
-      
-      if (index < currentMessages.length) {
-        const message = currentMessages[index];
-        const typingIndicator = showTypingIndicator();
-        
-        setTimeout(() => {
-          typingIndicator.remove();
-          let messageDiv;
-          
-          if (message.type === 'text') {
-            messageDiv = addTextMessage(message.text, message.sender);
-          } else if (message.type === 'request') {
-            messageDiv = addMessage(message.amount, false);
-          } else if (message.type === 'transfer') {
-            messageDiv = addMessage(message.amount, true);
-          }
-          
-          if (messageDiv) {
-            messageDiv.style.setProperty('--index', index.toString());
-            index++;
-            setTimeout(sendNextMessage, Math.random() * 1000 + 800);
-          }
-        }, Math.random() * 800 + 500);
-      } else {
-        // Reiniciar el ciclo alternando entre mensajes
-        index = 0;
-        isShowingFamily = !isShowingFamily;
-        setTimeout(sendNextMessage, 1000);
-      }
+    if (isScrolledToBottom) {
+      parent.scrollTo({
+        top: parent.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  // Función para agregar un mensaje con efecto de escritura
+  async function addMessageWithTyping(text: string, sender: string, time: string) {
+    if (!chatContainer) return;
+    
+    if (sender === 'other') {
+      const typingIndicator = showTypingIndicator();
+      scrollToBottom();
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      typingIndicator?.remove();
     }
     
-    setTimeout(sendNextMessage, 500);
+    const messageElement = createMessage(text, sender, time);
+    chatContainer.appendChild(messageElement);
+    scrollToBottom();
   }
 
-  // Función para añadir mensaje de texto
-  function addTextMessage(text: string, sender: string) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'chat-message';
-    const time = new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
+  // Cargar mensajes predefinidos
+  async function loadPredefinedMessages() {
+    if (!chatContainer) return;
+    chatContainer.innerHTML = '';
     
-    const isMe = sender === 'Me';
-    
-    messageDiv.innerHTML = `
-      <div class="flex flex-col ${isMe ? 'items-end' : 'items-start'}">
-        <div class="p-3 rounded-2xl shadow-sm max-w-xs 
-          ${isMe ? 'bg-[#3983ED] text-white' : 'bg-white'}
-          transition-colors">
-          <p>${text}</p>
-        </div>
-        <span class="text-xs text-gray-400 mt-1 px-2">${time}</span>
-      </div>
-    `;
-
-    messageContainer?.appendChild(messageDiv);
-    chatContainer?.scrollTo(0, chatContainer.scrollHeight);
-    return messageDiv;
+    for (let i = 0; i < predefinedMessages.length; i++) {
+      const message = predefinedMessages[i];
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      await addMessageWithTyping(message.text, message.sender, message.time);
+    }
   }
 
-  // Evento click para los mensajes y reacciones
-  document.addEventListener('click', (e) => {
-    const target = e.target as HTMLElement;
-    const message = target.closest('.chat-message');
+  // Manejar el envío de mensajes
+  async function handleSendMessage() {
+    if (!messageInput || !(messageInput instanceof HTMLInputElement)) return;
+    const text = messageInput.value.trim();
+    if (!text) return;
     
-    if (message) {
-      const rect = message.getBoundingClientRect();
-      for (let i = 0; i < 3; i++) {
-        setTimeout(() => {
-          createReaction(
-            rect.left + Math.random() * rect.width,
-            rect.top + Math.random() * rect.height
-          );
-        }, i * 100);
-      }
+    await addMessageWithTyping(text, 'user', getCurrentTime());
+    messageInput.value = '';
+    
+    // Simular respuesta después de un breve retraso
+    const response = isSpanish ? 
+      "Perfecto! Procesare tu solicitud de inmediato" : 
+      "Perfect! I'll process your request right away ✨";
+    await addMessageWithTyping(response, 'other', getCurrentTime());
+  }
+
+  function getCurrentTime() {
+    const now = new Date();
+    return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+  }
+
+  // Event listeners
+  sendButton?.addEventListener('click', handleSendMessage);
+  
+  messageInput?.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      handleSendMessage();
     }
   });
 
-  // Función para crear reacciones aleatorias
-  function createReaction(x: number, y: number) {
-    const reactions = ['❤️', '👍', '💙', '💫', '⭐️', '✨'];
-    const reaction = document.createElement('span');
-    reaction.className = 'reaction';
-    reaction.textContent = reactions[Math.floor(Math.random() * reactions.length)];
+  // Cargar mensajes al inicio
+  loadPredefinedMessages();
+
+  // Manejar reacciones de emojis
+  let isEmojiMenuOpen = false;
+  const emojis = ['👍', '❤️', '😊', '🎉', '👏', '🙌'];
+
+  function createEmojiMenu(x: number, y: number) {
+    const menu = document.createElement('div');
+    menu.className = 'absolute bg-white rounded-full shadow-lg p-2 flex gap-2 transform -translate-x-1/2 z-50';
+    menu.style.left = `${x}px`;
+    menu.style.top = `${y}px`;
+    
+    emojis.forEach(emoji => {
+      const button = document.createElement('button');
+      button.className = 'hover:scale-125 transition-transform';
+      button.textContent = emoji;
+      button.onclick = () => {
+        addReaction(emoji, x, y);
+        menu.remove();
+        isEmojiMenuOpen = false;
+      };
+      menu.appendChild(button);
+    });
+    
+    return menu;
+  }
+
+  function addReaction(emoji: string, x: number, y: number) {
+    if (!reactionsContainer) return;
+    
+    const reaction = document.createElement('div');
+    reaction.className = 'reaction absolute';
+    reaction.textContent = emoji;
     reaction.style.left = `${x}px`;
     reaction.style.top = `${y}px`;
+    
     reactionsContainer.appendChild(reaction);
 
-    // Eliminar el elemento después de la animación
-    setTimeout(() => {
-      reaction.remove();
-    }, 1500);
+    // Eliminar después de la animación
+    setTimeout(() => reaction.remove(), 1500);
   }
 
-  // Añadir delays aleatorios a los iconos de fondo
-  document.querySelectorAll('.repeat-icon').forEach((icon, index) => {
-    icon.style.setProperty('--delay', index.toString());
+  emojiButton?.addEventListener('click', () => {
+    if (isEmojiMenuOpen) return;
+    
+    const rect = emojiButton.getBoundingClientRect();
+    const menu = createEmojiMenu(rect.left + rect.width / 2, rect.top - 10);
+    document.body.appendChild(menu);
+    isEmojiMenuOpen = true;
+    
+    // Cerrar menú al hacer clic fuera
+    const closeMenu = (e: MouseEvent) => {
+      const target = e.target as Node;
+      if (!menu.contains(target)) {
+        menu.remove();
+        isEmojiMenuOpen = false;
+        document.removeEventListener('click', closeMenu);
+      }
+    };
+    
+    setTimeout(() => document.addEventListener('click', closeMenu), 0);
   });
-
-  // Iniciar el chat automático inmediatamente
-  startAutoChat();
 </script> 

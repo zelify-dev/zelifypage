@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { ExternalCashout } from './Features/ExternalCashout';
 import { ConfirmSlider } from './Features/ConfirmSlider';
 
+// Detectar idioma basado en la ruta
+const isSpanish = window.location.pathname.startsWith('/es');
+
 interface Service {
   id: string;
   name: string;
@@ -23,15 +26,20 @@ interface TransactionConfirmationProps {
   onBack: () => void;
 }
 
+interface FloatingMessage {
+  amount: number;
+  action: string;
+}
+
 const NavigationBar = ({ activeTab = "Transfer" }) => (
   <div className="absolute bottom-0 left-0 right-0 border-t border-gray-200 py-3 px-6 bg-white">
     <div className="flex justify-between">
       {[
-        { icon: 'home-outline', text: 'Home' },
-        { icon: 'swap-outline', text: 'Transfer' },
-        { icon: 'credit-card-outline', text: 'Cards' },
-        { icon: 'message-square-outline', text: 'Chat' },
-        { icon: 'person-outline', text: 'Profile' }
+        { icon: 'home-outline', text: isSpanish ? 'Inicio' : 'Home' },
+        { icon: 'swap-outline', text: isSpanish ? 'Transferir' : 'Transfer' },
+        { icon: 'credit-card-outline', text: isSpanish ? 'Tarjetas' : 'Cards' },
+        { icon: 'message-square-outline', text: isSpanish ? 'Chat' : 'Chat' },
+        { icon: 'person-outline', text: isSpanish ? 'Perfil' : 'Profile' }
       ].map(({ icon, text }) => (
         <button key={text} className="flex flex-col items-center gap-1">
           <i className={`eva eva-${icon} text-xl ${text === activeTab ? 'text-[#3983ED]' : 'text-gray-600'}`} />
@@ -47,7 +55,7 @@ const NavigationBar = ({ activeTab = "Transfer" }) => (
 const TransactionConfirmation = ({ 
   amount = 600, 
   fee = 0, 
-  recipient = "John Cooper",
+  recipient = isSpanish ? "Juan Perez" : "John Cooper",
   onBack 
 }: TransactionConfirmationProps) => (
   <div className="slide min-w-full h-[600px] bg-white relative">
@@ -58,21 +66,25 @@ const TransactionConfirmation = ({
       >
         <i className="eva eva-arrow-back-outline text-xl" />
       </button>
-      <h2 className="text-[#3983ED] text-base font-medium">Confirm Transaction</h2>
+      <h2 className="text-[#3983ED] text-base font-medium">
+        {isSpanish ? 'Confirmar Transacción' : 'Confirm Transaction'}
+      </h2>
     </div>
 
     <div className="p-6 space-y-6 mb-20">
       <div className="bg-white rounded-xl">
-        <h3 className="text-lg font-bold mb-6">Transaction Details</h3>
+        <h3 className="text-lg font-bold mb-6">
+          {isSpanish ? 'Detalles de la Transacción' : 'Transaction Details'}
+        </h3>
         
         <div className="space-y-4">
           <div className="flex justify-between items-center">
-            <span className="text-gray-600 text-xs">Date/Time</span>
+            <span className="text-gray-600 text-xs">{isSpanish ? 'Fecha/Hora' : 'Date/Time'}</span>
             <span className="text-gray-900 text-xs">{new Date().toLocaleString()}</span>
           </div>
           
           <div className="flex justify-between items-center">
-            <span className="text-gray-600 text-xs">Recipient</span>
+            <span className="text-gray-600 text-xs">{isSpanish ? 'Destinatario' : 'Recipient'}</span>
             <div className="flex items-center gap-2">
               {recipient.includes('Service') ? (
                 <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center">
@@ -93,22 +105,22 @@ const TransactionConfirmation = ({
           </div>
           
           <div className="flex justify-between items-center">
-            <span className="text-gray-600 text-xs">Payment Method</span>
-            <span className="text-gray-900 text-xs">BALANCE</span>
+            <span className="text-gray-600 text-xs">{isSpanish ? 'Método de Pago' : 'Payment Method'}</span>
+            <span className="text-gray-900 text-xs">{isSpanish ? 'SALDO' : 'BALANCE'}</span>
           </div>
           
           <div className="flex justify-between items-center">
-            <span className="text-gray-600 text-xs">Amount</span>
+            <span className="text-gray-600 text-xs">{isSpanish ? 'Monto' : 'Amount'}</span>
             <span className="text-gray-900 text-xs">${amount.toFixed(2)}</span>
           </div>
           
           <div className="flex justify-between items-center">
-            <span className="text-gray-600 text-xs">Fee</span>
+            <span className="text-gray-600 text-xs">{isSpanish ? 'Comisión' : 'Fee'}</span>
             <span className="text-gray-900 text-xs">${fee.toFixed(2)}</span>
           </div>
           
           <div className="flex justify-between items-center pt-4 mt-2 border-t border-gray-200">
-            <span className="text-gray-900 font-bold text-lg">Total</span>
+            <span className="text-gray-900 font-bold text-lg">{isSpanish ? 'Total' : 'Total'}</span>
             <span className="text-gray-900 font-bold text-lg">${(amount + fee).toFixed(2)}</span>
           </div>
         </div>
@@ -123,7 +135,7 @@ const TransactionConfirmation = ({
               status: 'success'
             });
           }}
-          text="Slide to confirm"
+          text={isSpanish ? "Desliza" : "Slide"}
         />
       </div>
     </div>
@@ -142,11 +154,15 @@ const UtilityServices = ({
       <button className="text-[#3983ED] p-2 hover:bg-gray-100 rounded-full transition-all">
         <i className="eva eva-arrow-back-outline text-xl" />
       </button>
-      <h2 className="text-[#3983ED] text-base font-medium">Utility Services</h2>
+      <h2 className="text-[#3983ED] text-base font-medium">
+        {isSpanish ? 'Servicios Públicos' : 'Utility Services'}
+      </h2>
     </div>
 
     <div className="p-6">
-      <h3 className="text-base font-bold mb-6">Available Services:</h3>
+      <h3 className="text-base font-bold mb-6">
+        {isSpanish ? 'Servicios Disponibles:' : 'Available Services:'}
+      </h3>
       
       <div className="grid grid-cols-2 gap-4">
         {services.map(service => (
@@ -176,7 +192,10 @@ const TransferModal = ({ isOpen, onClose, type }: TransferModalProps) => {
       <div className="bg-white w-[90%] rounded-2xl p-5">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-medium">
-            {type === 'transfer' ? 'Send Money' : 'Request Money'}
+            {type === 'transfer' 
+              ? (isSpanish ? 'Enviar Dinero' : 'Send Money')
+              : (isSpanish ? 'Solicitar Dinero' : 'Request Money')
+            }
           </h3>
           <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -187,7 +206,7 @@ const TransferModal = ({ isOpen, onClose, type }: TransferModalProps) => {
 
         <div className="space-y-4">
           <div>
-            <label className="block text-sm text-gray-600 mb-1">Amount</label>
+            <label className="block text-sm text-gray-600 mb-1">{isSpanish ? 'Monto' : 'Amount'}</label>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
               <input
@@ -198,10 +217,31 @@ const TransferModal = ({ isOpen, onClose, type }: TransferModalProps) => {
             </div>
           </div>
 
+          <div>
+            <label className="block text-sm text-gray-600 mb-1">{isSpanish ? 'Destinatario' : 'Recipient'}</label>
+            <input
+              type="text"
+              className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#3983ED]"
+              placeholder={isSpanish ? "Nombre o correo electrónico" : "Name or email"}
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm text-gray-600 mb-1">{isSpanish ? 'Concepto' : 'Description'}</label>
+            <input
+              type="text"
+              className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#3983ED]"
+              placeholder={isSpanish ? "¿Para qué es esta transferencia?" : "What's this transfer for?"}
+            />
+          </div>
+
           <button 
-            className="w-full py-2.5 bg-[#3983ED] text-white rounded-xl text-sm font-medium"
+            className="w-full py-2.5 bg-[#3983ED] text-white rounded-xl text-sm font-medium hover:bg-[#3273d3] transition-colors"
           >
-            {type === 'transfer' ? 'Send Money' : 'Request Money'}
+            {type === 'transfer' 
+              ? (isSpanish ? 'Enviar Dinero' : 'Send Money')
+              : (isSpanish ? 'Solicitar Dinero' : 'Request Money')
+            }
           </button>
         </div>
       </div>
@@ -217,33 +257,33 @@ const Features = () => {
   const [showRequestModal, setShowRequestModal] = useState(false);
 
   // Datos estáticos
-  const services = [
-    { id: 'water', name: 'Water', icon: 'droplet', amount: 120.50, fee: 0.50 },
-    { id: 'electricity', name: 'Electricity', icon: 'bulb', amount: 200.75, fee: 0.75 },
-    { id: 'internet', name: 'Internet', icon: 'wifi', amount: 89.99, fee: 0.45 },
-    { id: 'phone', name: 'Phone', icon: 'phone', amount: 65.00, fee: 0.35 }
-  ] as const;
+  const services: Service[] = [
+    { id: 'water', name: isSpanish ? 'Agua' : 'Water', icon: 'droplet', amount: 120.50, fee: 0.50 },
+    { id: 'electricity', name: isSpanish ? 'Electricidad' : 'Electricity', icon: 'bulb', amount: 200.75, fee: 0.75 },
+    { id: 'internet', name: isSpanish ? 'Internet' : 'Internet', icon: 'wifi', amount: 89.99, fee: 0.45 },
+    { id: 'phone', name: isSpanish ? 'Teléfono' : 'Phone', icon: 'phone', amount: 65.00, fee: 0.35 }
+  ];
 
   const features = [
     { 
-      name: 'Internal Transfer', 
+      name: isSpanish ? 'Transferencia Interna' : 'Internal Transfer', 
       icon: 'swap',
-      description: 'Send money instantly between accounts'
+      description: isSpanish ? 'Envía dinero instantáneamente entre cuentas' : 'Send money instantly between accounts'
     },
     { 
-      name: 'Utility Services', 
+      name: isSpanish ? 'Servicios Públicos' : 'Utility Services', 
       icon: 'grid',
-      description: 'Pay all your bills in one place'
+      description: isSpanish ? 'Paga todas tus facturas en un solo lugar' : 'Pay all your bills in one place'
     },
     { 
-      name: 'External Cashout', 
+      name: isSpanish ? 'Retiro Externo' : 'External Cashout', 
       icon: 'download',
-      description: 'Withdraw to external accounts'
+      description: isSpanish ? 'Retira a cuentas externas' : 'Withdraw to external accounts'
     },
     { 
-      name: 'Pay via chat', 
+      name: isSpanish ? 'Pago por chat' : 'Pay via chat', 
       icon: 'message-square',
-      description: 'Effortless Social Payments with Zelify'
+      description: isSpanish ? 'Pagos sociales sin esfuerzo con Zelify' : 'Effortless Social Payments with Zelify'
     }
   ] as const;
 
@@ -265,94 +305,35 @@ const Features = () => {
     setActiveService(null);
   };
 
+  // Traducir los mensajes flotantes
+  const floatingMessages: FloatingMessage[] = [
+    { amount: 26.50, action: isSpanish ? 'te pagó' : 'paid you' },
+    { amount: 55.20, action: isSpanish ? 'transfirió' : 'transferred' },
+    { amount: 23.50, action: isSpanish ? 'solicitó' : 'requested' },
+    { amount: 128.50, action: isSpanish ? 'dividió la cuenta' : 'split bill' },
+    { amount: 15.75, action: isSpanish ? 'envió' : 'sent' },
+    { amount: 42.30, action: isSpanish ? 'pagó' : 'paid' },
+    { amount: 33.90, action: isSpanish ? 'recibió' : 'received' }
+  ];
+
   return (
     <div className="mx-auto max-w-screen-xl px-4 min-h-screen flex items-center py-8">
-      {/* Avatares flotantes con mensajes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        {/* Burbuja de chat estilo Monzo - Superior */}
-        <div className="absolute top-20 right-[5%] animate-float-slow lg:block hidden">
+        {floatingMessages.map((message, index) => (
+          <div key={index} className={`absolute ${getFloatingMessagePosition(index)} lg:block hidden`}>
           <div className="relative">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" className="w-12 h-12 rounded-full border-2 border-white shadow-lg object-cover" />
-            <div className="absolute -right-32 top-1/2 -translate-y-1/2 bg-white text-gray-800 text-xs px-4 py-3 rounded-[18px] shadow-lg border border-gray-100 whitespace-nowrap">
-              <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-l border-t border-gray-100 transform -rotate-45"></div>
-              paid you $26.50
+              <img 
+                src={`https://randomuser.me/api/portraits/${index % 2 === 0 ? 'men' : 'women'}/${32 + index}.jpg`} 
+                alt="" 
+                className="w-12 h-12 rounded-full border-2 border-white shadow-lg object-cover" 
+              />
+              <div className={`absolute ${getMessagePosition(index)} top-1/2 -translate-y-1/2 bg-white text-gray-800 text-xs px-4 py-3 rounded-[18px] shadow-lg border border-gray-100 whitespace-nowrap`}>
+                <div className={`absolute ${getArrowPosition(index)} top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-l border-t border-gray-100 transform ${getArrowRotation(index)}`}></div>
+                {`${message.action} $${message.amount.toFixed(2)}`}
+        </div>
             </div>
           </div>
-        </div>
-        
-        {/* Nueva burbuja - Superior derecha */}
-        <div className="absolute top-[25%] right-[8%] animate-float-delayed-3 lg:block hidden">
-          <div className="relative">
-            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="" className="w-10 h-10 rounded-full border-2 border-white shadow-lg object-cover" />
-            <div className="absolute -left-36 top-1/2 -translate-y-1/2 bg-white text-gray-800 text-xs px-4 py-3 rounded-[18px] shadow-lg border border-gray-100 whitespace-nowrap">
-              <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-r border-t border-gray-100 transform rotate-45"></div>
-              transferred $55.20
-            </div>
-          </div>
-        </div>
-        
-        {/* Grupo derecho */}
-        <div className="absolute top-[15%] right-[15%] animate-float-delayed lg:block hidden">
-          <div className="relative">
-            <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="" className="w-12 h-12 rounded-full border-2 border-white shadow-lg object-cover" />
-            <div className="absolute -left-32 top-1/2 -translate-y-1/2 bg-white text-gray-800 text-xs px-4 py-3 rounded-[18px] shadow-lg border border-gray-100 whitespace-nowrap">
-              <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-r border-t border-gray-100 transform rotate-45"></div>
-              requested $23.50
-            </div>
-          </div>
-        </div>
-        
-        {/* Nueva burbuja - Centro derecha */}
-        <div className="absolute top-[45%] right-[12%] animate-float-slow-4 lg:block hidden">
-          <div className="relative">
-            <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="" className="w-11 h-11 rounded-full border-2 border-white shadow-lg object-cover" />
-            <div className="absolute -right-36 top-1/2 -translate-y-1/2 bg-white text-gray-800 text-xs px-4 py-3 rounded-[18px] shadow-lg border border-gray-100 whitespace-nowrap">
-              <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-l border-t border-gray-100 transform -rotate-45"></div>
-              split bill $128.50
-            </div>
-          </div>
-        </div>
-        
-        {/* Grupo izquierdo */}
-        <div className="absolute top-[60%] right-[25%] animate-float-slow-2 lg:block hidden">
-          <div className="relative">
-            <img src="https://randomuser.me/api/portraits/men/92.jpg" alt="" className="w-10 h-10 rounded-full border-2 border-white shadow-lg object-cover" />
-            <div className="absolute -right-20 top-1/2 -translate-y-1/2 bg-white text-gray-800 text-xs px-3 py-2 rounded-xl shadow-lg border border-gray-100 whitespace-nowrap">
-              <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-l border-t border-gray-100 transform -rotate-45"></div>
-              sent $15.75
-            </div>
-          </div>
-        </div>
-        
-        {/* Grupo inferior */}
-        <div className="absolute bottom-[30%] right-[10%] animate-float-delayed-2 lg:block hidden">
-          <div className="relative">
-            <img src="https://randomuser.me/api/portraits/women/29.jpg" alt="" className="w-11 h-11 rounded-full border-2 border-white shadow-lg object-cover" />
-            <div className="absolute -left-24 top-1/2 -translate-y-1/2 bg-white text-gray-800 text-xs px-3 py-2 rounded-xl shadow-lg border border-gray-100 whitespace-nowrap">
-              <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-r border-t border-gray-100 transform rotate-45"></div>
-              paid $42.30
-            </div>
-          </div>
-        </div>
-        
-        {/* Grupo central */}
-        <div className="absolute top-[40%] right-[35%] animate-float-slow-3 lg:block hidden">
-          <div className="relative">
-            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="" className="w-9 h-9 rounded-full border-2 border-white shadow-lg object-cover" />
-            <div className="absolute -right-24 top-1/2 -translate-y-1/2 bg-white text-gray-800 text-xs px-3 py-2 rounded-xl shadow-lg border border-gray-100 whitespace-nowrap">
-              <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-l border-t border-gray-100 transform -rotate-45"></div>
-              received $33.90
-            </div>
-          </div>
-        </div>
-        
-        {/* Mini avatares decorativos sin mensajes */}
-        <div className="absolute top-[25%] right-[40%] animate-float-mini lg:block hidden">
-          <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="" className="w-8 h-8 rounded-full border-2 border-white shadow-lg opacity-50 object-cover" />
-        </div>
-        <div className="absolute bottom-[20%] right-[45%] animate-float-mini-2 lg:block hidden">
-          <img src="https://randomuser.me/api/portraits/women/89.jpg" alt="" className="w-7 h-7 rounded-full border-2 border-white shadow-lg opacity-50 object-cover" />
-        </div>
+        ))}
       </div>
 
       <div className="flex flex-col lg:flex-row items-center justify-between gap-12 relative z-10">
@@ -361,13 +342,13 @@ const Features = () => {
             <div className="absolute -top-20 -left-20 w-40 h-40 bg-gradient-to-br from-blue-500/20 to-green-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
             <div className="relative">
               <span className="inline-block text-sm font-semibold text-blue-600 bg-blue-50 px-4 py-1 rounded-full mb-4">
-                In features
+                {isSpanish ? 'En características' : 'In features'}
               </span>
               <h2 className="text-6xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-[#3983ED] to-[#70FA7E] mx-auto lg:mx-0 mb-6">
-              Zelify powers banking for both personal and business users
+                {isSpanish ? 'Zelify potencia la banca para usuarios personales y empresariales' : 'Zelify powers banking for both personal and business users'}
               </h2>
               <p className="text-xl text-gray-600 pr-4 max-w-lg mx-auto lg:mx-0">
-              Send, split, or gift money instantl. No hassle, no waiting, just smooth transactions at your fingertips. Sending and receiving money is as easy as texting a friend.
+                {isSpanish ? 'Envía, divide o regala dinero al instante. Sin complicaciones, sin esperas, solo transacciones fluidas al alcance de tu mano. Enviar y recibir dinero es tan fácil como enviar un mensaje a un amigo.' : 'Send, split, or gift money instantly. No hassle, no waiting, just smooth transactions at your fingertips. Sending and receiving money is as easy as texting a friend.'}
               </p>
             </div>
           </div>
@@ -592,6 +573,32 @@ const Features = () => {
       </div>
     </div>
   );
+};
+
+// Funciones auxiliares para posicionamiento
+const getFloatingMessagePosition = (index: number): string => {
+  const positions = [
+    'top-20 right-[5%]',
+    'top-[25%] right-[8%]',
+    'top-[15%] right-[15%]',
+    'top-[45%] right-[12%]',
+    'top-[60%] right-[25%]',
+    'bottom-[30%] right-[10%]',
+    'top-[40%] right-[35%]'
+  ] as const;
+  return positions[Math.abs(index) % positions.length];
+};
+
+const getMessagePosition = (index: number): string => {
+  return index % 2 === 0 ? '-right-32' : '-left-32';
+};
+
+const getArrowPosition = (index: number): string => {
+  return index % 2 === 0 ? '-left-2' : '-right-2';
+};
+
+const getArrowRotation = (index: number): string => {
+  return index % 2 === 0 ? '-rotate-45' : 'rotate-45';
 };
 
 export default Features;

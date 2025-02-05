@@ -1,0 +1,226 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import GradientBackground from '../components/GradientBackground.astro';
+import Hero from '../components/Hero.astro';
+import Cards from '../components/Cards.astro';
+import Features from '../components/Features.astro';
+import InternationalTransfer from '../components/InternationalTransfer';
+import Pricing from '../components/Pricing';
+import Footer from '../components/Footer.astro';
+import { t } from 'i18next';
+
+// Inicializar i18next con español
+import i18next from 'i18next';
+await i18next.changeLanguage('es');
+
+const plans = [
+	{
+		name: "Standard",
+		price: "Gratis",
+		description: "Banca digital básica para todos",
+		monthlyPrice: "$0",
+		features: [
+			{ text: "4% Comisión en Transferencias Internacionales", type: "basic" },
+			{ text: "Soporte al Cliente Básico", type: "basic" },
+			{ text: "Interés en Cuenta de Ahorro", type: "included" },
+			{ text: "Cuenta de Ahorro Instantánea", type: "included" },
+			{ text: "Beneficios y Descuentos de Estilo de Vida", type: "included" },
+			{ text: "Tarjeta Virtual", type: "not-included" },
+			{ text: "Suscripciones de Socios", type: "not-included" }
+		],
+		penetration: "50%",
+		color: "gray"
+	},
+	{
+		name: "Plus",
+		price: "$4.99",
+		description: "Características mejoradas para la banca diaria",
+		features: [
+			{ text: "3.5% Comisión en Transferencias Internacionales", type: "improved" },
+			{ text: "Soporte Personalizado en la App", type: "improved" },
+			{ text: "Tarjeta Virtual y Física Incluida", type: "included" },
+			{ text: "Acceso a Suscripciones de Socios", type: "included" },
+			{ text: "Beneficios Transferibles", type: "included" },
+			{ text: "Interés en Cuenta de Ahorro", type: "included" },
+			{ text: "Cuenta de Ahorro Instantánea", type: "included" }
+		],
+		penetration: "30%",
+		color: "blue",
+		subscriptions: ["Uber One", "Netflix", "Spotify"]
+	},
+	{
+		name: "Premium",
+		price: "$7.99",
+		description: "Experiencia bancaria definitiva",
+		features: [
+			{ text: "3% Comisión en Transferencias Internacionales", type: "best" },
+			{ text: "Soporte Premium en la App", type: "best" },
+			{ text: "Transferencias Gratuitas a Otras Cuentas", type: "included" },
+			{ text: "Sin Comisiones Adicionales de Cambio de Divisas", type: "included" },
+			{ text: "Diseño de Tarjeta Personalizado", type: "included" },
+			{ text: "Tarjeta de Crédito (Próximamente)", type: "included" },
+			{ text: "Acceso a Eventos VIP", type: "included" },
+			{ text: "Cuentas Juveniles con Co-Padres", type: "included" }
+		],
+		penetration: "20%",
+		isPopular: true,
+		color: "black"
+	}
+];
+
+const benefits = [
+	{
+		category: "Finanzas y Compras",
+		items: [
+			{ icon: "restaurant-outline", name: "Restaurantes" },
+			{ icon: "shopping-bag-outline", name: "Tiendas" },
+			{ icon: "flash-outline", name: "Gasolineras" },
+			{ icon: "navigation-2-outline", name: "Aerolíneas" }
+		]
+	},
+	{
+		category: "Entretenimiento",
+		items: [
+			{ icon: "music-outline", name: "Conciertos" },
+			{ icon: "film-outline", name: "Películas" },
+			{ icon: "book-open-outline", name: "Educación" },
+			{ icon: "file-text-outline", name: "Noticias" }
+		]
+	},
+	{
+		category: "Bienestar",
+		items: [
+			{ icon: "heart-outline", name: "Tiendas de Mascotas" },
+			{ icon: "activity-outline", name: "Farmacias" },
+			{ icon: "heart-outline", name: "Bienestar" },
+			{ icon: "award-outline", name: "Gimnasio" }
+		]
+	}
+];
+---
+
+<!-- Modal -->
+<div id="qrModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-[9999] backdrop-blur-sm">
+	<div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 relative">
+		<button id="closeModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+			</svg>
+		</button>
+		
+		<h2 class="text-2xl font-bold text-center mb-4">OBTÉN LA APP ZELIFY</h2>
+		<p class="text-gray-600 text-center mb-8">
+			Escanea el código QR para descargar Zelify y comenzar tu viaje.
+		</p>
+		
+		<div class="bg-gray-100 rounded-lg p-4 flex items-center justify-center">
+			<img 
+				src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://zelify.com/get-the-app"
+				alt="Código QR" 
+				class="w-48 h-48"
+			/>
+		</div>
+	</div>
+</div>
+
+<Layout title={t('home.title')}>
+	<GradientBackground>
+		<Header />
+		<div id="home">
+			<Hero />
+		</div>
+	</GradientBackground>
+	
+	<div id="cards">
+		<Cards />
+	</div>
+	
+	<div id="features">
+		<Features />
+	</div>
+	
+	<div id="transfer">
+		<InternationalTransfer client:load />
+	</div>
+
+	<div id="pricing">
+		<Pricing client:load />
+	</div>
+</Layout>
+
+<script>
+	const links = document.querySelectorAll('a[href^="#"]');
+
+	links.forEach((link) => {
+		link.addEventListener('click', (e) => {
+			e.preventDefault();
+			const href = link?.getAttribute('href')?.substring(1);
+			const section = document.getElementById(href || '');
+			if (!section) return;
+			const offsetTop = section.offsetTop;
+			window.scrollTo({
+				top: offsetTop,
+				behavior: 'smooth',
+			});
+		});
+	});
+
+	function highlightColumn(th: HTMLElement) {
+		const table = th.closest('table');
+		const index = Array.from(th.parentElement?.children || []).indexOf(th);
+		const cells = table?.querySelectorAll(`td:nth-child(${index + 1}), th:nth-child(${index + 1})`);
+		
+		table?.querySelectorAll('td, th')?.forEach(cell => {
+			cell.classList.remove('bg-blue-50/50', 'opacity-40');
+		});
+		
+		if (th.classList.contains('highlighted')) {
+			th.classList.remove('highlighted');
+			return;
+		}
+		
+		table?.querySelectorAll('td, th')?.forEach(cell => {
+			cell.classList.add('opacity-40');
+		});
+		
+		cells?.forEach(cell => {
+			cell.classList.remove('opacity-40');
+			cell.classList.add('bg-blue-50/50');
+		});
+		
+		th.classList.add('highlighted');
+	}
+
+	Object.assign(window, { highlightColumn });
+
+	const modal = document.getElementById('qrModal');
+	const openButton = document.getElementById('openModal');
+	const closeButton = document.getElementById('closeModal');
+	
+	function toggleModal(show) {
+		if (show) {
+			modal?.classList.remove('hidden');
+			modal?.classList.add('flex');
+			document.body.style.overflow = 'hidden';
+		} else {
+			modal?.classList.remove('flex');
+			modal?.classList.add('hidden');
+			document.body.style.overflow = '';
+		}
+	}
+	
+	openButton?.addEventListener('click', () => {
+		toggleModal(true);
+	});
+	
+	closeButton?.addEventListener('click', () => {
+		toggleModal(false);
+	});
+	
+	modal?.addEventListener('click', (e) => {
+		if (e.target === modal) {
+			toggleModal(false);
+		}
+	});
+</script> 

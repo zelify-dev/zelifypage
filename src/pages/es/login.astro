@@ -1,0 +1,190 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BackButton from '../../components/BackButton.astro';
+---
+
+<Layout title="Iniciar Sesión - Zelify">
+	<BackButton />
+	<main class="min-h-screen flex items-center justify-center bg-gray-100">
+		<div class="max-w-md w-full mx-4">
+			<div class="bg-white rounded-lg shadow-lg p-8">
+				<!-- Encabezado -->
+				<div class="text-center mb-8">
+					<img src="/assets/img/logo.svg" alt="Zelify" class="h-10 mx-auto mb-4" />
+					<h1 class="text-2xl font-bold text-gray-900">Inicio de Sesión para Bancos Asociados</h1>
+					<p class="text-gray-600 mt-2">Accede a tu panel de integración</p>
+				</div>
+
+				<!-- Formulario -->
+				<form id="loginForm" class="space-y-6">
+					<div class="space-y-4">
+						<div>
+							<label for="email" class="block text-sm font-medium text-gray-700">Usuario</label>
+							<input
+								type="email"
+								id="email"
+								class="mt-1 w-full px-4 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 transition-colors"
+								placeholder=""
+								required
+							/>
+						</div>
+
+						<div>
+							<label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+							<input
+								type="password"
+								id="password"
+								class="mt-1 w-full px-4 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 transition-colors"
+								placeholder="••••••••"
+								required
+							/>
+						</div>
+					</div>
+
+					<div id="errorMessage" class="text-red-500 text-sm text-center hidden">
+						Usuario o contraseña incorrectos. Por favor, intenta de nuevo.
+					</div>
+
+					<div class="flex items-center justify-between text-sm">
+						<button
+							type="button"
+							id="forgotPassword"
+							class="text-blue-600 hover:text-blue-500"
+						>
+							¿Olvidaste tu contraseña?
+						</button>
+						<button
+							type="button"
+							id="contactSupport"
+							class="text-blue-600 hover:text-blue-500"
+						>
+							¿Necesitas ayuda?
+						</button>
+					</div>
+
+					<button
+						type="submit"
+						class="w-full bg-blue-600 text-white rounded-md px-4 py-2 font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+					>
+						Iniciar sesión
+					</button>
+				</form>
+			</div>
+		</div>
+	</main>
+
+	<!-- Modal para recuperación de contraseña -->
+	<div id="forgotPasswordModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+		<div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 shadow-lg">
+			<h3 class="text-xl font-bold mb-4">Recuperación de cuenta</h3>
+			<p class="text-gray-600 mb-6">Necesitamos esta información para verificar tu identidad.</p>
+			
+			<form id="resetPasswordForm" class="space-y-4">
+				<div>
+					<label for="resetEmail" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
+					<input
+						type="email"
+						id="resetEmail"
+						class="mt-1 w-full px-4 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 transition-colors"
+						required
+					/>
+				</div>
+				
+				<div class="flex justify-end gap-4">
+					<button
+						type="button"
+						id="closeModal"
+						class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-500"
+					>
+						Cancelar
+					</button>
+					<button
+						type="submit"
+						class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors"
+					>
+						Recuperar correo
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- Toast de confirmación -->
+	<div id="toast" class="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-md shadow-lg transform translate-y-full opacity-0 transition-all duration-300">
+		Si tu correo existe en nuestros registros, recibirás instrucciones para restablecer tu contraseña en breve.
+	</div>
+</Layout>
+
+<script>
+  // Elementos del DOM
+  const loginForm = document.getElementById('loginForm');
+  const errorMessage = document.getElementById('errorMessage');
+  const forgotPasswordBtn = document.getElementById('forgotPassword');
+  const contactSupportBtn = document.getElementById('contactSupport');
+  const modal = document.getElementById('forgotPasswordModal');
+  const closeModalBtn = document.getElementById('closeModal');
+  const resetPasswordForm = document.getElementById('resetPasswordForm');
+  const toast = document.getElementById('toast');
+
+  // Manejo del formulario de login
+  loginForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    // Simular validación fallida
+    errorMessage?.classList.remove('hidden');
+  });
+
+  // Manejo del botón de contacto con soporte
+  contactSupportBtn?.addEventListener('click', () => {
+    window.location.href = 'mailto:support@zelify.com';
+  });
+
+  // Funciones para el modal
+  const showModal = () => modal?.classList.replace('hidden', 'flex');
+  const hideModal = () => modal?.classList.replace('flex', 'hidden');
+
+  // Event listeners para el modal
+  forgotPasswordBtn?.addEventListener('click', showModal);
+  closeModalBtn?.addEventListener('click', hideModal);
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) hideModal();
+  });
+
+  // Mostrar toast
+  const showToast = () => {
+    if (toast) {
+      toast.style.transform = 'translateY(0)';
+      toast.style.opacity = '1';
+      setTimeout(() => {
+        toast.style.transform = 'translateY(100%)';
+        toast.style.opacity = '0';
+      }, 5000);
+    }
+  };
+
+  // Manejo del formulario de reset de contraseña
+  resetPasswordForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    hideModal();
+    showToast();
+  });
+</script>
+
+<style>
+  .bg-grid-pattern {
+    background-image: linear-gradient(to right, rgba(0,0,0,0.1) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(0,0,0,0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  input::placeholder {
+    color: rgba(100, 116, 139, 0.5);
+  }
+
+  input[type="checkbox"] {
+    accent-color: #3983ED;
+  }
+
+  input:focus {
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  }
+</style> 

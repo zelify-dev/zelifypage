@@ -6,106 +6,52 @@ import Hero from '../components/Hero.astro';
 import Cards from '../components/Cards.astro';
 import Features from '../components/Features.astro';
 import InternationalTransfer from '../components/InternationalTransfer';
+import Card3DViewer from '../components/Card3DViewer';
 import Pricing from '../components/Pricing';
-import ComparePlans from '../components/ComparePlans.astro';
 import Footer from '../components/Footer.astro';
-import { t } from 'i18next';
-
-
-// Inicializar i18next
 import i18next from 'i18next';
-await i18next.changeLanguage('en');
 
+// Initialize i18next
+const initI18next = async () => {
+	await i18next.changeLanguage('en');
+};
+await initI18next();
 
-const plans = [
-	{
-		name: "Standard",
-		price: "Free",
-		description: "Basic digital banking for everyone",
-		monthlyPrice: "$0",
-		features: [
-			{ text: "4% International Transfer Fee", type: "basic" },
-			{ text: "Basic Customer Support", type: "basic" },
-			{ text: "Interest on Savings Account", type: "included" },
-			{ text: "Instant Savings Account", type: "included" },
-			{ text: "Lifestyle Benefits & Discounts", type: "included" },
-			{ text: "Virtual Card", type: "not-included" },
-			{ text: "Partner Subscriptions", type: "not-included" }
-		],
-		penetration: "50%",
-		color: "gray"
-	},
-	{
-		name: "Plus",
-		price: "$4.99",
-		description: "Enhanced features for daily banking",
-		features: [
-			{ text: "3.5% International Transfer Fee", type: "improved" },
-			{ text: "Personalized In-App Support", type: "improved" },
-			{ text: "Virtual & Physical Card Included", type: "included" },
-			{ text: "Partner Subscriptions Access", type: "included" },
-			{ text: "Transferable Benefits", type: "included" },
-			{ text: "Interest on Savings Account", type: "included" },
-			{ text: "Instant Savings Account", type: "included" }
-		],
-		penetration: "30%",
-		color: "blue",
-		subscriptions: ["Uber One", "Netflix", "Spotify"]
-	},
-	{
-		name: "Premium",
-		price: "$7.99",
-		description: "Ultimate banking experience",
-		features: [
-			{ text: "3% International Transfer Fee", type: "best" },
-			{ text: "Premium In-App Support", type: "best" },
-			{ text: "Free Transfers to Other Accounts", type: "included" },
-			{ text: "No Additional FX Conversion Fees", type: "included" },
-			{ text: "Customized Card Design", type: "included" },
-			{ text: "Credit Card (Coming Soon)", type: "included" },
-			{ text: "VIP Events Access", type: "included" },
-			{ text: "Youth Accounts with Co-Parents", type: "included" }
-		],
-		penetration: "20%",
-		isPopular: true,
-		color: "black"
-	}
-];
-
-const benefits = [
-	{
-		category: "Finance & Shopping",
-		items: [
-			{ icon: "restaurant-outline", name: "Restaurants" },
-			{ icon: "shopping-bag-outline", name: "Retail Stores" },
-			{ icon: "flash-outline", name: "Gas Stations" },
-			{ icon: "navigation-2-outline", name: "Airlines" }
-		]
-	},
-	// Entretenimiento
-	{
-		category: "Entertainment",
-		items: [
-			{ icon: "music-outline", name: "Concerts" },
-			{ icon: "film-outline", name: "Movies" },
-			{ icon: "book-open-outline", name: "Education" },
-			{ icon: "file-text-outline", name: "News" }
-		]
-	},
-	// Bienestar
-	{
-		category: "Wellness",
-		items: [
-			{ icon: "heart-outline", name: "Pet Stores" },
-			{ icon: "activity-outline", name: "Drugstores" },
-			{ icon: "heart-outline", name: "Wellness" },
-			{ icon: "award-outline", name: "Gym" }
-		]
-	}
-];
+const title = await i18next.t('home.title');
 ---
 
-<!-- Modal (Moverlo al inicio del Layout) -->
+<Layout title={title}>
+	<GradientBackground>
+		<Header />
+		<div id="home">
+			<Hero />
+		</div>
+	</GradientBackground>
+	
+	<div id="card3d" class="relative">
+		<Card3DViewer client:load />
+	</div>
+	
+	<div id="cards">
+		<Cards />
+	</div>
+	
+	<div id="features">
+		<Features />
+	</div>
+	
+	<div id="transfer">
+		<InternationalTransfer client:load />
+	</div>
+
+	<div id="pricing">
+		<Pricing client:load />
+	</div>
+
+	<Footer />
+</Layout>
+
+<!-- QR Modal -->
 <div id="qrModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-[9999] backdrop-blur-sm">
 	<div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 relative">
 		<button id="closeModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
@@ -129,116 +75,46 @@ const benefits = [
 	</div>
 </div>
 
-<Layout title={t('home.title')}>
-	<GradientBackground>
-		<Header />
-		<div id="home">
-		<Hero />
-		</div>
-	</GradientBackground>
-	
-	<div id="cards">
-		<Cards />
-	</div>
-	
-	<div id="features">
-	<Features />
-	</div>
-	
-	<div id="transfer">
-		<InternationalTransfer client:load />
-	</div>
-
-	<div id="pricing">
-		<Pricing client:load />
-	</div>
-
-</Layout>
-
-
 <script>
-	// selecciona todos los enlaces que apuntan a secciones de la página
+	// Smooth scroll
 	const links = document.querySelectorAll('a[href^="#"]');
 
-	// recorre los enlaces y agrega un controlador de eventos para el clic
 	links.forEach((link) => {
 		link.addEventListener('click', (e) => {
-			// evita el comportamiento predeterminado del clic en el enlace
 			e.preventDefault();
-
-			// obtén el valor del atributo href del enlace y elimina el signo de numeral (#)
 			const href = link?.getAttribute('href')?.substring(1);
-
-			// obtén la sección correspondiente en la página
 			const section = document.getElementById(href || '');
-
-			// verifica si la sección existe y, si no, detén el script
 			if (!section) return;
-
-			// obtén la posición de la sección en la página
 			const offsetTop = section.offsetTop;
-
-			window.scrollTo({top: offsetTop,behavior: 'smooth',
+			window.scrollTo({
+				top: offsetTop,
+				behavior: 'smooth',
 			});
 		});
 	});
 
-	function highlightColumn(th: HTMLElement) {
-		const table = th.closest('table');
-		const index = Array.from(th.parentElement?.children || []).indexOf(th);
-		const cells = table?.querySelectorAll(`td:nth-child(${index + 1}), th:nth-child(${index + 1})`);
-		
-		// Resetear todas las columnas
-		table?.querySelectorAll('td, th')?.forEach(cell => {
-			cell.classList.remove('bg-blue-50/50', 'opacity-40');
-		});
-		
-		// Si la columna ya estaba resaltada, solo resetear
-		if (th.classList.contains('highlighted')) {
-			th.classList.remove('highlighted');
-			return;
-		}
-		
-		// Resaltar la columna seleccionada y atenuar las demás
-		table?.querySelectorAll('td, th')?.forEach(cell => {
-			cell.classList.add('opacity-40');
-		});
-		
-		cells?.forEach(cell => {
-			cell.classList.remove('opacity-40');
-			cell.classList.add('bg-blue-50/50');
-		});
-		
-		th.classList.add('highlighted');
-	}
-
-	Object.assign(window, { highlightColumn });
-
+	// Modal handling
 	const modal = document.getElementById('qrModal');
 	const openButton = document.getElementById('openModal');
 	const closeButton = document.getElementById('closeModal');
-	
+
 	function toggleModal(show) {
+		if (!modal) return;
+		
 		if (show) {
-			modal?.classList.remove('hidden');
-			modal?.classList.add('flex');
+			modal.classList.remove('hidden');
+			modal.classList.add('flex');
 			document.body.style.overflow = 'hidden';
 		} else {
-			modal?.classList.remove('flex');
-			modal?.classList.add('hidden');
+			modal.classList.remove('flex');
+			modal.classList.add('hidden');
 			document.body.style.overflow = '';
 		}
 	}
+
+	openButton?.addEventListener('click', () => toggleModal(true));
+	closeButton?.addEventListener('click', () => toggleModal(false));
 	
-	openButton?.addEventListener('click', () => {
-		toggleModal(true);
-	});
-	
-	closeButton?.addEventListener('click', () => {
-		toggleModal(false);
-	});
-	
-	// Close modal when clicking outside
 	modal?.addEventListener('click', (e) => {
 		if (e.target === modal) {
 			toggleModal(false);

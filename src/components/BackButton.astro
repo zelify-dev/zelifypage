@@ -1,5 +1,7 @@
 ---
-const { href = "/" } = Astro.props;
+const currentPath = Astro.url.pathname;
+const isSpanish = currentPath.startsWith('/es');
+const { href = isSpanish ? "/es" : "/" } = Astro.props;
 ---
 
 <a 
@@ -25,7 +27,7 @@ const { href = "/" } = Astro.props;
       />
     </svg>
   </div>
-  <span class="font-medium text-sm">Back to Home</span>
+  <span class="font-medium text-sm">{isSpanish ? 'Volver al Inicio' : 'Back to Home'}</span>
 </a>
 
 <style>

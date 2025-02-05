@@ -1,3 +1,25 @@
+---
+const currentPath = Astro.url.pathname;
+const isSpanish = currentPath.startsWith('/es');
+
+interface Props {
+  links?: Array<{ label: string; href: string; }>;
+}
+
+// Definir tipos globales
+declare global {
+  interface Window {
+    confetti: any;
+    isSpanish: boolean;
+  }
+}
+
+// Hacer isSpanish disponible globalmente
+if (typeof window !== 'undefined') {
+  window.isSpanish = isSpanish;
+}
+---
+
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" is:inline></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -120,10 +142,10 @@
       <div class="w-full md:w-1/2 flex flex-col items-center space-y-8">
         <div class="text-center space-y-4">
           <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
-            Pick your card. Make it yours. 
+            {isSpanish ? 'Elige tu tarjeta. Hazla tuya.' : 'Pick your card. Make it yours.'}
           </h2>
           <p class="text-base sm:text-lg text-gray-400 max-w-xl">
-            Enjoy the freedom of a physical or virtual contactless debit card that works anywhere in the world.
+            {isSpanish ? 'Disfruta de la libertad de una tarjeta de debito fisica o virtual sin contacto que funciona en cualquier parte del mundo.' : 'Enjoy the freedom of a physical or virtual contactless debit card that works anywhere in the world.'}
           </p>
         </div>
 
@@ -141,7 +163,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
-            <span class="text-white/90 text-sm">Lock card</span>
+            <span class="text-white/90 text-sm">{isSpanish ? 'Bloquear tarjeta' : 'Lock card'}</span>
         </button>
 
           <button id="googlePay" class="w-full flex items-center justify-center gap-2 bg-white text-black px-5 py-2.5 rounded-lg hover:bg-gray-100 transition-all">
@@ -151,14 +173,14 @@
               <path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/>
               <path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/>
             </svg>
-            <span class="flex-1 text-center text-sm">Connect with Google Pay</span>
+            <span class="flex-1 text-center text-sm">{isSpanish ? 'Conectar con Google Pay' : 'Connect with Google Pay'}</span>
           </button>
 
           <button id="applePay" class="w-full flex items-center justify-center gap-2 bg-black text-white px-5 py-2.5 rounded-lg border border-white/20 hover:bg-gray-900 transition-all">
             <svg class="h-5 w-5" viewBox="0 0 24 24">
               <path fill="currentColor" d="M17.5 12.5c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5-2.5-1.1-2.5-2.5zm-15 0c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5-2.5-1.1-2.5-2.5zm7.5-5c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5-2.5-1.1-2.5-2.5zm0 10c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5-2.5-1.1-2.5-2.5z"/>
             </svg>
-            <span class="flex-1 text-center text-sm">Connect with Apple Pay</span>
+            <span class="flex-1 text-center text-sm">{isSpanish ? 'Conectar con Apple Pay' : 'Connect with Apple Pay'}</span>
           </button>
         </div>
       </div>
@@ -171,18 +193,18 @@
   <div id="walletModal" class="fixed bottom-0 left-0 right-0 bg-gray-900 rounded-t-2xl p-6 transform translate-y-full transition-transform duration-300">
     <div class="text-center mb-6">
       <h3 id="walletTitle" class="text-2xl font-bold text-white mb-2"></h3>
-      <p class="text-gray-400">Connect your card to use with your preferred payment method</p>
+      <p class="text-gray-400">{isSpanish ? 'Conecta tu tarjeta para usar con tu metodo de pago preferido' : 'Connect your card to use with your preferred payment method'}</p>
     </div>
     
     <div id="successMessage" class="hidden bg-green-500/20 text-green-400 p-4 rounded-lg mb-6">
-      Successfully connected!
+      {isSpanish ? '¡Conectado exitosamente!' : 'Successfully connected!'}
     </div>
     
     <button
       id="connectButton"
       class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300"
     >
-      Connect
+      {isSpanish ? 'Conectar' : 'Connect'}
     </button>
   </div>
 </div>
@@ -196,16 +218,16 @@
         <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
         </svg>
-  </div>
+      </div>
 
       <!-- User Info -->
       <div class="flex items-center justify-center gap-4 mb-6">
         <div class="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-green-500 flex items-center justify-center text-2xl font-bold text-white">
-          JD
+          JP
         </div>
         <div class="text-left">
-          <h4 class="text-xl font-medium text-white">John Cooper</h4>
-          <p class="text-gray-400">Personal Account</p>
+          <h4 class="text-xl font-medium text-white">{isSpanish ? 'Juan Perez' : 'John Cooper'}</h4>
+          <p class="text-gray-400">{isSpanish ? 'Cuenta Personal' : 'Personal Account'}</p>
         </div>
       </div>
 
@@ -213,15 +235,14 @@
       <div class="space-y-4">
         <div class="bg-gray-800/50 rounded-xl p-4">
           <div class="flex justify-between items-center mb-2">
-            <span class="text-gray-400">Card ending in</span>
+            <span class="text-gray-400">{isSpanish ? 'Tarjeta terminada en' : 'Card ending in'}</span>
             <span class="font-mono text-white">4242</span>
           </div>
           <div class="flex justify-between items-center">
-            <span class="text-gray-400">Connected with</span>
+            <span class="text-gray-400">{isSpanish ? 'Conectado con' : 'Connected with'}</span>
             <span id="connectedService" class="text-white"></span>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -274,11 +295,21 @@
   }
 </style>
 
-<script>
+<script define:vars={{ isSpanish }}>
+  // Definir tipos para elementos del DOM
+  const walletModal = document.getElementById('walletModal');
+  const modalOverlay = document.getElementById('modalOverlay');
+  const walletTitle = document.getElementById('walletTitle');
+  const successModal = document.getElementById('successModal');
+  const googlePay = document.getElementById('googlePay');
+  const applePay = document.getElementById('applePay');
+  const connectButton = document.getElementById('connectButton');
+  const connectedService = document.getElementById('connectedService');
+
   // Manejar clics en los selectores de tarjeta
   document.querySelectorAll('.card-selector').forEach((selector) => {
     selector.addEventListener('click', () => {
-  const cardImage = document.getElementById('cardImage');
+      const cardImage = document.getElementById('cardImage');
       const newCardSrc = selector.getAttribute('data-card');
       
       if (cardImage instanceof HTMLImageElement && newCardSrc) {
@@ -305,10 +336,10 @@
     const cvcDisplay = document.getElementById('cvcDisplay');
     
     if (cardNumberDisplay) {
-    cardNumberDisplay.textContent = isNumberVisible ? realCardNumber : '**** **** **** 4242';
+      cardNumberDisplay.textContent = isNumberVisible ? realCardNumber : '**** **** **** 4242';
     }
     if (cvcDisplay) {
-    cvcDisplay.textContent = isNumberVisible ? realCVC : '•••';
+      cvcDisplay.textContent = isNumberVisible ? realCVC : '•••';
     }
   });
 
@@ -320,30 +351,162 @@
     
     if (cardImage instanceof HTMLImageElement) {
       if (!isLocked) {
-      cardImage.classList.add('grayscale', 'opacity-50');
+        cardImage.classList.add('grayscale', 'opacity-50');
         if (toggleLock) {
           toggleLock.classList.add('locked');
-      toggleLock.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
-        </svg>
-            <span class="text-white/90">Unlock card</span>
+          toggleLock.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+            </svg>
+            <span class="text-white/90">${isSpanish ? 'Desbloquear tarjeta' : 'Unlock card'}</span>
           `;
         }
       } else {
         cardImage.classList.remove('grayscale', 'opacity-50');
         if (toggleLock) {
           toggleLock.classList.remove('locked');
-      toggleLock.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-        </svg>
-            <span class="text-white/90">Lock card</span>
+          toggleLock.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            <span class="text-white/90">${isSpanish ? 'Bloquear tarjeta' : 'Lock card'}</span>
           `;
         }
       }
     }
   });
+
+  // Event listeners para los botones de pago
+  if (googlePay) {
+    googlePay.addEventListener('click', () => showWalletModal('Google Pay'));
+  }
+  
+  if (applePay) {
+    applePay.addEventListener('click', () => showWalletModal('Apple Pay'));
+  }
+
+  if (modalOverlay) {
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) {
+        hideWalletModal();
+      }
+    });
+  }
+
+  if (connectButton) {
+    connectButton.addEventListener('click', handleConnect);
+  }
+
+  function showWalletModal(service) {
+    if (!walletModal || !modalOverlay || !walletTitle || !connectButton) return;
+
+    walletTitle.textContent = isSpanish ? 
+      `Conectar con ${service}` : 
+      `Connect with ${service}`;
+    
+    if (service === 'Apple Pay') {
+      connectButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+      connectButton.classList.add('bg-black', 'hover:bg-gray-900');
+    } else {
+      connectButton.classList.remove('bg-black', 'hover:bg-gray-900');
+      connectButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
+    }
+
+    modalOverlay.classList.remove('opacity-0', 'pointer-events-none');
+    walletModal.classList.remove('translate-y-full');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function hideWalletModal() {
+    if (!walletModal || !modalOverlay || !connectButton) return;
+
+    modalOverlay.classList.add('opacity-0', 'pointer-events-none');
+    walletModal.classList.add('translate-y-full');
+    document.body.style.overflow = 'auto';
+    
+    setTimeout(() => {
+      if (connectButton) {
+        connectButton.innerHTML = isSpanish ? 'Conectar' : 'Connect';
+        connectButton.disabled = false;
+        connectButton.classList.remove('bg-black', 'hover:bg-gray-900');
+        connectButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
+      }
+    }, 500);
+  }
+
+  function handleConnect() {
+    if (!connectButton || !walletTitle) return;
+
+    connectButton.innerHTML = `
+      <div class="flex items-center justify-center gap-2">
+        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <span>${isSpanish ? 'Conectando...' : 'Connecting...'}</span>
+      </div>
+    `;
+    connectButton.disabled = true;
+
+    setTimeout(() => {
+      const currentService = walletTitle.textContent || '';
+      
+      if (modalOverlay && walletModal) {
+        modalOverlay.classList.add('opacity-0', 'pointer-events-none');
+        walletModal.classList.add('translate-y-full');
+      }
+      document.body.style.overflow = 'auto';
+
+      if (successModal && connectedService) {
+        const serviceName = currentService.replace(isSpanish ? 'Conectar con ' : 'Connect with ', '');
+        connectedService.textContent = serviceName;
+        
+        successModal.style.display = 'flex';
+        successModal.classList.remove('opacity-0', 'pointer-events-none');
+        const bgEl = successModal.querySelector('.bg-gray-900');
+        if (bgEl) {
+          bgEl.classList.remove('scale-95');
+        }
+
+        window.confetti({
+          particleCount: 200,
+          spread: 90,
+          origin: { y: 0.6 },
+          colors: ['#4285F4', '#34A853', '#FBBC05', '#EA4335']
+        });
+
+        setTimeout(() => {
+          window.confetti({
+            particleCount: 150,
+            spread: 60,
+            origin: { y: 0.7 },
+            colors: ['#4285F4', '#34A853', '#FBBC05', '#EA4335']
+          });
+        }, 250);
+
+        setTimeout(() => {
+          if (successModal) {
+            successModal.classList.add('opacity-0', 'pointer-events-none');
+            if (bgEl) {
+              bgEl.classList.add('scale-95');
+            }
+            setTimeout(() => {
+              if (successModal) {
+                successModal.style.display = 'none';
+              }
+            }, 300);
+          }
+        }, 5000);
+      }
+
+      if (connectButton) {
+        connectButton.innerHTML = isSpanish ? 'Conectar' : 'Connect';
+        connectButton.disabled = false;
+        connectButton.classList.remove('bg-black', 'hover:bg-gray-900');
+        connectButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
+      }
+    }, 1500);
+  }
 </script>
 
 <script is:inline>
@@ -366,155 +529,6 @@
 
   // Hacer la función disponible globalmente
   window.launchGoogleConfetti = launchGoogleConfetti;
-</script>
-
-<script>
-  // Inicializar variables
-  const walletModal = document.getElementById('walletModal');
-  const modalOverlay = document.getElementById('modalOverlay');
-  const walletTitle = document.getElementById('walletTitle');
-  const successModal = document.getElementById('successModal');
-  const googlePay = document.getElementById('googlePay');
-  const applePay = document.getElementById('applePay');
-  const connectButton = document.getElementById('connectButton');
-  const connectedService = document.getElementById('connectedService');
-  const transactionAmount = document.getElementById('transactionAmount');
-
-  // Event listeners para los botones de pago
-  if (googlePay) {
-    googlePay.addEventListener('click', () => showWalletModal('Google Pay'));
-  }
-  
-  if (applePay) {
-    applePay.addEventListener('click', () => showWalletModal('Apple Pay'));
-  }
-
-  if (modalOverlay) {
-    modalOverlay.addEventListener('click', (e) => {
-      if (e.target === modalOverlay) {
-        hideWalletModal();
-      }
-    });
-  }
-
-    if (connectButton) {
-    connectButton.addEventListener('click', handleConnect);
-  }
-
-  function showWalletModal(service) {
-    if (!walletModal || !modalOverlay || !walletTitle || !connectButton) return;
-
-    walletTitle.textContent = `Connect with ${service}`;
-    
-    // Ajustar estilo del botón según el servicio
-    if (service === 'Apple Pay') {
-        connectButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-        connectButton.classList.add('bg-black', 'hover:bg-gray-900');
-      } else {
-        connectButton.classList.remove('bg-black', 'hover:bg-gray-900');
-        connectButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
-      }
-
-    modalOverlay.classList.remove('opacity-0', 'pointer-events-none');
-    walletModal.classList.remove('translate-y-full');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function hideWalletModal() {
-    if (!walletModal || !modalOverlay || !connectButton) return;
-
-    modalOverlay.classList.add('opacity-0', 'pointer-events-none');
-    walletModal.classList.add('translate-y-full');
-    document.body.style.overflow = 'auto';
-    
-    // Resetear el botón
-    setTimeout(() => {
-      connectButton.innerHTML = 'Connect';
-      connectButton.disabled = false;
-      connectButton.classList.remove('bg-black', 'hover:bg-gray-900');
-      connectButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
-    }, 500); // Esperamos un poco para que termine la animación del modal
-  }
-
-  function handleConnect() {
-    if (!connectButton || !walletTitle) return;
-
-    // Mostrar animación de carga
-    connectButton.innerHTML = `
-      <div class="flex items-center justify-center gap-2">
-        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
-        <span>Connecting...</span>
-      </div>
-    `;
-    connectButton.disabled = true;
-
-    // Simular proceso de conexión
-    setTimeout(() => {
-      const currentService = walletTitle.textContent || '';
-      
-      // Ocultar el modal de wallet
-      modalOverlay?.classList.add('opacity-0', 'pointer-events-none');
-      walletModal?.classList.add('translate-y-full');
-      document.body.style.overflow = 'auto';
-
-      // Mostrar el modal de éxito y el confeti
-      if (successModal && connectedService) {
-        const serviceName = currentService.replace('Connect with ', '');
-        
-        // Actualizar el servicio conectado
-        connectedService.textContent = serviceName;
-        
-        // Mostrar el modal de éxito
-        successModal.style.display = 'flex';
-        successModal.classList.remove('opacity-0', 'pointer-events-none');
-        const bgEl = successModal.querySelector('.bg-gray-900');
-        if (bgEl) {
-          bgEl.classList.remove('scale-95');
-        }
-
-        // Lanzar confeti
-        confetti({
-          particleCount: 200,
-          spread: 90,
-          origin: { y: 0.6 },
-          colors: ['#4285F4', '#34A853', '#FBBC05', '#EA4335']
-        });
-
-        // Segunda explosión de confeti
-        setTimeout(() => {
-          confetti({
-            particleCount: 150,
-            spread: 60,
-            origin: { y: 0.7 },
-            colors: ['#4285F4', '#34A853', '#FBBC05', '#EA4335']
-          });
-        }, 250);
-
-        // Cerrar el modal después de 5 segundos
-        setTimeout(() => {
-          successModal.classList.add('opacity-0', 'pointer-events-none');
-          if (bgEl) {
-            bgEl.classList.add('scale-95');
-          }
-          // Ocultar el modal después de la animación
-          setTimeout(() => {
-            successModal.style.display = 'none';
-          }, 300);
-        }, 5000);
-      }
-
-      // Resetear el botón
-      if (connectButton) {
-        connectButton.innerHTML = 'Connect';
-        connectButton.disabled = false;
-        connectButton.classList.remove('bg-black', 'hover:bg-gray-900');
-        connectButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
-      }
-    }, 1500);
-  }
 </script>
 
 <style>
