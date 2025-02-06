@@ -491,9 +491,9 @@ const Card3DViewer = () => {
     textureRef.current = frontTexture;
 
     // Crear geometría con bordes redondeados mejorados
-    const radius = 0.15; // Aumentar significativamente el radio de redondeo
-    const segments = 64; // Aumentar los segmentos para mayor suavidad
-    const cardGeometry = new RoundedBoxGeometry(3.37, 2.13, 0.06, radius, segments);
+    const radius = 0.15; // Radio de redondeo
+    const segments = 64; // Segmentos para suavidad
+    const cardGeometry = new RoundedBoxGeometry(3.37, 2.13, 0.02, radius, segments); // Reducido de 0.03 a 0.02
 
     // Suavizar normales para mejor efecto de redondeo
     cardGeometry.computeVertexNormals();
@@ -504,7 +504,7 @@ const Card3DViewer = () => {
     // Definir las dimensiones de la tarjeta para el cálculo de bordes
     const cardWidth = 3.37;
     const cardHeight = 2.13;
-    const cardDepth = 0.06;
+    const cardDepth = 0.02;
     const w2 = cardWidth / 2;
     const h2 = cardHeight / 2;
     const d2 = cardDepth / 2;
