@@ -52,7 +52,7 @@ const alternateUrl = currentLang === 'es' ? currentPath.replace('/es', '') : `/e
 				class="inline-flex items-center justify-center px-4 py-2 border border-white text-white font-medium rounded-full hover:bg-white hover:text-blue-600 transition-all duration-300 text-sm gap-2"
 			>
 				<i class="eva eva-log-in-outline text-lg"></i>
-				{currentLang === 'es' ? 'Integración de banco asociado' : 'Partner bank integration'}
+				{currentLang === 'es' ? 'Integración de banco asociado' : 'Bank Access'}
 			</a>
 			
 			<a
@@ -63,6 +63,7 @@ const alternateUrl = currentLang === 'es' ? currentPath.replace('/es', '') : `/e
 			</a>
 		</div>
 	</div>
+
 </header>
 
 <style>
@@ -74,21 +75,5 @@ const alternateUrl = currentLang === 'es' ? currentPath.replace('/es', '') : `/e
 
 	.nav-item:hover {
 		background-color: rgba(255, 255, 255, 0.2);
-	}
-
-	.nav-item::after {
-		content: '';
-		position: absolute;
-		bottom: 0;
-		left: 50%;
-		width: 0;
-		height: 2px;
-		background-color: white;
-		transition: all 0.3s ease;
-		transform: translateX(-50%);
-	}
-
-	.nav-item:hover::after {
-		width: 80%;
 	}
 </style>

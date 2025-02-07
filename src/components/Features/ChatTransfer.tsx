@@ -88,6 +88,7 @@ export const ChatTransfer = () => {
   const [showRequestModal, setShowRequestModal] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [transferAmount, setTransferAmount] = useState(0);
+  const [isSpanish, setIsSpanish] = useState(false);
 
   const contacts: Contact[] = [
     {
@@ -195,9 +196,9 @@ export const ChatTransfer = () => {
           
           <div className="flex items-center gap-2">
             <img
-              src={selectedContact.avatar}
-              alt={selectedContact.name}
-              className="w-9 h-9 rounded-full"
+              src={isSpanish ? "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200&auto=format" : "https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=150&h=150&fit=crop"}
+              alt={isSpanish ? "Juan Perez" : "John Cooper"}
+              className="w-8 h-8 rounded-full object-cover"
             />
             <div>
               <h3 className="text-[14px] font-medium">John Cooper</h3>

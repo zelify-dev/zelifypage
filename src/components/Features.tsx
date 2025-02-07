@@ -98,7 +98,11 @@ const TransactionConfirmation = ({
                   }-outline text-sm text-blue-600`} />
                 </div>
               ) : (
-                <img src="https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=150&h=150&fit=crop" alt={recipient} className="w-6 h-6 rounded-full" />
+                <img
+                  src={isSpanish ? "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200&auto=format" : "https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=150&h=150&fit=crop"}
+                  alt={isSpanish ? "Juan Perez" : "John Cooper"}
+                  className="w-8 h-8 rounded-full object-cover"
+                />
               )}
               <span className="text-gray-900 text-xs">{recipient}</span>
             </div>
@@ -450,9 +454,9 @@ const Features = () => {
                           
                           <div className="flex items-center gap-2">
                             <img
-                              src="https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=150&h=150&fit=crop"
-                              alt="John Cooper"
-                              className="w-9 h-9 rounded-full"
+                              src={isSpanish ? "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200&auto=format" : "https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=150&h=150&fit=crop"}
+                              alt={isSpanish ? "Juan Perez" : "John Cooper"}
+                              className="w-8 h-8 rounded-full object-cover"
                             />
                             <div>
                               <h3 className="text-[14px] font-medium">John Cooper</h3>

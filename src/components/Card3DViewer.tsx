@@ -106,7 +106,7 @@ const Card3DViewer = () => {
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const controlsRef = useRef<OrbitControls | null>(null);
   const cardRef = useRef<THREE.Group | null>(null);
-  const [cardName, setCardName] = useState('JOHN DOE');
+  const [cardName, setCardName] = useState('JOHN COOPER');
   const textureRef = useRef<THREE.CanvasTexture | null>(null);
 
   // Chip más realista con bordes redondeados
@@ -311,24 +311,20 @@ const Card3DViewer = () => {
       ctx.stroke();
     }
 
-    // Nombre del titular más grande y centrado con sombra para mayor visibilidad
-    ctx.font = 'bold 52px Arial';
+    // Nombre del titular sin negrita y más grande
+    ctx.font = '42px Arial';
     ctx.textAlign = 'left';
     // Añadir sombra para mayor contraste
     ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
     ctx.shadowBlur = 4;
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 2;
-    ctx.fillStyle = '#FFFFFF'; // Blanco puro
-    ctx.fillText(name, 50, 500);
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillText(name, 50, 550);
+
     // Resetear sombra
     ctx.shadowColor = 'transparent';
     ctx.shadowBlur = 0;
-
-    // Fecha de validez
-    ctx.font = '32px Arial';
-    ctx.textAlign = 'left';
-    ctx.fillText('VALID THRU: 12/25', 50, 580);
 
     return new THREE.CanvasTexture(canvas);
   };
@@ -356,18 +352,17 @@ const Card3DViewer = () => {
     ctx.fillStyle = bandGradient;
     ctx.fillRect(0, 100, canvas.width, 80);
 
-    // Número de tarjeta
-    ctx.font = 'bold 48px "Courier New"';  // Aumentado y en negrita
+    // Número de tarjeta (ahora a la izquierda)
+    ctx.font = '48px "Courier New"'; // Removido 'bold'
     ctx.fillStyle = '#FFFFFF';
-    ctx.textAlign = 'center';
-    ctx.fillText('4242 4242 4242 4242', canvas.width / 2, 300);
-
-    // Título "Security Code"
-    ctx.fillStyle = '#FFFFFF';
-    ctx.font = 'bold 36px Arial';
     ctx.textAlign = 'left';
-    ctx.fillText('Security Code:', 50, 400);
-    ctx.fillText('123', 300, 400);
+    ctx.fillText('4242 4242 4242 4242', 50, 300);
+
+    // EXP y CVC en la misma línea
+    ctx.font = '32px Arial'; // Removido 'bold'
+    ctx.textAlign = 'left';
+    ctx.fillText('EXP: 12/25', 50, 350);
+    ctx.fillText('CVC: 123', 300, 350);
 
     // Texto informativo
     ctx.font = '24px Arial';
@@ -380,7 +375,7 @@ const Card3DViewer = () => {
     ctx.textAlign = 'left';
     ctx.fillText('zelify.com', 50, 580);
     ctx.textAlign = 'right';
-    ctx.fillText('DEBIT CARD', canvas.width - 50, 580);
+    ctx.fillText('DEBIT', canvas.width - 50, 580);
 
     return new THREE.CanvasTexture(canvas);
   };

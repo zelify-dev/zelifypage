@@ -15,9 +15,9 @@ const isSpanish = currentPath.startsWith('/es');
           </button>
           <div class="flex items-center gap-2">
             <img 
-              src="https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=150&h=150&fit=crop" 
+              src={isSpanish ? "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200&auto=format" : "https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=150&h=150&fit=crop"}
               alt={isSpanish ? "Juan Perez" : "John Cooper"}
-              class="w-8 h-8 rounded-full object-cover border-2 border-gray-200"
+              class="w-10 h-10 rounded-full object-cover"
             />
             <div>
               <h3 class="font-semibold text-gray-800 text-sm leading-tight">{isSpanish ? "Juan Perez" : "John Cooper"}</h3>

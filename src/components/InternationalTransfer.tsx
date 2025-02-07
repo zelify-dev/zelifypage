@@ -18,7 +18,7 @@ const BENEFITS = [
   {
     icon: 'flash',
     title: 'Instant Transfers',
-    description: 'Money arrives in seconds, not days. Real-time cross-border transfers.',
+    description: 'Money arrives in seconds, not days.',
     color: 'from-yellow-400 to-orange-400',
     bgGradient: 'from-yellow-50 via-orange-50 to-red-50',
     iconBg: 'bg-yellow-400/10'
@@ -26,7 +26,7 @@ const BENEFITS = [
   {
     icon: 'percent',
     title: 'Low Fees',
-    description: 'Only 3% fee, compared to 5-7% with traditional banks.',
+    description: 'The lowest possible fees in the market.',
     color: 'from-blue-500 via-indigo-500 to-violet-500',
     bgGradient: 'from-blue-50 via-indigo-50 to-violet-50',
     iconBg: 'bg-blue-400/10'
@@ -34,7 +34,7 @@ const BENEFITS = [
   {
     icon: 'trending-up',
     title: 'Best Exchange Rates',
-    description: 'Save up to 2% on exchange rates compared to banks.',
+    description: 'Save up on competitive exchange rates.',
     color: 'from-emerald-400 via-green-500 to-teal-500',
     bgLight: 'bg-emerald-50',
     image: '/images/exchange-rates.webp',
@@ -129,7 +129,7 @@ const InternationalTransfer = () => {
       <div className="max-w-7xl mx-auto px-4 relative">
         <div className="text-center mb-16">
           <h2 className="text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3983ED] to-blue-600">
-            Send Money Globally
+            Transfer Globally
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
           Experience lightning-fast international transfers at the best rates.
