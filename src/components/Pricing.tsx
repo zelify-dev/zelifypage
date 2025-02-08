@@ -151,7 +151,7 @@ const Pricing = () => {
       <div className="max-w-7xl mx-auto px-4 relative">
         <div className="text-center mb-28">
           <h2 className="text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
-            {isSpanish ? 'Compara Nuestros Planes' : 'Compare Our Plans'}
+            {isSpanish ? 'Compara nuestros planes' : 'Compare Our Plans'}
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             {isSpanish ? 'Elige el plan perfecto para tu viaje financiero.' : 'Choose the perfect plan to fit your financial journey.'}

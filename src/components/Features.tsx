@@ -104,7 +104,16 @@ const TransactionConfirmation = ({
                   className="w-8 h-8 rounded-full object-cover"
                 />
               )}
-              <span className="text-gray-900 text-xs">{recipient}</span>
+              <span className="text-gray-900 text-xs">{recipient.toLowerCase().includes('service') ? (
+                isSpanish ? (
+                  recipient.toLowerCase().includes('water') ? 'Servicio de Agua' :
+                  recipient.toLowerCase().includes('electricity') ? 'Servicio de Electricidad' :
+                  recipient.toLowerCase().includes('internet') ? 'Servicio de Internet' :
+                  recipient.toLowerCase().includes('gas') ? 'Servicio de Gas' :
+                  recipient.toLowerCase().includes('phone') ? 'Servicio de Teléfono' :
+                  'Servicio Público'
+                ) : recipient
+              ) : recipient}</span>
             </div>
           </div>
           

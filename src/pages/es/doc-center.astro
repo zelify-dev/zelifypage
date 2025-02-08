@@ -5,13 +5,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import BackButton from '../../components/BackButton.astro';
 
-// Leer el contenido de los archivos markdown
-const policyPath = path.join(process.cwd(), 'src/content/policy.md');
+// Leer el contenido de los archivos markdown en español
+const policyPath = path.join(process.cwd(), 'src/content/policy_es.md');
 const policyContent = fs.readFileSync(policyPath, 'utf-8');
 const policyHtml = marked.parse(policyContent);
 
-// Leer el contenido del archivo license-agreement.md
-const licensePath = path.join(process.cwd(), 'src/content/license-agreement.md');
+// Leer el contenido del archivo license-agreement en español
+const licensePath = path.join(process.cwd(), 'src/content/license-agreement_es.md');
 const licenseContent = fs.readFileSync(licensePath, 'utf-8');
 const licenseHtml = marked.parse(licenseContent);
 ---
