@@ -1,119 +1,143 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ComparePlans from './ComparePlans';
 
-const plans = [
-  {
-    name: 'Standard',
-    price: '0.00',
-    features: [
-      'Basic banking services with a virtual or physical Mastercard',
-      'Limited transaction capabilities ($200 limit)',
-      'No additional perks (cashback, FX conversion, travel insurance, etc.)',
-      'Standard customer support'
-    ],
-    cardImage: '/assets/img/cards/4.png',
-    gradient: 'from-blue-500/20 via-purple-500/20 to-pink-500/20'
-  },
-  {
-    name: 'Plus',
-    price: '4.99',
-    features: [
-      '$500 transaction limit',
-      'Reduced international transfer fees (3.8%)',
-      'Cashback on purchases (0.40%)',
-      'Access to partner subscriptions',
-      'Personalized in-app customer support'
-    ],
-    cardImage: '/assets/img/cards/2.png',
-    gradient: 'from-blue-600/20 via-cyan-500/20 to-emerald-500/20'
-  },
-  {
-    name: 'Premium',
-    price: '7.99',
-    popular: true,
-    features: [
-      '$1,000 transaction limit',
-      'Lower FX and international transfer fees (3%)',
-      'Higher cashback (0.60%)',
-      'Personalized card options',
-      'Travel benefits (insurance, airport lounge access)',
-      'Savings and co-parenting accounts',
-      'Personalized in-app customer support'
-    ],
-    cardImage: '/assets/img/cards/5.png',
-    gradient: 'from-orange-500/20 via-amber-500/20 to-yellow-500/20'
-  }
-];
-
-const benefits = [
-  {
-    category: "Lifestyle & Entertainment",
-    items: [
-      { 
-        image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=200&h=200&fit=crop&q=80",
-        name: "Restaurants" 
-      },
-      { 
-        image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=200&h=200&fit=crop&q=80",
-        name: "Concerts" 
-      },
-      { 
-        image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=200&h=200&fit=crop&q=80",
-        name: "News Subscriptions"
-      }
-    ]
-  },
-  {
-    category: "Travel & Mobility",
-    items: [
-      { 
-        image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200&h=200&fit=crop&q=80",
-        name: "Airline Miles" 
-      },
-      { 
-        image: "https://media.gq.com.mx/photos/6060c63cc94329bc868c3f41/master/w_1600%2Cc_limit/gasolina.jpg",
-        name: "Gasoline Discounts" 
-      }
-    ]
-  },
-  {
-    category: "Health & Wellness",
-    items: [
-      { 
-        image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=200&h=200&fit=crop&q=80",
-        name: "Pharmacies" 
-      },
-      { 
-        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=200&h=200&fit=crop&q=80",
-        name: "Fitness & Gyms" 
-      },
-      { 
-        image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=200&h=200&fit=crop&q=80",
-        name: "Wellness Services" 
-      }
-    ]
-  },
-  {
-    category: "Shopping & Education",
-    items: [
-      {
-        image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=200&h=200&fit=crop&q=80",
-        name: "Retail Store Discounts"
-      },
-      {
-        image: "https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=200&h=200&fit=crop&q=80",
-        name: "Pet Stores"
-      },
-      {
-        image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=200&h=200&fit=crop&q=80",
-        name: "Education Benefits"
-      }
-    ]
-  }
-];
-
 const Pricing = () => {
+  const [isSpanish, setIsSpanish] = useState(false);
   const [showCompareModal, setShowCompareModal] = useState(false);
+
+  useEffect(() => {
+    setIsSpanish(window.location.pathname.startsWith('/es'));
+  }, []);
+
+  const plans = [
+    {
+      name: 'Standard',
+      price: '0.00',
+      features: isSpanish ? [
+        'Servicios bancarios básicos con Mastercard virtual o física',
+        'Capacidades de transacción limitadas (límite de $200)',
+        'Sin beneficios adicionales (cashback, conversión FX, seguro de viaje, etc.)',
+        'Soporte al cliente estándar'
+      ] : [
+        'Basic banking services with a virtual or physical Mastercard',
+        'Limited transaction capabilities ($200 limit)',
+        'No additional perks (cashback, FX conversion, travel insurance, etc.)',
+        'Standard customer support'
+      ],
+      cardImage: '/assets/img/cards/4.png',
+      gradient: 'from-blue-500/20 via-purple-500/20 to-pink-500/20'
+    },
+    {
+      name: 'Plus',
+      price: '4.99',
+      features: isSpanish ? [
+        'Límite de transacción de $500',
+        'Comisiones reducidas en transferencias internacionales (3.8%)',
+        'Cashback en compras (0.40%)',
+        'Acceso a suscripciones de socios',
+        'Soporte al cliente personalizado en la app'
+      ] : [
+        '$500 transaction limit',
+        'Reduced international transfer fees (3.8%)',
+        'Cashback on purchases (0.40%)',
+        'Access to partner subscriptions',
+        'Personalized in-app customer support'
+      ],
+      cardImage: '/assets/img/cards/2.png',
+      gradient: 'from-blue-600/20 via-cyan-500/20 to-emerald-500/20'
+    },
+    {
+      name: 'Premium',
+      price: '7.99',
+      popular: true,
+      features: isSpanish ? [
+        'Límite de transacción de $1,000',
+        'Comisiones más bajas en FX y transferencias internacionales (3%)',
+        'Mayor cashback (0.60%)',
+        'Opciones de tarjeta personalizadas',
+        'Beneficios de viaje (seguro, acceso a salas VIP)',
+        'Cuentas de ahorro y co-parentalidad',
+        'Soporte al cliente personalizado en la app'
+      ] : [
+        '$1,000 transaction limit',
+        'Lower FX and international transfer fees (3%)',
+        'Higher cashback (0.60%)',
+        'Personalized card options',
+        'Travel benefits (insurance, airport lounge access)',
+        'Savings and co-parenting accounts',
+        'Personalized in-app customer support'
+      ],
+      cardImage: '/assets/img/cards/5.png',
+      gradient: 'from-orange-500/20 via-amber-500/20 to-yellow-500/20'
+    }
+  ];
+
+  const benefits = [
+    {
+      category: isSpanish ? "Estilo de Vida y Entretenimiento" : "Lifestyle & Entertainment",
+      items: [
+        { 
+          image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=200&h=200&fit=crop&q=80",
+          name: isSpanish ? "Restaurantes" : "Restaurants" 
+        },
+        { 
+          image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=200&h=200&fit=crop&q=80",
+          name: isSpanish ? "Conciertos" : "Concerts" 
+        },
+        { 
+          image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=200&h=200&fit=crop&q=80",
+          name: isSpanish ? "Suscripciones de Noticias" : "News Subscriptions"
+        }
+      ]
+    },
+    {
+      category: isSpanish ? "Viajes y Movilidad" : "Travel & Mobility",
+      items: [
+        { 
+          image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200&h=200&fit=crop&q=80",
+          name: isSpanish ? "Millas Aéreas" : "Airline Miles" 
+        },
+        { 
+          image: "https://media.gq.com.mx/photos/6060c63cc94329bc868c3f41/master/w_1600%2Cc_limit/gasolina.jpg",
+          name: isSpanish ? "Descuentos en Gasolina" : "Gasoline Discounts" 
+        }
+      ]
+    },
+    {
+      category: isSpanish ? "Salud y Bienestar" : "Health & Wellness",
+      items: [
+        { 
+          image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=200&h=200&fit=crop&q=80",
+          name: isSpanish ? "Farmacias" : "Pharmacies" 
+        },
+        { 
+          image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=200&h=200&fit=crop&q=80",
+          name: isSpanish ? "Gimnasios" : "Fitness & Gyms" 
+        },
+        { 
+          image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=200&h=200&fit=crop&q=80",
+          name: isSpanish ? "Servicios de Bienestar" : "Wellness Services" 
+        }
+      ]
+    },
+    {
+      category: isSpanish ? "Compras y Educación" : "Shopping & Education",
+      items: [
+        {
+          image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=200&h=200&fit=crop&q=80",
+          name: isSpanish ? "Descuentos en Tiendas" : "Retail Store Discounts"
+        },
+        {
+          image: "https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=200&h=200&fit=crop&q=80",
+          name: isSpanish ? "Tiendas de Mascotas" : "Pet Stores"
+        },
+        {
+          image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=200&h=200&fit=crop&q=80",
+          name: isSpanish ? "Beneficios Educativos" : "Education Benefits"
+        }
+      ]
+    }
+  ];
 
   return (
     <section className="py-24 bg-gray-900 relative overflow-hidden">
@@ -127,10 +151,10 @@ const Pricing = () => {
       <div className="max-w-7xl mx-auto px-4 relative">
         <div className="text-center mb-28">
           <h2 className="text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
-            Compare Our Plans
+            {isSpanish ? 'Compara Nuestros Planes' : 'Compare Our Plans'}
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-          Choose the perfect plan to fit your financial journey.
+            {isSpanish ? 'Elige el plan perfecto para tu viaje financiero.' : 'Choose the perfect plan to fit your financial journey.'}
           </p>
         </div>
 
@@ -218,7 +242,7 @@ const Pricing = () => {
             </div>
             
             <span className="relative z-10 flex items-center gap-2">
-              Compare Plans
+              {isSpanish ? 'Comparar Planes' : 'Compare Plans'}
               <i className="eva eva-arrow-right-outline ml-2 animate-[bounce_1s_ease-in-out_infinite]" />
             </span>
           </button>
@@ -228,10 +252,13 @@ const Pricing = () => {
         <div className="pt-24 border-t border-gray-800">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
-              Exclusive Benefits & Discounts
+              {isSpanish ? 'Beneficios y Descuentos Exclusivos' : 'Exclusive Benefits & Discounts'}
             </h2>
             <p className="text-gray-400">
-              Turn your daily expenses into exclusive rewards with our partner network
+              {isSpanish 
+                ? 'Convierte tus gastos diarios en recompensas exclusivas con nuestra red de socios'
+                : 'Turn your daily expenses into exclusive rewards with our partner network'
+              }
             </p>
           </div>
           
@@ -268,7 +295,9 @@ const Pricing = () => {
           <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
             <div className="bg-white rounded-lg max-w-7xl w-full max-h-[90vh] overflow-y-auto">
               <div className="p-6 border-b border-gray-200 flex justify-between items-center">
-                <h3 className="text-2xl font-bold">Plan Comparison</h3>
+                <h3 className="text-2xl font-bold">
+                  {isSpanish ? 'Comparación de Planes' : 'Plan Comparison'}
+                </h3>
                 <button
                   onClick={() => setShowCompareModal(false)}
                   className="text-gray-400 hover:text-gray-500"
@@ -277,7 +306,7 @@ const Pricing = () => {
                 </button>
               </div>
               <div className="p-6">
-                <ComparePlans />
+                <ComparePlans isSpanish={isSpanish} />
               </div>
             </div>
           </div>

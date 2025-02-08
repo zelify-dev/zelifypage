@@ -6,6 +6,7 @@ import Hero from '../components/Hero.astro';
 import Cards from '../components/Cards.astro';
 import Features from '../components/Features.astro';
 import InternationalTransfer from '../components/InternationalTransfer';
+import Card3DViewerES from '../components/Card3DViewerES';
 import Pricing from '../components/Pricing';
 import Footer from '../components/Footer.astro';
 import { t } from 'i18next';
@@ -132,6 +133,10 @@ const benefits = [
 		</div>
 	</GradientBackground>
 	
+	<div id="card3d" class="relative">
+		<Card3DViewerES client:load />
+	</div>
+	
 	<div id="cards">
 		<Cards />
 	</div>
@@ -150,6 +155,9 @@ const benefits = [
 </Layout>
 
 <script>
+	// Establecer isSpanish como true para la versión en español
+	window.isSpanish = true;
+
 	const links = document.querySelectorAll('a[href^="#"]');
 
 	links.forEach((link) => {

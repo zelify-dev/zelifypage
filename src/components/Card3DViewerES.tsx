@@ -106,7 +106,7 @@ class RoundedBoxGeometry extends THREE.BoxGeometry {
   }
 }
 
-const Card3DViewer = () => {
+const Card3DViewerES = () => {
   const mountRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<THREE.Scene | null>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
@@ -236,7 +236,7 @@ const Card3DViewer = () => {
     ctx.save();
     // Escalar y posicionar el logo
     const scale = 0.15;
-    ctx.translate(canvas.width - 300, 60); // Mover más cerca del borde derecho (era -400)
+    ctx.translate(canvas.width - 300, 60);
     ctx.scale(scale, scale);
     
     // Asegurar que el logo sea blanco puro y completamente opaco
@@ -306,7 +306,7 @@ const Card3DViewer = () => {
     
     ctx.restore();
 
-    // Dibujar el chip realista
+    // Dibujar el chip
     drawChip(ctx);
 
     // Símbolo contactless
@@ -360,13 +360,13 @@ const Card3DViewer = () => {
     ctx.fillRect(0, 100, canvas.width, 80);
 
     // Número de tarjeta (ahora a la izquierda)
-    ctx.font = '48px "Courier New"'; // Removido 'bold'
+    ctx.font = '48px "Courier New"';
     ctx.fillStyle = '#FFFFFF';
     ctx.textAlign = 'left';
     ctx.fillText('4242 4242 4242 4242', 50, 300);
 
     // EXP y CVC en la misma línea
-    ctx.font = '32px Arial'; // Removido 'bold'
+    ctx.font = '32px Arial';
     ctx.textAlign = 'left';
     ctx.fillText('EXP: 12/25', 50, 350);
     ctx.fillText('CVC: 123', 300, 350);
@@ -495,7 +495,7 @@ const Card3DViewer = () => {
     // Crear geometría con bordes redondeados mejorados
     const radius = 0.15; // Radio de redondeo
     const segments = 64; // Segmentos para suavidad
-    const cardGeometry = new RoundedBoxGeometry(3.37, 2.13, 0.02, radius, segments); // Reducido de 0.03 a 0.02
+    const cardGeometry = new RoundedBoxGeometry(3.37, 2.13, 0.02, radius, segments);
 
     // Suavizar normales para mejor efecto de redondeo
     cardGeometry.computeVertexNormals();
@@ -539,44 +539,44 @@ const Card3DViewer = () => {
       new THREE.MeshPhysicalMaterial({ 
         color: 0x505050,
         metalness: 0.9,
-        roughness: 0.2, // Reducir la rugosidad
-        clearcoat: 0.6, // Aumentar el clearcoat
-        clearcoatRoughness: 0.1, // Reducir la rugosidad del clearcoat
-        reflectivity: 1.0, // Aumentar la reflectividad
-        envMapIntensity: 0.8, // Aumentar la intensidad del mapa de ambiente
+        roughness: 0.2,
+        clearcoat: 0.6,
+        clearcoatRoughness: 0.1,
+        reflectivity: 1.0,
+        envMapIntensity: 0.8,
         side: THREE.DoubleSide,
         flatShading: false,
       }), // Right
       new THREE.MeshPhysicalMaterial({ 
         color: 0x505050,
         metalness: 0.9,
-        roughness: 0.2, // Reducir la rugosidad
-        clearcoat: 0.6, // Aumentar el clearcoat
-        clearcoatRoughness: 0.1, // Reducir la rugosidad del clearcoat
-        reflectivity: 1.0, // Aumentar la reflectividad
-        envMapIntensity: 0.8, // Aumentar la intensidad del mapa de ambiente
+        roughness: 0.2,
+        clearcoat: 0.6,
+        clearcoatRoughness: 0.1,
+        reflectivity: 1.0,
+        envMapIntensity: 0.8,
         side: THREE.DoubleSide,
         flatShading: false,
       }), // Left
       new THREE.MeshPhysicalMaterial({ 
         color: 0x505050,
         metalness: 0.9,
-        roughness: 0.2, // Reducir la rugosidad
-        clearcoat: 0.6, // Aumentar el clearcoat
-        clearcoatRoughness: 0.1, // Reducir la rugosidad del clearcoat
-        reflectivity: 1.0, // Aumentar la reflectividad
-        envMapIntensity: 0.8, // Aumentar la intensidad del mapa de ambiente
+        roughness: 0.2,
+        clearcoat: 0.6,
+        clearcoatRoughness: 0.1,
+        reflectivity: 1.0,
+        envMapIntensity: 0.8,
         side: THREE.DoubleSide,
         flatShading: false,
       }), // Top
       new THREE.MeshPhysicalMaterial({ 
         color: 0x505050,
         metalness: 0.9,
-        roughness: 0.2, // Reducir la rugosidad
-        clearcoat: 0.6, // Aumentar el clearcoat
-        clearcoatRoughness: 0.1, // Reducir la rugosidad del clearcoat
-        reflectivity: 1.0, // Aumentar la reflectividad
-        envMapIntensity: 0.8, // Aumentar la intensidad del mapa de ambiente
+        roughness: 0.2,
+        clearcoat: 0.6,
+        clearcoatRoughness: 0.1,
+        reflectivity: 1.0,
+        envMapIntensity: 0.8,
         side: THREE.DoubleSide,
         flatShading: false,
       }), // Bottom
@@ -650,50 +650,50 @@ const Card3DViewer = () => {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-black to-[#1a1a1a] py-20">
-      {/* Decorative elements */}
+      {/* Elementos decorativos */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#505050]/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#505050]/10 rounded-full blur-3xl"></div>
       </div>
 
-      {/* Content container */}
+      {/* Contenedor principal */}
       <div className="relative z-10 max-w-7xl mx-auto px-4">
-        {/* Header section */}
+        {/* Sección de encabezado */}
         <div className="text-center mb-16">
           <div className="inline-block">
             <span className="inline-block text-sm font-semibold text-[#505050] bg-[#505050]/10 px-4 py-1 rounded-full mb-4">
-              Physical Banking Experience
+              Experiencia Bancaria Física
             </span>
           </div>
           <h2 className="text-6xl font-bold text-white mb-6">
-            Physical <span className="bg-gradient-to-r from-[#808080] via-[#505050] to-[#303030] text-transparent bg-clip-text">Cards</span>
+            Tarjetas <span className="bg-gradient-to-r from-[#808080] via-[#505050] to-[#303030] text-transparent bg-clip-text">Físicas</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
-            Experience the tangible luxury of our physical cards, crafted with precision for your everyday banking needs
+            Experimenta el lujo tangible de nuestras tarjetas físicas, diseñadas con precisión para tus necesidades bancarias diarias
           </p>
 
-          {/* Card name input with improved styling */}
+          {/* Input para el nombre de la tarjeta con estilo mejorado */}
           <div className="inline-block bg-black/30 backdrop-blur-lg rounded-2xl p-6 border border-white/10 shadow-2xl">
             <div className="flex flex-col items-center gap-3">
-              <label className="text-white/80 text-sm font-medium">Customize your card</label>
+              <label className="text-white/80 text-sm font-medium">Personaliza tu tarjeta</label>
               <input
                 type="text"
                 value={cardName}
                 onChange={(e) => setCardName(e.target.value.toUpperCase())}
-                placeholder="Enter your name"
+                placeholder="Ingresa tu nombre"
                 className="w-64 bg-black/20 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 
                   focus:outline-none focus:border-[#505050]/50 focus:ring-2 focus:ring-[#505050]/20 
                   transition-all duration-300 text-center font-medium"
                 maxLength={20}
               />
               <p className="text-white/40 text-xs">
-                The name will appear on your Premium card
+                El nombre aparecerá en tu tarjeta Premium
               </p>
             </div>
           </div>
         </div>
 
-        {/* 3D Card Viewer */}
+        {/* Visor de Tarjeta 3D */}
         <div className="relative h-[700px] rounded-3xl overflow-hidden bg-black/30 backdrop-blur-lg border border-white/10">
           <div 
             ref={mountRef} 
@@ -701,23 +701,23 @@ const Card3DViewer = () => {
           />
         </div>
 
-        {/* Features section */}
+        {/* Sección de características */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
           {[
             {
               icon: "✨",
-              title: "Premium Design",
-              description: "Metallic finish with silver details"
+              title: "Diseño Premium",
+              description: "Acabado metálico con detalles plateados"
             },
             {
               icon: "🔒",
-              title: "Maximum Security",
-              description: "Advanced chip technology and contactless"
+              title: "Máxima Seguridad",
+              description: "Tecnología de chip avanzada y contactless"
             },
             {
               icon: "💳",
-              title: "Exclusive Benefits",
-              description: "Access to special services and offers"
+              title: "Beneficios Exclusivos",
+              description: "Acceso a servicios y ofertas especiales"
             }
           ].map((feature) => (
             <div key={feature.title} className="bg-black/30 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
@@ -732,4 +732,4 @@ const Card3DViewer = () => {
   );
 };
 
-export default Card3DViewer; 
+export default Card3DViewerES; 

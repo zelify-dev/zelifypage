@@ -24,6 +24,8 @@ export const ExternalCashout: React.FC<ExternalCashoutProps> = ({
   const [selectedBank, setSelectedBank] = useState<Bank | null>(null);
   const [isConfirmationScreen, setIsConfirmationScreen] = useState(false);
 
+  const isSpanish = window.location.pathname.startsWith('/es');
+
   const handleContinue = () => {
     setIsConfirmationScreen(true);
   };
@@ -39,21 +41,29 @@ export const ExternalCashout: React.FC<ExternalCashoutProps> = ({
           >
             <i className="eva eva-arrow-back-outline" />
           </button>
-          <h2 className="text-[#3983ED] text-sm font-medium">Confirm Transaction</h2>
+          <h2 className="text-[#3983ED] text-sm font-medium">
+            {isSpanish ? 'Confirmar Transacción' : 'Confirm Transaction'}
+          </h2>
         </div>
 
         <div className="p-6 space-y-6 mb-20">
           <div className="bg-white rounded-xl">
-            <h3 className="text-lg font-bold mb-6">Transaction Details</h3>
+            <h3 className="text-lg font-bold mb-6">
+              {isSpanish ? 'Detalles de la Transacción' : 'Transaction Details'}
+            </h3>
             
             <div className="space-y-4">
               <div className="flex justify-between items-center">
-                <span className="text-gray-600 text-xs">Date/Time</span>
+                <span className="text-gray-600 text-xs">
+                  {isSpanish ? 'Fecha/Hora' : 'Date/Time'}
+                </span>
                 <span className="text-gray-900 text-xs">{new Date().toLocaleString()}</span>
               </div>
               
               <div className="flex justify-between items-center">
-                <span className="text-gray-600 text-xs">To</span>
+                <span className="text-gray-600 text-xs">
+                  {isSpanish ? 'Para' : 'To'}
+                </span>
                 <div className="flex items-center gap-2">
                   <img src={selectedBank?.logo} alt={selectedBank?.name} className="w-6 h-6 rounded-full" />
                   <span className="text-gray-900 text-xs">{selectedBank?.name}</span>
@@ -61,22 +71,32 @@ export const ExternalCashout: React.FC<ExternalCashoutProps> = ({
               </div>
               
               <div className="flex justify-between items-center">
-                <span className="text-gray-600 text-xs">Account</span>
+                <span className="text-gray-600 text-xs">
+                  {isSpanish ? 'Cuenta' : 'Account'}
+                </span>
                 <span className="text-gray-900 text-xs">****{selectedBank?.accountNumber.slice(-4)}</span>
               </div>
               
               <div className="flex justify-between items-center">
-                <span className="text-gray-600 text-xs">Payment Method</span>
-                <span className="text-gray-900 text-xs">BALANCE</span>
+                <span className="text-gray-600 text-xs">
+                  {isSpanish ? 'Método de Pago' : 'Payment Method'}
+                </span>
+                <span className="text-gray-900 text-xs">
+                  {isSpanish ? 'SALDO' : 'BALANCE'}
+                </span>
               </div>
               
               <div className="flex justify-between items-center">
-                <span className="text-gray-600 text-xs">Amount</span>
+                <span className="text-gray-600 text-xs">
+                  {isSpanish ? 'Monto' : 'Amount'}
+                </span>
                 <span className="text-gray-900 text-xs">USD {amount}</span>
               </div>
               
               <div className="flex justify-between items-center">
-                <span className="text-gray-600 text-xs">Fee</span>
+                <span className="text-gray-600 text-xs">
+                  {isSpanish ? 'Comisión' : 'Fee'}
+                </span>
                 <span className="text-gray-900 text-xs">USD {fee.toFixed(2)}</span>
               </div>
               
@@ -88,8 +108,11 @@ export const ExternalCashout: React.FC<ExternalCashoutProps> = ({
           </div>
 
           <div className="absolute bottom-[80px] left-0 right-0 px-6">
-          <ConfirmSlider onConfirm={() => console.log('Confirmed')} text="Slide to confirm" />
-        </div>
+            <ConfirmSlider 
+              onConfirm={() => console.log('Confirmed')} 
+              text={isSpanish ? "Desliza para confirmar" : "Slide to confirm"} 
+            />
+          </div>
         </div>
       </div>
     );
@@ -129,29 +152,37 @@ export const ExternalCashout: React.FC<ExternalCashoutProps> = ({
         <button className="back-button" onClick={goBack}>
           <i className="eva eva-arrow-back-outline" />
         </button>
-        <h2 className="text-[#3983ED] text-sm font-medium">Bank Transfer</h2>
+        <h2 className="text-[#3983ED] text-sm font-medium">
+          {isSpanish ? 'Transferencia Bancaria' : 'Bank Transfer'}
+        </h2>
       </div>
 
       {/* Content */}
       <div className="p-6 space-y-6">
         {/* Balance Card */}
         <div className="bg-white rounded-2xl p-4 text-center shadow-sm border">
-          <p className="text-gray-500 text-xs mb-1">Your balance</p>
+          <p className="text-gray-500 text-xs mb-1">
+            {isSpanish ? 'Tu saldo' : 'Your balance'}
+          </p>
           <div className="flex items-center justify-center gap-1">
             <span className="text-[#3983ED] text-sm">USD</span>
             <span className="text-[#3983ED] text-2xl font-bold">
               {balance.toLocaleString('en-US', { minimumFractionDigits: 2 })}
             </span>
           </div>
-          <p className="text-sm mb-1">US Dollars</p>
+          <p className="text-sm mb-1">
+            {isSpanish ? 'Dólares Americanos' : 'US Dollars'}
+          </p>
           <p className="text-gray-500 text-[10px]">
-            Transaction fee: USD {fee.toFixed(2)}
+            {isSpanish ? 'Comisión por transacción: USD ' : 'Transaction fee: USD '}{fee.toFixed(2)}
           </p>
         </div>
 
         {/* Bank Account */}
         <div className="space-y-1">
-          <label className="text-gray-500 text-xs">Bank account</label>
+          <label className="text-gray-500 text-xs">
+            {isSpanish ? 'Cuenta bancaria' : 'Bank account'}
+          </label>
           <div className="relative">
             <button 
               className="w-full flex items-center justify-between p-3 border rounded-xl"
@@ -163,7 +194,9 @@ export const ExternalCashout: React.FC<ExternalCashoutProps> = ({
                   <span className="text-sm">{selectedBank.name} - {selectedBank.accountNumber}</span>
                 </div>
               ) : (
-                <span className="text-sm text-gray-400">Select a bank</span>
+                <span className="text-sm text-gray-400">
+                  {isSpanish ? 'Selecciona un banco' : 'Select a bank'}
+                </span>
               )}
               <i className="eva eva-chevron-down-outline text-gray-400" />
             </button>
@@ -189,7 +222,9 @@ export const ExternalCashout: React.FC<ExternalCashoutProps> = ({
 
         {/* Amount */}
         <div className="space-y-1">
-          <label className="text-gray-500 text-xs">Amount</label>
+          <label className="text-gray-500 text-xs">
+            {isSpanish ? 'Monto' : 'Amount'}
+          </label>
           <div className="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
             <div className="flex-1 relative">
               <input 
@@ -217,7 +252,7 @@ export const ExternalCashout: React.FC<ExternalCashoutProps> = ({
           disabled={!selectedBank || !amount}
           onClick={handleContinue}
         >
-          Continue
+          {isSpanish ? 'Continuar' : 'Continue'}
         </button>
       </div>
     </div>

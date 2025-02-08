@@ -14,51 +14,13 @@ interface Transaction {
   status: string;
 }
 
-const BENEFITS = [
-  {
-    icon: 'flash',
-    title: 'Instant Transfers',
-    description: 'Money arrives in seconds, not days.',
-    color: 'from-yellow-400 to-orange-400',
-    bgGradient: 'from-yellow-50 via-orange-50 to-red-50',
-    iconBg: 'bg-yellow-400/10'
-  },
-  {
-    icon: 'percent',
-    title: 'Low Fees',
-    description: 'The lowest possible fees in the market.',
-    color: 'from-blue-500 via-indigo-500 to-violet-500',
-    bgGradient: 'from-blue-50 via-indigo-50 to-violet-50',
-    iconBg: 'bg-blue-400/10'
-  },
-  {
-    icon: 'trending-up',
-    title: 'Best Exchange Rates',
-    description: 'Save up on competitive exchange rates.',
-    color: 'from-emerald-400 via-green-500 to-teal-500',
-    bgLight: 'bg-emerald-50',
-    image: '/images/exchange-rates.webp',
-    stats: '2% Better',
-    highlight: 'Market Rates'
-  },
-  {
-    icon: 'shield',
-    title: 'Secure & Easy',
-    description: 'Bank-level security with an easy-to-use interface.',
-    color: 'from-purple-500 via-fuchsia-500 to-pink-500',
-    bgLight: 'bg-purple-50',
-    image: '/images/security.webp',
-    stats: '256-bit',
-    highlight: 'Bank Grade'
-  }
-];
-
-const isValidAmount = (value: string) => {
-  const num = parseFloat(value);
-  return value !== '' && !isNaN(num) && num > 0;
-};
-
 const InternationalTransfer = () => {
+  const [isSpanish, setIsSpanish] = useState(false);
+
+  useEffect(() => {
+    setIsSpanish(window.location.pathname.startsWith('/es'));
+  }, []);
+
   // Valores fijos
   const FIXED_USD_AMOUNT = 500; // Monto fijo en USD
   const EXCHANGE_RATE = 17.05;
@@ -102,14 +64,6 @@ const InternationalTransfer = () => {
     }
   ];
 
-  useEffect(() => {
-    // Cualquier efecto secundario que necesite ejecutarse solo en el cliente
-    const handleClientSideInit = () => {
-      // Inicialización específica del cliente si es necesaria
-    };
-    handleClientSideInit();
-  }, []);
-
   const handleTransfer = () => {
     setIsLoading(true);
     setTimeout(() => {
@@ -118,6 +72,45 @@ const InternationalTransfer = () => {
       setTimeout(() => setShowSuccess(false), 3000);
     }, 1500);
   };
+
+  const BENEFITS = [
+    {
+      icon: 'flash',
+      title: isSpanish ? 'Transferencias Instantáneas' : 'Instant Transfers',
+      description: isSpanish ? 'El dinero llega en segundos, no en días.' : 'Money arrives in seconds, not days.',
+      color: 'from-yellow-400 to-orange-400',
+      bgGradient: 'from-yellow-50 via-orange-50 to-red-50',
+      iconBg: 'bg-yellow-400/10'
+    },
+    {
+      icon: 'percent',
+      title: isSpanish ? 'Comisiones Bajas' : 'Low Fees',
+      description: isSpanish ? 'Las comisiones más bajas del mercado.' : 'The lowest possible fees in the market.',
+      color: 'from-blue-500 via-indigo-500 to-violet-500',
+      bgGradient: 'from-blue-50 via-indigo-50 to-violet-50',
+      iconBg: 'bg-blue-400/10'
+    },
+    {
+      icon: 'trending-up',
+      title: isSpanish ? 'Mejores Tasas de Cambio' : 'Best Exchange Rates',
+      description: isSpanish ? 'Ahorra con tasas de cambio competitivas.' : 'Save up on competitive exchange rates.',
+      color: 'from-emerald-400 via-green-500 to-teal-500',
+      bgLight: 'bg-emerald-50',
+      image: '/images/exchange-rates.webp',
+      stats: '2% Better',
+      highlight: isSpanish ? 'Tasas de Mercado' : 'Market Rates'
+    },
+    {
+      icon: 'shield',
+      title: isSpanish ? 'Seguro y Fácil' : 'Secure & Easy',
+      description: isSpanish ? 'Seguridad bancaria con una interfaz fácil de usar.' : 'Bank-level security with an easy-to-use interface.',
+      color: 'from-purple-500 via-fuchsia-500 to-pink-500',
+      bgLight: 'bg-purple-50',
+      image: '/images/security.webp',
+      stats: '256-bit',
+      highlight: isSpanish ? 'Nivel Bancario' : 'Bank Grade'
+    }
+  ];
 
   return (
     <section className="py-24 relative bg-white overflow-hidden">
@@ -129,10 +122,13 @@ const InternationalTransfer = () => {
       <div className="max-w-7xl mx-auto px-4 relative">
         <div className="text-center mb-16">
           <h2 className="text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3983ED] to-blue-600">
-            Transfer Globally
+            {isSpanish ? 'Transfiere internacionalmente' : 'Transfer Internationally'}
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-          Experience lightning-fast international transfers at the best rates.
+            {isSpanish 
+              ? 'Experimenta transferencias internacionales ultrarrápidas con las mejores tarifas.'
+              : 'Experience lightning-fast international transfers at the best rates.'
+            }
           </p>
         </div>
 
@@ -374,7 +370,7 @@ const InternationalTransfer = () => {
 
         {/* Países disponibles */}
         <div className="mt-16 text-center">
-          <p className="text-gray-600 mb-4">Available in</p>
+          <p className="text-gray-600 mb-4">{isSpanish ? 'Disponible en' : 'Available in'}</p>
           <div className="flex justify-center gap-4">
             {[
               { Component: US, name: 'USA' },

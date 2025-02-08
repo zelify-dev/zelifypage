@@ -455,12 +455,12 @@ const Features = () => {
                           <div className="flex items-center gap-2">
                             <img
                               src={isSpanish ? "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200&auto=format" : "https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=150&h=150&fit=crop"}
-                              alt={isSpanish ? "Juan Perez" : "John Cooper"}
+                              alt={isSpanish ? "Juan Pérez" : "John Cooper"}
                               className="w-8 h-8 rounded-full object-cover"
                             />
                             <div>
-                              <h3 className="text-[14px] font-medium">John Cooper</h3>
-                              <p className="text-[11px] text-gray-500">@coop</p>
+                              <h3 className="text-[14px] font-medium">{isSpanish ? "Juan Pérez" : "John Cooper"}</h3>
+                              <p className="text-[11px] text-gray-500">@{isSpanish ? "juanp" : "coop"}</p>
                             </div>
                           </div>
 
@@ -474,7 +474,9 @@ const Features = () => {
                                   <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
                                 </svg>
                               </button>
-                              <span className="text-[10px] text-gray-600 mt-0.5">Transfer</span>
+                              <span className="text-[10px] text-gray-600 mt-0.5">
+                                {isSpanish ? "Transferir" : "Transfer"}
+                              </span>
                             </div>
                             
                             <div className="flex flex-col items-center">
@@ -486,7 +488,9 @@ const Features = () => {
                                   <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
                                 </svg>
                               </button>
-                              <span className="text-[10px] text-gray-600 mt-0.5">Request</span>
+                              <span className="text-[10px] text-gray-600 mt-0.5">
+                                {isSpanish ? "Solicitar" : "Request"}
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -496,7 +500,9 @@ const Features = () => {
                           <div className="p-3">
                             <div className="flex justify-start">
                               <div className="bg-white rounded-[20px] rounded-bl-sm px-4 py-2.5 shadow-sm max-w-[80%]">
-                                <p className="text-[13px]">Hi! How's the project going? 👋</p>
+                                <p className="text-[13px]">
+                                  {isSpanish ? "¡Hola! ¿Cómo va el proyecto? 👋" : "Hi! How's the project going? 👋"}
+                                </p>
                                 <span className="text-[10px] text-gray-500 mt-1 block">16:23</span>
                               </div>
                             </div>
@@ -518,7 +524,7 @@ const Features = () => {
                                 </button>
                                 <input 
                                   type="text" 
-                                  placeholder="Type a message..." 
+                                  placeholder={isSpanish ? "Escribe un mensaje..." : "Type a message..."} 
                                   className="flex-1 py-2 px-3 rounded-full text-sm focus:outline-none bg-gray-50 border border-gray-100"
                                 />
                                 <button className="p-2 text-gray-400">
@@ -529,8 +535,6 @@ const Features = () => {
                               </div>
                             </div>
                           </div>
-
-                        
                         </div>
 
                         {/* Modales dentro del chat */}

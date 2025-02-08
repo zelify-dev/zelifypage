@@ -20,21 +20,22 @@ interface ChatMessage {
 interface TransferModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (amount: number) => void;
+  onSubmit: (amount: number, recipient: string) => void;
   type: 'transfer' | 'request';
 }
 
 const TransferModal = ({ isOpen, onClose, onSubmit, type }: TransferModalProps) => {
   const [amount, setAmount] = useState('');
   const [error, setError] = useState('');
+  const isSpanish = window.location.pathname.startsWith('/es');
 
   const handleSubmit = () => {
     const value = Number(amount);
     if (value <= 0 || value > 10000) {
-      setError('Amount must be between $0 and $10,000');
+      setError(isSpanish ? 'El monto debe estar entre $0 y $10,000' : 'Amount must be between $0 and $10,000');
       return;
     }
-    onSubmit(value);
+    onSubmit(value, isSpanish ? 'Juan Pérez' : 'John Cooper');
     onClose();
     setAmount('');
     setError('');
@@ -46,17 +47,21 @@ const TransferModal = ({ isOpen, onClose, onSubmit, type }: TransferModalProps) 
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
       <div className="bg-white rounded-2xl p-6 w-[90%] max-w-sm">
         <h3 className="text-lg font-medium mb-4">
-          {type === 'transfer' ? 'Transfer Money' : 'Request Money'}
+          {type === 'transfer' 
+            ? (isSpanish ? 'Enviar Dinero' : 'Transfer Money')
+            : (isSpanish ? 'Solicitar Dinero' : 'Request Money')}
         </h3>
         <div className="space-y-4">
           <div>
-            <label className="block text-sm text-gray-600 mb-1">Amount</label>
+            <label className="block text-sm text-gray-600 mb-1">
+              {isSpanish ? 'Monto' : 'Amount'}
+            </label>
             <input
               type="number"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm outline-none focus:border-[#3983ED]"
-              placeholder="Enter amount"
+              placeholder={isSpanish ? "Ingresa el monto" : "Enter amount"}
             />
             {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
           </div>
@@ -65,13 +70,15 @@ const TransferModal = ({ isOpen, onClose, onSubmit, type }: TransferModalProps) 
               onClick={onClose}
               className="flex-1 px-4 py-2 border border-gray-200 rounded-xl text-sm"
             >
-              Cancel
+              {isSpanish ? 'Cancelar' : 'Cancel'}
             </button>
             <button
               onClick={handleSubmit}
               className="flex-1 px-4 py-2 bg-[#3983ED] text-white rounded-xl text-sm"
             >
-              {type === 'transfer' ? 'Transfer' : 'Request'}
+              {type === 'transfer' 
+                ? (isSpanish ? 'Enviar' : 'Transfer')
+                : (isSpanish ? 'Solicitar' : 'Request')}
             </button>
           </div>
         </div>
@@ -88,66 +95,68 @@ export const ChatTransfer = () => {
   const [showRequestModal, setShowRequestModal] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [transferAmount, setTransferAmount] = useState(0);
-  const [isSpanish, setIsSpanish] = useState(false);
+  const isSpanish = window.location.pathname.startsWith('/es');
 
   const contacts: Contact[] = [
     {
       id: '1',
-      name: 'Cooper',
-      avatar: 'https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=150&h=150&fit=crop',
-      lastMessage: "Hi! How's the project going? 👋",
+      name: isSpanish ? 'Juan Pérez' : 'John Cooper',
+      avatar: isSpanish 
+        ? 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200&auto=format'
+        : 'https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=150&h=150&fit=crop',
+      lastMessage: isSpanish ? "¡Hola! ¿Cómo va el proyecto? 👋" : "Hi! How's the project going? 👋",
       time: '16:23',
       unread: 1
     },
     {
       id: '2',
-      name: 'Dr. Brand',
+      name: isSpanish ? 'Dr. Bravo' : 'Dr. Brand',
       avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Brand',
-      lastMessage: 'Those arent mountains...',
+      lastMessage: isSpanish ? 'Esas no son montañas...' : 'Those arent mountains...',
       time: '15:45'
     },
     {
       id: '3',
-      name: 'Murphy Cooper',
+      name: isSpanish ? 'María Pérez' : 'Murphy Cooper',
       avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Murphy',
-      lastMessage: 'Dad, come back...',
-      time: 'Yesterday'
+      lastMessage: isSpanish ? 'Papá, vuelve...' : 'Dad, come back...',
+      time: isSpanish ? 'Ayer' : 'Yesterday'
     },
     {
       id: '4',
       name: 'TARS',
       avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=TARS',
-      lastMessage: 'Humor setting at 75%',
+      lastMessage: isSpanish ? 'Nivel de humor al 75%' : 'Humor setting at 75%',
       time: '12:30'
     },
     {
       id: '5',
-      name: 'Prof. John Brand',
+      name: isSpanish ? 'Prof. Juan Bravo' : 'Prof. John Brand',
       avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=JohnBrand',
-      lastMessage: 'Plan A was always possible',
-      time: 'Wed'
+      lastMessage: isSpanish ? 'El Plan A siempre fue posible' : 'Plan A was always possible',
+      time: isSpanish ? 'Mié' : 'Wed'
     }
   ];
 
   const handleContactClick = (contact: Contact) => {
     setSelectedContact(contact);
-    if (contact.name === 'Cooper') {
+    if (contact.name === (isSpanish ? 'Juan Pérez' : 'John Cooper')) {
       setMessages([
         {
           id: '1',
-          text: "Hi! How's the project going? 👋",
+          text: isSpanish ? "¡Hola! ¿Cómo va el proyecto? 👋" : "Hi! How's the project going? 👋",
           time: '16:23',
           sender: 'contact'
         },
         {
           id: '2',
-          text: "Hey! All good, almost done 💪",
+          text: isSpanish ? "¡Hey! Todo bien, casi terminado 💪" : "Hey! All good, almost done 💪",
           time: '16:23',
           sender: 'user'
         },
         {
           id: '3',
-          text: "Hey, could you lend me some money for hosting? 🙏",
+          text: isSpanish ? "Oye, ¿me podrías prestar dinero para el hosting? 🙏" : "Hey, could you lend me some money for hosting? 🙏",
           time: '16:23',
           sender: 'contact'
         }
@@ -163,7 +172,9 @@ export const ChatTransfer = () => {
   const handleRequest = (amount: number) => {
     setMessages(prev => [...prev, {
       id: Date.now().toString(),
-      text: `${selectedContact?.name} requests $${amount.toFixed(2)}`,
+      text: isSpanish 
+        ? `${selectedContact?.name} solicita $${amount.toFixed(2)}`
+        : `${selectedContact?.name} requests $${amount.toFixed(2)}`,
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       sender: 'contact',
       isRequest: true
@@ -175,14 +186,14 @@ export const ChatTransfer = () => {
       <div className="min-w-full h-full bg-white">
         <TransactionConfirmation
           amount={transferAmount}
-          recipient="John Cooper"
-          onBack={() => setShowConfirmation(false)}
+          fee={0.99}
+          recipient={isSpanish ? "Juan Pérez" : "John Cooper"}
         />
       </div>
     );
   }
 
-  if (selectedContact?.name === 'Cooper') {
+  if (selectedContact?.name === (isSpanish ? 'Juan Pérez' : 'John Cooper')) {
     return (
       <div className="min-w-full h-full bg-white flex flex-col">
         {/* Header del chat */}
@@ -196,13 +207,17 @@ export const ChatTransfer = () => {
           
           <div className="flex items-center gap-2">
             <img
-              src={isSpanish ? "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200&auto=format" : "https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=150&h=150&fit=crop"}
-              alt={isSpanish ? "Juan Perez" : "John Cooper"}
+              src={isSpanish 
+                ? "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200&auto=format"
+                : "https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=150&h=150&fit=crop"}
+              alt={isSpanish ? "Juan Pérez" : "John Cooper"}
               className="w-8 h-8 rounded-full object-cover"
             />
             <div>
-              <h3 className="text-[14px] font-medium">John Cooper</h3>
-              <p className="text-[11px] text-gray-500">@coop</p>
+              <h3 className="text-[14px] font-medium">
+                {isSpanish ? "Juan Pérez" : "John Cooper"}
+              </h3>
+              <p className="text-[11px] text-gray-500">@{isSpanish ? "juanp" : "coop"}</p>
             </div>
           </div>
 
@@ -222,7 +237,9 @@ export const ChatTransfer = () => {
                   />
                 </svg>
               </button>
-              <span className="text-[10px] text-gray-600 mt-0.5">Transfer</span>
+              <span className="text-[10px] text-gray-600 mt-0.5">
+                {isSpanish ? "Enviar" : "Transfer"}
+              </span>
             </div>
             
             <div className="flex flex-col items-center">
@@ -240,24 +257,31 @@ export const ChatTransfer = () => {
                   />
                 </svg>
               </button>
-              <span className="text-[10px] text-gray-600 mt-0.5">Request</span>
+              <span className="text-[10px] text-gray-600 mt-0.5">
+                {isSpanish ? "Solicitar" : "Request"}
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Área de mensajes - ajustado el padding bottom */}
+        {/* Área de mensajes */}
         <div className="flex-1 overflow-y-auto p-3 pb-[120px] bg-gray-50">
-          <div className="flex justify-start">
-            <div className="bg-white rounded-[20px] rounded-bl-sm px-4 py-2.5 shadow-sm max-w-[80%]">
-              <p className="text-[13px]">Hi! How's the project going? 👋</p>
-              <span className="text-[10px] text-gray-500 mt-1 block">16:23</span>
+          {messages.map(message => (
+            <div key={message.id} className={`flex justify-${message.sender === 'user' ? 'end' : 'start'} mb-3`}>
+              <div className={`bg-${message.sender === 'user' ? '[#3983ED]' : 'white'} rounded-[20px] rounded-${message.sender === 'user' ? 'br' : 'bl'}-sm px-4 py-2.5 shadow-sm max-w-[80%]`}>
+                <p className={`text-[13px] ${message.sender === 'user' ? 'text-white' : 'text-gray-900'}`}>
+                  {message.text}
+                </p>
+                <span className={`text-[10px] ${message.sender === 'user' ? 'text-white/70' : 'text-gray-500'} mt-1 block`}>
+                  {message.time}
+                </span>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
 
-        {/* Container fijo para input y navbar */}
+        {/* Input y Navbar */}
         <div className="fixed bottom-0 left-0 right-0 bg-white">
-          {/* Input */}
           <div className="border-t">
             <div className="px-4 py-3">
               <div className="flex items-center gap-2">
@@ -268,7 +292,7 @@ export const ChatTransfer = () => {
                 </button>
                 <input 
                   type="text" 
-                  placeholder="Type a message..." 
+                  placeholder={isSpanish ? "Escribe un mensaje..." : "Type a message..."} 
                   className="flex-1 py-2 px-3 border rounded-full text-sm focus:outline-none focus:border-blue-500"
                 />
                 <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-full">
@@ -280,15 +304,15 @@ export const ChatTransfer = () => {
             </div>
           </div>
 
-          {/* Navbar - sin espacio extra */}
+          {/* Navbar */}
           <div className="border-t">
             <div className="flex justify-between py-3 px-6">
               {[
-                { icon: 'home-outline', text: 'Home' },
-                { icon: 'swap-outline', text: 'Transfer' },
-                { icon: 'credit-card-outline', text: 'Cards' },
-                { icon: 'message-square-outline', text: 'Chat', active: true },
-                { icon: 'person-outline', text: 'Profile' }
+                { icon: 'home-outline', text: isSpanish ? 'Inicio' : 'Home' },
+                { icon: 'swap-outline', text: isSpanish ? 'Transferir' : 'Transfer' },
+                { icon: 'credit-card-outline', text: isSpanish ? 'Tarjetas' : 'Cards' },
+                { icon: 'message-square-outline', text: isSpanish ? 'Chat' : 'Chat', active: true },
+                { icon: 'person-outline', text: isSpanish ? 'Perfil' : 'Profile' }
               ].map(({ icon, text, active }) => (
                 <button key={text} className="flex flex-col items-center gap-1">
                   <i className={`eva eva-${icon} text-xl ${active ? 'text-[#3983ED]' : 'text-gray-600'}`} />
@@ -320,14 +344,18 @@ export const ChatTransfer = () => {
 
   return (
     <div className="min-w-full h-full bg-white">
-      {/* Header con diseño refinado */}
+      {/* Header */}
       <div className="pt-6 pb-5 px-6">
-        <h1 className="text-[22px] font-semibold mb-1">Messages</h1>
+        <h1 className="text-[22px] font-semibold mb-1">
+          {isSpanish ? 'Mensajes' : 'Messages'}
+        </h1>
         <p className="text-gray-500 text-[13px] mb-5">
-          Chat and send money to your contacts instantly
+          {isSpanish 
+            ? 'Chatea y envía dinero a tus contactos al instante'
+            : 'Chat and send money to your contacts instantly'}
         </p>
         
-        {/* Search Bar rediseñada */}
+        {/* Search Bar */}
         <div className="flex items-center gap-2">
           <div className="flex-1 relative">
             <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center text-gray-400/80">
@@ -335,7 +363,7 @@ export const ChatTransfer = () => {
             </div>
             <input
               type="text"
-              placeholder="Search contacts"
+              placeholder={isSpanish ? "Buscar contactos" : "Search contacts"}
               className="w-full pl-11 pr-4 py-2.5 bg-gray-50/70 text-[14px] outline-none transition-all
                 border border-gray-100 rounded-[12px]
                 placeholder:text-gray-400/90
@@ -353,7 +381,7 @@ export const ChatTransfer = () => {
         </div>
       </div>
 
-      {/* Contact List con padding ajustado */}
+      {/* Contact List */}
       <div className="overflow-y-auto h-[calc(100%-165px)]">
         {contacts
           .filter(contact => 
@@ -381,7 +409,9 @@ export const ChatTransfer = () => {
               <div className="flex-1 text-left">
                 <div className="flex items-center justify-between">
                   <h3 className="font-medium text-[14px] text-gray-900">{contact.name}</h3>
-                  <span className="text-[11px] text-gray-500">{contact.time}</span>
+                  <span className="text-[11px] text-gray-500">
+                    {contact.time === 'Yesterday' ? (isSpanish ? 'Ayer' : 'Yesterday') : contact.time}
+                  </span>
                 </div>
                 <p className="text-[12px] text-gray-500 truncate mt-0.5">
                   {contact.lastMessage}
@@ -389,6 +419,51 @@ export const ChatTransfer = () => {
               </div>
             </button>
           ))}
+      </div>
+
+      {/* Navbar */}
+      <div className="border-t">
+        <div className="flex justify-between py-3 px-6">
+          {[
+            { icon: 'home-outline', text: isSpanish ? 'Inicio' : 'Home' },
+            { icon: 'swap-outline', text: isSpanish ? 'Transferir' : 'Transfer' },
+            { icon: 'credit-card-outline', text: isSpanish ? 'Tarjetas' : 'Cards' },
+            { icon: 'message-square-outline', text: isSpanish ? 'Chat' : 'Chat', active: true },
+            { icon: 'person-outline', text: isSpanish ? 'Perfil' : 'Profile' }
+          ].map(({ icon, text, active }) => (
+            <button key={text} className="flex flex-col items-center gap-1">
+              <i className={`eva eva-${icon} text-xl ${active ? 'text-[#3983ED]' : 'text-gray-600'}`} />
+              <span className={`text-[10px] ${active ? 'text-[#3983ED] font-medium' : 'text-gray-600'}`}>
+                {text}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Input de mensaje */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white">
+        <div className="border-t">
+          <div className="px-4 py-3">
+            <div className="flex items-center gap-2">
+              <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </button>
+              <input 
+                type="text" 
+                placeholder={isSpanish ? "Escribe un mensaje..." : "Type a message..."} 
+                className="flex-1 py-2 px-3 border rounded-full text-sm focus:outline-none focus:border-blue-500"
+              />
+              <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
