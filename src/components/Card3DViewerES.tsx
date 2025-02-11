@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
 
 declare global {
   interface Window {
@@ -24,6 +23,7 @@ const Card3DViewerES = () => {
 
     // Scene setup
     const scene = new THREE.Scene();
+    scene.background = null;
     sceneRef.current = scene;
 
     // Camera setup
@@ -37,7 +37,7 @@ const Card3DViewerES = () => {
     camera.lookAt(0, 0, 0);
     cameraRef.current = camera;
 
-    // Renderer setup with HDR support
+    // Renderer setup
     const renderer = new THREE.WebGLRenderer({ 
       antialias: true,
       alpha: true,
@@ -46,9 +46,6 @@ const Card3DViewerES = () => {
     });
     renderer.setClearColor(0x000000, 0);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1;
-    renderer.outputEncoding = THREE.sRGBEncoding;
 
     // Obtener dimensiones del contenedor
     const containerWidth = mountRef.current.clientWidth;
@@ -67,16 +64,8 @@ const Card3DViewerES = () => {
     renderer.domElement.style.width = '100%';
     renderer.domElement.style.height = '100%';
 
-    // Load HDR environment map
-    new RGBELoader()
-      .load('/environment/environment.hdr', function(texture) {
-        texture.mapping = THREE.EquirectangularReflectionMapping;
-        scene.environment = texture;
-        scene.background = texture;
-      });
-
     // Iluminación
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
     scene.add(ambientLight);
 
     const mainLight = new THREE.DirectionalLight(0xffffff, 0.8);
@@ -84,26 +73,36 @@ const Card3DViewerES = () => {
     mainLight.castShadow = true;
     scene.add(mainLight);
 
+    const backLight = new THREE.DirectionalLight(0xffffff, 0.6);
+    backLight.position.set(0, 2, -6);
+    scene.add(backLight);
+
     const fillLight = new THREE.DirectionalLight(0xffffff, 0.4);
     fillLight.position.set(0, -4, 8);
     scene.add(fillLight);
 
-    const leftLight = new THREE.PointLight(0xffffff, 0.3);
-    leftLight.position.set(-5, 2, 4);
+    const leftLight = new THREE.PointLight(0xffffff, 0.4);
+    leftLight.position.set(-5, 2, 0);
     scene.add(leftLight);
 
-    const rightLight = new THREE.PointLight(0xffffff, 0.3);
-    rightLight.position.set(5, 2, 4);
+    const rightLight = new THREE.PointLight(0xffffff, 0.4);
+    rightLight.position.set(5, 2, 0);
     scene.add(rightLight);
 
-    // Controls setup with 360-degree rotation
+    const topLight = new THREE.PointLight(0xffffff, 0.3);
+    topLight.position.set(0, 5, 0);
+    scene.add(topLight);
+
+    const bottomLight = new THREE.PointLight(0xffffff, 0.3);
+    bottomLight.position.set(0, -5, 0);
+    scene.add(bottomLight);
+
+    // Controls setup
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controls.enableZoom = true;
     controls.enablePan = false;
-    controls.minDistance = 0.5;
-    controls.maxDistance = 20;
     controls.target.set(0, 0, 0);
     controls.update();
     controlsRef.current = controls;
@@ -118,14 +117,6 @@ const Card3DViewerES = () => {
         // Ajustar la escala y posición del modelo si es necesario
         model.scale.set(1, 1, 1);
         model.position.set(0, 0, 0);
-        
-        // Aplicar materiales con environment mapping
-        model.traverse((child) => {
-          if (child instanceof THREE.Mesh) {
-            child.material.envMapIntensity = 1;
-            child.material.needsUpdate = true;
-          }
-        });
         
         // Guardar referencia del modelo
         modelRef.current = model;
@@ -163,6 +154,10 @@ const Card3DViewerES = () => {
         controlsRef.current.update();
       }
 
+      if (modelRef.current) {
+        modelRef.current.rotation.y += 0.0005;
+      }
+
       renderer.render(scene, camera);
     };
 
@@ -191,11 +186,11 @@ const Card3DViewerES = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-black to-[#1a1a1a] py-20">
+    <div className="relative min-h-screen bg-gradient-to-b from-black via-[#0a0a0a] to-[#111111] py-20">
       {/* Elementos decorativos */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#505050]/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#505050]/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#202020]/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#202020]/10 rounded-full blur-3xl"></div>
       </div>
 
       {/* Contenedor principal */}
@@ -203,7 +198,7 @@ const Card3DViewerES = () => {
         {/* Sección de encabezado */}
         <div className="text-center mb-16">
           <div className="inline-block">
-            <span className="inline-block text-sm font-semibold text-[#505050] bg-[#505050]/10 px-4 py-1 rounded-full mb-4">
+            <span className="inline-block text-sm font-semibold text-[#808080] bg-[#505050]/20 px-4 py-1 rounded-full mb-4">
               Experiencia Bancaria Física
             </span>
           </div>
