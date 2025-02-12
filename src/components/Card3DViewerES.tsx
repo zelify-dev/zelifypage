@@ -208,26 +208,6 @@ const Card3DViewerES = () => {
           <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
             Experimenta el lujo tangible de nuestras tarjetas físicas, diseñadas con precisión para tus necesidades bancarias diarias
           </p>
-
-          {/* Input para el nombre de la tarjeta con estilo mejorado */}
-          <div className="inline-block bg-black/30 backdrop-blur-lg rounded-2xl p-6 border border-white/10 shadow-2xl">
-            <div className="flex flex-col items-center gap-3">
-              <label className="text-white/80 text-sm font-medium">Personaliza tu tarjeta</label>
-              <input
-                type="text"
-                value={cardName}
-                onChange={(e) => setCardName(e.target.value.toUpperCase())}
-                placeholder="Ingresa tu nombre"
-                className="w-64 bg-black/20 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 
-                  focus:outline-none focus:border-[#505050]/50 focus:ring-2 focus:ring-[#505050]/20 
-                  transition-all duration-300 text-center font-medium"
-                maxLength={20}
-              />
-              <p className="text-white/40 text-xs">
-                El nombre aparecerá en tu tarjeta Premium
-              </p>
-            </div>
-          </div>
         </div>
 
         {/* Visor de Tarjeta 3D */}
