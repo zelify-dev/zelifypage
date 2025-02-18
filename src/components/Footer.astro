@@ -11,10 +11,6 @@ const links = [
 		href: "#features"
 	},
 	{
-		label: isSpanish ? "Internacional" : "International",
-		href: "#transfer"
-	},
-	{
 		label: isSpanish ? "Planes" : "Plans",
 		href: "#subscriptions"
 	}
@@ -98,91 +94,13 @@ const docCenterPath = isSpanish ? "/es/doc-center" : "/doc-center";
 	</div>
 </footer>
 
-<div class="bg-gray-900 py-12 border-t border-gray-800">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-		<div class="text-sm text-gray-400 space-y-6 text-center sm:text-left">
-			<p>
-				{isSpanish 
-					? "Zwippetech, Inc. (\"Plataforma Zelify\") es una empresa de tecnología financiera y no un banco. Los servicios bancarios son proporcionados por nuestras instituciones financieras asociadas, que son miembros de la Corporación Federal de Seguro de Depósitos (FDIC) u otros organismos reguladores relevantes, según la jurisdicción. El seguro de depósito se aplica a la quiebra de un banco asegurado, sujeto a las condiciones establecidas por las respectivas autoridades reguladoras. La cobertura del seguro de depósito de transferencia está disponible solo cuando se cumplen los requisitos reglamentarios aplicables."
-					: "Zwippetech, Inc. (\"Zelify Platform\") is a financial technology company and not a bank. Banking services are provided by our partner financial institutions, which are members of the Federal Deposit Insurance Corporation (FDIC) or other relevant regulatory bodies, depending on the jurisdiction. Deposit insurance applies to the failure of an insured bank, subject to the conditions set by the respective regulatory authorities. Pass-through deposit insurance coverage is available only when applicable regulatory requirements are met."
-				}
-			</p>
-
-			<p>
-				{isSpanish
-					? "La Tarjeta de Débito Zelify Visa y la Tarjeta de Débito Zelify Mastercard, así como otros productos financieros, son emitidos por nuestros bancos asociados de conformidad con las licencias de Visa y Mastercard International. Estas tarjetas pueden utilizarse en cualquier lugar donde se acepten tarjetas de débito Visa y Mastercard. Consulte el reverso de su tarjeta para obtener detalles sobre el banco emisor."
-					: "The Zelify Visa Debit Card and Zelify Mastercard Debit Card, as well as other financial products, are issued by our partner banks pursuant to licenses from Visa and Mastercard International. These cards may be used wherever Visa and Mastercard debit cards are accepted. Please refer to the back of your card for details on the issuing bank."
-				}
-			</p>
-
-			<div class="space-y-4">
-				<h3 class="font-semibold text-white text-center sm:text-left">
-					{isSpanish ? "Divulgaciones y Limitaciones de Responsabilidad" : "Disclosures & Limitations of Liability"}
-				</h3>
-				<p>
-					{isSpanish
-						? "Las opiniones, consejos, servicios y otra información expresada o contribuida por clientes, usuarios o terceros no reflejan necesariamente los puntos de vista de Zwippetech, Inc. o nuestros bancos asociados. Nuestros bancos asociados no son responsables de la precisión de ningún contenido proporcionado por terceros."
-						: "The opinions, advice, services, and other information expressed or contributed by customers, users, or third parties do not necessarily reflect the views of Zwippetech, Inc. or our partner banks. Our partner banks are not responsible for the accuracy of any content provided by third parties."
-					}
-				</p>
-				<p>
-					{isSpanish
-						? "Se pueden aplicar tarifas para retiros en cajeros automáticos y otros servicios relacionados con transacciones. Consulte los acuerdos de depósito y las tablas de tarifas aplicables para obtener detalles, ya que los términos varían según la jurisdicción y la institución financiera."
-						: "Fees for ATM withdrawals and other transaction-related services may apply. Refer to the applicable deposit agreements and fee schedules for details, as terms vary by jurisdiction and financial institution."
-					}
-				</p>
-				<p>
-					{isSpanish
-						? "Las tarifas de transacción y los cargos por servicio están sujetos a cambios y dependen de los términos de cada acuerdo de cuenta respectivo y del marco regulatorio de cada mercado operativo."
-						: "Transactional fees and service charges are subject to change and depend on the terms of each respective account agreement and the regulatory framework of each operational market."
-					}
-				</p>
-			</div>
-
-			<div class="space-y-4">
-				<h3 class="font-semibold text-white text-center sm:text-left">
-					{isSpanish ? "Elegibilidad y Uso de la Cuenta" : "Account Eligibility & Usage"}
-				</h3>
-				<p>
-					{isSpanish
-						? "Los planes de suscripción y las compras están sujetos a los Términos y Condiciones de Usuario de Zelify, disponibles en nuestro sitio web."
-						: "Subscription plans and purchases are subject to Zelify's User Terms and Conditions, available on our website."
-					}
-				</p>
-				<p>
-					{isSpanish
-						? "Para solicitar una cuenta Zelify, los usuarios deben cumplir con todos los protocolos de Conozca a su Cliente (KYC) y Anti-Lavado de Dinero (AML). Los requisitos de cumplimiento pueden variar según la jurisdicción. Las transferencias instantáneas pueden experimentar retrasos debido a los tiempos de procesamiento de terceros o requisitos regulatorios en ciertos mercados."
-						: "To apply for a Zelify account, users must comply with all Know Your Customer (KYC) and Anti-Money Laundering (AML) protocols. Compliance requirements may vary by jurisdiction. Instant transfers may experience delays due to third-party processing times or regulatory requirements in certain markets."
-					}
-				</p>
-			</div>
-
-			<div class="space-y-4">
-				<h3 class="font-semibold text-white text-center sm:text-left">
-					{isSpanish ? "Términos de Cuenta de Interés y Ahorro" : "Interest & Savings Account Terms"}
-				</h3>
-				<p>
-					{isSpanish
-						? "El Rendimiento Porcentual Anual (APY) para la Cuenta de Ahorro Zelify es variable y puede cambiar en cualquier momento, dependiendo del mercado operativo y el entorno regulatorio. No se requiere saldo mínimo; sin embargo, los intereses se acumulan solo en saldos a partir de $0.01 o su equivalente en moneda local."
-						: "The Annual Percentage Yield (APY) for the Zelify Savings Account is variable and may change at any time, depending on the operational market and regulatory environment. No minimum balance is required; however, interest accrues only on balances starting at $0.01 or equivalent in local currency."
-					}
-				</p>
-			</div>
-
-			<p>
-				{isSpanish
-					? "Para obtener más detalles sobre los productos financieros, servicios y cumplimiento normativo de Zelify, visite nuestra sección de recursos."
-					: "For further details regarding Zelify's financial products, services, and regulatory compliance, please visit our resource section."
-				}
-			</p>
-		</div>
-	</div>
+<div class="bg-gray-900 py-6 border-t border-gray-800">
+	<div class="max-w-7xl mx-auto px-4">
 		{/* Copyright line */}
-		<div class="mt-8 pt-8 border-t border-gray-800">
-			<p class="text-center text-gray-400 text-sm">
-				© {new Date().getFullYear()} Zelify. {isSpanish ? "Todos los derechos reservados." : "All rights reserved."}
-			</p>
-		</div>
+		<p class="text-center text-gray-400 text-sm">
+			© {new Date().getFullYear()} Zelify. {isSpanish ? "Todos los derechos reservados." : "All rights reserved."}
+		</p>
+	</div>
 </div>
 
 <style>
