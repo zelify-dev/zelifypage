@@ -19,10 +19,6 @@ const Pricing = () => {
         'Sin beneficios adicionales (cashback, conversión FX, seguro de viaje, etc.)',
         'Soporte al cliente estándar'
       ] : [
-        'Basic banking services with a virtual or physical Mastercard',
-        'Limited transaction capabilities ($200 limit)',
-        'No additional perks (cashback, FX conversion, travel insurance, etc.)',
-        'Standard customer support'
       ],
       cardImage: '/assets/img/cards/4.png',
       gradient: 'from-blue-500/20 via-purple-500/20 to-pink-500/20'
@@ -37,11 +33,6 @@ const Pricing = () => {
         'Acceso a suscripciones de socios',
         'Soporte al cliente personalizado en la app'
       ] : [
-        '$500 transaction limit',
-        'Reduced international transfer fees (3.8%)',
-        'Cashback on purchases (0.40%)',
-        'Access to partner subscriptions',
-        'Personalized in-app customer support'
       ],
       cardImage: '/assets/img/cards/2.png',
       gradient: 'from-blue-600/20 via-cyan-500/20 to-emerald-500/20'
@@ -59,13 +50,7 @@ const Pricing = () => {
         'Cuentas de ahorro y co-parentalidad',
         'Soporte al cliente personalizado en la app'
       ] : [
-        '$1,000 transaction limit',
-        'Lower FX and international transfer fees (3%)',
-        'Higher cashback (0.60%)',
-        'Personalized card options',
-        'Travel benefits (insurance, airport lounge access)',
-        'Savings and co-parenting accounts',
-        'Personalized in-app customer support'
+       
       ],
       cardImage: '/assets/img/cards/5.png',
       gradient: 'from-orange-500/20 via-amber-500/20 to-yellow-500/20'
@@ -163,7 +148,7 @@ const Pricing = () => {
             <div
               key={plan.name}
               className={`relative group ${
-                index === 1 ? 'lg:-mt-4' : ''
+                index === 1 ? 'lg:-mt-0' : ''
               }`}
             >
               {/* Tarjeta de crédito flotante */}
@@ -202,19 +187,6 @@ const Pricing = () => {
                       <span className="text-gray-500">/mo</span>
                     </div>
                   </div>
-
-                  <ul className="space-y-4 mb-8 min-h-[320px]">
-                    {plan.features.map((feature) => (
-                      <li
-                        key={feature}
-                        className="flex items-center gap-3 text-gray-300"
-                      >
-                        <i className="eva eva-checkmark-circle-2 text-blue-400" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-
                   {plan.popular && (
                     <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs font-medium rounded-full shadow-lg">
                       Most Popular
@@ -226,27 +198,6 @@ const Pricing = () => {
           ))}
         </div>
 
-        {/* Botón Compare Plans */}
-        <div className="text-center mb-16">
-          <button
-            onClick={() => setShowCompareModal(true)}
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white 
-              bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
-              relative group overflow-hidden shadow-[0_0_0_0_rgba(59,130,246,0.5)]
-              animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]"
-          >
-            {/* Efecto de brillo constante */}
-            <div className="absolute inset-0">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent
-                animate-[shine_3s_ease-in-out_infinite]"></div>
-            </div>
-            
-            <span className="relative z-10 flex items-center gap-2">
-              {isSpanish ? 'Comparar Planes' : 'Compare Plans'}
-              <i className="eva eva-arrow-right-outline ml-2 animate-[bounce_1s_ease-in-out_infinite]" />
-            </span>
-          </button>
-        </div>
 
         {/* Sección de Beneficios */}
         <div className="pt-24 border-t border-gray-800">

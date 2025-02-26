@@ -281,7 +281,7 @@ const Features = () => {
     { 
       name: isSpanish ? 'Transferencia Interna' : 'Internal Transfer', 
       icon: 'swap',
-      description: isSpanish ? 'Envía dinero instantáneamente entre cuentas' : 'Send money instantly between accounts'
+      description: isSpanish ? 'Envía dinero instantáneamente entre cuentas' : 'Transfer between savings accounts'
     },
     { 
       name: isSpanish ? 'Servicios Públicos' : 'Utility Services', 
@@ -291,12 +291,12 @@ const Features = () => {
     { 
       name: isSpanish ? 'Retiro Externo' : 'External Cashout', 
       icon: 'download',
-      description: isSpanish ? 'Retira a cuentas externas' : 'Withdraw to external accounts'
+      description: isSpanish ? 'Retira a cuentas externas' : 'Withdraw to external savings accounts'
     },
     { 
       name: isSpanish ? 'Pago por chat' : 'Pay via chat', 
       icon: 'message-square',
-      description: isSpanish ? 'Pagos sociales sin esfuerzo con Zelify' : 'Effortless Social Payments with Zelify'
+      description: isSpanish ? 'Pagos sociales sin esfuerzo con Zelify' : 'Transfer between savings accounts'
     }
   ] as const;
 
@@ -358,10 +358,10 @@ const Features = () => {
                 {isSpanish ? 'En características' : 'In features'}
               </span>
               <h2 className="text-6xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-[#3983ED] to-[#70FA7E] mx-auto lg:mx-0 mb-6">
-                {isSpanish ? 'Zelify potencia la banca para usuarios personales y empresariales' : 'Zelify powers banking for both personal and business users'}
+                {isSpanish ? 'Zelify potencia la banca para usuarios personales y empresariales' : 'Zelify empowers users for personal and business finance'}
               </h2>
               <p className="text-xl text-gray-600 pr-4 max-w-lg mx-auto lg:mx-0">
-                {isSpanish ? 'Envía, divide o regala dinero al instante. Sin complicaciones, sin esperas, solo transacciones fluidas al alcance de tu mano. Enviar y recibir dinero es tan fácil como enviar un mensaje a un amigo.' : 'Send, split, or gift money instantly. No hassle, no waiting, just smooth transactions at your fingertips. Sending and receiving money is as easy as texting a friend.'}
+                {isSpanish ? 'Envía, divide o regala dinero al instante. Sin complicaciones, sin esperas, solo transacciones fluidas al alcance de tu mano. Enviar y recibir dinero es tan fácil como enviar un mensaje a un amigo.' : 'Send, split instantly. No hassle, no waiting. Just smooth transactions on your fingertips.'}
               </p>
             </div>
           </div>

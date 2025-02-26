@@ -20,8 +20,8 @@ const docCenterPath = isSpanish ? "/es/doc-center" : "/doc-center";
 ---
 
 <footer class="bg-gray-900 text-white py-12">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-8 justify-items-center">
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-y-12 gap-x-8 justify-items-center max-w-2xl">
 			<!-- Company Info -->
 			<div class="text-center w-full max-w-xs">
 				<img src="/assets/img/logo_white.png" alt="Zelify" class="h-8 mb-4 mx-auto" />
@@ -50,46 +50,6 @@ const docCenterPath = isSpanish ? "/es/doc-center" : "/doc-center";
 				</ul>
 			</div>
 
-			<!-- Doc Center -->
-			<div class="text-center w-full max-w-xs">
-				<h3 class="text-xl font-bold mb-4">{isSpanish ? "Documentos Zelify" : "Zelify Docs"}</h3>
-				<ul class="space-y-2">
-					<li><a href={`${docCenterPath}#privacy`} class="text-gray-400 hover:text-white">{isSpanish ? "Política de Privacidad" : "Privacy Policy"}</a></li>
-					<li><a href={`${docCenterPath}#terms`} class="text-gray-400 hover:text-white">{isSpanish ? "Política de Prevención de Lavado de Dinero" : "Policy On The Prevention Of Money Laundering..."}</a></li>
-					<li><a href={`${docCenterPath}#data`} class="text-gray-400 hover:text-white">{isSpanish ? "Acuerdo de Licencia" : "License Agreement"}</a></li>
-				</ul>
-			</div>
-
-			<!-- Zwippetech Investors -->
-			<div class="text-center w-full max-w-xs">
-				<h3 class="text-xl font-bold mb-4">{isSpanish ? "Inversores Zelify" : "Zelify Investors"}</h3>
-				<ul class="space-y-2">
-					<li>
-						<a 
-							href="https://zwippetech.docsend.com/view/s/7yhv8ij9xa8gn277" 
-							target="_blank"
-							rel="noopener noreferrer"
-							class="text-gray-400 hover:text-white transition-colors duration-200 inline-flex items-center justify-center gap-2 mx-auto"
-						>
-							{isSpanish ? "Portal de Inversores IR" : "IR Investor Portal"}
-							<svg 
-								xmlns="http://www.w3.org/2000/svg" 
-								class="h-4 w-4 opacity-75" 
-								fill="none" 
-								viewBox="0 0 24 24" 
-								stroke="currentColor"
-							>
-								<path 
-									stroke-linecap="round" 
-									stroke-linejoin="round" 
-									stroke-width="2" 
-									d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" 
-								/>
-							</svg>
-						</a>
-					</li>
-				</ul>
-			</div>
 		</div>
 	</div>
 </footer>
