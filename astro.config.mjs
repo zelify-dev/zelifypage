@@ -7,7 +7,7 @@ import react from "@astrojs/react";
 export default defineConfig({
   site: 'https://www.zelify.com',
   base: '/',
-  output: 'static',
+  output: 'server',
   vite: {
     build: {
       charset: 'utf8',

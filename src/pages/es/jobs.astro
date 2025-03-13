@@ -1,0 +1,213 @@
+import Layout from '../../layouts/Layout.astro';
+import BackButton from '../../components/BackButton.astro';
+
+const currentPath = Astro.url.pathname;
+const isSpanish = currentPath.startsWith('/es');
+
+// Lista de trabajos
+const jobs = [
+  {
+    id: 'senior-frontend',
+    title: {
+      en: 'Senior Frontend Developer',
+      es: 'Desarrollador Frontend Senior'
+    },
+    description: {
+      en: "We're looking for a senior frontend developer to lead the development of our web application.",
+      es: "Buscamos un desarrollador frontend senior para liderar el desarrollo de nuestra aplicación web."
+    },
+    department: 'engineering',
+    location: 'remote',
+    type: 'full-time'
+  },
+  {
+    id: 'backend-developer',
+    title: {
+      en: 'Backend Developer',
+      es: 'Desarrollador Backend'
+    },
+    description: {
+      en: "Join our backend team to build scalable APIs and robust services.",
+      es: "Únete a nuestro equipo de backend para construir APIs escalables y servicios robustos."
+    },
+    department: 'engineering',
+    location: 'remote',
+    type: 'full-time'
+  },
+  {
+    id: 'ui-designer',
+    title: {
+      en: 'UI/UX Designer',
+      es: 'Diseñador UI/UX'
+    },
+    description: {
+      en: "We're looking for a UI/UX designer to create exceptional experiences for our users.",
+      es: "Buscamos un diseñador UI/UX para crear experiencias excepcionales para nuestros usuarios."
+    },
+    department: 'design',
+    location: 'remote',
+    type: 'full-time'
+  }
+];
+
+// Departamentos disponibles
+const departments = [
+  { value: '', label: { en: 'All departments', es: 'Todos los departamentos' } },
+  { value: 'engineering', label: { en: 'Engineering', es: 'Ingeniería' } },
+  { value: 'design', label: { en: 'Design', es: 'Diseño' } },
+  { value: 'marketing', label: { en: 'Marketing', es: 'Marketing' } },
+  { value: 'sales', label: { en: 'Sales', es: 'Ventas' } }
+];
+
+// Ubicaciones disponibles
+const locations = [
+  { value: '', label: { en: 'All locations', es: 'Todas las ubicaciones' } },
+  { value: 'remote', label: { en: 'Remote', es: 'Remoto' } },
+  { value: 'mexico', label: { en: 'Mexico', es: 'México' } },
+  { value: 'usa', label: { en: 'USA', es: 'Estados Unidos' } }
+];
+
+<Layout title="Trabaja con nosotros | Zelify">
+  <div class="min-h-screen bg-gray-50">
+    <!-- Banner -->
+    <div class="relative h-64 bg-gradient-to-r from-blue-600 to-blue-800">
+      <div class="absolute inset-0 bg-black/20"></div>
+      <div class="absolute inset-0 flex flex-col items-center justify-center">
+        <img src="/assets/img/logo.svg" alt="Zelify" class="h-12 mb-6" />
+        <div class="text-center">
+          <h1 class="text-4xl font-bold text-white mb-4">Trabaja con nosotros</h1>
+          <p class="text-xl text-white/90 max-w-2xl mx-auto px-4">
+            Únete a nuestro equipo y ayúdanos a revolucionar los pagos sociales
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="max-w-7xl mx-auto px-4 py-12">
+      <!-- Search and Filters -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Buscar</label>
+          <input 
+            type="text" 
+            id="search"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Buscar posiciones..."
+          />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Departamento</label>
+          <select 
+            id="department"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          >
+            {departments.map(dept => (
+              <option value={dept.value}>{isSpanish ? dept.label.es : dept.label.en}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Ubicación</label>
+          <select 
+            id="location"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          >
+            {locations.map(loc => (
+              <option value={loc.value}>{isSpanish ? loc.label.es : loc.label.en}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <!-- Job Listings -->
+      <div class="grid gap-6" id="jobListings">
+        {jobs.map(job => (
+          <div class="job-card" data-department={job.department} data-location={job.location}>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">
+              {isSpanish ? job.title.es : job.title.en}
+            </h2>
+            <div class="grid gap-4">
+              <a 
+                href={`/es/jobs/${job.id}`}
+                class="block bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+              >
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                  {isSpanish ? job.title.es : job.title.en}
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  {isSpanish ? job.description.es : job.description.en}
+                </p>
+                <div class="flex items-center gap-4 text-sm text-gray-500">
+                  <span class="flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    Remoto
+                  </span>
+                  <span class="flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    Tiempo completo
+                  </span>
+                </div>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+  
+  <BackButton />
+</Layout>
+
+<script>
+  // Función para filtrar trabajos
+  function filterJobs() {
+    const searchInput = document.getElementById('search') as HTMLInputElement;
+    const departmentSelect = document.getElementById('department') as HTMLSelectElement;
+    const locationSelect = document.getElementById('location') as HTMLSelectElement;
+    const jobCards = document.querySelectorAll('.job-card');
+
+    const searchTerm = searchInput.value.toLowerCase();
+    const selectedDepartment = departmentSelect.value;
+    const selectedLocation = locationSelect.value;
+
+    jobCards.forEach(card => {
+      const title = card.querySelector('h3')?.textContent?.toLowerCase() || '';
+      const description = card.querySelector('p')?.textContent?.toLowerCase() || '';
+      const department = card.getAttribute('data-department');
+      const location = card.getAttribute('data-location');
+
+      const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
+      const matchesDepartment = !selectedDepartment || department === selectedDepartment;
+      const matchesLocation = !selectedLocation || location === selectedLocation;
+
+      if (matchesSearch && matchesDepartment && matchesLocation) {
+        (card as HTMLElement).style.display = 'block';
+      } else {
+        (card as HTMLElement).style.display = 'none';
+      }
+    });
+  }
+
+  // Agregar event listeners
+  document.getElementById('search')?.addEventListener('input', filterJobs);
+  document.getElementById('department')?.addEventListener('change', filterJobs);
+  document.getElementById('location')?.addEventListener('change', filterJobs);
+</script>
+
+<style>
+  /* Animations for job cards */
+  a.block {
+    transform: translateY(0);
+    transition: all 0.2s ease;
+  }
+  
+  a.block:hover {
+    transform: translateY(-2px);
+  }
+</style> 

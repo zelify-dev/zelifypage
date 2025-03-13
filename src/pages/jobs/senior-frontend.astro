@@ -1,0 +1,109 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BackButton from '../../components/BackButton.astro';
+
+const currentPath = Astro.url.pathname;
+const jobId = currentPath.split('/').pop();
+---
+
+<Layout title="Senior Frontend Developer | Zelify">
+  <div class="min-h-screen bg-gray-50">
+    <!-- Banner -->
+    <div class="relative h-64 bg-gradient-to-r from-blue-600 to-blue-800">
+      <div class="absolute inset-0 bg-black/20"></div>
+      <div class="absolute inset-0 flex flex-col items-center justify-center">
+        <div class="text-center">
+          <h1 class="text-4xl font-bold text-white mb-4">Senior Frontend Developer</h1>
+          <div class="flex items-center justify-center gap-4 text-sm text-white/90">
+            <span class="flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              Remote
+            </span>
+            <span class="flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              Full-time
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="max-w-4xl mx-auto px-4 py-12">
+      <div class="bg-white rounded-xl shadow-sm p-8">
+        <!-- About the Role -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">About the Role</h2>
+          <p class="text-gray-600 mb-6">
+            We're looking for a Senior Frontend Developer to join our team and lead the development of our web application. As part of our engineering team, you'll be responsible for creating exceptional user experiences and helping define the technical direction of our frontend products.
+          </p>
+        </section>
+
+        <!-- Responsibilities -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Responsibilities</h2>
+          <ul class="list-disc list-inside text-gray-600 space-y-3">
+            <li>Lead the development of new features and improvements to our web application</li>
+            <li>Collaborate with designers and other developers to implement user interfaces</li>
+            <li>Optimize performance and scalability of our frontend applications</li>
+            <li>Mentor junior developers and contribute to the team's engineering culture</li>
+            <li>Participate in code reviews and provide constructive feedback</li>
+          </ul>
+        </section>
+
+        <!-- Requirements -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Requirements</h2>
+          <ul class="list-disc list-inside text-gray-600 space-y-3">
+            <li>5+ years of frontend development experience</li>
+            <li>Strong experience with React, TypeScript, and modern web technologies</li>
+            <li>Deep knowledge of HTML, CSS, and JavaScript</li>
+            <li>Experience with design systems and reusable components</li>
+            <li>Excellent communication and teamwork skills</li>
+          </ul>
+        </section>
+
+        <!-- Benefits -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Benefits</h2>
+          <ul class="list-disc list-inside text-gray-600 space-y-3">
+            <li>Competitive salary and performance bonuses</li>
+            <li>Comprehensive health insurance</li>
+            <li>Flexible schedule and remote work</li>
+            <li>Professional development budget</li>
+            <li>State-of-the-art work equipment</li>
+          </ul>
+        </section>
+
+        <!-- Apply Button -->
+        <div class="flex justify-center">
+          <a
+            href={`/jobs/apply?position=${jobId}`}
+            class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-300 shadow-sm hover:shadow-md"
+          >
+            Apply for this position
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <BackButton href="/jobs" />
+</Layout>
+
+<style>
+  /* Smooth transitions */
+  .transition-colors {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+</style> 

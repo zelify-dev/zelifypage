@@ -2,7 +2,6 @@
 
 Last updated: January 20, 2025
 
-
 # Introduction
 
 The purpose of this document is to provide the general framework of the policies, procedures and activities that Zwipetech, Inc. must develop, in relation to compliance with the provisions on the subject of Prevention against Money Laundering, Financing of Terrorism and other crimes.
@@ -507,3 +506,5 @@ Regarding existing clients, the necessary documentation must be reviewed and upd
 The policies for the prevention of money laundering and the ﬁnancing of crimes and other crimes will be updated on a quarterly basis. Approved and agreed according to the preceding articles.  
 
 **Copyright 2025 Zwippetech, Inc**.
+
+Hola Ale, muchas gracias por tu ayuda. 

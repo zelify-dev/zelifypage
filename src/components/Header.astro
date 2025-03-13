@@ -42,8 +42,8 @@ const alternateUrl = currentLang === 'es' ? currentPath.replace('/es', '') : `/e
 
 		<div class="flex items-center gap-4">
 			<a
-				href="https://2xh6lokbhy5.typeform.com/to/FBKcce3K"
-				target="_blank"
+				href={`${currentLang === 'es' ? '/es' : ''}/jobs`}
+				target="_self"
 				rel="noopener noreferrer"
 				class="inline-flex items-center justify-center px-4 py-2 border border-white text-white font-medium rounded-full hover:bg-white hover:text-blue-600 transition-all duration-300 text-sm gap-2"
 			>
