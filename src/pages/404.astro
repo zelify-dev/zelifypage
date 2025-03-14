@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Página no encontrada | Zelify">
+  <div class="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4">
+    <div class="text-center">
+      <h1 class="text-9xl font-bold text-blue-600 mb-4">404</h1>
+      <h2 class="text-3xl font-semibold text-gray-900 mb-6">Página no encontrada</h2>
+      <p class="text-xl text-gray-600 max-w-md mx-auto mb-8">
+        Lo sentimos, la página que estás buscando no existe o ha sido movida.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a 
+          href="/" 
+          class="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          Volver al inicio
+        </a>
+        <a 
+          href="/jobs" 
+          class="px-6 py-3 bg-white text-blue-600 font-medium rounded-lg border border-blue-600 hover:bg-blue-50 transition-colors"
+        >
+          Ver trabajos disponibles
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout> 

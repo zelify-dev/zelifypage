@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import nodemailer from 'nodemailer';
+// import nodemailer from 'nodemailer';
 
 export const post: APIRoute = async ({ request }) => {
   try {
@@ -30,6 +30,15 @@ export const post: APIRoute = async ({ request }) => {
       }
     }
 
+    // Log application data (for static build)
+    console.log('Application received:', {
+      ...data,
+      cvFileName: cvFile.name,
+      cvFileSize: cvFile.size
+    });
+
+    /* 
+    // Email functionality disabled for static build
     // Validate environment variables
     const emailUser = import.meta.env.EMAIL_USER;
     const emailPass = import.meta.env.EMAIL_PASSWORD;
@@ -114,6 +123,7 @@ export const post: APIRoute = async ({ request }) => {
       console.error('Failed to send email:', sendError);
       throw new Error('Failed to send application email');
     }
+    */
 
     return new Response(JSON.stringify({ 
       success: true,

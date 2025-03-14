@@ -154,11 +154,11 @@ const questions = [
 
         <!-- Questions -->
         <section class="space-y-8">
-          {questions.map((q, index) => (
+          {questions.map((q) => (
             <div class="border-t pt-6">
               <label class="block text-sm font-medium text-gray-900 mb-3">{q.question} *</label>
               <div class="space-y-3">
-                {q.options.map((option, optIndex) => (
+                {q.options.map((option) => (
                   <div class="flex items-center">
                     <input
                       type="radio"
@@ -211,67 +211,63 @@ const questions = [
   <BackButton href={`/jobs/${position}`} />
 </Layout>
 
-<script>
-  const form = document.getElementById('applicationForm') as HTMLFormElement;
-  const submitButton = document.getElementById('submitButton') as HTMLButtonElement;
-  const submitSpinner = submitButton.querySelector('svg') as SVGElement;
-  const submitText = submitButton.querySelector('span') as HTMLSpanElement;
-  const successMessage = document.getElementById('successMessage');
-  const errorMessage = document.getElementById('errorMessage');
-  const fileError = document.getElementById('fileError');
+<script is:inline>
+  // Este script se ejecutará solo en el cliente
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('applicationForm');
+    const submitButton = document.getElementById('submitButton');
+    const submitSpinner = submitButton?.querySelector('svg');
+    const submitText = submitButton?.querySelector('span');
+    const successMessage = document.getElementById('successMessage');
+    const errorMessage = document.getElementById('errorMessage');
+    const fileError = document.getElementById('fileError');
 
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    // Reset messages
-    successMessage?.classList.add('hidden');
-    errorMessage?.classList.add('hidden');
-    fileError?.classList.add('hidden');
-    
-    const formData = new FormData(e.target as HTMLFormElement);
-    const cvFile = formData.get('cv') as File;
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Reset messages
+      successMessage?.classList.add('hidden');
+      errorMessage?.classList.add('hidden');
+      fileError?.classList.add('hidden');
+      
+      const formData = new FormData(e.target);
+      const cvFile = formData.get('cv');
 
-    // Validate file size (5MB max)
-    if (cvFile.size > 5 * 1024 * 1024) {
-      fileError?.classList.remove('hidden');
-      return;
-    }
+      // Validate file size (5MB max)
+      if (cvFile instanceof File && cvFile.size > 5 * 1024 * 1024) {
+        fileError?.classList.remove('hidden');
+        return;
+      }
 
-    try {
-      // Show loading state
-      submitButton.disabled = true;
-      submitSpinner.classList.remove('hidden');
-      submitText.textContent = 'Submitting...';
+      try {
+        // Show loading state
+        if (submitButton) submitButton.disabled = true;
+        submitSpinner?.classList.remove('hidden');
+        if (submitText) submitText.textContent = 'Submitting...';
 
-      const response = await fetch('/api/submit-application', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (response.ok) {
-        form.style.display = 'none';
+        // Simulate API call in static mode
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        // Show success message
+        if (form) form.style.display = 'none';
         successMessage?.classList.remove('hidden');
         window.scrollTo(0, 0);
-      } else {
-        const error = await response.json();
+      } catch (error) {
+        console.error('Error submitting form:', error);
         errorMessage?.classList.remove('hidden');
-        console.error('Submission error:', error);
+      } finally {
+        // Reset button state
+        if (submitButton) submitButton.disabled = false;
+        submitSpinner?.classList.add('hidden');
+        if (submitText) submitText.textContent = 'Submit Application';
       }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      errorMessage?.classList.remove('hidden');
-    } finally {
-      // Reset button state
-      submitButton.disabled = false;
-      submitSpinner.classList.add('hidden');
-      submitText.textContent = 'Submit Application';
-    }
-  });
+    });
 
-  // Reset error message when file input changes
-  const fileInput = form?.querySelector('input[type="file"]');
-  fileInput?.addEventListener('change', () => {
-    fileError?.classList.add('hidden');
+    // Reset error message when file input changes
+    const fileInput = form?.querySelector('input[type="file"]');
+    fileInput?.addEventListener('change', () => {
+      fileError?.classList.add('hidden');
+    });
   });
 </script>
 
