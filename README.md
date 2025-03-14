@@ -52,3 +52,76 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+# Zelify Website
+
+Sitio web corporativo de Zelify con funcionalidad de listado de trabajos y formulario de aplicación.
+
+## 🚀 Estructura del Proyecto
+
+```
+/
+├── public/
+│   └── assets/
+│       ├── img/
+│       └── ...
+├── src/
+│   ├── components/
+│   ├── layouts/
+│   ├── pages/
+│   │   ├── api/
+│   │   │   └── submit-application.ts
+│   │   ├── jobs/
+│   │   │   └── apply.astro
+│   │   └── ...
+│   └── ...
+└── package.json
+```
+
+## 🧞 Comandos
+
+| Comando                   | Acción                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Instala dependencias                             |
+| `npm run dev`             | Inicia servidor local en `localhost:3000`        |
+| `npm run build`           | Construye el sitio para producción en `./dist/`  |
+| `npm run preview`         | Vista previa de la build antes de desplegar      |
+
+## 📧 Configuración de Correo Electrónico
+
+Para que el formulario de aplicación funcione correctamente, necesitas configurar las variables de entorno para el envío de correos:
+
+1. Crea un archivo `.env` en la raíz del proyecto basado en `.env.example`
+2. Configura las siguientes variables:
+
+```
+EMAIL_USER=tu_correo@dominio.com
+EMAIL_PASSWORD=tu_contraseña
+EMAIL_HOST=smtp.dreamhost.com
+EMAIL_PORT=465
+```
+
+## 🚀 Despliegue con GitHub Actions
+
+El proyecto está configurado para desplegarse automáticamente en GitHub Pages usando GitHub Actions.
+
+### Configuración de Secretos
+
+Para que el despliegue funcione correctamente con el envío de correos, debes configurar los siguientes secretos en tu repositorio de GitHub:
+
+1. Ve a tu repositorio en GitHub
+2. Ve a Settings > Secrets and variables > Actions
+3. Agrega los siguientes secretos:
+   - `EMAIL_USER`: Tu dirección de correo
+   - `EMAIL_PASSWORD`: Tu contraseña de correo
+   - `EMAIL_HOST`: El host SMTP (por defecto: smtp.dreamhost.com)
+   - `EMAIL_PORT`: El puerto SMTP (por defecto: 465)
+
+### Workflow
+
+El archivo `.github/workflows/deploy.yml` contiene la configuración necesaria para:
+
+1. Construir el sitio con las variables de entorno
+2. Desplegar automáticamente en GitHub Pages
+
+No es necesario modificar este archivo a menos que necesites personalizar el proceso de despliegue.
