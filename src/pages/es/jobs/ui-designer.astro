@@ -1,0 +1,135 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import BackButton from '../../../components/BackButton.astro';
+
+const currentPath = Astro.url.pathname;
+const jobId = currentPath.split('/').pop();
+---
+
+<Layout title="Diseñador UI/UX | Zelify">
+  <div class="min-h-screen bg-gray-50">
+    <!-- Banner -->
+    <div class="relative h-64 bg-gradient-to-r from-blue-600 to-blue-800">
+      <div class="absolute inset-0 bg-black/20"></div>
+      <div class="absolute inset-0 flex flex-col items-center justify-center">
+        <div class="text-center">
+          <h1 class="text-4xl font-bold text-white mb-4">Diseñador UI/UX</h1>
+          <div class="flex items-center justify-center gap-4 text-sm text-white/90">
+            <span class="flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              Remoto
+            </span>
+            <span class="flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              Tiempo completo
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="max-w-4xl mx-auto px-4 py-12">
+      <div class="bg-white rounded-xl shadow-sm p-8">
+        <!-- About Us -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Sobre Nosotros</h2>
+          <p class="text-gray-600 mb-6">
+            Fundada en 2018, nuestra misión es combatir la complejidad y empoderar a las personas reinventando los servicios financieros y facilitando las transferencias internacionales en América Latina. Zelify transforma la banca para usuarios personales y empresariales, permitiéndote enviar, dividir o regalar dinero al instante, sin complicaciones ni esperas. Con transacciones fluidas tan fáciles como enviar un mensaje, tienes el poder de conectar, pagar y compartir instantáneamente.
+          </p>
+        </section>
+
+        <!-- Our Work Model -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Nuestro Modelo de Trabajo</h2>
+          <p class="text-gray-600 mb-6">
+            En Zelify, creamos equipos multifuncionales, diversos e inclusivos, atrayendo al mejor talento para desarrollar tecnología revolucionaria. Nuestro equipo de diseño trabaja estrechamente con producto e ingeniería para crear experiencias de usuario intuitivas, accesibles y agradables. Nuestro modelo híbrido proporciona independencia y promueve la responsabilidad profesional para cumplir con los objetivos alineados con nuestros objetivos globales. Nuestro equipo de Diseño transforma procesos financieros complejos en experiencias de usuario simples y atractivas.
+          </p>
+        </section>
+
+        <!-- Our Culture -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Nuestra Cultura</h2>
+          <p class="text-gray-600 mb-6">
+            En Zelify, hemos creado una plataforma internacional de neo-banca centrada en el usuario, desafiando constantemente los límites de la tecnología y el diseño. Nuestra promesa es conectar pagos y unir personas, permitiendo a nuestros usuarios pagar, compartir y conectarse instantáneamente. Cultivamos una cultura de crecimiento profesional, innovación y emprendimiento, promoviendo la autonomía y la responsabilidad donde los diseñadores son dueños de sus proyectos desde la concepción hasta la implementación.
+          </p>
+        </section>
+
+        <!-- Technical Requirements -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Requisitos Técnicos</h2>
+          <ul class="list-disc list-inside text-gray-600 space-y-3">
+            <li>3+ años de experiencia en diseño UI/UX para productos digitales</li>
+            <li>Sólido portafolio que demuestre soluciones de diseño centradas en el usuario</li>
+            <li>Dominio de herramientas de diseño como Figma, Sketch o Adobe XD</li>
+            <li>Experiencia con herramientas de prototipado (Principle, Framer, ProtoPie)</li>
+            <li>Comprensión de sistemas de diseño y bibliotecas de componentes</li>
+            <li>Conocimiento de estándares de accesibilidad y mejores prácticas</li>
+            <li>Experiencia realizando investigación de usuarios y pruebas de usabilidad</li>
+            <li>Capacidad para traducir requisitos complejos en flujos de usuario intuitivos</li>
+            <li>Comprensión de principios de diseño móvil y responsive</li>
+          </ul>
+        </section>
+
+        <!-- Role Expectations -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Lo que Esperamos</h2>
+          <ul class="list-disc list-inside text-gray-600 space-y-3">
+            <li>Crear diseños centrados en el usuario comprendiendo requisitos de negocio, feedback de usuarios e insights de investigación</li>
+            <li>Diseñar flujos, prototipos y mockups de alta fidelidad para aplicaciones móviles y web</li>
+            <li>Contribuir y mantener nuestro sistema de diseño</li>
+            <li>Colaborar con product managers para definir características e historias de usuario</li>
+            <li>Trabajar estrechamente con desarrolladores para asegurar una implementación de alta calidad</li>
+            <li>Realizar pruebas de usabilidad e iterar en los diseños basándose en el feedback de los usuarios</li>
+            <li>Mantenerse actualizado con las últimas tendencias, herramientas y tecnologías de UI/UX</li>
+            <li>Presentar y defender decisiones de diseño basadas en investigación y mejores prácticas</li>
+          </ul>
+        </section>
+
+        <!-- Nice to Have -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Sería un Plus</h2>
+          <ul class="list-disc list-inside text-gray-600 space-y-3">
+            <li>Experiencia en aplicaciones fintech o bancarias</li>
+            <li>Conocimiento de HTML, CSS y desarrollo frontend básico</li>
+            <li>Experiencia con animación y micro-interacciones</li>
+            <li>Comprensión de técnicas de visualización de datos</li>
+            <li>Experiencia con pruebas A/B y analíticas</li>
+            <li>Conocimiento de psicología conductual y su aplicación a UX</li>
+            <li>Experiencia trabajando en entornos ágiles</li>
+            <li>Capacidades multilingües (español e inglés)</li>
+          </ul>
+        </section>
+
+        <!-- Apply Button -->
+        <div class="flex justify-center">
+          <a
+            href={`/jobs/apply?position=${jobId}`}
+            class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-300 shadow-sm hover:shadow-md"
+          >
+            Aplicar a esta posición
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <BackButton href="/es/jobs" />
+</Layout>
+
+<style>
+  /* Smooth transitions */
+  .transition-colors {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+</style> 

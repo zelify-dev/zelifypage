@@ -4,120 +4,203 @@ import BackButton from '../../components/BackButton.astro';
 
 const position = Astro.url.searchParams.get('position');
 
-// Questions from CSV translated to English and converted to multiple choice
+// New questions for the application form
 const questions = [
   {
-    id: 'experience',
-    question: 'Briefly describe your experience level with microservices and fintech projects',
+    id: 'years_experience',
+    question: 'How many years of experience do you have in software development?',
+    questionEs: '¿Cuántos años de experiencia tienes en el desarrollo de software?',
     options: [
-      'No experience with microservices or fintech',
-      '1-2 years of experience with either microservices or fintech',
-      '2-4 years of experience with both microservices and fintech',
-      '4+ years of experience with both microservices and fintech'
+      'Less than one year',
+      'Between one to three years',
+      'Between three to five years',
+      'More than five years'
+    ],
+    optionsEs: [
+      'Menos de un año',
+      'Entre uno a tres años',
+      'Entre tres a cinco años',
+      'Más de cinco años'
     ]
+  },
+  {
+    id: 'distributed_systems',
+    question: 'How familiar are you with distributed systems, such as asynchronous architecture, microservices, etc.?',
+    questionEs: '¿Qué tan familiarizado estás con los sistemas distribuidos, como la arquitectura asíncrona, microservicios, etc.?',
+    options: [
+      'I have only developed applications whose architecture is centered on a monolith.',
+      'I have been able to participate in the construction of a microservice, including dockerizing and deploying it under a CI/CD pipeline which I did not create.',
+      'I have been able to build more than one microservice in more than one programming language such as Java or Typescript, and I have been able to implement asynchronous communication between them using Apache Kafka or other.',
+      'I have designed and deployed a microservices architecture and have been able to implement an event and distributed transmission platform that allows publishing, storing and processing real-time data streams such as Apache Kafka or other.'
+    ],
+    optionsEs: [
+      'Únicamente he desarrollado aplicaciones cuya arquitectura está centrada en un monolito.',
+      'He podido participar en la construcción de un microservicio hasta poder dockerizarlo y desplegarlo bajo un pipeline CI/CD el cual yo no lo creé.',
+      'He podido construir más de un microservicio en más de un lenguaje de programación como Java o Typescript, y he podido implementar una comunicación asíncrona entre ellos con el uso de Apache Kafka u otro.',
+      'He diseñado y desplegado una arquitectura de microservicios y he podido implementar una plataforma de transmisión de eventos y distribuida que permite publicar, almacenar y procesar flujos de datos en tiempo real como Apache Kafka u otro.'
+    ],
+    hasAdditionalComments: true
+  },
+  {
+    id: 'kafka_experience',
+    question: 'What has been your experience managing Apache Kafka in microservice-based projects?',
+    questionEs: '¿Cuál ha sido tu experiencia manejando Apache Kafka en proyectos basados en microservicios?',
+    options: [
+      'I have not managed communication between services with Apache Kafka, I have only done it through HTTP with APIs.',
+      'I have configured producers and consumers in a service to establish communication with Apache Kafka.',
+      'I have implemented advanced patterns such as Event Sourcing or CQRS with Apache Kafka, in addition to configuring producers and consumers in more than one service.',
+      'I have deployed a Kafka-based infrastructure by setting up a cluster or brokers of Apache Kafka, and I have optimized and solved performance problems.'
+    ],
+    optionsEs: [
+      'No he manejado comunicación entre servicios con Apache Kafka, únicamente lo he hecho a través de HTTP con APIs.',
+      'He configurado productores y consumidores en un servicio para establecer la comunicación con Apache Kafka.',
+      'He implementado patrones avanzados como Event Sourcing o CQRS con Apache Kafka, además de configurar productores y consumidores en más de un servicio.',
+      'He desplegado una infraestructura basada en Kafka levantando un cluster o brokers de Apache Kafka, y he optimizado y solucionado problemas de rendimiento.'
+    ],
+    hasAdditionalComments: true
+  },
+  {
+    id: 'nestjs_experience',
+    question: 'What has been your experience developing an API in NestJS?',
+    questionEs: '¿Cuál ha sido tu experiencia desarrollando una API en Nestjs?',
+    options: [
+      'I have been able to create an API using only controllers and services and running the project locally.',
+      'I have been able to create an API, using documentation tools such as Swagger and connecting business entities to an ORM like TypeORM.',
+      'I have been able to create an API documented with Swagger and with the use of an ORM such as TypeORM, and I have been able to properly dockerize it for future deployment.',
+      'I have brought a NestJS-created API to production, properly documented, with the use of an ORM and I have established security mechanisms for its access.'
+    ],
+    optionsEs: [
+      'He podido crear una API utilizando únicamente controladores y servicios y ejecutando el proyecto de forma local.',
+      'He podido crear una API, empleando herramientas de documentación como Swagger y conectando las entidades de negocio a un ORM como TypeORM.',
+      'He podido crear una API documentada con Swagger y con el uso de un ORM como TypeORM, y he podido dockerizarla correctamente para un futuro despliegue.',
+      'He llevado a producción una API creada en Nestjs, correctamente documentada, con el uso de un ORM y he establecido mecanismos de seguridad para su acceso.'
+    ],
+    hasAdditionalComments: true
+  },
+  {
+    id: 'third_party_integration',
+    question: 'Which of the following options best describes your experience in integrations with third parties?',
+    questionEs: '¿Cuál de las siguientes opciones describe mejor tu experiencia en integraciones con terceros?',
+    options: [
+      'I have been able to carry out integrations via API of third parties under online documentation from providers that I have not needed to contact.',
+      'I have been able to carry out specific banking integrations via API under documentation from a bank.',
+      'I have been able to follow the instructions for a banking integration that involved holding technical meetings and building software solutions at the same time.',
+      'I have been able to lead banking integrations under a secure connection mechanism such as VPN and software development guided in an API Contract.'
+    ],
+    optionsEs: [
+      'He podido llevar a cabo integraciones vía API de terceros bajo documentación en línea de proveedores que no he tenido la necesidad de contactarme.',
+      'He podido llevar a cabo integraciones bancarias específicamente vía API bajo documentación proveniente de algún banco.',
+      'He podido seguir las instrucciones para una integración bancaria que implicó llevar reuniones técnicas y construir soluciones de software a la par.',
+      'He podido liderar integraciones bancarias bajo un mecanismo de conexión segura como VPN y el desarrollo de software guiado en un API Contract.'
+    ],
+    hasAdditionalComments: true
+  },
+  {
+    id: 'aws_experience',
+    question: 'What is your experience with AWS in your Software Engineer activities?',
+    questionEs: '¿Cuál es tu experiencia con AWS en tus actividades de Software Engineer?',
+    options: [
+      'I have implemented some AWS service like S3 using an SDK for a service.',
+      'I have manipulated the AWS console to be able to create infrastructure resources such as VPCs, EC2, or RDS under the guidance of an architect.',
+      'I have been able to create infrastructure resources using Terraform and Ansible to have infrastructure as code.',
+      'I have participated as a solutions architect in AWS for services such as ECS for microservices.'
+    ],
+    optionsEs: [
+      'He implementado algún servicio de AWS como S3 bajo el uso de un SDK para un servicio.',
+      'He manipulado la consola de AWS para poder crear recursos de infraestructura como VPCs, EC2, o RDS bajo la guía de un arquitecto.',
+      'He podido levantar recursos de infraestructura bajo el uso de Terraform y Ansible para tener una infraestructura como código.',
+      'He participado como arquitecto de soluciones en AWS para servicios como ECS para microservicios.'
+    ],
+    hasAdditionalComments: true
+  },
+  {
+    id: 'english_level',
+    question: 'What is your level of English?',
+    questionEs: '¿Cuál es tu nivel de inglés?',
+    options: [
+      'It is basic, I can understand texts or emails but I cannot participate in conversations.',
+      'I can participate in technical conversations, understand most of what is discussed, but I cannot contribute new solutions or ideas due to language limitations.',
+      'I can participate in technical conversations to make decisions together independently.',
+      'I understand the language perfectly, I can participate in technical and non-technical conversations and I can make decisions together.'
+    ],
+    optionsEs: [
+      'Es básico, puedo comprender textos o emails pero no puedo participar en conversaciones.',
+      'Puedo participar en conversaciones técnicas, entender en mayor parte lo que se discute, pero no puedo aportar nuevas soluciones o ideas por limitaciones en el idioma.',
+      'Puedo participar en conversaciones técnicas para tomar decisiones en conjunto de forma independiente.',
+      'Comprendo perfectamente el idioma, puedo participar en conversaciones técnicas y no técnicas y puedo tomar decisiones en conjunto.'
+    ],
+    hasAdditionalComments: true
   },
   {
     id: 'team_size',
     question: 'What is the largest team size you have worked with or led?',
+    questionEs: '¿Cuál ha sido el tamaño de equipo con los que has trabajado o liderado?',
     options: [
       'Less than 5 people',
-      '5-10 people',
-      '10-20 people',
+      'Between 5 to 10 people',
+      'Between 10 and 20 people',
       'More than 20 people'
-    ]
-  },
-  {
-    id: 'neobanking',
-    question: 'What is your knowledge level of neobanking platforms?',
-    options: [
-      'Basic understanding',
-      'Worked with neobanking platforms as a user',
-      'Developed features for neobanking platforms',
-      'Extensive experience building neobanking solutions'
-    ]
-  },
-  {
-    id: 'nestjs',
-    question: 'Rate your NestJS knowledge',
-    options: [
-      'No experience',
-      'Basic knowledge',
-      'Intermediate knowledge',
-      'Advanced knowledge'
-    ]
-  },
-  {
-    id: 'kafka',
-    question: 'Rate your Apache Kafka knowledge',
-    options: [
-      'No experience',
-      'Basic knowledge',
-      'Intermediate knowledge',
-      'Advanced knowledge'
-    ]
-  },
-  {
-    id: 'api_integration',
-    question: 'What is your experience with third-party API integrations?',
-    options: [
-      'No experience',
-      'Basic REST API integrations',
-      'Complex API integrations including SOAP and REST',
-      'Advanced integrations with multiple security protocols'
-    ]
-  },
-  {
-    id: 'docker',
-    question: 'What is your experience with Docker containerization?',
-    options: [
-      'No experience',
-      'Basic container usage',
-      'Container creation and optimization',
-      'Advanced containerization and orchestration'
-    ]
-  },
-  {
-    id: 'aws_ecs',
-    question: 'What is your experience with AWS ECS?',
-    options: [
-      'No experience',
-      'Basic understanding',
-      'Deployed and managed containers',
-      'Advanced cluster management and optimization'
+    ],
+    optionsEs: [
+      'Menos de cinco personas',
+      'Entre cinco a diez personas',
+      'Entre diez y veinte personas',
+      'Entre más de 20 personas'
     ]
   },
   {
     id: 'availability',
-    question: 'What is your availability to start?',
+    question: 'What is your availability to join a new team?',
+    questionEs: '¿Cuál es tu disponibilidad para formar parte de un nuevo equipo?',
     options: [
-      'Immediately',
-      'In 2 weeks',
-      'In 1 month',
-      'More than 1 month'
+      'Immediate',
+      'In one week',
+      'In two weeks',
+      'More than two weeks'
+    ],
+    optionsEs: [
+      'Inmediato',
+      'En una semana',
+      'En dos semanas',
+      'Más de dos semanas'
     ]
   }
 ];
+
+// Determine current language based on path
+const isSpanish = Astro.url.pathname.includes('/es/');
 ---
 
-<Layout title="Apply | Zelify">
+<Layout title={isSpanish ? "Aplicar | Zelify" : "Apply | Zelify"}>
   <div class="min-h-screen bg-gray-50 py-12">
     <div class="max-w-3xl mx-auto px-4">
-      <h1 class="text-3xl font-bold text-gray-900 mb-8 text-center">Application Form</h1>
+      <h1 class="text-3xl font-bold text-gray-900 mb-8 text-center">
+        {isSpanish ? "Formulario de Aplicación" : "Application Form"}
+      </h1>
       
       <form id="applicationForm" class="bg-white rounded-xl shadow-sm p-8" enctype="multipart/form-data">
+        <!-- Position (hidden) -->
+        <input type="hidden" name="position" value={position || ''} />
+        
         <!-- Personal Information -->
         <section class="mb-8">
-          <h2 class="text-xl font-semibold text-gray-900 mb-4">Personal Information</h2>
+          <h2 class="text-xl font-semibold text-gray-900 mb-4">
+            {isSpanish ? "Información Personal" : "Personal Information"}
+          </h2>
           <div class="grid gap-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">
+                  {isSpanish ? "Nombre *" : "First Name *"}
+                </label>
                 <input type="text" name="firstName" required
                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Last Name *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">
+                  {isSpanish ? "Apellido *" : "Last Name *"}
+                </label>
                 <input type="text" name="lastName" required
                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
@@ -125,21 +208,54 @@ const questions = [
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">
+                  {isSpanish ? "Correo Electrónico *" : "Email *"}
+                </label>
                 <input type="email" name="email" required
                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">
+                  {isSpanish ? "Número de Teléfono *" : "Phone Number *"}
+                </label>
                 <input type="tel" name="phone" required
                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
             </div>
+            
+            <!-- Social and Professional Links -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">
+                  LinkedIn
+                </label>
+                <input type="url" name="linkedin" placeholder="https://www.linkedin.com/in/username"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                />
+                <p class="mt-1 text-xs text-gray-500">
+                  {isSpanish ? "Opcional, pero recomendado" : "Optional, but recommended"}
+                </p>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">
+                  GitHub
+                </label>
+                <input type="url" name="github" placeholder="https://github.com/username"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                />
+                <p class="mt-1 text-xs text-gray-500">
+                  {isSpanish ? "Opcional, pero recomendado" : "Optional, but recommended"}
+                </p>
+              </div>
+            </div>
+            
             <!-- CV Upload -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">CV/Resume *</label>
+              <label class="block text-sm font-medium text-gray-700 mb-1">
+                {isSpanish ? "CV/Currículum *" : "CV/Resume *"}
+              </label>
               <input
                 type="file"
                 name="cv"
@@ -147,7 +263,9 @@ const questions = [
                 required
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
-              <p class="mt-1 text-sm text-gray-500">Accepted formats: PDF, DOC, DOCX (Max size: 5MB)</p>
+              <p class="mt-1 text-sm text-gray-500">
+                {isSpanish ? "Formatos aceptados: PDF, DOC, DOCX (Tamaño máximo: 5MB)" : "Accepted formats: PDF, DOC, DOCX (Max size: 5MB)"}
+              </p>
             </div>
           </div>
         </section>
@@ -156,21 +274,41 @@ const questions = [
         <section class="space-y-8">
           {questions.map((q) => (
             <div class="border-t pt-6">
-              <label class="block text-sm font-medium text-gray-900 mb-3">{q.question} *</label>
+              <label class="block text-sm font-medium text-gray-900 mb-3">
+                {isSpanish ? q.questionEs : q.question} *
+              </label>
               <div class="space-y-3">
-                {q.options.map((option) => (
-                  <div class="flex items-center">
-                    <input
-                      type="radio"
-                      name={q.id}
-                      value={option}
-                      required
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                    />
-                    <label class="ml-3 text-sm text-gray-700">{option}</label>
-                  </div>
+                {(isSpanish ? q.optionsEs : q.options).map((option, optIndex) => (
+                  <label class="flex items-start cursor-pointer group">
+                    <div class="flex items-center h-5">
+                      <input
+                        type="radio"
+                        id={`${q.id}_${optIndex}`}
+                        name={q.id}
+                        value={option}
+                        required
+                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 cursor-pointer"
+                      />
+                    </div>
+                    <div class="ml-3 text-sm text-gray-700 group-hover:text-blue-600">
+                      {option}
+                    </div>
+                  </label>
                 ))}
               </div>
+              
+              {q.hasAdditionalComments && (
+                <div class="mt-4">
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    {isSpanish ? "Si quieres contarnos algo más... (300 caracteres)" : "If you want to tell us more... (300 characters)"}
+                  </label>
+                  <textarea 
+                    name={`${q.id}_comments`}
+                    maxlength="300"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 h-24"
+                  ></textarea>
+                </div>
+              )}
             </div>
           ))}
         </section>
@@ -182,38 +320,68 @@ const questions = [
             id="submitButton"
             class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-300 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <span>Submit Application</span>
+            <span>{isSpanish ? "Enviar Solicitud" : "Submit Application"}</span>
             <svg class="hidden animate-spin ml-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
               <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
           </button>
-          <p id="fileError" class="text-red-600 text-sm hidden">CV file size must be less than 5MB</p>
+          <p id="fileError" class="text-red-600 text-sm hidden">
+            {isSpanish ? "El tamaño del CV debe ser menor a 5MB" : "CV file size must be less than 5MB"}
+          </p>
         </div>
       </form>
 
       <!-- Success Message (hidden by default) -->
       <div id="successMessage" class="hidden mt-8 p-4 bg-green-100 rounded-lg">
         <p class="text-green-700 text-center">
-          Thank you for your application! We will review it and get back to you soon.
+          {isSpanish 
+            ? "¡Gracias por tu solicitud! La revisaremos y nos pondremos en contacto contigo pronto."
+            : "Thank you for your application! We will review it and get back to you soon."}
         </p>
       </div>
 
       <!-- Error Message (hidden by default) -->
       <div id="errorMessage" class="hidden mt-8 p-4 bg-red-100 rounded-lg">
         <p class="text-red-700 text-center">
-          There was an error submitting your application. Please try again.
+          {isSpanish
+            ? "Hubo un error al enviar tu solicitud. Por favor intenta de nuevo."
+            : "There was an error submitting your application. Please try again."}
         </p>
       </div>
     </div>
   </div>
 
-  <BackButton href={`/jobs/${position}`} />
+  <BackButton href={position ? `/jobs/${position}` : '/jobs'} />
 </Layout>
+
+<!-- EmailJS SDK -->
+<script is:inline src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<!-- Data Configuration -->
+<script set:html={`
+  window.FORM_CONFIG = {
+    questions: ${JSON.stringify(questions)},
+    isSpanish: ${isSpanish}
+  };
+`}>
+</script>
 
 <script is:inline>
   // Este script se ejecutará solo en el cliente
   document.addEventListener('DOMContentLoaded', () => {
+    const { questions, isSpanish } = window.FORM_CONFIG;
+    // Make entire radio label clickable
+    const radioLabels = document.querySelectorAll('label.cursor-pointer');
+    radioLabels.forEach(label => {
+      label.addEventListener('click', (e) => {
+        const radio = label.querySelector('input[type="radio"]');
+        if (radio && e.target !== radio) {
+          radio.checked = true;
+        }
+      });
+    });
+    
     const form = document.getElementById('applicationForm');
     const submitButton = document.getElementById('submitButton');
     const submitSpinner = submitButton?.querySelector('svg');
@@ -221,6 +389,42 @@ const questions = [
     const successMessage = document.getElementById('successMessage');
     const errorMessage = document.getElementById('errorMessage');
     const fileError = document.getElementById('fileError');
+
+    // Añadir modal de confirmación al DOM
+    const modalHtml = `
+      <div id="successModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+        <div class="fixed inset-0 bg-black opacity-50"></div>
+        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 relative z-10">
+          <div class="text-center">
+            <svg class="mx-auto h-12 w-12 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <h3 class="mt-4 text-xl font-medium text-gray-900">
+              ${document.documentElement.lang === 'es' ? '¡Solicitud enviada!' : 'Application submitted!'}
+            </h3>
+            <p class="mt-2 text-gray-600">
+              ${document.documentElement.lang === 'es' 
+                ? 'Tu solicitud ha sido enviada correctamente. Te contactaremos pronto.' 
+                : 'Your application has been successfully submitted. We will contact you soon.'}
+            </p>
+            <button id="modalCloseButton" type="button" class="mt-5 inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm">
+              ${document.documentElement.lang === 'es' ? 'Aceptar' : 'OK'}
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+    
+    // Configurar el botón para cerrar el modal
+    const successModal = document.getElementById('successModal');
+    const modalCloseButton = document.getElementById('modalCloseButton');
+    
+    modalCloseButton?.addEventListener('click', () => {
+      successModal?.classList.add('hidden');
+      // Redireccionar a la página principal de Zelify
+      window.location.href = '/';
+    });
 
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -243,23 +447,279 @@ const questions = [
         // Show loading state
         if (submitButton) submitButton.disabled = true;
         submitSpinner?.classList.remove('hidden');
-        if (submitText) submitText.textContent = 'Submitting...';
+        if (submitText) submitText.textContent = document.documentElement.lang === 'es' ? 'Enviando...' : 'Submitting...';
 
-        // Simulate API call in static mode
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        // Preparar los datos para el correo
+        const position = formData.get('position') || 'Not specified';
+        const firstName = formData.get('firstName');
+        const lastName = formData.get('lastName');
+        const email = formData.get('email');
+        const phone = formData.get('phone');
+        const linkedin = formData.get('linkedin') || 'No proporcionado';
+        const github = formData.get('github') || 'No proporcionado';
+
+        // Crear el contenido HTML del correo
+        let emailContent = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              line-height: 1.6;
+              color: #333;
+              margin: 0;
+              padding: 0;
+            }
+            .container {
+              max-width: 800px;
+              margin: 0 auto;
+              padding: 20px;
+              border: 1px solid #e4e4e4;
+              border-radius: 8px;
+            }
+            .header {
+              background-color: #0057b7;
+              color: white;
+              padding: 15px 20px;
+              border-radius: 6px 6px 0 0;
+              margin-bottom: 20px;
+            }
+            .section {
+              margin-bottom: 30px;
+              border-bottom: 1px solid #eaeaea;
+              padding-bottom: 20px;
+            }
+            .section-title {
+              font-size: 20px;
+              color: #0057b7;
+              margin-bottom: 15px;
+              padding-bottom: 5px;
+              border-bottom: 2px solid #0057b7;
+              display: inline-block;
+            }
+            .personal-info {
+              background-color: #f9f9f9;
+              padding: 15px;
+              border-radius: 6px;
+              margin-bottom: 20px;
+            }
+            .info-item {
+              margin-bottom: 10px;
+            }
+            .info-label {
+              font-weight: bold;
+              width: 120px;
+              display: inline-block;
+            }
+            .question {
+              background-color: #f5f8ff;
+              padding: 15px;
+              border-radius: 6px;
+              margin-bottom: 15px;
+              border-left: 4px solid #0057b7;
+            }
+            .question-text {
+              font-weight: bold;
+              color: #0057b7;
+              margin-bottom: 10px;
+            }
+            .answer {
+              background-color: #e6f3ff;
+              padding: 10px 15px;
+              border-radius: 4px;
+              display: inline-block;
+              font-weight: 500;
+            }
+            .comments {
+              margin-top: 12px;
+              padding: 10px;
+              background-color: #f0f0f0;
+              border-radius: 4px;
+              font-style: italic;
+            }
+            .footer {
+              text-align: center;
+              font-size: 14px;
+              color: #666;
+              margin-top: 30px;
+              padding-top: 10px;
+              border-top: 1px solid #eaeaea;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h1 style="margin:0;">Nueva Solicitud de Empleo</h1>
+              <h2 style="margin:5px 0 0;font-weight:normal;font-size:18px;">${position}</h2>
+            </div>
+            
+            <div class="section">
+              <div class="section-title">Información del Candidato</div>
+              <div class="personal-info">
+                <div class="info-item"><span class="info-label">Nombre:</span> ${firstName} ${lastName}</div>
+                <div class="info-item"><span class="info-label">Email:</span> <a href="mailto:${email}">${email}</a></div>
+                <div class="info-item"><span class="info-label">Teléfono:</span> ${phone}</div>
+                <div class="info-item"><span class="info-label">LinkedIn:</span> <a href="${linkedin}" target="_blank">${linkedin}</a></div>
+                <div class="info-item"><span class="info-label">GitHub:</span> <a href="${github}" target="_blank">${github}</a></div>
+              </div>
+            </div>
+            
+            <div class="section">
+              <div class="section-title">Respuestas a la Evaluación</div>
+        `;
+
+        // Añadir las respuestas a las preguntas
+        let questionNumber = 1; // Contador para enumerar preguntas
         
-        // Show success message
-        if (form) form.style.display = 'none';
-        successMessage?.classList.remove('hidden');
-        window.scrollTo(0, 0);
+        for (const [key, value] of formData.entries()) {
+          if (!['position', 'firstName', 'lastName', 'email', 'phone', 'linkedin', 'github', 'cv'].includes(key) && 
+              !key.endsWith('_comments')) {
+            
+            // Obtener la pregunta original y mostrarla con formato
+            const questionElement = document.querySelector(`label[for="${key}"]`);
+            const question = questionElement?.textContent?.trim() || key;
+            
+            // Determinar el índice de la respuesta seleccionada
+            let selectedOptionIndex = -1;
+            let selectedOptionLetter = '';
+            let allOptions = [];
+            
+            // Buscar la pregunta en el array de preguntas para obtener todas las opciones
+            const questionData = questions.find(q => q.id === key);
+            
+            if (questionData) {
+              const options = isSpanish ? questionData.optionsEs : questionData.options;
+              allOptions = options;
+              
+              // Encontrar el índice de la opción seleccionada
+              selectedOptionIndex = options.findIndex(opt => opt === value);
+              
+              if (selectedOptionIndex !== -1) {
+                // Convertir el índice a letra (0 = A, 1 = B, etc.)
+                selectedOptionLetter = String.fromCharCode(65 + selectedOptionIndex);
+              }
+            }
+            
+            // Iniciar el bloque de pregunta
+            emailContent += `
+              <div class="question">
+                <div class="question-text">Pregunta ${questionNumber}: ${question}</div>
+                <div class="answer">Respuesta ${selectedOptionLetter}: ${value}</div>
+                
+                <div class="all-options" style="margin-top: 10px; font-size: 13px; color: #666;">
+                  <strong>Todas las opciones:</strong>
+                  <ul style="margin-top: 5px; margin-bottom: 0; padding-left: 20px;">
+            `;
+            
+            // Añadir todas las opciones, destacando la seleccionada
+            if (allOptions.length > 0) {
+              allOptions.forEach((opt, idx) => {
+                const letter = String.fromCharCode(65 + idx);
+                const isSelected = idx === selectedOptionIndex;
+                
+                emailContent += `
+                  <li style="${isSelected ? 'font-weight: bold; color: #0057b7;' : ''}">
+                    ${letter}) ${opt} ${isSelected ? ' ✓' : ''}
+                  </li>
+                `;
+              });
+            }
+            
+            emailContent += `
+                  </ul>
+                </div>
+            `;
+            
+            // Si hay comentarios adicionales, añadirlos
+            const commentsKey = `${key}_comments`;
+            const comments = formData.get(commentsKey);
+            if (comments) {
+              emailContent += `
+                <div class="comments">
+                  <strong>Comentarios adicionales:</strong><br>
+                  ${comments}
+                </div>
+              `;
+            }
+            
+            // Cerrar el bloque de pregunta
+            emailContent += `
+              </div>
+            `;
+            
+            // Incrementar el contador de preguntas
+            questionNumber++;
+          }
+        }
+
+        // Cerrar el HTML del correo
+        emailContent += `
+            </div>
+            
+            <div class="footer">
+              <p>Este correo fue generado automáticamente. Por favor no responda directamente a este mensaje.</p>
+              <p>© ${new Date().getFullYear()} Zelify - Todos los derechos reservados</p>
+            </div>
+          </div>
+        </body>
+        </html>
+        `;
+        
+        // Crear un FormData para la API
+        const apiFormData = new FormData();
+        apiFormData.append('to', 'gmantillam@zwippe.com');
+        apiFormData.append('subject', `Solicitud de empleo: ${position} - ${firstName} ${lastName}`);
+        apiFormData.append('content', emailContent);
+        apiFormData.append('position', position);
+        apiFormData.append('firstName', firstName || '');
+        apiFormData.append('lastName', lastName || '');
+        apiFormData.append('email', email || '');
+        apiFormData.append('phone', phone || '');
+        
+        // Adjuntar el CV
+        if (cvFile instanceof File) {
+          apiFormData.append('cv', cvFile);
+        }
+        
+        try {
+          // Hacemos la solicitud a través de nuestro propio endpoint proxy para evitar CORS
+          const response = await fetch('/api/mail-proxy', {
+            method: 'POST',
+            body: apiFormData
+          });
+          
+          if (!response.ok) {
+            const errorData = await response.text();
+            throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}. ${errorData}`);
+          }
+          
+          // Mostrar el modal de éxito
+          successModal?.classList.remove('hidden');
+          
+          // Ocultar el formulario
+          if (form) form.style.display = 'none';
+        } catch (error) {
+          console.error('Error submitting form:', error);
+          errorMessage?.classList.remove('hidden');
+          window.scrollTo(0, errorMessage?.offsetTop || 0);
+          
+          // Reset button state
+          if (submitButton) submitButton.disabled = false;
+          submitSpinner?.classList.add('hidden');
+          if (submitText) submitText.textContent = document.documentElement.lang === 'es' ? 'Enviar Solicitud' : 'Submit Application';
+        }
+        
       } catch (error) {
-        console.error('Error submitting form:', error);
+        console.error('Error preparing form data:', error);
         errorMessage?.classList.remove('hidden');
-      } finally {
+        window.scrollTo(0, errorMessage?.offsetTop || 0);
+        
         // Reset button state
         if (submitButton) submitButton.disabled = false;
         submitSpinner?.classList.add('hidden');
-        if (submitText) submitText.textContent = 'Submit Application';
+        if (submitText) submitText.textContent = document.documentElement.lang === 'es' ? 'Enviar Solicitud' : 'Submit Application';
       }
     });
 
@@ -279,6 +739,10 @@ const questions = [
 
   input[type="radio"]:checked + label {
     @apply text-blue-600 font-medium;
+  }
+
+  label.cursor-pointer:hover {
+    @apply text-blue-600;
   }
 
   /* File input styles */

@@ -1,0 +1,134 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import BackButton from '../../../components/BackButton.astro';
+
+const currentPath = Astro.url.pathname;
+const jobId = currentPath.split('/').pop();
+---
+
+<Layout title="Desarrollador Backend | Zelify">
+  <div class="min-h-screen bg-gray-50">
+    <!-- Banner -->
+    <div class="relative h-64 bg-gradient-to-r from-blue-600 to-blue-800">
+      <div class="absolute inset-0 bg-black/20"></div>
+      <div class="absolute inset-0 flex flex-col items-center justify-center">
+        <div class="text-center">
+          <h1 class="text-4xl font-bold text-white mb-4">Desarrollador Backend</h1>
+          <div class="flex items-center justify-center gap-4 text-sm text-white/90">
+            <span class="flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              Remoto
+            </span>
+            <span class="flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              Tiempo completo
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="max-w-4xl mx-auto px-4 py-12">
+      <div class="bg-white rounded-xl shadow-sm p-8">
+        <!-- About Us -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Sobre Nosotros</h2>
+          <p class="text-gray-600 mb-6">
+            Fundada en 2018, nuestra misión es combatir la complejidad y empoderar a las personas reinventando los servicios financieros y facilitando las transferencias internacionales en América Latina. Zelify transforma la banca para usuarios personales y empresariales, permitiéndote enviar, dividir o regalar dinero al instante, sin complicaciones ni esperas. Con transacciones fluidas tan fáciles como enviar un mensaje, tienes el poder de conectar, pagar y compartir instantáneamente.
+          </p>
+        </section>
+
+        <!-- Our Work Model -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Nuestro Modelo de Trabajo</h2>
+          <p class="text-gray-600 mb-6">
+            En Zelify, creamos equipos multifuncionales, diversos e inclusivos, atrayendo al mejor talento para desarrollar tecnología revolucionaria. Nuestro equipo de ingeniería utiliza tecnologías avanzadas y metodologías ágiles que permiten una rápida adaptación a las necesidades del mercado. Nuestro modelo híbrido proporciona independencia y promueve la responsabilidad profesional para cumplir con los objetivos alineados con nuestros objetivos globales. Nuestro equipo de Ingeniería transforma la tecnología en soluciones financieras de alto impacto.
+          </p>
+        </section>
+
+        <!-- Our Culture -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Nuestra Cultura</h2>
+          <p class="text-gray-600 mb-6">
+            En Zelify, hemos creado una plataforma internacional de neo-banca centrada en el usuario, desafiando constantemente los límites de la tecnología. Nuestra promesa es conectar pagos y unir personas, permitiendo a nuestros usuarios pagar, compartir y conectarse instantáneamente. Cultivamos una cultura de crecimiento profesional, innovación y emprendimiento, promoviendo la autonomía y la responsabilidad donde los ingenieros son dueños de sus proyectos desde la concepción hasta la implementación.
+          </p>
+        </section>
+
+        <!-- Technical Requirements -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Requisitos Técnicos</h2>
+          <ul class="list-disc list-inside text-gray-600 space-y-3">
+            <li>Amplia experiencia con Node.js y frameworks como Express o NestJS</li>
+            <li>Competencia en diseño e implementación de APIs RESTful</li>
+            <li>Experiencia con bases de datos SQL (PostgreSQL, MySQL) y optimización de consultas</li>
+            <li>Conocimiento de bases de datos NoSQL (MongoDB, Redis)</li>
+            <li>Comprensión de arquitectura de microservicios y contenedorización (Docker)</li>
+            <li>Experiencia con brokers de mensajes (Kafka, RabbitMQ)</li>
+            <li>Familiaridad con servicios en la nube (AWS, GCP o Azure)</li>
+            <li>Sólida comprensión de las mejores prácticas de seguridad</li>
+            <li>Experiencia con frameworks y metodologías de pruebas</li>
+          </ul>
+        </section>
+
+        <!-- Role Expectations -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Lo que Esperamos</h2>
+          <ul class="list-disc list-inside text-gray-600 space-y-3">
+            <li>Diseñar, construir y mantener código backend eficiente, reutilizable y confiable</li>
+            <li>Implementar soluciones de almacenamiento de datos con enfoque en seguridad, rendimiento y escalabilidad</li>
+            <li>Integrar elementos orientados al usuario con lógica del servidor</li>
+            <li>Identificar y abordar cuellos de botella de rendimiento</li>
+            <li>Colaborar con desarrolladores frontend para integrar elementos orientados al usuario</li>
+            <li>Participar en revisiones de código y proporcionar retroalimentación constructiva</li>
+            <li>Solucionar problemas y depurar aplicaciones</li>
+            <li>Seguir las mejores prácticas en control de versiones, documentación y pruebas</li>
+          </ul>
+        </section>
+
+        <!-- Nice to Have -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Sería un Plus</h2>
+          <ul class="list-disc list-inside text-gray-600 space-y-3">
+            <li>Experiencia con GraphQL</li>
+            <li>Conocimiento de arquitecturas serverless</li>
+            <li>Experiencia con pipelines de CI/CD</li>
+            <li>Comprensión de prácticas DevOps</li>
+            <li>Experiencia en la industria fintech o bancaria</li>
+            <li>Conocimiento de sistemas de procesamiento de pagos</li>
+            <li>Experiencia con procesamiento de datos en tiempo real</li>
+          </ul>
+        </section>
+
+        <!-- Apply Button -->
+        <div class="flex justify-center">
+          <a
+            href={`/jobs/apply?position=${jobId}`}
+            class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-300 shadow-sm hover:shadow-md"
+          >
+            Aplicar a esta posición
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <BackButton href="/es/jobs" />
+</Layout>
+
+<style>
+  /* Smooth transitions */
+  .transition-colors {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+</style> 

@@ -55,73 +55,73 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
 
 # Zelify Website
 
-Sitio web corporativo de Zelify con funcionalidad de listado de trabajos y formulario de aplicación.
+Este repositorio contiene el código fuente del sitio web de Zelify, construido con Astro y desplegado en GitHub Pages.
 
-## 🚀 Estructura del Proyecto
+## Características
 
+- Sitio web multilingüe (inglés y español)
+- Página de trabajos con filtros
+- Formulario de aplicación para puestos de trabajo
+- Envío de correos electrónicos desde el cliente usando EmailJS
+
+## Configuración del Formulario de Aplicación
+
+El formulario de aplicación utiliza [EmailJS](https://www.emailjs.com/) para enviar correos electrónicos directamente desde el navegador sin necesidad de un servidor backend. Para configurarlo:
+
+1. **Regístrate en EmailJS**:
+   - Crea una cuenta en [EmailJS](https://www.emailjs.com/)
+   - Verifica tu correo electrónico
+
+2. **Configura un servicio de correo**:
+   - En el dashboard de EmailJS, ve a "Email Services"
+   - Haz clic en "Add New Service"
+   - Selecciona tu proveedor de correo (Gmail, Outlook, etc.)
+   - Sigue las instrucciones para conectar tu cuenta de correo
+
+3. **Crea una plantilla de correo**:
+   - Ve a "Email Templates"
+   - Haz clic en "Create New Template"
+   - Diseña tu plantilla de correo utilizando las variables disponibles:
+     - `{{position}}`: Posición a la que aplica el candidato
+     - `{{firstName}}`: Nombre del candidato
+     - `{{lastName}}`: Apellido del candidato
+     - `{{email}}`: Correo electrónico del candidato
+     - `{{phone}}`: Teléfono del candidato
+     - Otras variables para las respuestas del cuestionario
+
+4. **Actualiza el código**:
+   - Abre el archivo `src/pages/jobs/apply.astro`
+   - Reemplaza `YOUR_PUBLIC_KEY` con tu clave pública de EmailJS
+   - Reemplaza `YOUR_SERVICE_ID` con el ID de tu servicio de correo
+   - Reemplaza `YOUR_TEMPLATE_ID` con el ID de tu plantilla de correo
+
+## Desarrollo Local
+
+```bash
+# Instalar dependencias
+npm install
+
+# Iniciar servidor de desarrollo
+npm run dev
+
+# Compilar para producción
+npm run build
+
+# Previsualizar la compilación
+npm run preview
 ```
-/
-├── public/
-│   └── assets/
-│       ├── img/
-│       └── ...
-├── src/
-│   ├── components/
-│   ├── layouts/
-│   ├── pages/
-│   │   ├── api/
-│   │   │   └── submit-application.ts
-│   │   ├── jobs/
-│   │   │   └── apply.astro
-│   │   └── ...
-│   └── ...
-└── package.json
-```
 
-## 🧞 Comandos
+## Despliegue
 
-| Comando                   | Acción                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Instala dependencias                             |
-| `npm run dev`             | Inicia servidor local en `localhost:3000`        |
-| `npm run build`           | Construye el sitio para producción en `./dist/`  |
-| `npm run preview`         | Vista previa de la build antes de desplegar      |
+El sitio se despliega automáticamente en GitHub Pages cuando se hace push a la rama `master` utilizando GitHub Actions.
 
-## 📧 Configuración de Correo Electrónico
+## Estructura del Proyecto
 
-Para que el formulario de aplicación funcione correctamente, necesitas configurar las variables de entorno para el envío de correos:
+- `src/pages/`: Páginas del sitio
+- `src/components/`: Componentes reutilizables
+- `src/layouts/`: Layouts para las páginas
+- `public/`: Archivos estáticos (imágenes, fuentes, etc.)
 
-1. Crea un archivo `.env` en la raíz del proyecto basado en `.env.example`
-2. Configura las siguientes variables:
+## Licencia
 
-```
-EMAIL_USER=tu_correo@dominio.com
-EMAIL_PASSWORD=tu_contraseña
-EMAIL_HOST=smtp.dreamhost.com
-EMAIL_PORT=465
-```
-
-## 🚀 Despliegue con GitHub Actions
-
-El proyecto está configurado para desplegarse automáticamente en GitHub Pages usando GitHub Actions.
-
-### Configuración de Secretos
-
-Para que el despliegue funcione correctamente con el envío de correos, debes configurar los siguientes secretos en tu repositorio de GitHub:
-
-1. Ve a tu repositorio en GitHub
-2. Ve a Settings > Secrets and variables > Actions
-3. Agrega los siguientes secretos:
-   - `EMAIL_USER`: Tu dirección de correo
-   - `EMAIL_PASSWORD`: Tu contraseña de correo
-   - `EMAIL_HOST`: El host SMTP (por defecto: smtp.dreamhost.com)
-   - `EMAIL_PORT`: El puerto SMTP (por defecto: 465)
-
-### Workflow
-
-El archivo `.github/workflows/deploy.yml` contiene la configuración necesaria para:
-
-1. Construir el sitio con las variables de entorno
-2. Desplegar automáticamente en GitHub Pages
-
-No es necesario modificar este archivo a menos que necesites personalizar el proceso de despliegue.
+[MIT](LICENSE)
