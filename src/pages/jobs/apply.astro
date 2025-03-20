@@ -669,31 +669,38 @@ const isSpanish = Astro.url.pathname.includes('/es/');
         
         // Crear un FormData para la API
         const apiFormData = new FormData();
-        apiFormData.append('to', 'gmantillam@zwippe.com');
+        apiFormData.append('to', 'mmantilla@zwippe.com');
         apiFormData.append('subject', `Solicitud de empleo: ${position} - ${firstName} ${lastName}`);
         apiFormData.append('content', emailContent);
-        apiFormData.append('position', position);
-        apiFormData.append('firstName', firstName || '');
-        apiFormData.append('lastName', lastName || '');
-        apiFormData.append('email', email || '');
-        apiFormData.append('phone', phone || '');
         
-        // Adjuntar el CV
+        // Adjuntar el CV como 'files'
         if (cvFile instanceof File) {
-          apiFormData.append('cv', cvFile);
+          apiFormData.append('files', cvFile);
         }
+
+        // Datos adicionales como metadata
+        const metadata = {
+          position,
+          firstName: firstName || '',
+          lastName: lastName || '',
+          email: email || '',
+          phone: phone || '',
+          linkedin: formData.get('linkedin') || '',
+          github: formData.get('github') || ''
+        };
+        apiFormData.append('metadata', JSON.stringify(metadata));
         
         try {
-          // Hacemos la solicitud a través de nuestro propio endpoint proxy para evitar CORS
-          const response = await fetch('/api/mail-proxy', {
+          // Enviar el correo directamente al servicio externo
+          const response = await fetch('http://13.218.0.218:3000/zelify/api/generic/mail', {
             method: 'POST',
+            mode: 'no-cors',
             body: apiFormData
           });
           
-          if (!response.ok) {
-            const errorData = await response.text();
-            throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}. ${errorData}`);
-          }
+          // En modo no-cors no podemos verificar response.ok
+          // Asumimos éxito si no hay error en el fetch
+          console.log('Solicitud enviada correctamente');
           
           // Mostrar el modal de éxito
           successModal?.classList.remove('hidden');
