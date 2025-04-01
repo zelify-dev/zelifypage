@@ -633,9 +633,6 @@ const isSpanish = true;
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
       
-      console.log('=== INICIO DEL SUBMIT ===');
-      console.log('Formulario enviado');
-      
       successMessage?.classList.add('hidden');
       errorMessage?.classList.add('hidden');
       fileError?.classList.add('hidden');
@@ -643,12 +640,7 @@ const isSpanish = true;
       const formData = new FormData(e.target);
       const cvFile = formData.get('cv');
 
-      console.log('CV File:', cvFile);
-      console.log('CV File type:', cvFile instanceof File);
-      console.log('CV File size:', cvFile instanceof File ? cvFile.size : 'N/A');
-
       if (cvFile instanceof File && cvFile.size > 5 * 1024 * 1024) {
-        console.log('Archivo demasiado grande');
         fileError?.classList.remove('hidden');
         return;
       }
@@ -820,11 +812,6 @@ const isSpanish = true;
 
         const mailFormData = new FormData();
         
-        console.log('=== PREPARANDO DATOS PARA ENVIAR ===');
-        console.log('Personal Info:', personalInfo);
-        console.log('Evaluation:', evaluation);
-        console.log('Answers:', answers);
-        
         // Campos requeridos según el esquema
         mailFormData.append('to', 'gmantillam@zwippe.com');
         mailFormData.append('subject', `Nueva aplicación: ${personalInfo.position} - ${personalInfo.firstName} ${personalInfo.lastName}`);
@@ -837,56 +824,26 @@ const isSpanish = true;
           mailFormData.append('files', cvFile, `${cvFile.name};type=${cvFile.type}`);
         }
 
-        // Log detallado del FormData
-        console.log('=== CONTENIDO DEL REQUEST ===');
-        console.log('Headers:', {
-          'Accept': 'application/json'
-          // Removemos el Content-Type para que el navegador lo establezca automáticamente con el boundary correcto
-        });
-        
-        console.log('FormData entries:');
-        for (let [key, value] of mailFormData.entries()) {
-          if (value instanceof File) {
-            console.log(`${key}:`, {
-              name: value.name,
-              type: value.type,
-              size: value.size + ' bytes',
-              lastModified: new Date(value.lastModified).toISOString()
-            });
-          } else {
-            console.log(`${key}:`, value);
-          }
-        }
-
-        console.log('=== ENVIANDO SOLICITUD ===');
         const response = await fetch('https://ce12-2800-cd0-c347-9d00-5084-a621-f1a3-e0a9.ngrok-free.app/zelify/api/generic/mail', {
           method: 'POST',
           mode: 'cors',
           headers: {
             'Accept': 'application/json'
-            // Removemos el Content-Type para que el navegador lo establezca automáticamente
           },
           body: mailFormData
         });
-
-        console.log('=== RESPUESTA ===');
-        console.log('Response status:', response.status);
-        console.log('Response type:', response.type);
         
         if (!response.ok) {
           const responseData = await response.text();
-          console.log('Response data:', responseData);
           throw new Error(`Error ${response.status}: ${responseData}`);
         }
         
         successMessage?.classList.remove('hidden');
         form.reset();
       } catch (error) {
-        console.error('Error detallado:', error);
         errorMessage?.classList.remove('hidden');
         const errorText = error.message || 'Hubo un error al enviar tu aplicación. Por favor, inténtalo de nuevo.';
         errorMessage.querySelector('p').textContent = errorText;
-        // No mostrar el mensaje de éxito si hay un error
         successMessage?.classList.add('hidden');
       } finally {
         if (submitButton) submitButton.disabled = false;
