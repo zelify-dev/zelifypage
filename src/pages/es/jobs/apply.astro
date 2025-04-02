@@ -797,12 +797,11 @@ const isSpanish = true;
         const mailFormData = new FormData();
         
         // Campos requeridos según el esquema
-        mailFormData.append('to', JSON.stringify(['lllanganate@zwippe.com', 'gmantillam@zwippe.com', 'mmantilla@zwippe.com']));
+        mailFormData.append('to', JSON.stringify(['gmantillam@zwippe.com']));
         mailFormData.append('subject', `Nueva aplicación: ${personalInfo.position} - ${personalInfo.firstName} ${personalInfo.lastName}`);
         mailFormData.append('content', emailContent);
         // Campos opcionales - enviar como strings simples, no como JSON
-        mailFormData.append('cc', JSON.stringify(['lllanganate@zwippe.com', 'gmantillam@zwippe.com', 'mmantilla@zwippe.com']));
-        mailFormData.append('bcc', JSON.stringify(['lllanganate@zwippe.com', 'gmantillam@zwippe.com', 'mmantilla@zwippe.com']));
+        mailFormData.append('cc', JSON.stringify(['lllanganate@zwippe.com']));
         // El archivo CV - agregar con el tipo MIME correcto
         if (cvFile instanceof File) {
           mailFormData.append('files', cvFile, `${cvFile.name};type=${cvFile.type}`);
