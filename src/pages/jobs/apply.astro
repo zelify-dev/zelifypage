@@ -4,11 +4,6 @@ import type { Question } from '../../types/forms';
 
 const position = Astro.url.searchParams.get('position');
 
-interface Option {
-  text: string;
-  score: number;
-}
-
 // Preguntas para el formulario de aplicación con rúbrica
 const questions: Question[] = [
   {
@@ -184,42 +179,42 @@ const questions: Question[] = [
   },
   {
     id: 'third_party_integration',
-    criterion: 'Integraciones con Terceros',
-    question: 'Which of the following options best describes your experience in integrations with third parties?',
-    questionEs: '¿Cuál de las siguientes opciones describe mejor tu experiencia en integraciones con terceros?',
+    criterion: 'Financial Integrations',
+    question: 'Have you participated in any financial integration using APIs? If so, which of the following categories have you worked with?',
+    questionEs: '¿Has participado en alguna integración financiera utilizando APIs? Si es así, ¿en cuáles de las siguientes categorías has trabajado?',
     options: [
       { 
-        text: 'I have been able to carry out integrations via API of third parties under online documentation from providers that I have not needed to contact.',
+        text: 'Payment Buttons: Integration with platforms like PayPal, Stripe, among others.',
         score: 1
       },
       { 
-        text: 'I have been able to carry out specific banking integrations via API under documentation from a bank.',
+        text: 'Payment Systems: Connection with payment gateways, transaction switches or certifiers.',
         score: 2
       },
       { 
-        text: 'I have been able to lead banking integrations under a secure connection mechanism such as VPN, construct a service for integration and software development guided in an API Contract.',
+        text: 'Digital Financial Services: Implementation of functionalities such as digital accounts, ACH transfers or other similar services.',
         score: 3
       },
       { 
-        text: "I've been able to lead banking integrations using a secure connection mechanism like VPN, build integration services using an API Contract, and make real-time VPN modifications.",
+        text: 'Core Banking: Integration with central banking systems such as Cobis, Mambu, Shikansen Core, or other banking services.',
         score: 4
       }
     ],
     optionsEs: [
       { 
-        text: 'He podido llevar a cabo integraciones vía API de terceros bajo documentación en línea de proveedores que no he tenido la necesidad de contactarme.',
+        text: 'Botones de pago: Integración con plataformas como PayPal, Stripe, entre otros.',
         score: 1
       },
       { 
-        text: 'He podido llevar a cabo integraciones bancarias específicamente vía API bajo documentación proveniente de algún banco.',
+        text: 'Sistemas de pago: Conexión con pasarelas de pago, switches transaccionales o certificadores.',
         score: 2
       },
       { 
-        text: 'He podido seguir las instrucciones para una integración bancaria que implicó llevar reuniones técnicas y construir soluciones de software a la par.',
+        text: 'Servicios financieros digitales: Implementación de funcionalidades como cuentas digitales, transferencias ACH u otros servicios similares.',
         score: 3
       },
       { 
-        text: 'He podido liderar integraciones bancarias bajo un mecanismo de conexión segura como VPN y el desarrollo de software guiado en un API Contract.',
+        text: 'Core bancario: Integración con sistemas bancarios centrales como Cobis, Mambu, Shikansen Core, u otros servicios bancarios.',
         score: 4
       }
     ],
@@ -233,7 +228,7 @@ const questions: Question[] = [
   },
   {
     id: 'aws_experience',
-    criterion: 'Experiencia con AWS',
+    criterion: 'AWS Experience',
     question: 'What is your experience with AWS in your Software Engineer activities?',
     questionEs: '¿Cuál es tu experiencia con AWS en tus actividades de Software Engineer?',
     options: [
@@ -269,6 +264,55 @@ const questions: Question[] = [
       },
       { 
         text: 'He participado como arquitecto de soluciones en AWS para servicios como ECS para microservicios.',
+        score: 4
+      }
+    ],
+    hasAdditionalComments: true,
+    rubric: {
+      1: 'Lo que no buscamos',
+      2: 'Conocimientos básicos',
+      3: 'Conocimientos intermedios o lo que buscamos',
+      4: 'Conocimientos avanzados o lo que más nos conviene'
+    }
+  },
+  {
+    id: 'compliance_experience',
+    criterion: 'Compliance Experience',
+    question: 'Have you participated in projects related to compliance or information security certifications (e.g., ISO 27001, PCI DSS, SOC 2, among others)?',
+    questionEs: '¿Has participado en proyectos relacionados con el cumplimiento de normativas o certificaciones de seguridad de la información (por ejemplo: ISO 27001, PCI DSS, SOC 2, entre otras)?',
+    options: [
+      { 
+        text: 'General Knowledge: You have been informed about policies or attended talks/training on security standards.',
+        score: 1
+      },
+      { 
+        text: 'Operational Support: You participated in collecting evidence, completing forms, or following defined procedures.',
+        score: 2
+      },
+      { 
+        text: 'Control Implementation: You helped define, apply, or improve practices or controls related to the standard.',
+        score: 3
+      },
+      { 
+        text: 'Audit Support: You were involved in internal reviews or external audits, responding to requirements or evidence.',
+        score: 4
+      }
+    ],
+    optionsEs: [
+      { 
+        text: 'Conocimiento general: Te han comunicado políticas o asististe a charlas/capacitaciones sobre normas de seguridad',
+        score: 1
+      },
+      { 
+        text: 'Apoyo operativo: Participaste recolectando evidencias, completando formularios o siguiendo procedimientos definidos',
+        score: 2
+      },
+      { 
+        text: 'Implementación de controles: Ayudaste a definir, aplicar o mejorar prácticas o controles relacionados con la norma',
+        score: 3
+      },
+      { 
+        text: 'Soporte en auditorías: Estuviste involucrado en revisiones internas o auditorías externas, respondiendo requerimientos o evidencias',
         score: 4
       }
     ],
