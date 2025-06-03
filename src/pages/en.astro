@@ -7,6 +7,7 @@ import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
 import Features from '../components/Features.astro';
 import Download from '../components/Download.astro';
+import InternationalTransfer from '../components/InternationalTransfer';
 
 i18next.changeLanguage('en');
 
@@ -33,6 +34,9 @@ const links = [
 	</GradientBackground>
 	<About />
 	<Features />
+	<div id="international-transfer">
+		<InternationalTransfer client:load />
+	</div>
 	<Download />
 </Layout>
 <script>

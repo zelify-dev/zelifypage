@@ -12,6 +12,7 @@ import { t } from 'i18next';
 
 // Inicializar i18next con español
 import i18next from 'i18next';
+import InternationalTransfer from '../components/InternationalTransfer';
 await i18next.changeLanguage('es');
 
 const plans = [
@@ -142,6 +143,11 @@ const benefits = [
 	
 	<div id="features">
 		<Features />
+	</div>
+
+
+	<div id="international-transfer">
+		<InternationalTransfer client:load />
 	</div>
 
 	<div id="pricing">
