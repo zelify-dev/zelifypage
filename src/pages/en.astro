@@ -39,6 +39,31 @@ const links = [
 	</div>
 	<Download />
 </Layout>
+
+<!-- Modal QR Global -->
+<div id="qrModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-[9999] backdrop-blur-sm">
+	<div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 relative">
+		<button id="closeModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+			</svg>
+		</button>
+		
+		<h2 class="text-2xl font-bold text-center mb-4">GET ZELIFY APP</h2>
+		<p class="text-gray-600 text-center mb-8">
+			Scan the QR code to download Zelify and begin your journey.
+		</p>
+		
+		<div class="bg-gray-100 rounded-lg p-4 flex items-center justify-center">
+			<img 
+				src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://zelify.com/get-the-app"
+				alt="QR Code"
+				class="w-48 h-48"
+			/>
+		</div>
+	</div>
+</div>
+
 <script>
 	// selecciona todos los enlaces que apuntan a secciones de la página
 	const links = document.querySelectorAll('a[href^="#"]');
@@ -68,4 +93,40 @@ const links = [
 			});
 		});
 	});
+</script>
+
+<script>
+// Script para abrir/cerrar el modal QR, asegurando que el DOM esté listo
+window.addEventListener('DOMContentLoaded', () => {
+	const modal = document.getElementById('qrModal');
+	const openButton = document.getElementById('openModal');
+	const closeButton = document.getElementById('closeModal');
+
+	function toggleModal(show) {
+		if (show) {
+			modal?.classList.remove('hidden');
+			modal?.classList.add('flex');
+			document.body.style.overflow = 'hidden';
+		} else {
+			modal?.classList.remove('flex');
+			modal?.classList.add('hidden');
+			document.body.style.overflow = '';
+		}
+	}
+
+	openButton?.addEventListener('click', () => {
+		console.log('Botón de abrir modal QR clickeado');
+		toggleModal(true);
+	});
+
+	closeButton?.addEventListener('click', () => {
+		toggleModal(false);
+	});
+
+	modal?.addEventListener('click', (e) => {
+		if (e.target === modal) {
+			toggleModal(false);
+		}
+	});
+});
 </script>

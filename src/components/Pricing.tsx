@@ -19,6 +19,10 @@ const Pricing = () => {
         'Sin beneficios adicionales (cashback, conversión FX, seguro de viaje, etc.)',
         'Soporte al cliente estándar'
       ] : [
+        'Basic banking services with virtual or physical Mastercard',
+        'Limited transaction capabilities ($200 limit)',
+        'No additional benefits (cashback, FX conversion, travel insurance, etc.)',
+        'Standard customer support'
       ],
       cardImage: '/assets/img/cards/4.png',
       gradient: 'from-blue-500/20 via-purple-500/20 to-pink-500/20'
@@ -33,6 +37,11 @@ const Pricing = () => {
         'Acceso a suscripciones de socios',
         'Soporte al cliente personalizado en la app'
       ] : [
+        '$500 transaction limit',
+        'Reduced fees on international transfers (3.8%)',
+        'Cashback on purchases (0.40%)',
+        'Access to partner subscriptions',
+        'Personalized in-app customer support'
       ],
       cardImage: '/assets/img/cards/2.png',
       gradient: 'from-blue-600/20 via-cyan-500/20 to-emerald-500/20'
@@ -50,7 +59,13 @@ const Pricing = () => {
         'Cuentas de ahorro y co-parentalidad',
         'Soporte al cliente personalizado en la app'
       ] : [
-       
+        '$1,000 transaction limit',
+        'Lower FX and international transfer fees (3%)',
+        'Higher cashback (0.60%)',
+        'Custom card options',
+        'Travel benefits (insurance, VIP lounge access)',
+        'Savings accounts and co-parenting',
+        'Personalized in-app customer support'
       ],
       cardImage: '/assets/img/cards/5.png',
       gradient: 'from-orange-500/20 via-amber-500/20 to-yellow-500/20'
@@ -61,15 +76,15 @@ const Pricing = () => {
     {
       category: isSpanish ? "Estilo de Vida y Entretenimiento" : "Lifestyle & Entertainment",
       items: [
-        { 
+        {
           image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=200&h=200&fit=crop&q=80",
-          name: isSpanish ? "Restaurantes" : "Restaurants" 
+          name: isSpanish ? "Restaurantes" : "Restaurants"
         },
-        { 
+        {
           image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=200&h=200&fit=crop&q=80",
-          name: isSpanish ? "Conciertos" : "Concerts" 
+          name: isSpanish ? "Conciertos" : "Concerts"
         },
-        { 
+        {
           image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=200&h=200&fit=crop&q=80",
           name: isSpanish ? "Suscripciones de Noticias" : "News Subscriptions"
         }
@@ -78,30 +93,30 @@ const Pricing = () => {
     {
       category: isSpanish ? "Viajes y Movilidad" : "Travel & Mobility",
       items: [
-        { 
+        {
           image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200&h=200&fit=crop&q=80",
-          name: isSpanish ? "Millas Aéreas" : "Airline Miles" 
+          name: isSpanish ? "Millas Aéreas" : "Airline Miles"
         },
-        { 
+        {
           image: "https://media.gq.com.mx/photos/6060c63cc94329bc868c3f41/master/w_1600%2Cc_limit/gasolina.jpg",
-          name: isSpanish ? "Descuentos en Gasolina" : "Gasoline Discounts" 
+          name: isSpanish ? "Descuentos en Gasolina" : "Gasoline Discounts"
         }
       ]
     },
     {
       category: isSpanish ? "Salud y Bienestar" : "Health & Wellness",
       items: [
-        { 
+        {
           image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=200&h=200&fit=crop&q=80",
-          name: isSpanish ? "Farmacias" : "Pharmacies" 
+          name: isSpanish ? "Farmacias" : "Pharmacies"
         },
-        { 
+        {
           image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=200&h=200&fit=crop&q=80",
-          name: isSpanish ? "Gimnasios" : "Fitness & Gyms" 
+          name: isSpanish ? "Gimnasios" : "Fitness & Gyms"
         },
-        { 
+        {
           image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=200&h=200&fit=crop&q=80",
-          name: isSpanish ? "Servicios de Bienestar" : "Wellness Services" 
+          name: isSpanish ? "Servicios de Bienestar" : "Wellness Services"
         }
       ]
     },
@@ -147,14 +162,13 @@ const Pricing = () => {
           {plans.map((plan, index) => (
             <div
               key={plan.name}
-              className={`relative group ${
-                index === 1 ? 'lg:-mt-0' : ''
-              }`}
+              className={`relative group ${index === 1 ? 'lg:-mt-0' : ''
+                }`}
             >
               {/* Tarjeta de crédito flotante */}
               <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-56 perspective-1000 transition-all duration-500 group-hover:-translate-y-2">
                 <div className="relative transition-transform duration-700 transform-style-3d group-hover:[transform:rotateX(10deg)_rotateY(-10deg)]">
-                  <img 
+                  <img
                     src={plan.cardImage}
                     alt={`${plan.name} card`}
                     className="w-full h-auto rounded-2xl shadow-2xl transition-all duration-500 group-hover:shadow-[0_0_2rem_0_rgba(59,130,246,0.3)]"
@@ -187,6 +201,21 @@ const Pricing = () => {
                       <span className="text-gray-500">/mo</span>
                     </div>
                   </div>
+                  {/* Lista de features */}
+                  {plan.features && plan.features.length > 0 && (
+                    <ul className="text-left space-y-3 mb-4">
+                      {plan.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-gray-200 text-sm">
+                          <span className="mt-1 text-green-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                          </span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                   {plan.popular && (
                     <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs font-medium rounded-full shadow-lg">
                       Most Popular
@@ -198,6 +227,15 @@ const Pricing = () => {
           ))}
         </div>
 
+        {/* Botón para abrir la tabla comparativa */}
+        <div className="flex justify-center mt-10">
+          <button
+            className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-full shadow-lg hover:from-blue-600 hover:to-purple-600 transition-all text-lg"
+            onClick={() => setShowCompareModal(true)}
+          >
+            {isSpanish ? 'Comparar planes en detalle' : 'Compare plans in detail'}
+          </button>
+        </div>
 
         {/* Sección de Beneficios */}
         <div className="pt-24 border-t border-gray-800">
@@ -206,13 +244,13 @@ const Pricing = () => {
               {isSpanish ? 'Beneficios y Descuentos Exclusivos' : 'Exclusive Benefits & Discounts'}
             </h2>
             <p className="text-gray-400">
-              {isSpanish 
+              {isSpanish
                 ? 'Convierte tus gastos diarios en recompensas exclusivas con nuestra red de socios'
                 : 'Turn your daily expenses into exclusive rewards with our partner network'
               }
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-4 gap-8 w-full">
             {benefits.map((category) => (
               <div key={category.category} className="bg-gray-800/50 rounded-2xl p-6 backdrop-blur-xl border border-gray-700/50">
@@ -226,8 +264,8 @@ const Pricing = () => {
                       className="flex items-center gap-3 text-gray-300 group hover:bg-gray-800/50 p-3 rounded-xl transition-all duration-300 hover:translate-x-2 justify-center w-full"
                     >
                       <div className="w-14 h-14 rounded-lg overflow-hidden transition-all duration-500 group-hover:w-16 group-hover:h-16 flex-shrink-0">
-                        <img 
-                          src={item.image} 
+                        <img
+                          src={item.image}
                           alt={item.name}
                           className="w-full h-full object-cover group-hover:scale-150 transition-all duration-500"
                         />
@@ -299,5 +337,5 @@ const Pricing = () => {
   );
 };
 
-export default Pricing; 
+export default Pricing;
 

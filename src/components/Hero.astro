@@ -1,6 +1,6 @@
 ---
 import ChatPreview from './ChatPreview.astro';
-import { t } from 'i18next';
+// import { t } from 'i18next'; // Eliminado porque no se usa
 
 const currentPath = Astro.url.pathname;
 const isSpanish = currentPath.startsWith('/es');
@@ -75,32 +75,6 @@ const isSpanish = currentPath.startsWith('/es');
 
 	<div class="md:w-1/2 mt-8 md:mt-0">
 		<ChatPreview />
-	</div>
-</div>
-
-<!-- Modal -->
-<div id="qrModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-	<div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 relative">
-		<button id="closeModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
-			<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-			</svg>
-		</button>
-		
-		<h2 class="text-2xl font-bold text-center mb-4">{isSpanish ? "OBTÉN LA APP ZELIFY" : "GET ZELIFY APP"}</h2>
-		<p class="text-gray-600 text-center mb-8">
-			{isSpanish ? 
-				"Escanea el código QR para descargar Zelify y comenzar tu viaje." : 
-				"Scan the QR code to download Zelify and begin your journey."}
-		</p>
-		
-		<div class="bg-gray-100 rounded-lg p-4 flex items-center justify-center">
-			<img 
-				src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://zelify.com/get-the-app"
-				alt={isSpanish ? "Código QR" : "QR Code"}
-				class="w-48 h-48"
-			/>
-		</div>
 	</div>
 </div>
 
@@ -194,6 +168,7 @@ const isSpanish = currentPath.startsWith('/es');
 </style>
 
 <script>
+window.addEventListener('DOMContentLoaded', () => {
 	// Añadir animación aleatoria a los emojis
 	const emojis = document.querySelectorAll('.emoji-content');
 	emojis.forEach(emojiContainer => {
@@ -205,24 +180,39 @@ const isSpanish = currentPath.startsWith('/es');
 
 	// Modal functionality
 	const modal = document.getElementById('qrModal');
+	const modalContent = document.getElementById('modalContent');
 	const openButton = document.getElementById('openModal');
 	const closeButton = document.getElementById('closeModal');
 	
 	openButton?.addEventListener('click', () => {
 		modal?.classList.remove('hidden');
 		modal?.classList.add('flex');
+		// Trigger animation
+		setTimeout(() => {
+			modalContent?.classList.remove('scale-95', 'opacity-0');
+			modalContent?.classList.add('scale-100', 'opacity-100');
+		}, 10);
 	});
 	
 	closeButton?.addEventListener('click', () => {
-		modal?.classList.remove('flex');
-		modal?.classList.add('hidden');
+		modalContent?.classList.remove('scale-100', 'opacity-100');
+		modalContent?.classList.add('scale-95', 'opacity-0');
+		setTimeout(() => {
+			modal?.classList.remove('flex');
+			modal?.classList.add('hidden');
+		}, 300);
 	});
 	
 	// Close modal when clicking outside
 	modal?.addEventListener('click', (e) => {
 		if (e.target === modal) {
-			modal.classList.remove('flex');
-			modal.classList.add('hidden');
+			modalContent?.classList.remove('scale-100', 'opacity-100');
+			modalContent?.classList.add('scale-95', 'opacity-0');
+			setTimeout(() => {
+				modal?.classList.remove('flex');
+				modal?.classList.add('hidden');
+			}, 300);
 		}
 	});
+});
 </script>
