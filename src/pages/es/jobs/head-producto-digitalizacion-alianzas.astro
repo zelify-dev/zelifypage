@@ -1,0 +1,176 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import BackButton from '../../../components/BackButton.astro';
+
+const currentPath = Astro.url.pathname;
+const jobId = currentPath.split('/').pop();
+---
+
+<Layout title="Head de Producto, Digitalización y Alianzas | Zelify">
+  <div class="min-h-screen bg-gray-50">
+    <!-- Banner -->
+    <div class="relative h-64 bg-gradient-to-r from-blue-600 to-blue-800">
+      <div class="absolute inset-0 bg-black/20"></div>
+      <div class="absolute inset-0 flex flex-col items-center justify-center">
+        <div class="text-center">
+          <h1 class="text-4xl font-bold text-white mb-4">Head de Producto, Digitalización y Alianzas</h1>
+          <div class="flex items-center justify-center gap-4 text-sm text-white/90">
+            <span class="flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              Latam
+            </span>
+            <span class="flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              Tiempo completo / Medio tiempo
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="max-w-4xl mx-auto px-4 py-12">
+      <div class="bg-white rounded-xl shadow-sm p-8">
+        <!-- About Zelify -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Sobre Zelify</h2>
+          <p class="text-gray-600 mb-6">
+            Nacimos en 2018 con la misión de combatir la complejidad y empoderar a las personas, reinventando los servicios financieros y facilitando transferencias internacionales en Latinoamérica. Zelify transforma la banca para usuarios personales y empresariales, permitiéndote enviar, dividir o regalar dinero al instante, sin complicaciones ni esperas.
+          </p>
+          <p class="text-gray-600 mb-6">
+            Zelify es la plataforma neo-bancaria de Zwippetech Inc. que facilita la bancarización de usuarios y negocios a través de tecnología de última generación, eliminando las fronteras transaccionales y permitiendo a personas y empresas abrir cuentas de ahorro 100% digitales y realizar transferencias internacionales de forma eficiente, transparente y segura.
+          </p>
+        </section>
+
+        <!-- Our Work Model -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Nuestro Modelo de Trabajo</h2>
+          <p class="text-gray-600 mb-6">
+            En Zwippetech, creamos equipos multifuncionales, diversos e inclusivos, atrayendo el mejor talento para desarrollar tecnología revolucionaria. Para lograrlo, el equipo de ingeniería utiliza tecnologías avanzadas y metodologías ágiles que permiten una rápida adaptación a las necesidades del mercado.
+          </p>
+          <p class="text-gray-600 mb-6">
+            Nuestro modelo híbrido brinda independencia y fomenta la responsabilidad profesional para cumplir metas alineadas con nuestros objetivos globales. Nuestro equipo de Ingeniería transforma la tecnología en soluciones financieras de alto impacto.
+          </p>
+        </section>
+
+        <!-- Our Culture -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Nuestra Cultura</h2>
+          <p class="text-gray-600 mb-6">
+            En Zelify, hemos creado una plataforma neo bancaria internacional centrada en el usuario, desafiando constantemente los límites de la tecnología. Nuestra promesa es conectar pagos y unir personas, empoderando a nuestros usuarios para pagar, compartir y conectar al instante.
+          </p>
+          <p class="text-gray-600 mb-6">
+            Cultivamos una cultura de crecimiento profesional, innovación y emprendimiento. Promueve una cultura de autonomía y responsabilidad, donde los ingenieros son dueños de sus proyectos desde la concepción hasta la implementación.
+          </p>
+        </section>
+
+        <!-- About the Role -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Sobre el Rol: Head de Producto, Digitalización y Alianzas</h2>
+          <p class="text-gray-600 mb-6">
+            Como Head de Producto, Digitalización y Alianzas tendrás las siguientes responsabilidades:
+          </p>
+          <ul class="list-disc list-inside text-gray-600 space-y-3 mb-6">
+            <li>Estrategia y Roadmap de Producto</li>
+            <li>Gestión de Relaciones con Instituciones Financieras</li>
+            <li>Coordinación Interna para Integraciones Bancarias</li>
+            <li>Gestión de Ciclo de Vida de Producto</li>
+            <li>Expansión y Desarrollo de Negocios</li>
+            <li>Comunicación y PR</li>
+          </ul>
+        </section>
+
+        <!-- Role Objectives -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Objetivos del Rol (KPIs)</h2>
+          <ul class="list-disc list-inside text-gray-600 space-y-3">
+            <li>Crecimiento de usuarios activos y volumen de transacciones en mercados objetivo</li>
+            <li>Número de nuevas alianzas bancarias integradas</li>
+            <li>Mejora de tasas de activación y retención de productos lanzados</li>
+            <li>Tiempo promedio de integración con nuevos partners financieros</li>
+            <li>Cumplimiento de SLA/SLO en integraciones de servicios bancarios</li>
+            <li>Penetración de mercado y generación de ingresos por nuevos productos implementados</li>
+            <li>NPS del producto y experiencia del cliente</li>
+          </ul>
+        </section>
+
+        <!-- Expected Contribution -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Contribución Esperada de la Posición</h2>
+          <ul class="list-disc list-inside text-gray-600 space-y-3">
+            <li>Aportar su experiencia en medios de pago, alianzas estratégicas y desarrollo de productos financieros para liderar los proyectos prioritarios de Zelify en Colombia y otros mercados clave.</li>
+            <li>Implementar estrategias comerciales y de producto que generen valor y posicionen a Zelify como líder en innovación financiera y banca digital.</li>
+            <li>Optimizar procesos de onboarding, lanzamiento de productos y experiencia de usuario.</li>
+            <li>Contribuir al fortalecimiento de alianzas actuales y a la apertura de nuevas relaciones que faciliten la expansión de Zelify a nuevos mercados.</li>
+          </ul>
+        </section>
+
+        <!-- Economic Proposal -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Propuesta Económica y de Vinculación</h2>
+          <p class="text-gray-600 mb-6">
+            Se propone la incorporación bajo el esquema de Head de Producto, Digitalización y Alianzas con un esquema de participación que incluye:
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Participación en Equity:</h3>
+          <p class="text-gray-600 mb-4">
+            Se otorgará un 1% en acciones ordinarias de Zwippetech S.A.S Colombia con vesting de 12 meses y cliff de 3 meses, en línea con estándares de mercado colombiano para roles ejecutivos de alto impacto en startups de tecnología.
+          </p>
+          
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Bono por Desempeño:</h3>
+          <p class="text-gray-600 mb-4">
+            Se otorgará un adicional del 0.5% en acciones ordinarias sujeto al cumplimiento de los KPIs estratégicos definidos durante los primeros 180 días de vinculación.
+          </p>
+        </section>
+
+        <!-- Benefits -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Beneficios (Perks)</h2>
+          <ul class="list-disc list-inside text-gray-600 space-y-3">
+            <li>Seguro de salud</li>
+            <li>Bonos anuales basados en desempeño</li>
+            <li>Asignación de una herramienta mensual de tecnología para sus labores</li>
+            <li>Beneficios adicionales según nivel de seniority</li>
+            <li>Trabajo híbrido con flexibilidad para adaptarse a necesidades presenciales puntuales de clientes</li>
+            <li>Un curso en Udemy o Platzi</li>
+            <li>Aguinaldos como beneficio adicional</li>
+            <li>Cupón de descuento mensual en transferencias de nuestra app</li>
+            <li>Dress code libre</li>
+            <li>Día libre de cumpleaños</li>
+            <li>Regalo de computador al cumplir dos años en la empresa</li>
+            <li>Auto 0 km a los 5 años de seniority</li>
+          </ul>
+        </section>
+
+        <!-- Apply Button -->
+        <div class="flex justify-center">
+          <a
+            href={`/es/jobs/apply?position=${jobId}`}
+            class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-300 shadow-sm hover:shadow-md"
+          >
+            Aplicar para esta posición
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <BackButton href="/es/jobs" />
+</Layout>
+
+<style>
+  /* Smooth transitions */
+  .transition-colors {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+</style>

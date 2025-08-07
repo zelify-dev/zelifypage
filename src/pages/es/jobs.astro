@@ -8,6 +8,20 @@ const isSpanish = currentPath.startsWith('/es');
 // Lista de trabajos
 const jobs = [
   {
+    id: 'head-producto-digitalizacion-alianzas',
+    title: {
+      en: 'Head of Product, Digitalization and Alliances',
+      es: 'Head de Producto, Digitalización y Alianzas'
+    },
+    description: {
+      en: "Lead strategic growth and expansion of relationships with local and international financial institutions.",
+      es: "Liderar el crecimiento estratégico y la expansión de relaciones con instituciones financieras locales e internacionales."
+    },
+    department: 'product',
+    location: 'latam',
+    type: 'full-time'
+  },
+  {
     id: 'semi-senior-software-engineer',
     title: {
       en: 'Semi Senior Software Engineer',
@@ -64,6 +78,7 @@ const departments = [
 const locations = [
   { value: '', label: { en: 'All locations', es: 'Todas las ubicaciones' } },
   { value: 'remote', label: { en: 'Remote', es: 'Remoto' } },
+  { value: 'latam', label: { en: 'Latam', es: 'Latam' } },
   { value: 'mexico', label: { en: 'Mexico', es: 'México' } },
   { value: 'usa', label: { en: 'USA', es: 'Estados Unidos' } }
 ];
