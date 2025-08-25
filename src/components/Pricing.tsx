@@ -140,7 +140,7 @@ const Pricing = () => {
   ];
 
   return (
-    <section className="py-24 bg-gray-900 relative overflow-hidden">
+    <section className="py-24 relative overflow-hidden" style={{ backgroundColor: '#000213' }}>
       {/* Efectos de fondo */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>

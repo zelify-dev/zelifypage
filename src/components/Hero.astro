@@ -1,24 +1,27 @@
 ---
 import ChatPreview from './ChatPreview.astro';
+import SocialPaymentUI from './SocialPaymentUI.tsx';
 // import { t } from 'i18next'; // Eliminado porque no se usa
 
 const currentPath = Astro.url.pathname;
 const isSpanish = currentPath.startsWith('/es');
 ---
 
-<div class="mx-auto max-w-screen-lg px-4 py-20 flex flex-col md:flex-row items-center justify-between">
+<div class="mx-auto max-w-screen-lg px-4 pt-8 pb-28 flex flex-col md:flex-row items-center justify-between bg-[#B0FF51]">
 	<div class="text-center md:text-left md:w-1/2">
-		<h1 class="text-6xl font-bold text-white mb-6">
-			{isSpanish ? "Conectamos pagos, unimos" : "Let's pay"} <span class="text-gradient">{isSpanish ? "personas" : "social"}</span>
+		<h1 class="hero-title mb-6">
+			<span class="lets-pay">{isSpanish ? "Conectamos pagos, unimos" : "Let's pay"}</span>
+			<span class="social-text">{isSpanish ? "personas" : "social"}</span>
 		</h1>
 		
-		<p class="text-xl text-gray-200 max-w-2xl mb-8">
+		<p class="text-xl text-black max-w-2xl mb-8">
 			{isSpanish ? 
 				"Tienes el poder de " : 
 				"You've got the power to "} 
 			<strong>
-				{isSpanish ? "conectar" : "connect"}
-			</strong>, 
+				{isSpanish ? "conectar," : "connect,"}
+			</strong>
+			<br />
 			<strong>
 				{isSpanish ? "pagar" : "pay"}
 			</strong> 
@@ -26,6 +29,7 @@ const isSpanish = currentPath.startsWith('/es');
 			<strong>
 				{isSpanish ? "compartir" : "share"}
 			</strong> 
+			<br class="md:hidden" />
 			{isSpanish ? "instantaneamente" : "instantly"}
 		</p>
 
@@ -33,7 +37,7 @@ const isSpanish = currentPath.startsWith('/es');
 			<button 
 				id="openModal"
 				class="group relative rounded-md px-5 py-2.5 text-sm font-medium text-white overflow-hidden
-					bg-gray-950 hover:bg-gray-900 transition-all duration-300
+					bg-[#00223E] hover:bg-[#001a2e] transition-all duration-300
 					border-2 border-transparent hover:border-white
 					animate-pulse-strong hover:animate-none hover:scale-105
 					shadow-[0_0_20px_rgba(255,255,255,0.2)]
@@ -58,12 +62,12 @@ const isSpanish = currentPath.startsWith('/es');
 					</span>
 					<span class="flex gap-1 text-base">
 						<span class="appstore-icon">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:scale-125 transition-all duration-200 group-hover:rotate-12" viewBox="0 0 24 24">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:scale-125 transition-all duration-200 group-hover:rotate-12 text-[#B0FF51]" viewBox="0 0 24 24">
 								<path fill="currentColor" d="M11.624 7.222c-.876 0-2.232-.996-3.66-.96-1.884.024-3.612 1.092-4.584 2.784-1.956 3.396-.504 8.412 1.404 11.172.936 1.344 2.04 2.856 3.504 2.808 1.404-.06 1.932-.912 3.636-.912 1.692 0 2.172.912 3.66.876 1.512-.024 2.472-1.368 3.396-2.724 1.068-1.56 1.512-3.072 1.536-3.156-.036-.012-2.94-1.128-2.976-4.488-.024-2.808 2.292-4.152 2.4-4.212-1.32-1.932-3.348-2.148-4.056-2.196-1.848-.144-3.396 1.008-4.26 1.008zm3.12-2.832c.78-.936 1.296-2.244 1.152-3.54-1.116.048-2.46.744-3.264 1.68-.72.828-1.344 2.16-1.176 3.432 1.236.096 2.508-.636 3.288-1.572z"/>
 							</svg>
 						</span>
 						<span class="playstore-icon">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:scale-125 transition-all duration-200 group-hover:-rotate-12" viewBox="0 0 512 512">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:scale-125 transition-all duration-200 group-hover:-rotate-12 text-[#B0FF51]" viewBox="0 0 512 512">
 								<path fill="currentColor" d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
 							</svg>
 						</span>
@@ -78,29 +82,65 @@ const isSpanish = currentPath.startsWith('/es');
 	</div>
 </div>
 
+<!-- Nueva sección "Money, Simplified" -->
+<div class="w-full px-4 py-20 bg-gray-100">
+	<div class="text-center max-w-4xl mx-auto">
+		<p class="text-gray-600 text-sm mb-4">No matter where you are</p>
+		
+		<h2 class="text-5xl mb-6">
+			<span class="text-gray-800">Money,</span>
+			<span class="text-[#B0FF51] font-bold"> Simplified</span>
+		</h2>
+		
+		<p class="text-xl text-gray-700 mb-4 font-bold">A smarter way to move money.</p>
+		<br />
+		<p class="text-gray-600 max-w-2xl mx-auto mb-8">
+			Lightning-fast, encrypted, and available everywhere.<br />
+			Send and receive funds globally in just seconds.
+		</p>
+		
+		<button class="bg-[#00223E] text-[#B0FF51] px-8 py-3 rounded-lg font-medium hover:bg-[#001a2e] transition-all duration-300 transform hover:scale-105">
+			Apply now
+		</button>
+	</div>
+</div>
+
+<!-- Social Payment UI Section -->
+<SocialPaymentUI client:load />
+
 <style>
 	:global(body) {
-		background: linear-gradient(-45deg, 
-			#2563eb,
-			#3b82f6,
-			#10b981,
-			#2563eb
-		);
-		background-size: 400% 400%;
-		animation: gradient 10s ease infinite;
+		background: #B0FF51;
+		font-family: 'Nata Sans', sans-serif;
 	}
 
-	.text-gradient {
-		background: linear-gradient(90deg, 
-			#fff 0%,
-			#4ade80 50%,
-			#fff 100%
-		);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
+	.hero-title {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		text-align: left;
+	}
+
+	.lets-pay {
+		color: black;
+		font-size: 3.8rem;
+		font-weight: 400;
+		font-family: 'Nata Sans', sans-serif;
+		line-height: 0.7;
+		text-align: left;
+		margin-left: 0;
+		padding-left: 0;
+	}
+
+	.social-text {
+		color: #144092;
+		font-size: 9rem;
 		font-weight: 800;
-		background-size: 200% auto;
-		animation: shine 3s linear infinite;
+		font-family: 'Nata Sans', sans-serif;
+		line-height: 0.7;
+		margin-left: 0;
+		position: relative;
+		text-align: left;
 	}
 
 	@keyframes shine {
@@ -161,9 +201,9 @@ const isSpanish = currentPath.startsWith('/es');
 	}
 
 	:global(html, body) {
-		min-height: 100vh;
 		margin: 0;
 		padding: 0;
+		font-family: 'Nata Sans', sans-serif;
 	}
 </style>
 
@@ -214,5 +254,8 @@ window.addEventListener('DOMContentLoaded', () => {
 			}, 300);
 		}
 	});
+
+
 });
 </script>
+

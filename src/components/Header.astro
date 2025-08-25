@@ -11,29 +11,34 @@ const currentLang = currentPath.startsWith('/es') ? 'es' : 'en';
 const alternateUrl = currentLang === 'es' ? currentPath.replace('/es', '') : `/es${currentPath}`;
 ---
 
-<header class="relative z-50">
-	<div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+<header class="relative z-50 mt-6">
+	<div class="max-w-7xl mx-auto px-4 py-6 flex items-center justify-between">
 		<div class="flex items-center gap-16">
 			<a href={currentLang === 'es' ? '/es' : '/'} class="flex items-center gap-2">
-				<img src="/assets/img/logo_white.png" alt="Zelify" class="h-8" />
+				<img 
+					src="/assets/logos/new_zelify_logo.svg" 
+					alt="Zelify Logo" 
+					class="h-8 w-auto"
+					style="background: transparent;"
+				/>
 			</a>
 			<nav class="hidden md:flex items-center gap-8">
 				<a 
 					href="#cards" 
-					class="nav-item px-4 py-2 text-gray-50 font-medium"
+					class="nav-item px-4 py-2 text-[#144092] font-medium"
 				>
 					{currentLang === 'es' ? 'Tarjetas' : 'Cards'}
 				</a>
 				<a 
 					href="#features" 
-					class="nav-item px-4 py-2 text-gray-50 font-medium"
+					class="nav-item px-4 py-2 text-[#144092] font-medium"
 				>
 					{currentLang === 'es' ? 'Características' : 'Features'}
 				</a>
 				<a 
 					href="#pricing" 
 					onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'}); return false;"
-					class="nav-item px-4 py-2 text-gray-50 font-medium"
+					class="nav-item px-4 py-2 text-[#144092] font-medium"
 				>
 					{currentLang === 'es' ? 'Planes' : 'Plans'}
 				</a>
@@ -45,24 +50,26 @@ const alternateUrl = currentLang === 'es' ? currentPath.replace('/es', '') : `/e
 				href={`${currentLang === 'es' ? '/es' : ''}/jobs`}
 				target="_self"
 				rel="noopener noreferrer"
-				class="inline-flex items-center justify-center px-4 py-2 border border-white text-white font-medium rounded-full hover:bg-white hover:text-blue-600 transition-all duration-300 text-sm gap-2"
+				class="inline-flex items-center justify-center px-4 py-2 bg-[#00223E] text-[#D8DCE2] font-medium rounded-[9px] hover:bg-[#001a2e] hover:scale-105 hover:shadow-lg transition-all duration-300 text-sm gap-2 transform"
 			>
-				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#B0FF51]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
 				</svg>
 				{currentLang === 'es' ? 'Trabaja con nosotros' : 'Work with us'}
 			</a>
 			<a
 				href={`${currentLang === 'es' ? '/es' : ''}/login`}
-				class="inline-flex items-center justify-center px-4 py-2 border border-white text-white font-medium rounded-full hover:bg-white hover:text-blue-600 transition-all duration-300 text-sm gap-2"
+				class="inline-flex items-center justify-center px-4 py-2 bg-[#00223E] text-[#D8DCE2] font-medium rounded-[9px] hover:bg-[#001a2e] hover:scale-105 hover:shadow-lg transition-all duration-300 text-sm gap-2 transform"
 			>
-				<i class="eva eva-log-in-outline text-lg"></i>
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#B0FF51]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+				</svg>
 				{currentLang === 'es' ? 'Acceso a bancos' : 'Bank Access'}
 			</a>
 			
 			<a
 				href={alternateUrl}
-				class="inline-flex items-center justify-center px-3 py-1 border border-white text-white font-medium rounded-full hover:bg-white hover:text-blue-600 transition-all duration-300 text-sm"
+				class="inline-flex items-center justify-center px-3 py-1 bg-[#B0FF51] text-[#000000] font-medium rounded-[9px] hover:bg-[#9eea47] hover:scale-105 hover:shadow-lg hover:rotate-1 transition-all duration-300 text-sm border border-black transform"
 			>
 				{currentLang === 'es' ? 'EN' : 'ES'}
 			</a>

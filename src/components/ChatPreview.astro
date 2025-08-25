@@ -4,11 +4,11 @@ const isSpanish = currentPath.startsWith('/es');
 ---
 
 <div class="relative">
-  <div class="w-full max-w-md mx-auto">
-    <div class="max-w-xs mx-auto bg-white rounded-t-3xl shadow-2xl overflow-hidden h-[calc(100vh-80px)] max-h-[650px] flex flex-col animate-fadeIn">
-      <div class="py-2 px-4 bg-white border-b">
+  <div class="w-full max-w-md mx-auto py-8">
+    <div class="max-w-xs mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden h-[calc(100vh-80px)] max-h-[650px] flex flex-col animate-fadeIn">
+      <div class="py-2 px-4 bg-[#00223E] border-b">
         <div class="flex items-center gap-3">
-          <button class="text-gray-600">
+          <button class="text-[#B0FF51]">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
             </svg>
@@ -20,40 +20,36 @@ const isSpanish = currentPath.startsWith('/es');
               class="w-10 h-10 rounded-full object-cover"
             />
             <div>
-              <h3 class="font-semibold text-gray-800 text-sm leading-tight">{isSpanish ? "Juan Perez" : "John Cooper"}</h3>
-              <p class="text-xs text-gray-500 leading-tight">@{isSpanish ? "juanp" : "coop"}</p>
+              <h3 class="font-semibold text-white text-sm leading-tight">{isSpanish ? "Juan Perez" : "John Cooper"}</h3>
+              <p class="text-xs text-gray-300 leading-tight">@{isSpanish ? "juanp" : "coop"}</p>
             </div>
           </div>
           <div class="flex gap-3 ml-auto">
             <div class="flex flex-col items-center">
-              <button class="w-10 h-10 bg-green-500 rounded-full text-white hover:bg-green-600 transition-all transform hover:scale-105 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
-                </svg>
+              <button class="w-12 h-12 bg-[#B0FF51] rounded-full hover:bg-[#9eea47] transition-all transform hover:scale-105 flex items-center justify-center">
+                <img src="/assets/icons/transfer-icon.svg" alt="Transfer" class="w-6 h-6" />
               </button>
-              <span class="text-xs text-gray-600 mt-1">{isSpanish ? "Transferir" : "Transfer"}</span>
+              <span class="text-[10px] text-white mt-1">{isSpanish ? "Transferir" : "Transfer"}</span>
             </div>
             <div class="flex flex-col items-center">
-              <button class="w-10 h-10 bg-blue-500 rounded-full text-white hover:bg-blue-600 transition-all transform hover:scale-105 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
-                </svg>
+              <button class="w-12 h-12 bg-[#B0FF51] rounded-full hover:bg-[#9eea47] transition-all transform hover:scale-105 flex items-center justify-center">
+                <img src="/assets/icons/request-icon.svg?v=2" alt="Request" class="w-6 h-6" />
               </button>
-              <span class="text-xs text-gray-600 mt-1">{isSpanish ? "Solicitar" : "Request"}</span>
+              <span class="text-[10px] text-white mt-1">{isSpanish ? "Solicitar" : "Request"}</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="px-4 flex-1 overflow-y-auto bg-gray-50" id="chat-container">
+      <div class="px-4 flex-1 overflow-y-auto bg-white" id="chat-container">
         <div class="space-y-3">
           <!-- Mensajes iniciales eliminados para que se generen dinámicamente -->
         </div>
       </div>
 
-      <div class="py-3 px-4 bg-white border-t mt-auto">
+      <div class="py-3 px-4 bg-[#00223E] border-t mt-auto">
         <div class="flex items-center gap-2">
-          <button class="p-2 text-gray-600 hover:bg-gray-100 rounded-full" id="emoji-button">
+          <button class="p-2 text-[#B0FF51] hover:bg-[#B0FF51]/10 rounded-full" id="emoji-button">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
@@ -62,9 +58,9 @@ const isSpanish = currentPath.startsWith('/es');
             type="text" 
             id="message-input"
             placeholder={isSpanish ? "Escribe un mensaje..." : "Type a message..."} 
-            class="flex-1 p-2 border rounded-full focus:outline-none focus:border-blue-500"
+            class="flex-1 p-3 bg-white text-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-[#B0FF51] placeholder-gray-500"
           />
-          <button class="p-2 text-gray-600 hover:bg-gray-100 rounded-full" id="send-button">
+          <button class="p-2 text-[#B0FF51] hover:bg-[#B0FF51]/10 rounded-full" id="send-button">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
             </svg>
@@ -347,7 +343,7 @@ const isSpanish = currentPath.startsWith('/es');
     messageDiv.className = `chat-message flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
     
     const innerDiv = document.createElement('div');
-    innerDiv.className = `${sender === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'} rounded-2xl px-4 py-2 max-w-[80%]`;
+    innerDiv.className = `${sender === 'user' ? 'bg-[#95FF0B] text-black' : 'bg-[#00223E] text-white'} rounded-2xl px-4 py-2 max-w-[80%]`;
     
     const textP = document.createElement('p');
     textP.className = 'text-sm';
@@ -370,11 +366,11 @@ const isSpanish = currentPath.startsWith('/es');
     const typingDiv = document.createElement('div');
     typingDiv.className = 'chat-message flex justify-start';
     typingDiv.innerHTML = `
-      <div class="bg-gray-200 rounded-2xl px-4 py-2">
+      <div class="bg-[#00223E] rounded-2xl px-4 py-2">
         <div class="flex gap-2">
-          <span class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: 0ms"></span>
-          <span class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: 150ms"></span>
-          <span class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: 300ms"></span>
+          <span class="w-2 h-2 bg-white rounded-full animate-bounce" style="animation-delay: 0ms"></span>
+          <span class="w-2 h-2 bg-white rounded-full animate-bounce" style="animation-delay: 150ms"></span>
+          <span class="w-2 h-2 bg-white rounded-full animate-bounce" style="animation-delay: 300ms"></span>
         </div>
       </div>
     `;
