@@ -54,7 +54,9 @@ const SocialPaymentUI: React.FC = () => {
     };
 
     return (
-        <div className="w-full min-h-screen bg-[#B0FF51]">
+        <div className="w-full min-h-screen bg-[#B0FF51] relative">
+
+
             {/* Grid layout with first image wider but balanced */}
             <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 h-screen">
                 {/* Image 1 - Wider but not too much */}

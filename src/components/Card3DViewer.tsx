@@ -199,7 +199,7 @@ const Card3DViewer = () => {
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     // Eliminar restricciones de rotación para permitir giro completo
-    controls.enableZoom = true;
+    controls.enableZoom = false;
     controls.enablePan = false;
     controls.target.set(0, 0, 0);
     controls.update();
@@ -232,7 +232,7 @@ const Card3DViewer = () => {
         camera.position.set(
           center.x + cameraDistance * 0.5,
           center.y + cameraDistance * 0.3,
-          center.z + cameraDistance
+          center.z + cameraDistance * 0.7
         );
         camera.lookAt(center);
         controls.target.copy(center);
@@ -284,7 +284,7 @@ const Card3DViewer = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#00223E] py-20 font-nata">
+    <div className="relative min-h-screen bg-[#00213C] py-20 font-nata">
       {/* Content container */}
       <div className="relative z-10 max-w-7xl mx-auto px-4">
         {/* Header section */}
@@ -295,13 +295,14 @@ const Card3DViewer = () => {
           <h2 className="text-6xl font-bold text-[#B0FF51] mb-6 font-nata">
             Physical Cards
           </h2>
-          <p className="text-xl text-white/80 max-w-2xl mx-auto mb-12 font-nata">
-            Experience the tangible luxury of our physical cards, crafted with precision for your everyday banking needs
+          <p className="text-xl text-white/80 max-w-4xl mx-auto mb-12 font-nata">
+            Experience the tangible luxury of our physical cards, crafted with precision<br />
+            for your everyday banking needs
           </p>
         </div>
 
         {/* 3D Card Viewer */}
-        <div className="relative h-[500px] rounded-2xl overflow-hidden bg-gradient-to-br from-[#1a365d] to-[#2d3748] shadow-2xl mb-16">
+        <div className="relative h-[500px] rounded-2xl overflow-hidden bg-[#00213C] mb-16">
           <div
             ref={mountRef}
             className="absolute inset-0 w-full h-full"
@@ -313,27 +314,32 @@ const Card3DViewer = () => {
           {[
             {
               icon: (
-                <svg className="w-8 h-8 text-[#B0FF51]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                </svg>
+                <div className="w-12 h-12 bg-[#B0FF51] rounded-full flex items-center justify-center">
+                  <img src="/assets/icons/icon_1_stars.svg" alt="Premium Design" className="w-6 h-6" />
+                </div>
               ),
               title: "Premium Design",
-              description: "Metallic finish with silver details"
+              description: (
+                <>
+                  Metallic finish with<br />
+                  silver details
+                </>
+              )
             },
             {
               icon: (
-                <svg className="w-8 h-8 text-[#B0FF51]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
+                <div className="w-12 h-12 bg-[#B0FF51] rounded-full flex items-center justify-center">
+                  <img src="/assets/icons/icon_2_security.svg" alt="Maximum Security" className="w-6 h-6" />
+                </div>
               ),
               title: "Maximum Security",
               description: "Advanced chip technology and contactless"
             },
             {
               icon: (
-                <svg className="w-8 h-8 text-[#B0FF51]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                </svg>
+                <div className="w-12 h-12 bg-[#B0FF51] rounded-full flex items-center justify-center">
+                  <img src="/assets/icons/icon_3_present.svg" alt="Exclusive Benefits" className="w-6 h-6" />
+                </div>
               ),
               title: "Exclusive Benefits",
               description: "Access to special services and offers"
@@ -343,8 +349,8 @@ const Card3DViewer = () => {
               <div className="flex justify-center mb-4">
                 {feature.icon}
               </div>
-              <h3 className="text-[#B0FF51] text-lg font-semibold mb-2 font-nata">{feature.title}</h3>
-              <p className="text-white/80 text-sm font-nata">{feature.description}</p>
+              <h3 className="text-[#B0FF51] text-xl font-bold mb-2 font-nata">{feature.title}</h3>
+              <p className="text-white/80 text-xl font-nata">{feature.description}</p>
             </div>
           ))}
         </div>
