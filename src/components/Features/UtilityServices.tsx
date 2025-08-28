@@ -24,20 +24,20 @@ export const UtilityServices: React.FC<UtilityServicesProps> = ({
 
   return (
     <div className="min-w-full h-[600px] bg-white relative">
-      <div className="flex items-center gap-4 p-4 border-b">
-        <button 
-          className="text-[#3983ED] p-2 hover:bg-gray-100 rounded-full transition-all"
+      <div className="flex items-center gap-4 p-4 bg-[#00223E]">
+        <button
+          className="text-white p-2 hover:bg-[#00223E]/80 rounded-full transition-all"
           onClick={goBack}
           type="button"
         >
           <i className="eva eva-arrow-back-outline text-xl" />
         </button>
-        <h2 className="text-[#3983ED] text-base font-medium">Utility Services</h2>
+        <h2 className="text-[#B0FF51] text-base font-medium">Utility Services</h2>
       </div>
 
       <div className="p-6">
-        <h3 className="text-base font-bold mb-6">Available Services:</h3>
-        
+        <h3 className="text-base font-bold mb-6 text-[#00223E]">Available Services:</h3>
+
         <div className="grid grid-cols-2 gap-4">
           {services.map(service => (
             <button
@@ -46,10 +46,10 @@ export const UtilityServices: React.FC<UtilityServicesProps> = ({
               className="flex flex-col items-center p-4 rounded-2xl transition-all group"
               onClick={() => onServiceClick(service.id)}
             >
-              <div className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-3">
-                <i className={`eva eva-${service.icon}-outline text-2xl text-gray-600 group-hover:text-[#3983ED] transition-colors`} />
+              <div className="w-12 h-12 rounded-full bg-[#00223E] flex items-center justify-center mb-3">
+                <i className={`eva eva-${service.icon}-outline text-2xl text-white group-hover:text-white transition-colors`} />
               </div>
-              <span className="text-xs text-gray-600 group-hover:text-[#3983ED] transition-colors">
+              <span className="text-xs text-[#00223E] group-hover:text-[#00223E] transition-colors">
                 {service.name}
               </span>
             </button>

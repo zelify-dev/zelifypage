@@ -20,7 +20,6 @@ export const ConfirmSlider: React.FC<ConfirmSliderProps> = ({ onConfirm, text })
     startXRef.current = pageX - sliderLeft;
   };
 
-
   const handleMouseMove = (e: MouseEvent | TouchEvent) => {
     if (!isDragging || !sliderRef.current) return;
 
@@ -56,7 +55,7 @@ export const ConfirmSlider: React.FC<ConfirmSliderProps> = ({ onConfirm, text })
 
   const handleConfirm = () => {
     if (isConfirmed) return;
-    
+
     setIsDragging(false);
     setIsLoading(true);
     setIsConfirmed(true);
@@ -70,7 +69,7 @@ export const ConfirmSlider: React.FC<ConfirmSliderProps> = ({ onConfirm, text })
     setTimeout(() => {
       setIsLoading(false);
       onConfirm();
-      
+
       setTimeout(() => {
         setSliderLeft(0);
         setProgress(0);
@@ -94,53 +93,84 @@ export const ConfirmSlider: React.FC<ConfirmSliderProps> = ({ onConfirm, text })
   }, [isDragging, isConfirmed]);
 
   return (
-    <div className="relative w-full h-14 bg-gradient-to-r from-green-400 to-[#3983ED] rounded-full overflow-hidden">
-      {/* Barra de progreso con transición más suave */}
-      <div 
-        className="absolute inset-0 bg-white/10 transition-all duration-500 ease-out"
+    <div className="relative w-full h-16 bg-gradient-to-r from-[#AFFF33] to-[#95FF0B] rounded-full overflow-hidden shadow-lg border-2 border-[#95FF0B]/20">
+      {/* Background pattern */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+
+      {/* Progress bar with smooth transition */}
+      <div
+        className="absolute inset-0 bg-white/20 transition-all duration-700 ease-out backdrop-blur-sm"
         style={{ width: `${progress}%` }}
       />
-      
-      {/* Botón deslizante con transición más suave */}
+
+      {/* Sliding button with enhanced design */}
       <div
         ref={sliderRef}
-        className={`absolute left-0 top-0 bottom-0 w-14 bg-white rounded-full shadow-lg flex items-center justify-center cursor-pointer transition-all duration-500 ease-out ${
-          isDragging ? 'scale-105' : ''
-        }`}
+        className={`absolute left-0 top-0 bottom-0 w-16 bg-[#1A2B40] rounded-full shadow-xl flex items-center justify-center cursor-pointer transition-all duration-700 ease-out border-2 border-white/20 ${isDragging ? 'scale-110 shadow-2xl' : 'hover:scale-105'
+          }`}
         style={{ left: `${sliderLeft}px` }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleMouseDown}
       >
         {isLoading ? (
-          <svg className="animate-spin h-5 w-5 text-[#3983ED]" viewBox="0 0 24 24">
-            <circle 
-              className="opacity-25" 
-              cx="12" 
-              cy="12" 
-              r="10" 
-              stroke="currentColor" 
-              strokeWidth="4"
-              fill="none"
-            />
-            <path 
-              className="opacity-75" 
-              fill="currentColor" 
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-            />
-          </svg>
+          <div className="flex items-center justify-center">
+            <svg className="animate-spin h-6 w-6 text-[#AFFF33]" viewBox="0 0 24 24">
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="3"
+                fill="none"
+              />
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              />
+            </svg>
+          </div>
         ) : (
-          <i className="eva eva-arrow-right-outline text-[#3983ED] text-xl" />
+          <div className="flex items-center justify-center">
+            <svg
+              className="w-6 h-6 text-[#AFFF33] transition-transform duration-300"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.5}
+                d="M13 7l5 5m0 0l-5 5m5-5H6"
+              />
+            </svg>
+          </div>
         )}
       </div>
 
-      {/* Texto */}
+      {/* Text with better styling */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <span className={`text-white font-medium text-sm transition-opacity duration-300 ${
-          isLoading ? 'opacity-0' : 'opacity-100'
-        }`}>
-          {isConfirmed ? 'Confirmed!' : text}
-        </span>
+        <div className="flex flex-col items-center">
+          <span className={`text-[#1A2B40] font-medium text-sm transition-all duration-500 ${isLoading ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
+            }`}>
+            {isConfirmed ? '¡Confirmado!' : 'Send'}
+          </span>
+        </div>
       </div>
+
+      {/* Success animation overlay */}
+      {isConfirmed && !isLoading && (
+        <div className="absolute inset-0 bg-green-500/20 flex items-center justify-center">
+          <div className="flex items-center gap-2">
+            <svg className="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+            </svg>
+            <span className="text-green-700 font-bold text-sm">Transacción exitosa</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
