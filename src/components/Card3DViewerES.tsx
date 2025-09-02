@@ -187,25 +187,25 @@ const Card3DViewerES = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#00213C] py-20 font-nata">
+    <div className="relative min-h-screen bg-[#00213C] py-8 sm:py-12 md:py-20 font-nata w-full overflow-x-hidden">
       {/* Content container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4">
+      <div className="relative z-10 w-full max-w-7xl mx-auto overflow-hidden">
         {/* Header section */}
-        <div className="text-center mb-16">
-          <p className="text-white/80 text-sm mb-4 font-nata">
+        <div className="text-center mb-8 sm:mb-12 md:mb-16 px-4 sm:px-6">
+          <p className="text-white/80 text-xs sm:text-sm mb-2 sm:mb-4 font-nata">
             Experiencia Bancaria Física
           </p>
-          <h2 className="text-6xl font-bold text-[#B0FF51] mb-6 font-nata">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#B0FF51] mb-4 sm:mb-6 font-nata">
             Tarjetas Físicas
           </h2>
-          <p className="text-xl text-white/80 max-w-4xl mx-auto mb-12 font-nata">
-            Experimenta el lujo tangible de nuestras tarjetas físicas, elaboradas con precisión<br />
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/80 max-w-4xl mx-auto mb-8 sm:mb-12 font-nata">
+            Experimenta el lujo tangible de nuestras tarjetas físicas, elaboradas con precisión<br className="hidden sm:block" />
             para tus necesidades bancarias diarias
           </p>
         </div>
 
         {/* 3D Card Viewer */}
-        <div className="relative h-[500px] rounded-2xl overflow-hidden bg-[#00213C] mb-16">
+        <div className="relative h-[300px] sm:h-[400px] md:h-[500px] rounded-xl sm:rounded-2xl overflow-hidden bg-[#00213C] mb-8 sm:mb-12 md:mb-16 mx-4 sm:mx-6">
           <div
             ref={mountRef}
             className="absolute inset-0 w-full h-full"
@@ -213,26 +213,26 @@ const Card3DViewerES = () => {
         </div>
 
         {/* Features section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto px-4 sm:px-6 w-full">
           {[
             {
               icon: (
-                <div className="w-12 h-12 bg-[#B0FF51] rounded-full flex items-center justify-center">
-                  <img src="/assets/icons/icon_1_stars.svg" alt="Diseño Premium" className="w-6 h-6" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#B0FF51] rounded-full flex items-center justify-center">
+                  <img src="/assets/icons/icon_1_stars.svg" alt="Diseño Premium" className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
               ),
               title: "Diseño Premium",
               description: (
                 <>
-                  Acabado metálico con<br />
+                  Acabado metálico con<br className="hidden sm:block" />
                   detalles plateados
                 </>
               )
             },
             {
               icon: (
-                <div className="w-12 h-12 bg-[#B0FF51] rounded-full flex items-center justify-center">
-                  <img src="/assets/icons/icon_2_security.svg" alt="Máxima Seguridad" className="w-6 h-6" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#B0FF51] rounded-full flex items-center justify-center">
+                  <img src="/assets/icons/icon_2_security.svg" alt="Máxima Seguridad" className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
               ),
               title: "Máxima Seguridad",
@@ -240,8 +240,8 @@ const Card3DViewerES = () => {
             },
             {
               icon: (
-                <div className="w-12 h-12 bg-[#B0FF51] rounded-full flex items-center justify-center">
-                  <img src="/assets/icons/icon_3_present.svg" alt="Beneficios Exclusivos" className="w-6 h-6" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#B0FF51] rounded-full flex items-center justify-center">
+                  <img src="/assets/icons/icon_3_present.svg" alt="Beneficios Exclusivos" className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
               ),
               title: "Beneficios Exclusivos",
@@ -249,11 +249,11 @@ const Card3DViewerES = () => {
             }
           ].map((feature) => (
             <div key={feature.title} className="text-center">
-              <div className="flex justify-center mb-4">
+              <div className="flex justify-center mb-3 sm:mb-4">
                 {feature.icon}
               </div>
-              <h3 className="text-[#B0FF51] text-xl font-bold mb-2 font-nata">{feature.title}</h3>
-              <p className="text-white/80 text-xl font-nata">{feature.description}</p>
+              <h3 className="text-[#B0FF51] text-lg sm:text-xl font-bold mb-2 font-nata">{feature.title}</h3>
+              <p className="text-white/80 text-sm sm:text-base md:text-lg lg:text-xl font-nata break-words">{feature.description}</p>
             </div>
           ))}
         </div>

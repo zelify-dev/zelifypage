@@ -41,7 +41,7 @@ const InternationalTransfer = () => {
             </span>
           </h2>
           <p className="text-xl text-white max-w-3xl mx-auto leading-relaxed">
-            {isSpanish 
+            {isSpanish
               ? 'Experimenta transferencias internacionales ultrarrápidas a las mejores tarifas.'
               : 'Experience lightning-fast international transfers at the best rates.'
             }
@@ -67,22 +67,17 @@ const InternationalTransfer = () => {
               {/* Title */}
               <h3 className="text-[#AFFF33] font-bold text-lg mb-3 group-hover:text-[#95FF0B] transition-colors duration-300">
                 {feature.title}
-                </h3>
+              </h3>
 
               {/* Description */}
               <p className="text-white text-base leading-relaxed max-w-xs mx-auto">
                 {feature.description}
-                </p>
-              </div>
+              </p>
+            </div>
           ))}
         </div>
 
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <button className="bg-[#AFFF33] hover:bg-[#95FF0B] text-[#00223E] font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
-            {isSpanish ? 'Comenzar transferencia' : 'Start transfer'}
-                      </button>
-        </div>
+
       </div>
     </section>
   );
