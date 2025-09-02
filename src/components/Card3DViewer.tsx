@@ -115,6 +115,9 @@ const Card3DViewer = () => {
   const modelRef = useRef<THREE.Group | null>(null);
   const [cardName, setCardName] = useState('JOHN COOPER');
 
+  // Detectar idioma
+  const isSpanish = typeof window !== 'undefined' && window.location.pathname.startsWith('/es');
+
   useEffect(() => {
     if (!mountRef.current) return;
 
@@ -198,7 +201,7 @@ const Card3DViewer = () => {
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
-    // Eliminar restricciones de rotación para permitir giro completo
+    // Deshabilitar zoom pero permitir rotación
     controls.enableZoom = false;
     controls.enablePan = false;
     controls.target.set(0, 0, 0);
@@ -290,14 +293,23 @@ const Card3DViewer = () => {
         {/* Header section */}
         <div className="text-center mb-16">
           <p className="text-white/80 text-sm mb-4 font-nata">
-            Physical Banking Experience
+            {isSpanish ? 'Experiencia Bancaria Física' : 'Physical Banking Experience'}
           </p>
           <h2 className="text-6xl font-bold text-[#B0FF51] mb-6 font-nata">
-            Physical Cards
+            {isSpanish ? 'Tarjetas Físicas' : 'Physical Cards'}
           </h2>
           <p className="text-xl text-white/80 max-w-4xl mx-auto mb-12 font-nata">
-            Experience the tangible luxury of our physical cards, crafted with precision<br />
-            for your everyday banking needs
+            {isSpanish ? (
+              <>
+                Experimenta el lujo tangible de nuestras tarjetas físicas, elaboradas con precisión<br />
+                para tus necesidades bancarias diarias
+              </>
+            ) : (
+              <>
+                Experience the tangible luxury of our physical cards, crafted with precision<br />
+                for your everyday banking needs
+              </>
+            )}
           </p>
         </div>
 
@@ -315,11 +327,16 @@ const Card3DViewer = () => {
             {
               icon: (
                 <div className="w-12 h-12 bg-[#B0FF51] rounded-full flex items-center justify-center">
-                  <img src="/assets/icons/icon_1_stars.svg" alt="Premium Design" className="w-6 h-6" />
+                  <img src="/assets/icons/icon_1_stars.svg" alt={isSpanish ? "Diseño Premium" : "Premium Design"} className="w-6 h-6" />
                 </div>
               ),
-              title: "Premium Design",
-              description: (
+              title: isSpanish ? "Diseño Premium" : "Premium Design",
+              description: isSpanish ? (
+                <>
+                  Acabado metálico con<br />
+                  detalles plateados
+                </>
+              ) : (
                 <>
                   Metallic finish with<br />
                   silver details
@@ -329,20 +346,20 @@ const Card3DViewer = () => {
             {
               icon: (
                 <div className="w-12 h-12 bg-[#B0FF51] rounded-full flex items-center justify-center">
-                  <img src="/assets/icons/icon_2_security.svg" alt="Maximum Security" className="w-6 h-6" />
+                  <img src="/assets/icons/icon_2_security.svg" alt={isSpanish ? "Máxima Seguridad" : "Maximum Security"} className="w-6 h-6" />
                 </div>
               ),
-              title: "Maximum Security",
-              description: "Advanced chip technology and contactless"
+              title: isSpanish ? "Máxima Seguridad" : "Maximum Security",
+              description: isSpanish ? "Tecnología de chip avanzada y sin contacto" : "Advanced chip technology and contactless"
             },
             {
               icon: (
                 <div className="w-12 h-12 bg-[#B0FF51] rounded-full flex items-center justify-center">
-                  <img src="/assets/icons/icon_3_present.svg" alt="Exclusive Benefits" className="w-6 h-6" />
+                  <img src="/assets/icons/icon_3_present.svg" alt={isSpanish ? "Beneficios Exclusivos" : "Exclusive Benefits"} className="w-6 h-6" />
                 </div>
               ),
-              title: "Exclusive Benefits",
-              description: "Access to special services and offers"
+              title: isSpanish ? "Beneficios Exclusivos" : "Exclusive Benefits",
+              description: isSpanish ? "Acceso a servicios y ofertas especiales" : "Access to special services and offers"
             }
           ].map((feature) => (
             <div key={feature.title} className="text-center">

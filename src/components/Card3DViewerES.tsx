@@ -38,7 +38,7 @@ const Card3DViewerES = () => {
     cameraRef.current = camera;
 
     // Renderer setup
-    const renderer = new THREE.WebGLRenderer({ 
+    const renderer = new THREE.WebGLRenderer({
       antialias: true,
       alpha: true,
       premultipliedAlpha: false,
@@ -55,7 +55,7 @@ const Card3DViewerES = () => {
     renderer.setSize(containerWidth, containerHeight);
     camera.aspect = containerWidth / containerHeight;
     camera.updateProjectionMatrix();
-    
+
     if (mountRef.current.children.length === 0) {
       mountRef.current.appendChild(renderer.domElement);
     }
@@ -101,7 +101,8 @@ const Card3DViewerES = () => {
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
-    controls.enableZoom = true;
+    // Deshabilitar zoom pero permitir rotación
+    controls.enableZoom = false;
     controls.enablePan = false;
     controls.target.set(0, 0, 0);
     controls.update();
@@ -113,11 +114,11 @@ const Card3DViewerES = () => {
       '/models/Card.glb',
       (gltf) => {
         const model = gltf.scene;
-        
+
         // Ajustar la escala y posición del modelo si es necesario
         model.scale.set(1, 1, 1);
         model.position.set(0, 0, 0);
-        
+
         // Guardar referencia del modelo
         modelRef.current = model;
         scene.add(model);
@@ -126,11 +127,11 @@ const Card3DViewerES = () => {
         const box = new THREE.Box3().setFromObject(model);
         const center = box.getCenter(new THREE.Vector3());
         const size = box.getSize(new THREE.Vector3());
-        
+
         const maxDim = Math.max(size.x, size.y, size.z);
         const fov = camera.fov * (Math.PI / 180);
         const cameraDistance = maxDim / (2 * Math.tan(fov / 2));
-        
+
         camera.position.set(
           center.x + cameraDistance * 0.5,
           center.y + cameraDistance * 0.3,
@@ -149,7 +150,7 @@ const Card3DViewerES = () => {
     // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
-      
+
       if (controlsRef.current) {
         controlsRef.current.update();
       }
@@ -166,10 +167,10 @@ const Card3DViewerES = () => {
     // Handle window resize
     const handleResize = () => {
       if (!cameraRef.current || !rendererRef.current || !mountRef.current) return;
-      
+
       const width = mountRef.current.clientWidth;
       const height = mountRef.current.clientHeight;
-      
+
       cameraRef.current.aspect = width / height;
       cameraRef.current.updateProjectionMatrix();
       rendererRef.current.setSize(width, height);
@@ -186,61 +187,73 @@ const Card3DViewerES = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-black via-[#0a0a0a] to-[#111111] py-20">
-      {/* Elementos decorativos */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#202020]/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#202020]/10 rounded-full blur-3xl"></div>
-      </div>
-
-      {/* Contenedor principal */}
+    <div className="relative min-h-screen bg-[#00213C] py-20 font-nata">
+      {/* Content container */}
       <div className="relative z-10 max-w-7xl mx-auto px-4">
-        {/* Sección de encabezado */}
+        {/* Header section */}
         <div className="text-center mb-16">
-          <div className="inline-block">
-            <span className="inline-block text-sm font-semibold text-[#808080] bg-[#505050]/20 px-4 py-1 rounded-full mb-4">
-              Experiencia Bancaria Física
-            </span>
-          </div>
-          <h2 className="text-6xl font-bold text-white mb-6">
-            Tarjetas <span className="bg-gradient-to-r from-[#808080] via-[#505050] to-[#303030] text-transparent bg-clip-text">Físicas</span>
+          <p className="text-white/80 text-sm mb-4 font-nata">
+            Experiencia Bancaria Física
+          </p>
+          <h2 className="text-6xl font-bold text-[#B0FF51] mb-6 font-nata">
+            Tarjetas Físicas
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
-            Experimenta el lujo tangible de nuestras tarjetas físicas, diseñadas con precisión para tus necesidades bancarias diarias
+          <p className="text-xl text-white/80 max-w-4xl mx-auto mb-12 font-nata">
+            Experimenta el lujo tangible de nuestras tarjetas físicas, elaboradas con precisión<br />
+            para tus necesidades bancarias diarias
           </p>
         </div>
 
-        {/* Visor de Tarjeta 3D */}
-        <div className="relative h-[700px] rounded-3xl overflow-hidden bg-black/30 backdrop-blur-lg border border-white/10">
-    <div 
-            ref={mountRef} 
+        {/* 3D Card Viewer */}
+        <div className="relative h-[500px] rounded-2xl overflow-hidden bg-[#00213C] mb-16">
+          <div
+            ref={mountRef}
             className="absolute inset-0 w-full h-full"
-    />
+          />
         </div>
 
-        {/* Sección de características */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+        {/* Features section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {[
             {
-              icon: "✨",
+              icon: (
+                <div className="w-12 h-12 bg-[#B0FF51] rounded-full flex items-center justify-center">
+                  <img src="/assets/icons/icon_1_stars.svg" alt="Diseño Premium" className="w-6 h-6" />
+                </div>
+              ),
               title: "Diseño Premium",
-              description: "Acabado metálico con detalles plateados"
+              description: (
+                <>
+                  Acabado metálico con<br />
+                  detalles plateados
+                </>
+              )
             },
             {
-              icon: "🔒",
+              icon: (
+                <div className="w-12 h-12 bg-[#B0FF51] rounded-full flex items-center justify-center">
+                  <img src="/assets/icons/icon_2_security.svg" alt="Máxima Seguridad" className="w-6 h-6" />
+                </div>
+              ),
               title: "Máxima Seguridad",
-              description: "Tecnología de chip avanzada y contactless"
+              description: "Tecnología de chip avanzada y sin contacto"
             },
             {
-              icon: "💳",
+              icon: (
+                <div className="w-12 h-12 bg-[#B0FF51] rounded-full flex items-center justify-center">
+                  <img src="/assets/icons/icon_3_present.svg" alt="Beneficios Exclusivos" className="w-6 h-6" />
+                </div>
+              ),
               title: "Beneficios Exclusivos",
               description: "Acceso a servicios y ofertas especiales"
             }
           ].map((feature) => (
-            <div key={feature.title} className="bg-black/30 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
-              <div className="text-3xl mb-4">{feature.icon}</div>
-              <h3 className="text-white text-lg font-semibold mb-2">{feature.title}</h3>
-              <p className="text-gray-400">{feature.description}</p>
+            <div key={feature.title} className="text-center">
+              <div className="flex justify-center mb-4">
+                {feature.icon}
+              </div>
+              <h3 className="text-[#B0FF51] text-xl font-bold mb-2 font-nata">{feature.title}</h3>
+              <p className="text-white/80 text-xl font-nata">{feature.description}</p>
             </div>
           ))}
         </div>

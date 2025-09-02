@@ -155,7 +155,7 @@ export const ConfirmSlider: React.FC<ConfirmSliderProps> = ({ onConfirm, text })
         <div className="flex flex-col items-center">
           <span className={`text-[#1A2B40] font-medium text-sm transition-all duration-500 ${isLoading ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
             }`}>
-            {isConfirmed ? '¡Confirmado!' : 'Send'}
+            {isConfirmed ? 'Send!' : 'Send'}
           </span>
         </div>
       </div>
@@ -167,7 +167,7 @@ export const ConfirmSlider: React.FC<ConfirmSliderProps> = ({ onConfirm, text })
             <svg className="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
             </svg>
-            <span className="text-green-700 font-bold text-sm">Transacción exitosa</span>
+            <span className="text-green-700 font-bold text-sm"></span>
           </div>
         </div>
       )}

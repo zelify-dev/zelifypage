@@ -275,8 +275,8 @@ const Pricing = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">
-              <span style={{ color: '#95FF0B' }}>Exclusive</span>
-              <span style={{ color: '#D8DCE2' }}> benefits & discounts</span>
+              <span style={{ color: '#95FF0B' }}>{isSpanish ? 'Beneficios' : 'Exclusive'}</span>
+              <span style={{ color: '#D8DCE2' }}> {isSpanish ? 'exclusivos y descuentos' : 'benefits & discounts'}</span>
             </h2>
             <p className="text-lg" style={{ color: '#D8DCE2' }}>
               {isSpanish

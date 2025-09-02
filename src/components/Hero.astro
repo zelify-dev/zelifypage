@@ -10,8 +10,8 @@ const isSpanish = currentPath.startsWith('/es');
 <div class="mx-auto max-w-screen-lg px-4 pt-8 pb-28 flex flex-col md:flex-row items-center justify-between bg-[#B0FF51]">
 	<div class="text-center md:text-left md:w-1/2">
 		<h1 class="hero-title mb-6">
-			<span class="lets-pay">{isSpanish ? "Conectamos pagos, unimos" : "Let's pay"}</span>
-			<span class="social-text">{isSpanish ? "personas" : "social"}</span>
+			<span class={`lets-pay ${isSpanish ? 'text-3xl' : ''}`}>{isSpanish ? "Conectamos pagos, unimos" : "Let's pay"}</span>
+			<span class={`social-text ${isSpanish ? 'text-8xl' : ''}`}>{isSpanish ? "personas" : "social"}</span>
 		</h1>
 		
 		<p class="text-xl text-black max-w-2xl mb-8">
@@ -30,7 +30,7 @@ const isSpanish = currentPath.startsWith('/es');
 				{isSpanish ? "compartir" : "share"}
 			</strong> 
 			<br class="md:hidden" />
-			{isSpanish ? "instantaneamente" : "instantly"}
+			{isSpanish ? "instantáneamente" : "instantly"}
 		</p>
 
 		<div class="flex gap-4 justify-center md:justify-start">
@@ -85,22 +85,31 @@ const isSpanish = currentPath.startsWith('/es');
 <!-- Nueva sección "Money, Simplified" -->
 <div class="w-full px-4 py-20 bg-gray-100">
 	<div class="text-center max-w-4xl mx-auto">
-		<p class="text-gray-600 text-sm mb-4">No matter where you are</p>
+		<p class="text-gray-600 text-sm mb-4">{isSpanish ? "Sin importar dónde te encuentres" : "No matter where you are"}</p>
 		
 		<h2 class="text-5xl mb-6">
-			<span class="text-gray-800">Money,</span>
-			<span class="text-[#144092] font-bold"> Simplified</span>
+			<span class="text-gray-800">{isSpanish ? "Dinero" : "Money"}</span>
+			<span class="text-[#144092] font-bold"> {isSpanish ? "Simplificado" : "Simplified"}</span>
 		</h2>
 		
-		<p class="text-xl text-gray-700 mb-4 font-bold">A smarter way to move money.</p>
+		<p class="text-xl text-gray-700 mb-4 font-bold">{isSpanish ? "Una forma más inteligente de mover dinero." : "A smarter way to move money."}</p>
 		<br />
 		<p class="text-gray-600 max-w-2xl mx-auto mb-8">
-			Lightning-fast, encrypted, and available everywhere.<br />
-			Send and receive funds globally in just seconds.
+			{isSpanish ? (
+				<>
+					Ultra-rápido, encriptado y disponible en todas partes.<br />
+					Envía y recibe fondos globalmente en solo segundos.
+				</>
+			) : (
+				<>
+					Lightning-fast, encrypted, and available everywhere.<br />
+					Send and receive funds globally in just seconds.
+				</>
+			)}
 		</p>
 		
 		<button class="bg-[#00223E] text-[#B0FF51] px-8 py-3 rounded-lg font-medium hover:bg-[#001a2e] transition-all duration-300 transform hover:scale-105">
-			Apply now
+			{isSpanish ? "Solicitar ahora" : "Apply now"}
 		</button>
 	</div>
 </div>
@@ -141,6 +150,19 @@ const isSpanish = currentPath.startsWith('/es');
 		margin-left: 0;
 		position: relative;
 		text-align: left;
+	}
+
+	/* Override para español */
+	.lets-pay.text-3xl {
+		font-size: 1.875rem !important;
+		font-weight: 400 !important;
+		line-height: 1.2 !important;
+	}
+
+	.social-text.text-8xl {
+		font-size: 6rem !important;
+		font-weight: 800 !important;
+		line-height: 0.7 !important;
 	}
 
 	@keyframes shine {

@@ -4,29 +4,32 @@ const SocialPaymentUI: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
 
+    // Detectar idioma
+    const isSpanish = typeof window !== 'undefined' && window.location.pathname.startsWith('/es');
+
     const slides = [
         {
             id: 1,
             image: '/assets/slider/1_slide.png',
-            name: 'Emma Wilson',
+            name: isSpanish ? 'Emma Wilson' : 'Emma Wilson',
             handle: '@emma'
         },
         {
             id: 2,
             image: '/assets/slider/2_slide.png',
-            name: 'John Cooper',
+            name: isSpanish ? 'Juan Cooper' : 'John Cooper',
             handle: '@coop'
         },
         {
             id: 3,
             image: '/assets/slider/3_slide.png',
-            name: 'Sarah Kim',
+            name: isSpanish ? 'Sara Kim' : 'Sarah Kim',
             handle: '@sarah'
         },
         {
             id: 4,
             image: '/assets/slider/4_slide.png',
-            name: 'Maria Garcia',
+            name: isSpanish ? 'María García' : 'Maria Garcia',
             handle: '@maria'
         }
     ];
