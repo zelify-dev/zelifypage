@@ -183,10 +183,10 @@ const UtilityServices = ({
             className="flex flex-col items-center p-4 rounded-2xl transition-all group"
             onClick={() => onServiceClick(service.id)}
           >
-            <div className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-3">
-              <i className={`eva eva-${service.icon}-outline text-2xl text-gray-600 group-hover:text-[#3983ED] transition-colors`} />
+            <div className="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center mb-3">
+              <i className={`eva eva-${service.icon}-outline text-3xl text-gray-600 group-hover:text-[#3983ED] transition-colors`} />
             </div>
-            <span className="text-xs text-[#4A4A4A] font-medium group-hover:text-[#3983ED] transition-colors">
+            <span className="text-sm text-[#4A4A4A] font-medium group-hover:text-[#3983ED] transition-colors">
               {service.name}
             </span>
           </button>
@@ -372,13 +372,13 @@ const Features = () => {
                   }}
                 >
                   <div className="flex items-start gap-4">
-                    <div className={`feature-icon w-14 h-14 rounded-xl flex items-center justify-center transition-colors shrink-0
+                    <div className={`feature-icon w-16 h-16 rounded-xl flex items-center justify-center transition-colors shrink-0
                     ${currentSlide === features.findIndex(f => f.name === name)
                         ? 'bg-[#1A1A1A]'
                         : 'bg-[#1A1A1A] group-hover:bg-[#1A1A1A]'
                       }`}
                     >
-                      <i className={`eva eva-${icon}-outline text-3xl
+                      <i className={`eva eva-${icon}-outline text-4xl
                       ${currentSlide === features.findIndex(f => f.name === name)
                           ? 'text-white'
                           : 'text-white group-hover:text-white'
@@ -468,28 +468,28 @@ const Features = () => {
                             <div className="flex gap-2 ml-auto">
                               <div className="flex flex-col items-center">
                                 <button
-                                  className="w-8 h-8 bg-green-500 rounded-full text-white"
+                                  className="w-10 h-10 bg-green-500 rounded-full text-white"
                                   onClick={() => setShowTransferModal(true)}
                                 >
-                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mx-auto" viewBox="0 0 24 24" fill="none">
+                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mx-auto" viewBox="0 0 24 24" fill="none">
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
                                   </svg>
                                 </button>
-                                <span className="text-[10px] text-[#6B7280] mt-0.5 font-medium">
+                                <span className="text-[11px] text-[#6B7280] mt-0.5 font-medium">
                                   {isSpanish ? "Transferir" : "Transfer"}
                                 </span>
                               </div>
 
                               <div className="flex flex-col items-center">
                                 <button
-                                  className="w-8 h-8 bg-blue-500 rounded-full text-white"
+                                  className="w-10 h-10 bg-blue-500 rounded-full text-white"
                                   onClick={() => setShowRequestModal(true)}
                                 >
-                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mx-auto" viewBox="0 0 24 24" fill="none">
+                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mx-auto" viewBox="0 0 24 24" fill="none">
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
                                   </svg>
                                 </button>
-                                <span className="text-[10px] text-[#6B7280] mt-0.5 font-medium">
+                                <span className="text-[11px] text-[#6B7280] mt-0.5 font-medium">
                                   {isSpanish ? "Solicitar" : "Request"}
                                 </span>
                               </div>

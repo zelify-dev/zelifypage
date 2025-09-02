@@ -10,6 +10,7 @@ import Card3DViewer from '../components/Card3DViewer';
 import Pricing from '../components/Pricing';
 import Footer from '../components/Footer.astro';
 import InternationalTransfer from '../components/InternationalTransfer';
+import TransactionSection from '../components/TransactionSection';
 
 // Configuración
 const title = 'Zelify - Next Generation Banking';
@@ -37,6 +38,10 @@ const title = 'Zelify - Next Generation Banking';
 
 	<div id="international-transfer">
 		<InternationalTransfer client:load />
+	</div>
+
+	<div id="transaction-section">
+		<TransactionSection client:load />
 	</div>
 
 	<div id="pricing">
