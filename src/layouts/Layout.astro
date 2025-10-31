@@ -2,7 +2,6 @@
 import { HeadHrefLangs } from 'astro-i18next/components';
 import i18next from 'i18next';
 import Footer from '../components/Footer.astro';
-import ComingSoonOverlay from '../components/ComingSoonOverlay';
 export interface Props {
 	title: string;
 }
@@ -34,7 +33,6 @@ const { title } = Astro.props;
 		</style>
 	</head>
 	<body>
-		<ComingSoonOverlay client:load />
 		<slot />
 		<Footer />
 		<slot name="modals" />

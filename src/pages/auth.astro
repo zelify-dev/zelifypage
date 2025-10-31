@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BackButton from '../components/BackButton.astro';
+
+const isSpanish = Astro.url.pathname.startsWith('/es');
+---
+
+<Layout title={isSpanish ? 'Zelify Auth | Zelify' : 'Zelify Auth | Zelify'}>
+  <BackButton />
+  <main class="container mx-auto px-4 py-16">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold text-center mb-4" style="font-family: 'Nata Sans', sans-serif;">
+        {isSpanish ? 'Zelify Auth' : 'Zelify Auth'}
+      </h1>
+      <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto" style="font-family: 'Nata Sans', sans-serif;">
+        {isSpanish 
+          ? 'Servicios de autenticación y autorización para aplicaciones web y móviles'
+          : 'Authentication and authorization services for web and mobile applications'
+        }
+      </p>
+
+      <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-8">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <h2 class="text-2xl font-bold mb-2" style="font-family: 'Nata Sans', sans-serif;">
+              {isSpanish ? 'Documentación de API' : 'API Documentation'}
+            </h2>
+            <p class="text-gray-600" style="font-family: 'Nata Sans', sans-serif;">
+              {isSpanish 
+                ? 'Accede a la documentación completa de Zelify Auth'
+                : 'Access the complete Zelify Auth documentation'
+              }
+            </p>
+          </div>
+          <a
+            href="https://documentations.zelify.com/zelify-servicios-financieros/zelify-auth"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center px-6 py-3 bg-[#00223E] text-[#B0FF51] font-medium rounded-lg hover:bg-[#001a2e] transition-all duration-300 transform hover:scale-105 shadow-lg"
+            style="font-family: 'Nata Sans', sans-serif;"
+          >
+            {isSpanish ? 'Ver Documentación de API' : 'View API Docs'}
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              class="h-5 w-5 ml-2" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+
