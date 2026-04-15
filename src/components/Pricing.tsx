@@ -11,7 +11,7 @@ const Pricing = () => {
 
   const plans = [
     {
-      name: 'Standard',
+      name: 'Free',
       price: '0.00',
       features: isSpanish ? [
         'Servicios bancarios básicos con Mastercard virtual o física',
